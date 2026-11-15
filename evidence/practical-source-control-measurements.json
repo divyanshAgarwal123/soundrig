@@ -1,0 +1,32 @@
+{
+  "scope": "Synthetic DC/padding control using the unchanged baseline preparation, now exposed by staged preview. Not a new DSP algorithm or listener preference.",
+  "report": {
+    "title": "controlled.wav",
+    "pack": "project",
+    "sourceFile": "controlled.wav",
+    "author": "User supplied",
+    "license": "User-declared: Original synthetic DC/padding control",
+    "licenseNote": "Original synthetic DC/padding control",
+    "sourceSHA256": "f321932812a1e1fb07e0949aeb43db2079b0209dc31efe3f2a4e5a1cdf499627",
+    "pcmSHA256": "5f0c337bdd5aa61320528e164484f03ee50e81454b80ba54156050b7aeb2a30e",
+    "sampleRate": 48000,
+    "frames": 12191,
+    "seconds": 0.25397916666666664,
+    "peak": 0.171173095703125,
+    "rms": 0.11999998728865142,
+    "dc": -4.0052600278894266e-08,
+    "sourceDC": 0.1001020516289605,
+    "sourceChannels": 1,
+    "sourceNearFullScaleSamples": 0,
+    "trimmedLeadingSeconds": 0.09802083333333333,
+    "trimmedTrailingSeconds": 0.098,
+    "preparationGain": 0.5701937624266916,
+    "preparation": "Stereo mean; digital/quiet-baseline padding trim before weighted DC removal; 2ms fades; RMS target0.12, gain\u22644 and peak\u22640.8; source rate retained. Full-scale source clipping cannot be recovered.",
+    "preparationVersion": 1,
+    "sourceFrames": 21600,
+    "sourceSeconds": 0.45,
+    "sourceMonoRMS": 0.1871317884323225,
+    "sourceMonoPeak": 0.399993896484375,
+    "warnings": []
+  }
+}

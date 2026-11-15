@@ -1,0 +1,76 @@
+{
+  "pass": true,
+  "cases": 15,
+  "results": [
+    {
+      "name": "rest is exactly silent before any events",
+      "pass": true
+    },
+    {
+      "name": "run, airborne and death conditions use actual bindings",
+      "pass": true
+    },
+    {
+      "name": "one landing is finite and never retriggers from steady controls",
+      "pass": true
+    },
+    {
+      "name": "bounded overlap reports deterministic oldest voice stealing",
+      "pass": true
+    },
+    {
+      "name": "PCM is independent of block partition and command boundaries",
+      "pass": true
+    },
+    {
+      "name": "finite bounded output across supported sample rates",
+      "pass": true
+    },
+    {
+      "name": "filter cutoff changes noise spectrum rather than a cosmetic field",
+      "pass": true
+    },
+    {
+      "name": "selective patch preserves locked data, stems and live voice state",
+      "pass": true
+    },
+    {
+      "name": "unsupported or unbounded model fields reject before rendering",
+      "pass": true
+    },
+    {
+      "name": "invalid endpoint commands and invalid locks reject even when no sample consumes them",
+      "pass": true
+    },
+    {
+      "name": "accepted IDs do not read inherited object properties as controls",
+      "pass": true
+    },
+    {
+      "name": "actual processor responds on the next block after a received control",
+      "pass": true
+    },
+    {
+      "name": "real worklet wrapper matches offline commands for 48000 samples",
+      "pass": true
+    },
+    {
+      "name": "downloadable module imports with a self-contained processor and same PCM",
+      "pass": true
+    },
+    {
+      "name": "actual bundled processor preserves 48000 worklet samples",
+      "pass": true
+    }
+  ],
+  "processorControlPath": {
+    "receivedToAppliedFrames": 0,
+    "renderQuantumFrames": 128,
+    "sampleRate": 48000,
+    "nextBlockUpperBoundMs": 2.6666666666666665,
+    "scope": "Actual processor callback under a Node worklet harness; excludes browser transport and device output."
+  },
+  "workletOfflineSamplesCompared": 48000,
+  "bundledProcessorSamplesCompared": 48000,
+  "limitation": "No browser/device or human listening evidence in these Node checks."
+}

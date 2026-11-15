@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 4,
+  "scope": "Actual RecordingStage with delayed reads/responses, selection/project epochs, overlapping inspections and discarded candidates."
+}

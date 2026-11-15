@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 3,
+  "scope": "Fixed-path Godot package, original sources, exact WAV identity, deterministic archive, metadata and target boundary. Actual engine is a separate executed check."
+}

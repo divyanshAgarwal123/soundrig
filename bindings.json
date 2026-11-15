@@ -1,0 +1,51 @@
+{
+  "project": "Phaser first-game platformer adaptation",
+  "upstream": "https://github.com/phaserjs/examples/blob/master/public/src/games/firstgame/part10.html",
+  "controls": [
+    {
+      "id": "speed",
+      "min": 0,
+      "max": 1,
+      "source": "abs(player.body.velocity.x) / 160",
+      "meaning": "horizontal movement; zero at rest"
+    },
+    {
+      "id": "air",
+      "min": 0,
+      "max": 1,
+      "source": "abs(player.body.velocity.y) / 330 while airborne",
+      "meaning": "vertical movement; zero while grounded"
+    },
+    {
+      "id": "grounded",
+      "min": 0,
+      "max": 1,
+      "source": "player.body.blocked.down || player.body.touching.down",
+      "meaning": "one when on a platform"
+    },
+    {
+      "id": "alive",
+      "min": 0,
+      "max": 1,
+      "source": "gameOver ? 0 : 1",
+      "meaning": "one during active play"
+    }
+  ],
+  "events": [
+    {
+      "id": "land",
+      "source": "airborne to grounded edge, previous falling velocity > 80",
+      "meaning": "one collision landing with intensity based on impact"
+    },
+    {
+      "id": "pickup",
+      "source": "collectStar callback",
+      "meaning": "one collected star"
+    },
+    {
+      "id": "hurt",
+      "source": "hitBomb callback",
+      "meaning": "game over collision"
+    }
+  ]
+}

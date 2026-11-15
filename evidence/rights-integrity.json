@@ -1,0 +1,39 @@
+{
+  "pass": true,
+  "assets": [
+    {
+      "id": "step_concrete_a",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "step_concrete_b",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "step_wood_a",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "step_wood_b",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "land_soft_a",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "land_soft_b",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "pickup_confirm",
+      "sourceAndPCMHashMatch": true
+    },
+    {
+      "id": "hurt_error",
+      "sourceAndPCMHashMatch": true
+    }
+  ],
+  "upstreamFiles": 4,
+  "scope": "Byte hashes of retained source sounds (renamed to catalog IDs), prepared PCM, vendored library/license and upstream source/README"
+}

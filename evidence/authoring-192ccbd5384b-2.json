@@ -1,0 +1,156 @@
+{
+  "kind": "compile",
+  "request": {
+    "prompt": "Create an intimate wooden-toy platformer kit using both wood footstep variants, soft landing variations, confirmation pickup and short hurt alert. Wind should follow vertical air motion and stop grounded or dead. Footsteps stop at rest, while airborne and after death. Use only the supplied catalog."
+  },
+  "attempt": 2,
+  "stage": "verification failed",
+  "output": {
+    "version": 3,
+    "controls": [
+      {
+        "id": "speed"
+      },
+      {
+        "id": "air"
+      },
+      {
+        "id": "grounded"
+      },
+      {
+        "id": "alive"
+      }
+    ],
+    "events": [
+      "land",
+      "pickup",
+      "hurt"
+    ],
+    "master": 0.65,
+    "layers": [
+      {
+        "id": "footsteps",
+        "type": "sample",
+        "gain": {
+          "control": "speed",
+          "lo": 0,
+          "hi": 0.5
+        },
+        "pulseHz": {
+          "control": "speed",
+          "lo": 2,
+          "hi": 9
+        },
+        "when": [
+          {
+            "control": "speed",
+            "op": "above",
+            "threshold": 0.01
+          },
+          {
+            "control": "grounded",
+            "op": "above",
+            "threshold": 0.5
+          },
+          {
+            "control": "alive",
+            "op": "above",
+            "threshold": 0.5
+          }
+        ],
+        "event": null,
+        "samples": [
+          "step_wood_a",
+          "step_wood_b"
+        ],
+        "variation": 0.03
+      },
+      {
+        "id": "wind",
+        "type": "noise",
+        "frequency": 220,
+        "gain": {
+          "control": "air",
+          "lo": 0,
+          "hi": 0.35
+        },
+        "when": [
+          {
+            "control": "air",
+            "op": "above",
+            "threshold": 0.01
+          },
+          {
+            "control": "grounded",
+            "op": "below",
+            "threshold": 0.5
+          },
+          {
+            "control": "alive",
+            "op": "above",
+            "threshold": 0.5
+          }
+        ],
+        "event": null,
+        "filter": {
+          "type": "lowpass",
+          "cutoff": 800
+        },
+        "envelope": {
+          "attack": 0.02,
+          "decay": 0.4,
+          "release": 0.15
+        }
+      },
+      {
+        "id": "land_thud",
+        "type": "sample",
+        "gain": 0.6,
+        "when": [
+          {
+            "control": "alive",
+            "op": "above",
+            "threshold": 0.5
+          }
+        ],
+        "event": "land",
+        "samples": [
+          "land_soft_a",
+          "land_soft_b"
+        ],
+        "variation": 0.02
+      },
+      {
+        "id": "pickup_chime",
+        "type": "sample",
+        "gain": 0.7,
+        "event": "pickup",
+        "samples": [
+          "pickup_confirm"
+        ],
+        "variation": 0.01
+      },
+      {
+        "id": "hurt_buzz",
+        "type": "sample",
+        "gain": 0.8,
+        "event": "hurt",
+        "samples": [
+          "hurt_error"
+        ],
+        "variation": 0.01
+      }
+    ]
+  },
+  "modelInfo": {
+    "model": "muse-glimmer:30b-mlx",
+    "eval_count": 1160,
+    "done_reason": "stop",
+    "modelSeconds": 83.985
+  },
+  "verification": {
+    "ok": false,
+    "error": "Invalid normalized control",
+    "seconds": 0.0857
+  }
+}

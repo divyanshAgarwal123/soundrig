@@ -1,0 +1,53 @@
+{
+  "pass": true,
+  "cases": 9,
+  "results": [
+    {
+      "path": "/api/export",
+      "expectedStatus": 403,
+      "actualStatus": 403
+    },
+    {
+      "path": "/api/export",
+      "expectedStatus": 403,
+      "actualStatus": 403
+    },
+    {
+      "path": "/api/export",
+      "expectedStatus": 400,
+      "actualStatus": 400
+    },
+    {
+      "path": "/api/export",
+      "expectedStatus": 400,
+      "actualStatus": 400
+    },
+    {
+      "path": "/api/export",
+      "expectedStatus": 400,
+      "actualStatus": 400
+    },
+    {
+      "path": "/api/compile",
+      "expectedStatus": 400,
+      "actualStatus": 400
+    },
+    {
+      "path": "/api/compile",
+      "expectedStatus": 400,
+      "actualStatus": 400
+    },
+    {
+      "path": "/api/patch",
+      "expectedStatus": 400,
+      "actualStatus": 400
+    },
+    {
+      "path": "/api/missing",
+      "expectedStatus": 404,
+      "actualStatus": 404
+    }
+  ],
+  "additionalModelCalls": 0,
+  "scope": "Local HTTP rejection paths only. No deployment security certification."
+}

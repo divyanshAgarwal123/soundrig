@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "pass": true,
+  "contractSHA256": "521c7df3ccbedbc07afc46b6fd664e60ca3d28c1b26db3e74815a601bd2cbb25",
+  "rigSHA256": "d50b2a4eb4b884fb4093e2f8ebe9982fbc5ab697193de3825e4a2ae73900c81e",
+  "settings": {
+    "sampleRate": 48000,
+    "blockSize": 128,
+    "seed": 17,
+    "epsilon": 1e-09,
+    "cueWindowMs": 250
+  },
+  "cases": [
+    {
+      "id": "Runner",
+      "pass": true,
+      "failures": [],
+      "provenance": {
+        "kind": "imported",
+        "source": "Saved real run; game counters1land,2pickups,1hit. Lossless control compaction."
+      },
+      "traceSHA256": "e48400086ba181e88d7642b01cc67f25097bca143dfa1de6ccb9b6af7b20c542",
+      "commands": 112,
+      "events": {
+        "land": {
+          "count": 1,
+          "expected": 1,
+          "minimumCueRMS": 0.049943851195268174,
+          "threshold": 0.001
+        },
+        "pickup": {
+          "count": 2,
+          "expected": 2,
+          "minimumCueRMS": 0.018690246737904127,
+          "threshold": 0.001
+        },
+        "hurt": {
+          "count": 1,
+          "expected": 1,
+          "minimumCueRMS": 0.02191929987338726,
+          "threshold": 0.001
+        }
+      },
+      "rms": 0.022769324602501265,
+      "summary": {
+        "commandsApplied": 112,
+        "eventCommands": 4,
+        "addedVoices": 4,
+        "peak": 0.26977166533470154,
+        "preLimitPeak": 0.3509463798870621,
+        "saturatedSamples": 0
+      },
+      "silence": []
+    },
+    {
+      "id": "Platformer",
+      "pass": true,
+      "failures": [],
+      "provenance": {
+        "kind": "imported",
+        "source": "Saved real run; game counters1land,1pickup,0hits. Lossless control compaction."
+      },
+      "traceSHA256": "64ee7432219ccde08f6497e69dd3dd2fd116b83faae36e2b8da924530111e56f",
+      "commands": 167,
+      "events": {
+        "land": {
+          "count": 1,
+          "expected": 1,
+          "minimumCueRMS": 0.032596084815783986,
+          "threshold": 0.001
+        },
+        "pickup": {
+          "count": 1,
+          "expected": 1,
+          "minimumCueRMS": 0.018690246737904127,
+          "threshold": 0.001
+        },
+        "hurt": {
+          "count": 0,
+          "expected": 0,
+          "minimumCueRMS": null,
+          "threshold": 0
+        }
+      },
+      "rms": 0.01896305011364207,
+      "summary": {
+        "commandsApplied": 167,
+        "eventCommands": 2,
+        "addedVoices": 2,
+        "peak": 0.2697785198688507,
+        "preLimitPeak": 0.3509560517241131,
+        "saturatedSamples": 0
+      },
+      "silence": []
+    },
+    {
+      "id": "Dead idle",
+      "pass": true,
+      "failures": [],
+      "provenance": {
+        "kind": "synthetic",
+        "source": "Synthetic dead-idle control"
+      },
+      "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+      "commands": 0,
+      "events": {},
+      "rms": 0,
+      "summary": {
+        "commandsApplied": 0,
+        "eventCommands": 0,
+        "addedVoices": 0,
+        "peak": 0,
+        "preLimitPeak": 0,
+        "saturatedSamples": 0
+      },
+      "silence": [
+        {
+          "fromMs": 0,
+          "toMs": 1000,
+          "maxRMS": 0,
+          "rms": 0
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "land": 2,
+    "pickup": 3,
+    "hurt": 1
+  },
+  "missingEvents": [],
+  "seconds": 0.10120191699999999,
+  "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+  "projectSHA256": "5cbea8f773de1172ae3c5084cf1b6bc56c0132d6379a66b8bad3fcc1a464957f",
+  "componentSHA256": "7df4f660a931e73640b7eea5c8cbaedb83b0fb67f60ea7669043da5fa19747d7"
+}

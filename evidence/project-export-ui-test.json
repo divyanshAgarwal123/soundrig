@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "cases": 3,
+  "checks": [
+    "10 exports at the8-import cap do not import a browser runtime",
+    "busy admission and renderer/rig/trace snapshots survive in-flight changes",
+    "hash mismatch creates no download and unlocks editing"
+  ],
+  "scope": "Actual app export function in Node vm with explicit network/Web API fixtures. Browser hash path is tested separately."
+}

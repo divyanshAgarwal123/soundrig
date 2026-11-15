@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "name": "Parcel Runner — custom cues",
+  "quality": "studio",
+  "sampleRate": 48000,
+  "channels": 1,
+  "bits": 16,
+  "componentSHA256": "6d62054811671d33212a4f679647458227d2fab8c3933d6872b4bdd317a83848",
+  "projectSHA256": "7cfd5a2576203f657530cdd1ad8755c27a5be7bb3277ba2574d08afd3816024f",
+  "clips": [
+    {
+      "id": "land_01",
+      "file": "audio/land_01.wav",
+      "role": "land",
+      "seed": 17,
+      "sourceSamples": [
+        "land_soft_a",
+        "land_soft_b"
+      ],
+      "frames": 29123,
+      "startFrame": 0,
+      "endFrame": 29123,
+      "wavSHA256": "da5df6ef77f9883ca674081b447fad7eadd4899d62986d39d58eb35f7a5c1f42",
+      "peak": 0.23619765043258667,
+      "preLimitPeak": 0.23619764592685283
+    },
+    {
+      "id": "land_02",
+      "file": "audio/land_02.wav",
+      "role": "land",
+      "seed": 7936,
+      "sourceSamples": [
+        "land_soft_a",
+        "land_soft_b"
+      ],
+      "frames": 29123,
+      "startFrame": 33923,
+      "endFrame": 63046,
+      "wavSHA256": "e3020036c21c718a77fec80809c16231397345b29fe42aeb6657303d822f4bea",
+      "peak": 0.2361076921224594,
+      "preLimitPeak": 0.23610769768364484
+    },
+    {
+      "id": "land_03",
+      "file": "audio/land_03.wav",
+      "role": "land",
+      "seed": 15855,
+      "sourceSamples": [
+        "land_soft_a",
+        "land_soft_b"
+      ],
+      "frames": 29123,
+      "startFrame": 67846,
+      "endFrame": 96969,
+      "wavSHA256": "6edcc2dfee0cb5e88fa1f9f29cf55bbeef5a67455fc5fef96467fa32d3939e4b",
+      "peak": 0.2236238718032837,
+      "preLimitPeak": 0.2236238782977636
+    },
+    {
+      "id": "pickup_01",
+      "file": "audio/pickup_01.wav",
+      "role": "pickup",
+      "seed": 17,
+      "sourceSamples": [
+        "pickup_confirm"
+      ],
+      "frames": 23767,
+      "startFrame": 101769,
+      "endFrame": 125536,
+      "wavSHA256": "b0cb9c6c29cf366fc62c726a7f89d7e59d169fead2bc3fa5c3190f363e22e2a0",
+      "peak": 0.0813436210155487,
+      "preLimitPeak": 0.08134362375922434
+    },
+    {
+      "id": "pickup_02",
+      "file": "audio/pickup_02.wav",
+      "role": "pickup",
+      "seed": 7936,
+      "sourceSamples": [
+        "pickup_confirm"
+      ],
+      "frames": 23767,
+      "startFrame": 130336,
+      "endFrame": 154103,
+      "wavSHA256": "cbb171d6833f10fed981aa20ca8d94cb3f858e46a430530e5eddb67734e5e4c3",
+      "peak": 0.08134230226278305,
+      "preLimitPeak": 0.08134230079472042
+    },
+    {
+      "id": "pickup_03",
+      "file": "audio/pickup_03.wav",
+      "role": "pickup",
+      "seed": 15855,
+      "sourceSamples": [
+        "pickup_confirm"
+      ],
+      "frames": 23767,
+      "startFrame": 158903,
+      "endFrame": 182670,
+      "wavSHA256": "5286d5545c890057bb4a787399cbe6faa82c1826840043b86d05f873719d76d0",
+      "peak": 0.08131451904773712,
+      "preLimitPeak": 0.08131451538048166
+    },
+    {
+      "id": "hurt_01",
+      "file": "audio/hurt_01.wav",
+      "role": "hurt",
+      "seed": 17,
+      "sourceSamples": [
+        "hurt_error"
+      ],
+      "frames": 5366,
+      "startFrame": 187470,
+      "endFrame": 192836,
+      "wavSHA256": "369ce418484ca7caf4526291c8cd8080f58826fb6906c3acceee7efc66be81f7",
+      "peak": 0.28155240416526794,
+      "preLimitPeak": 0.2815524118889521
+    },
+    {
+      "id": "hurt_02",
+      "file": "audio/hurt_02.wav",
+      "role": "hurt",
+      "seed": 7936,
+      "sourceSamples": [
+        "hurt_error"
+      ],
+      "frames": 5366,
+      "startFrame": 197636,
+      "endFrame": 203002,
+      "wavSHA256": "a3f72e76bf0f3b2c8554f4d80bf40b0a4ec29f82b5af295592b63eaf661167bd",
+      "peak": 0.2773554027080536,
+      "preLimitPeak": 0.2773554149742608
+    },
+    {
+      "id": "hurt_03",
+      "file": "audio/hurt_03.wav",
+      "role": "hurt",
+      "seed": 15855,
+      "sourceSamples": [
+        "hurt_error"
+      ],
+      "frames": 5366,
+      "startFrame": 207802,
+      "endFrame": 213168,
+      "wavSHA256": "a0cbccc0d93800f83ab17e5e55ca51302b29796793e86cfa2b9154b78309685a",
+      "peak": 0.27588242292404175,
+      "preLimitPeak": 0.2758824374404116
+    },
+    {
+      "id": "footstep_01",
+      "file": "audio/footstep_01.wav",
+      "role": "footstep",
+      "seed": 17,
+      "sourceSamples": [
+        "step_wood_a"
+      ],
+      "frames": 12445,
+      "startFrame": 217968,
+      "endFrame": 230413,
+      "wavSHA256": "43fecd3edbb1583fd691334814fe7c269a1eda6988e464dcb0de230642aca9a0",
+      "peak": 0.14182104170322418,
+      "preLimitPeak": 0.14182104153608877
+    },
+    {
+      "id": "footstep_02",
+      "file": "audio/footstep_02.wav",
+      "role": "footstep",
+      "seed": 7936,
+      "sourceSamples": [
+        "step_wood_b"
+      ],
+      "frames": 12264,
+      "startFrame": 235213,
+      "endFrame": 247477,
+      "wavSHA256": "1d33ec846466acbf03a81a219d71f2f3037c99bf4150f737f6ceb719a4fea997",
+      "peak": 0.15085294842720032,
+      "preLimitPeak": 0.15085294278922992
+    }
+  ],
+  "limits": {
+    "clips": 11,
+    "clipFrames": 100800,
+    "totalAudioSeconds": 24,
+    "uncompressedBytes": 12288000
+  },
+  "scope": "Static full-intensity cues and isolated full-speed footsteps. Dynamic wind, cadence, changing controls and live ducking are not included. Takes use authored sample/rate variation; takes may match when no variation is authored. Source declarations do not verify ownership."
+}

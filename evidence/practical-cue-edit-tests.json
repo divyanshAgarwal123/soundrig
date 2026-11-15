@@ -1,0 +1,8 @@
+{
+  "pass": true,
+  "cases": 6,
+  "uncheckedFortyEditsMs": 20.70516699999996,
+  "runtimeImportsBefore": 1,
+  "runtimeImportsAfter": 1,
+  "scope": "Actual edit planner and app apply/undo function, actual project renderer and contracts, explicit DOM/network fixtures. Browser behavior checked separately; timing is not a human task benchmark."
+}

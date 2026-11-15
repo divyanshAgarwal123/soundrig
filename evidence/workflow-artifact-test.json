@@ -1,0 +1,45 @@
+{
+  "pass": true,
+  "actualBrowserZIP": true,
+  "componentSHA256": "a7fd5dcc9365f5518cb749183d922350fc961852124336d72f5994ea560d9ae7",
+  "archiveSHA256": "b3a8eed39926632dd6ff600ab21ac0afdf4024cb545f968193d9b41fe56bff11",
+  "guardedMeta": {
+    "successfulRecord": "patch-07e0b7354877.json",
+    "successfulSeconds": 38.326,
+    "rejectedRecord": "patch-42f99e8e45f1.json",
+    "rejectedSeconds": 73.658,
+    "rejectedAttempts": 2,
+    "lockedLayers": 4
+  },
+  "traces": [
+    {
+      "id": "Connected runner",
+      "samples": 288000,
+      "commands": 109,
+      "pass": true
+    },
+    {
+      "id": "Dead idle",
+      "samples": 48000,
+      "commands": 0,
+      "pass": true
+    },
+    {
+      "id": "Adapter platformer",
+      "samples": 288000,
+      "commands": 240,
+      "pass": true
+    }
+  ],
+  "negativeControls": [
+    {
+      "name": "Downloaded verifier rejects failing signal threshold",
+      "exit": 1
+    },
+    {
+      "name": "Downloaded verifier refuses stale editable recipe",
+      "exit": 2
+    }
+  ],
+  "scope": "Actual downloaded component/CLI/processor, independent scenario counts, two fresh Meta intents and browser PCM identities. Node worklet execution does not measure speaker latency or human preference."
+}

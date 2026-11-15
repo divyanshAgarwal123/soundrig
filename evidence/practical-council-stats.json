@@ -1,0 +1,14 @@
+{
+  "preExecutionEstimate": 9037,
+  "preExecutionRange": [
+    6777,
+    12199
+  ],
+  "cliSavedTextPostEstimate": 6337,
+  "artifactOnlyEstimate": 20051,
+  "coverage": "partial",
+  "actualDispatchedInitialPrompts": 9,
+  "followupSourceReviews": 2,
+  "note": "CLI file-presence heuristic says full, but unlogged agent source-file reads/context and hidden overhead prevent a full-session estimate. These values are local saved-text estimates, not billing or measured savings. No calibration update was made.",
+  "session": "/Users/divyanshagarwal/.codex/plugins/cache/codex-marketplace-global/codex-council/.codex-council/sessions/20261104T131708Z-soundrig-practical-upgrade-reversible-cue-preparation-and-verifi"
+}

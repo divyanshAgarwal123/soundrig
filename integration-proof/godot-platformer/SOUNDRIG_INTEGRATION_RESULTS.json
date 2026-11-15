@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "archiveSHA256": "943aa99b1cde27fc9fd1c874dd76729fa0f9d8aeca167a947eb138b1060067fc",
+  "observed": {
+    "actualCoinSignals": 3,
+    "pass": true,
+    "scope": "Native game integration under Dummy audio driver; no human play or listening judgment",
+    "soundrigStarts": 3,
+    "source": "Godot official 2D platformer, controlled player teleports causing physics overlaps",
+    "voicePool": 12
+  },
+  "gameIntegrationSHA256": "0fb2bc382264191ebac6b61093bd016760291812ce6b7c98498fdf1e59ce79b4",
+  "scope": "Latest actual browser Godot export inserted into the existing credited official platformer. Same event connection, actual physics overlaps, Dummy audio; no human listening or outside-developer claim."
+}

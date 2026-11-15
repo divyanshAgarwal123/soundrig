@@ -1,0 +1,117 @@
+{
+  "pass": true,
+  "cases": [
+    {
+      "id": "concrete-kit",
+      "record": "compile-6273534a78ff.json",
+      "attempts": 1,
+      "pass": true
+    },
+    {
+      "id": "wood-kit",
+      "record": "compile-2dc185cfab21.json",
+      "attempts": 1,
+      "pass": true
+    },
+    {
+      "id": "wind-only",
+      "record": "patch-a7908de15ef1.json",
+      "attempts": 1,
+      "pass": true
+    },
+    {
+      "id": "wood-only",
+      "record": "patch-0d0653403727.json",
+      "attempts": 1,
+      "pass": true
+    },
+    {
+      "id": "unsupported-speech",
+      "record": "compile-e1c09e98d61d.json",
+      "attempts": 1,
+      "pass": true
+    },
+    {
+      "id": "unsupported-score",
+      "record": "compile-df595c264f54.json",
+      "attempts": 1,
+      "pass": true
+    }
+  ],
+  "patches": [
+    {
+      "record": "patch-07e0b7354877.json",
+      "target": "pickup_chime",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-0d0653403727.json",
+      "target": "footsteps",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-2e3cd2a356e6.json",
+      "target": "wind",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-3062e57806d2.json",
+      "target": "hurt_buzz",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-59adb8273e64.json",
+      "target": "pickup_chime",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-9363f96f2442.json",
+      "target": "pickup_chime",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-9b3fe8e65e92.json",
+      "target": "pickup_chime",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    },
+    {
+      "record": "patch-a7908de15ef1.json",
+      "target": "wind",
+      "lockedLayers": 4,
+      "lockedSamples": 288000,
+      "pass": true
+    }
+  ],
+  "initialBatch": {
+    "passed": 4,
+    "total": 6,
+    "compileFailuresPreserved": true
+  },
+  "repairedCompiles": {
+    "passed": 2,
+    "total": 2
+  },
+  "capturedTrace": {
+    "commands": 167,
+    "durationMs": 6000,
+    "events": [
+      "pickup",
+      "land"
+    ]
+  },
+  "scope": "Actual local model records and CUA-downloaded trace. Outcomes after repair are not an untouched held-out success rate. No user preference/time-savings claim."
+}

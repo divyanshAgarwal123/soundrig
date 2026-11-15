@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundRig Studio · build, check, deliver</title><meta name="description" content="Import your game sounds, shape behavior with Meta, retain gameplay checks and export the result."><link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="style.css?v=2"><link rel="stylesheet" href="site.css"><link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to studio</a><header class="site-header"><a class="brand" href="./" aria-label="SoundRig home"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17"/><circle class="label" cx="18" cy="18" r="5"/></svg>SoundRig</a><nav aria-label="Main navigation"><a href="studio.html" aria-current="page">Studio</a><a href="guide.html">How it works</a><a href="#deliver" data-editor="delivery">Deliver your kit</a></nav></header>
+  <main id="main">
+    <div class="page-title"><div><h1>Sound studio.</h1><p>Play a moment. Shape the sound. Keep what works.</p></div><div class="session-actions"><a href="#composer-heading" data-editor="recordings">Open your recordings</a><button id="quick-start" class="primary">Load working example</button></div></div>
+    <p id="studio-notice" class="workspace-notice" role="status">Loading the sound workspace…</p>
+    <nav class="studio-steps" aria-label="Studio workflow"><a href="#game-heading">Playground</a><a href="#composer-heading" data-editor="cues">Edit your kit</a><a href="#workflow-heading">Saved checks</a><a href="#deliver" data-editor="delivery">Export</a></nav>
+    <div class="workspace">
+      <section class="game-pane" aria-labelledby="game-heading">
+        <div class="section-head game-heading"><div><h2 id="game-heading">Pressing Room Run</h2><p>A small world for your sound.</p></div><span id="audio-status" role="status">Audio off</span></div>
+        <div class="game-frame"><div class="game-hud"><span>Collect the masters</span><strong id="game-progress">0 / 8</strong></div><div id="game" class="game" role="application" aria-label="Pressing Room Run. Arrow keys or A and D to move; Up or Space to jump." aria-describedby="game-instructions" tabindex="0"></div><div class="game-caption"><span id="game-objective" role="status">Eight records. Three shelves. Watch the rolling press.</span><button id="game-pause" aria-pressed="false">Pause game</button></div></div>
+        <div class="game-actions"><button id="enable-audio" class="primary">Enable audio</button><button id="mute" disabled>Mute</button><button id="restart">Restart game</button><button id="capture-trace">Capture 6 seconds</button><label class="volume">Volume <input id="volume" type="range" min="0" max="100" value="60" aria-label="Audio volume"></label></div>
+        <div class="touch-controls" aria-label="Game controls"><button data-hold="left">Move left</button><button id="jump">Jump</button><button data-hold="right">Move right</button></div>
+        <p id="game-instructions" class="hint game-instructions">Click the scene to play. <kbd>←</kbd> <kbd>→</kbd> move · <kbd>↑</kbd> / <kbd>Space</kbd> jump. A / D also work. Collect all eight records; avoid the rolling press.</p>
+        <details class="game-diagnostics"><summary>Live bindings &amp; event log</summary>
+        <dl class="game-stats"><div><dt>Score</dt><dd id="score">0</dd></div><div><dt>Landings</dt><dd id="landings">0</dd></div><div><dt>Pickups</dt><dd id="pickups">0</dd></div><div><dt>Player position</dt><dd id="position">100, 450</dd></div></dl>
+        <div class="section-head"><h2>Live game bindings</h2><span id="processor-status">Audio thread inactive</span></div>
+        <dl class="bindings"><div><dt>speed</dt><dd id="binding-speed">0.00</dd></div><div><dt>air</dt><dd id="binding-air">0.00</dd></div><div><dt>grounded</dt><dd id="binding-grounded">0</dd></div><div><dt>alive</dt><dd id="binding-alive">1</dd></div></dl>
+        <div class="section-head"><h2>Game events</h2><span>From physics and callbacks</span></div>
+        <ol id="events" class="event-log"><li>Move, jump or collect a record to see an event.</li></ol>
+        </details>
+
+      </section>
+      <section class="composer" aria-labelledby="composer-heading">
+        <div class="editor-heading"><h2 id="composer-heading">Your sound kit</h2><a href="guide.html#checks" aria-label="Help with sound checks">Help</a></div>
+        <label for="project-name">Project name</label><input id="project-name" type="text" maxlength="80" value="First Platformer sound kit">
+        <div class="editor-tabs" role="tablist" aria-label="Sound kit tools">
+          <button id="tab-cues" role="tab" disabled aria-selected="true" aria-controls="panel-cues">Cues</button>
+          <button id="tab-recordings" role="tab" disabled aria-selected="false" aria-controls="panel-recordings" tabindex="-1">Recordings</button>
+          <button id="tab-revisions" role="tab" disabled aria-selected="false" aria-controls="panel-revisions" tabindex="-1">Revisions</button>
+          <button id="tab-meta" role="tab" disabled aria-selected="false" aria-controls="panel-meta" tabindex="-1">Meta edit</button>
+          <button id="tab-delivery" role="tab" disabled aria-selected="false" aria-controls="panel-delivery" tabindex="-1">Delivery</button>
+        </div>
+        <section id="panel-cues" role="tabpanel" aria-labelledby="tab-cues" tabindex="0">
+        <section class="cue-mixer" aria-labelledby="cue-mixer-heading"><h3 id="cue-mixer-heading">Set the cue. Keep the checks.</h3><p class="hint">For precise level and pitch changes, use these controls. Saved checks protect the edit when protection is enabled. Audition plays the actual mix level.</p><label for="mix-cue">Event cue</label><select id="mix-cue"></select><div class="cue-values"><label for="mix-gain">Level <input id="mix-gain" type="number" min="0" max="1" step="0.01"></label><label for="mix-rate">Pitch rate <input id="mix-rate" type="number" min="0.75" max="1.25" step="0.01"></label></div><div class="replay-actions"><button id="mix-apply" class="primary">Apply checked cue edit</button><button id="mix-audition">Hear current cue</button><button id="mix-undo" disabled>Undo last cue edit</button></div><p id="mix-status" role="status">Choose a cue. Changes apply only when you press the button.</p></section>
+        <label for="quality">Playback quality</label><select id="quality"><option value="classic">Classic · compatible with earlier projects</option><option value="studio">Studio · band-limited playback, transparent quiet signals</option></select><p class="hint">Studio mode changes the renderer, not your recordings. Save the project to retain this choice. Source quality and listening preference still matter.</p>
+        <label for="material">Footstep material · quick manual edit</label><select id="material"><option value="concrete">Concrete</option><option value="wood">Wood</option></select>
+          <details class="layer-disclosure"><summary>Listen to individual layers <span id="layer-summary">5 layers</span></summary>
+        <div class="section-head"><h2>Layers</h2><span id="layer-count">0 layers</span></div>
+        <ul id="layers" class="layers"></ul>
+          </details>
+        </section>
+        <section id="panel-recordings" role="tabpanel" aria-labelledby="tab-recordings" tabindex="0" hidden>
+        <details class="project-panel" open><summary>Your recordings &amp; project</summary>
+          <button id="project-example">Load tested example project</button><p class="hint">Kenney CC0 imports and saved Meta edits. No new inference.</p>
+          <p class="hint">Replace a sound slot with your recording. PCM16 mono/stereo WAV, 24/44.1/48kHz, 4ms–1.5s, at most 400KiB. Data stays on this computer.</p>
+          <label for="sound-slot">Sound slot</label><select id="sound-slot"><option value="pickup_confirm">Pickup confirmation</option><option value="hurt_error">Damage alert</option><option value="land_soft_a">Landing A</option><option value="land_soft_b">Landing B</option><option value="step_wood_a">Wood footstep A</option><option value="step_wood_b">Wood footstep B</option><option value="step_concrete_a">Concrete footstep A</option><option value="step_concrete_b">Concrete footstep B</option></select>
+          <label for="sound-file">Your WAV file</label><input id="sound-file" type="file" accept=".wav,audio/wav">
+          <label for="source-note">Source / license note</label><input id="source-note" maxlength="240" type="text" placeholder="For example: recorded by me, or asset source and license">
+          <button id="import-sound">Preview this recording</button>
+          <section id="recording-review" class="recording-review" aria-labelledby="recording-heading" hidden>
+            <h3 id="recording-heading">Hear it before you replace it.</h3>
+            <p id="recording-destination"></p>
+            <p class="hint">Original mono and prepared recording, matched by whole-clip RMS with a shared peak ceiling. This comparison is separate from your game mix.</p>
+            <div class="replay-actions"><button id="recording-original">Hear original</button><button id="recording-prepared">Hear prepared</button><button id="recording-stop">Stop comparison</button></div>
+            <audio id="recording-original-audio" preload="none" hidden></audio><audio id="recording-prepared-audio" preload="none" hidden></audio>
+            <dl id="recording-facts" class="recording-facts"></dl><ul id="recording-warnings"></ul>
+            <p id="recording-status" role="status">Preview ready. Your current sound is unchanged.</p>
+            <div class="replay-actions"><button id="recording-apply" class="primary">Use this recording</button><button id="recording-cancel">Discard preview</button></div>
+            <p class="hint">The original WAV and source note stay in the editable project. Clipping and background noise cannot be repaired by this preparation.</p>
+          </section>
+          <label class="mix-check"><input id="clear-mix" type="checkbox"> Prioritize pickup and damage cues</label>
+          <p class="hint">Cue focus briefly lowers continuous wind and footsteps. Event recipes stay unchanged; their audibility in the mixed output can change.</p>
+          <div class="replay-actions"><button id="headroom">Check / fix trace headroom</button><button id="project-save">Save editable project</button><button id="project-export" class="primary">Export runnable project ZIP</button></div>
+          <label for="project-open">Open saved project JSON</label><input id="project-open" type="file" accept=".json,application/json">
+          <p id="project-status" class="status" role="status">Eight built-in sound slots. Import your own WAV or enable cue focus.</p><ul id="project-assets" class="project-inventory"></ul><a id="project-host" target="_blank" rel="noopener" hidden>Open the plain JavaScript runner</a>
+          <details><summary>Source &amp; preparation details</summary><pre id="project-details" class="diff">Source declarations are retained; ownership is not verified. Eight new sound/mix runtime versions per page; save and reload to load more.</pre></details>
+        </details>
+        </section>
+        <section id="panel-revisions" role="tabpanel" aria-labelledby="tab-revisions" tabindex="0" hidden>
+          <h3 class="revision-heading">Keep a version worth returning to.</h3>
+          <p class="hint">Named checkpoints stay on this computer across reloads and server restarts. They include original recordings, applied settings, the selected run and check definitions.</p>
+          <label for="revision-label">Revision name</label><input id="revision-label" type="text" maxlength="80" placeholder="For example: soft pickups, before the boss level">
+          <div class="replay-actions"><button id="revision-save" class="primary">Save checkpoint</button><button id="revision-refresh">Refresh revisions</button></div>
+          <p id="revision-status" role="status">Loading local history…</p><p id="revision-usage" class="hint"></p>
+          <section id="revision-preview" class="revision-preview" aria-labelledby="revision-selected" hidden>
+            <h3 id="revision-selected"></h3>
+            <table class="revision-table"><caption>Stored differences; restore check policy below.</caption><thead><tr><th scope="col">Field</th><th scope="col">Current</th><th scope="col">Saved</th></tr></thead><tbody id="revision-differences"></tbody></table>
+            <p id="revision-no-diff" class="hint" hidden>No sound or run changes. You can still restore this checkpoint.</p>
+            <p id="revision-policy"></p><p id="revision-recovery" class="hint"></p>
+            <div class="replay-actions"><button id="revision-restore" class="primary">Restore this revision</button><button id="revision-download">Download revision</button><button id="revision-remove">Remove saved revision</button></div>
+            <section id="revision-delete-confirm" class="revision-delete" aria-label="Confirm removal of saved revision" hidden>
+              <p>Remove “<strong id="revision-delete-label"></strong>” from local history? Download a copy first if you need it. This removes the saved checkpoint; the current sound stays in place.</p>
+              <div class="replay-actions"><button id="revision-confirm-remove">Remove permanently</button><button id="revision-cancel-remove">Keep revision</button></div>
+            </section>
+          </section>
+          <ol id="revision-list" class="revision-list"></ol>
+          <label for="revision-import">Import a downloaded revision</label><input id="revision-import" type="file" accept=".json,application/json">
+          <p class="hint">Portable revision files include original recordings and source notes. Import adds to history; it does not replace your active kit. Up to 24 checkpoints and 48 MiB of snapshot data; SQLite and temporary copies use extra disk space. No cloud backup or automatic deletion.</p>
+        </section>
+        <section id="panel-meta" role="tabpanel" aria-labelledby="tab-meta" tabindex="0" hidden>
+        <p class="hint">Eight sound slots plus procedural wind. Start with Kenney CC0 assets or import your recordings above. Meta configures behavior; it does not generate recordings.</p>
+        <label for="intent">Sound intent</label>
+        <textarea id="intent" rows="6">Build a balanced wooden-toy sound kit. Use both wood footstep variations while running on the ground and alive, soft heavy landing variations, a pickup confirmation and a short hurt alert. Keep wind filtered, following air movement, and silent on the ground or after death. No footsteps at rest, in the air or after death. Use the existing catalog.</textarea>
+        <button id="compile" class="primary full">Build and verify with Meta</button>
+        <p id="status" class="status" role="status" aria-live="polite">Loading a saved rig…</p>
+        <a id="authoring-record" class="hint" target="_blank" rel="noopener" hidden>Inspect this authoring result</a>
+        <div class="source-line"><span id="rig-source">Curated hybrid kit</span><button id="baseline" class="text-button">Restore curated kit</button></div>
+        <fieldset class="patch-section"><legend>Edit one layer</legend>
+          <label for="target">Unlocked layer</label><select id="target"></select>
+          <p id="locks" class="hint">All other layers stay locked.</p>
+          <label for="edit-intent">Requested change</label><textarea id="edit-intent" rows="3">Make the wind softer and less bright. Keep its air mapping and volume. Preserve all locked layers.</textarea>
+          <button id="patch" class="full">Apply edit with Meta</button>
+          <label class="cutoff-control" for="cutoff">Manual filter maximum <output id="cutoff-value">—</output><input id="cutoff" type="range" min="200" max="10000" step="50" disabled></label>
+          <pre id="diff" class="diff" hidden></pre>
+        </fieldset>
+        </section>
+        <section id="panel-delivery" role="tabpanel" aria-labelledby="tab-delivery" tabindex="0" hidden>
+        <section id="deliver" class="delivery-panel" aria-labelledby="delivery-heading"><h2 id="delivery-heading">Leave with the sound.</h2><p>Use the WAV cues in your project, or keep the live component and gameplay checks.</p><label for="delivery-target">WAV kit destination</label><select id="delivery-target"><option value="phaser">Phaser · WAV sprite + browser scene</option><option value="godot">Godot · WAV adapter + native cue scene</option></select><button id="delivery-export" class="primary full">Export game-ready WAV kit</button><p class="hint">11 static one-shots. Godot includes a fixed cue adapter, native test scene and engine verifier. It excludes wind, walking cadence and live ducking. Wire your own game events. Takes may match when no variation is authored.</p><p id="delivery-status" role="status">Render the current kit. No model call needed.</p><a id="delivery-host" target="_blank" rel="noopener" hidden>Try the delivered sprite in another scene</a></section>
+        <div class="export-row"><button id="export" class="primary">Export component</button><button id="export-json">Rig JSON</button><button id="export-wav">3-second WAV</button></div>
+        <a id="clean-host" href="guide.html#delivery" target="_blank" rel="noopener" hidden>Open the exported game in a clean host</a>
+        </section>
+      </section>
+    </div>
+    <div class="session-workspace">
+        <section class="replay-panel" aria-labelledby="replay-heading">
+          <div class="section-head"><h2 id="replay-heading">Capture, compare, keep</h2><span id="trace-source">Example trace</span></div>
+          <p class="hint">Capture a run, then hear edits against the same inputs. The included example is a synthetic test sequence.</p>
+          <div class="replay-actions"><button id="replay-trace">Replay current kit</button><button id="stop-preview" disabled>Stop playback</button></div>
+          <p id="trace-status" class="trace-status" role="status">Loading trace…</p>
+          <div class="replay-actions"><button id="listen-before">Listen: previous synth</button><button id="listen-after">Listen: current kit</button><button id="trace-wav">Download current WAV</button></div>
+          <p id="comparison-note" class="hint">Listening versions are matched by whole-clip RMS with a shared peak ceiling. Your ears decide; this is not a preference score.</p>
+          <details class="behavior-disclosure"><summary>Runtime behavior checks</summary><div id="behavior-checks" class="behavior-checks" aria-label="Game behavior checks"></div></details>
+          <details class="trace-details"><summary>Bring a trace from your game</summary><p class="hint">This adapter expects speed, air, grounded, alive and land/pickup/hurt. Use the integration recipe below, then paste its trace.</p><label for="trace-json">Trace JSON</label><textarea id="trace-json" rows="6"></textarea><div class="replay-actions"><button id="import-trace">Validate trace</button><button id="download-trace">Download trace</button><button id="example-trace">Load example</button></div></details>
+        </section>
+        <section class="workflow-panel" aria-labelledby="workflow-heading">
+          <h2 id="workflow-heading">Saved checks</h2>
+          <p class="hint">Save the runs that matter. Check later edits for missing cues, excess level and unwanted sound. Meta, recording and cue edits must pass your saved checks when protection is enabled.</p>
+          <div class="replay-actions"><button id="workflow-example">Load tested checks</button><button id="workflow-run" class="primary">Run saved checks</button></div>
+          <p id="workflow-status" role="status">No saved checks. Start with the recorded examples, or add your current trace below.</p>
+          <ol id="workflow-results" class="workflow-results"></ol>
+          <label class="mix-check"><input id="workflow-guard" type="checkbox" checked disabled> Protect Meta, recording and cue edits</label>
+          <details><summary>Add the current trace as a check</summary>
+            <label for="workflow-name">Run name</label><input id="workflow-name" type="text" maxlength="60" value="My game run">
+            <p class="hint">Expected counts come from your game's outcomes. Check them independently of the recorded audio events. Captures from this game fill them from its gameplay counters.</p>
+            <div class="expectations"><label for="expect-land">Landings<input id="expect-land" type="number" min="0" max="1200" step="1" value="0"></label><label for="expect-pickup">Pickups<input id="expect-pickup" type="number" min="0" max="1200" step="1" value="0"></label><label for="expect-hurt">Damage<input id="expect-hurt" type="number" min="0" max="1200" step="1" value="0"></label></div>
+            <button id="workflow-add">Save current trace as a check</button>
+          </details>
+          <div class="replay-actions"><button id="workflow-save">Save checks JSON</button><button id="workflow-remove">Remove last check</button><button id="workflow-export" class="primary">Export integration + checks</button></div>
+          <label for="workflow-open">Open saved checks</label><input id="workflow-open" type="file" accept=".json,application/json">
+          <a id="workflow-host" target="_blank" rel="noopener" hidden>Open the exported workflow</a>
+          <details><summary>Check definitions and game wiring</summary><p class="hint">Six checks, 30 seconds combined, 32KiB. Cue RMS measures rendered event-layer level, not human audibility. Silence windows include sound tails. Your exported adapter maps explicit raw fields and named game events; it does not infer collisions.</p><label for="workflow-json">Checks JSON</label><textarea id="workflow-json" rows="8"></textarea><p class="hint">In your game, configure bindings.json, forward raw state and named events. The ZIP includes a Phaser scene helper, a plain JavaScript adapter and <code>node verify.mjs</code> for repeat checks without a model.</p><pre id="workflow-bindings" class="diff"></pre></details>
+        </section>
+    </div>
+    <details class="technical"><summary>Use it in your game</summary><p>This build supports a confirmed JavaScript adapter. Map your game to these normalized controls and events; it does not automatically understand arbitrary projects.</p><pre id="manifest"></pre><p>The host game sends state and events to the exported component:</p><pre>const audio = createPlayer();
+await audio.start();
+createGame('game', {
+  state: ({speed, air, grounded, alive}) =&gt; audio.set({speed, air, grounded, alive}),
+  event: (name, intensity) =&gt; audio.emit(name, intensity)
+});</pre><p><a href="integration-example.mjs" download>Download the plain JavaScript trace recorder</a> · <a href="phaser-baseline.mjs" download>Compare the minimal Phaser sample baseline</a></p></details>
+    <details class="technical"><summary>Verify this runtime</summary><p>The live check measures control-message acknowledgement and the first changed audio-thread block. It uses a muted test output and does not measure speaker latency.</p><div class="check-actions"><button id="live-check">Run live audio check</button><button id="model-toggle">Disable authoring for offline test</button></div><p id="check-status" role="status">No new browser measurement yet.</p><pre id="check-results" hidden></pre></details>
+    <details class="technical"><summary>Manual rig JSON</summary><label for="rig-json">Declarative rig</label><textarea id="rig-json" rows="15"></textarea><button id="apply-json">Validate and apply</button></details>
+    <footer><p>Saved, curated and fresh Meta outputs are labeled. Human sound preference and developer time savings remain unvalidated.</p><p>Audio assets: <a href="assets/provenance.json">Kenney CC0 source and conversion record</a>. <a href="licenses/impact-CC0.txt">Impact license</a> · <a href="licenses/interface-CC0.txt">Interface license</a>. Game adapted from <a href="upstream/part10.html">Phaser’s MIT-licensed first-game tutorial</a>; original geometric textures and new SoundRig integration. <a href="vendor/PHASER-LICENSE.md">Phaser license</a>.</p></footer>
+  </main><footer class="site-footer"><p>Meta shapes behavior; your recordings provide the sound. Projects and recordings stay on this computer. Source declarations are retained, not verified.</p><nav aria-label="Footer"><a href="guide.html#privacy">Data &amp; limits</a><a href="THIRD_PARTY_NOTICES.md">Credits</a><a href="./">Back to SoundRig</a></nav></footer>
+  <script src="vendor/phaser-3.90.0.min.js"></script>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>

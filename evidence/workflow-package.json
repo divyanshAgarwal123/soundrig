@@ -1,0 +1,30 @@
+{
+  "pass": true,
+  "digest": "2bf52176223d",
+  "actualBrowserDownload": "/Users/divyanshagarwal/Downloads/soundrig-workflow (1).zip",
+  "archiveSHA256": "b3a8eed39926632dd6ff600ab21ac0afdf4024cb545f968193d9b41fe56bff11",
+  "files": [
+    "README.txt",
+    "bindings.json",
+    "component.mjs",
+    "contract.json",
+    "game-adapter.mjs",
+    "host.mjs",
+    "index.html",
+    "integrity.json",
+    "licenses/impact-CC0.txt",
+    "licenses/interface-CC0.txt",
+    "project.json",
+    "provenance.json",
+    "quality-contract.mjs",
+    "trace.json",
+    "verify.mjs"
+  ],
+  "changedFromLiveTestedProvisional": [
+    "contract.json",
+    "trace.json",
+    "provenance.json"
+  ],
+  "hostAndComponentUnchangedFromLiveCapture": true,
+  "scope": "Actual final browser ZIP, content-addressed host and component unchanged from independently played provisional package."
+}

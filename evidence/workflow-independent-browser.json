@@ -1,0 +1,60 @@
+{
+  "scope": "Root CUA observations, not an external developer study or listening preference result",
+  "independentHost": {
+    "port": 8781,
+    "distance": 351,
+    "score": 2,
+    "landings": 1,
+    "hits": 1,
+    "liveRenderedEvents": 4,
+    "capturedCommands": 109,
+    "gameOutcomes": {
+      "land": 1,
+      "pickup": 2,
+      "hurt": 1
+    },
+    "termination": "complete",
+    "replayCommands": 109,
+    "replayEvents": 4,
+    "replayOverloadedSamples": 0
+  },
+  "workbench": {
+    "phaserCaptureCommands": 240,
+    "gameOutcomes": {
+      "land": 1,
+      "pickup": 2,
+      "hurt": 0
+    },
+    "returnedRunnerReplayCommands": 109,
+    "returnedRunnerReplayEvents": 4,
+    "returnedReplayOverloadedSamples": 0,
+    "interruptedCaptureRetainedPreviousTrace": true,
+    "restartRequiresEnableAudio": true,
+    "restartAndPauseBugsRepaired": true
+  },
+  "finalVerificationInterval": {
+    "before": {
+      "enabled": false,
+      "modelAvailable": true,
+      "model": "muse-glimmer:30b-mlx",
+      "calls": {
+        "compile": 0,
+        "patch": 2,
+        "upstream": 3
+      }
+    },
+    "after": {
+      "enabled": false,
+      "modelAvailable": true,
+      "model": "muse-glimmer:30b-mlx",
+      "calls": {
+        "compile": 0,
+        "patch": 2,
+        "upstream": 3
+      }
+    },
+    "callsUnchanged": true,
+    "note": "Before snapshot follows provisional capture. These equal counters cover final package verification interval, not lifetime totals."
+  },
+  "excludedFailureEvidence": "workflow-restart-failed-trace.json; game froze before cleanup repair; not used for success claims."
+}

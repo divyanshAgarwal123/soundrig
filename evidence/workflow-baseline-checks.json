@@ -1,0 +1,103 @@
+{
+  "pass": true,
+  "checks": [
+    {
+      "command": [
+        "node",
+        "test-core.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.202
+    },
+    {
+      "command": [
+        "node",
+        "test-player.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.074
+    },
+    {
+      "command": [
+        "node",
+        "test-hybrid.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.809
+    },
+    {
+      "command": [
+        "/Users/divyanshagarwal/.pyenv/versions/3.10.13/bin/python3",
+        "test-authoring.py"
+      ],
+      "pass": true,
+      "seconds": 0.108
+    },
+    {
+      "command": [
+        "node",
+        "test-preview.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.068
+    },
+    {
+      "command": [
+        "/Users/divyanshagarwal/.pyenv/versions/3.10.13/bin/python3",
+        "probe-boundaries.py"
+      ],
+      "pass": true,
+      "seconds": 0.091
+    },
+    {
+      "command": [
+        "node",
+        "test-meta-workflow.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.242
+    },
+    {
+      "command": [
+        "/Users/divyanshagarwal/.pyenv/versions/3.10.13/bin/python3",
+        "test-project-assets.py"
+      ],
+      "pass": true,
+      "seconds": 1.353
+    },
+    {
+      "command": [
+        "node",
+        "test-project-runtime.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.934
+    },
+    {
+      "command": [
+        "node",
+        "test-project-export-ui.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.081
+    },
+    {
+      "command": [
+        "/Users/divyanshagarwal/.pyenv/versions/3.10.13/bin/python3",
+        "test-project-api.py"
+      ],
+      "pass": true,
+      "seconds": 0.061
+    },
+    {
+      "command": [
+        "node",
+        "test-export.mjs"
+      ],
+      "pass": true,
+      "seconds": 0.567
+    }
+  ],
+  "newModelCalls": 0,
+  "scope": "Offline checks plus loopback HTTP boundary checks. Actual model records are checked, not regenerated."
+}

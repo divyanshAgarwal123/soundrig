@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "controls": {
+    "speed": {
+      "field": "vx",
+      "min": 0,
+      "max": 160,
+      "absolute": true
+    },
+    "air": {
+      "field": "vy",
+      "min": 0,
+      "max": 330,
+      "absolute": true
+    },
+    "grounded": {
+      "field": "onGround",
+      "min": 0,
+      "max": 1
+    },
+    "alive": {
+      "field": "gameOver",
+      "min": 0,
+      "max": 1,
+      "invert": true
+    }
+  },
+  "events": {
+    "landed": "land",
+    "collected": "pickup",
+    "damaged": "hurt"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "durationMs": 6000,
+  "initial": {
+    "speed": 0,
+    "air": 0,
+    "grounded": 1,
+    "alive": 1
+  },
+  "commands": [
+    {
+      "atMs": 500,
+      "type": "controls",
+      "controls": {
+        "speed": 1
+      }
+    },
+    {
+      "atMs": 1600,
+      "type": "controls",
+      "controls": {
+        "speed": 0.6,
+        "grounded": 0,
+        "air": 1
+      }
+    },
+    {
+      "atMs": 2000,
+      "type": "controls",
+      "controls": {
+        "air": 0.15
+      }
+    },
+    {
+      "atMs": 2400,
+      "type": "event",
+      "event": "land",
+      "intensity": 0.8
+    },
+    {
+      "atMs": 2400,
+      "type": "controls",
+      "controls": {
+        "grounded": 1,
+        "air": 0,
+        "speed": 1
+      }
+    },
+    {
+      "atMs": 2800,
+      "type": "event",
+      "event": "pickup",
+      "intensity": 1
+    },
+    {
+      "atMs": 3600,
+      "type": "controls",
+      "controls": {
+        "speed": 0
+      }
+    },
+    {
+      "atMs": 4200,
+      "type": "event",
+      "event": "hurt",
+      "intensity": 1
+    },
+    {
+      "atMs": 4200,
+      "type": "controls",
+      "controls": {
+        "alive": 0,
+        "speed": 0,
+        "air": 0
+      }
+    }
+  ]
+}

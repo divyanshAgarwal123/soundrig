@@ -1,0 +1,23 @@
+{
+  "pass": true,
+  "download": "/Users/divyanshagarwal/Downloads/soundrig-project (2).zip",
+  "sha256": "eac3dad701ba3dec5e9440abaa03aed808b0280a520e73a40dca34214d50d925",
+  "files": [
+    "README.txt",
+    "component.mjs",
+    "host.mjs",
+    "index.html",
+    "licenses/impact-CC0.txt",
+    "licenses/interface-CC0.txt",
+    "project.json",
+    "provenance.json",
+    "recorder.mjs",
+    "trace.json"
+  ],
+  "componentEqualsActualBrowserDownload": true,
+  "servedFilesEqualZIP": true,
+  "folder": "<original-workspace>/output/soundrig-runnable-a826acf2abff",
+  "digest": "a826acf2abff",
+  "traceCommands": 113,
+  "scope": "Actual final browser-downloaded ZIP. Content-addressed directory includes host/template/recorder content in identity. No publication."
+}

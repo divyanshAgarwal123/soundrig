@@ -1,0 +1,33 @@
+{
+  "pass": true,
+  "upstream": "https://github.com/godotengine/godot-demo-projects/tree/b761b4c/2d/platformer",
+  "revisions": [
+    {
+      "revision": 1,
+      "archiveSHA256": "3160fd3f4d8352aa41e37283d04162835e893f6dce0565caa68ae11a5d7c220a",
+      "observed": {
+        "actualCoinSignals": 3,
+        "pass": true,
+        "scope": "Native game integration under Dummy audio driver; no human play or listening judgment",
+        "soundrigStarts": 3,
+        "source": "Godot official 2D platformer, controlled player teleports causing physics overlaps",
+        "voicePool": 12
+      }
+    },
+    {
+      "revision": 2,
+      "archiveSHA256": "2c98d216a6fe3f69a2f9fe8970a4b5ad10f203465b061ddad37bdea090d0d617",
+      "observed": {
+        "actualCoinSignals": 3,
+        "pass": true,
+        "scope": "Native game integration under Dummy audio driver; no human play or listening judgment",
+        "soundrigStarts": 3,
+        "source": "Godot official 2D platformer, controlled player teleports causing physics overlaps",
+        "voicePool": 12
+      }
+    }
+  ],
+  "unchangedGameIntegrationSHA256": "0fb2bc382264191ebac6b61093bd016760291812ce6b7c98498fdf1e59ce79b4",
+  "originalWAVRetainedExactly": true,
+  "scope": "Root integrated two actual browser-downloaded cue revisions into an existing official Godot game. Controlled player teleports caused real physics overlap/coin signals. Same play_cue call; no external developer, human-task timing or speaker/listener assessment."
+}

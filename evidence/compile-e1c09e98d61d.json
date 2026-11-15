@@ -1,0 +1,27 @@
+{
+  "request": {
+    "prompt": "Generate new spoken dialogue: a wizard must say Welcome brave traveler in a realistic voice. I need newly generated speech, not a substitute alert sound."
+  },
+  "response": {
+    "rig": {
+      "unsupported": "clear reason"
+    },
+    "model": "muse-glimmer:30b-mlx",
+    "eval_count": 75,
+    "done_reason": "stop",
+    "modelSeconds": 69.867,
+    "attempts": [
+      {
+        "output": {
+          "unsupported": "clear reason"
+        },
+        "verification": {
+          "unsupported": true
+        }
+      }
+    ],
+    "verified": false,
+    "seconds": 69.912
+  },
+  "scope": "Actual local model output; not yet trusted or accepted by the runtime."
+}

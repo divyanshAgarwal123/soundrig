@@ -1,0 +1,14 @@
+{
+  "upstream": "https://github.com/godotengine/godot-demo-projects/tree/b761b4c/2d/platformer",
+  "archiveRoot": "godotengine-godot-demo-projects-b761b4c",
+  "archiveSHA256": "cc0bb5e03e17526ef604af1d9a7c9df9490f95da816436e54e0085f74388e585",
+  "changes": [
+    "game.gd: attach verified SoundRig kit and connect original coin_collected signal",
+    "level/coin.tscn: disable original pickup audio animation track to prevent double playback",
+    "soundrig/: delivered static adapter, WAVs and manifest",
+    "test_soundrig_integration.gd: controlled physics-overlap test"
+  ],
+  "kitRevisionOneSHA256": "3160fd3f4d8352aa41e37283d04162835e893f6dce0565caa68ae11a5d7c220a",
+  "scope": "Existing official platformer demo adapted locally by root; not an outside developer integration or human-time study. Music and other upstream assets remain credited by upstream README and license.",
+  "latestRevisionKitSHA256": "943aa99b1cde27fc9fd1c874dd76729fa0f9d8aeca167a947eb138b1060067fc"
+}

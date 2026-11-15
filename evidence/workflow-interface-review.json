@@ -1,0 +1,20 @@
+{
+  "reviewer": "impeccable_workflow_finish",
+  "initialDisposition": "fix",
+  "finding": "Saved-case rows omit readable declared land/pickup/hurt counts",
+  "correction": "app.mjs paintContract adds native paragraph with expected Landings/Pickups/Damage, omitted rule shown as not set",
+  "targetedVerdict": "resolved",
+  "finalDisposition": "ship",
+  "rounds": 2,
+  "workbenchWidths": [
+    1280,
+    667,
+    390
+  ],
+  "runnerWidths": [
+    1280,
+    390
+  ],
+  "allCapturesValid": true,
+  "scope": "Single finding resolved; no functional/audio certification, detector pass, physical mobile test or product score."
+}

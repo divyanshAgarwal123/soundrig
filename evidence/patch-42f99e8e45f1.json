@@ -1,0 +1,376 @@
+{
+  "request": {
+    "prompt": "Set only pickup gain to0.31. Do not change any other field or locked layer. Return the pickup patch; let the deterministic verifier decide whether the supplied wind-silence check can pass.",
+    "rig": {
+      "version": 3,
+      "controls": [
+        {
+          "id": "speed",
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "air",
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "grounded",
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "alive",
+          "min": 0,
+          "max": 1
+        }
+      ],
+      "events": [
+        "land",
+        "pickup",
+        "hurt"
+      ],
+      "master": 0.65,
+      "layers": [
+        {
+          "id": "footsteps",
+          "type": "sample",
+          "gain": {
+            "control": "speed",
+            "lo": 0,
+            "hi": 0.6
+          },
+          "pulseHz": {
+            "control": "speed",
+            "lo": 2,
+            "hi": 9
+          },
+          "when": [
+            {
+              "control": "speed",
+              "op": "above",
+              "threshold": 0.01
+            },
+            {
+              "control": "grounded",
+              "op": "above",
+              "threshold": 0.5
+            },
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": null,
+          "filter": null,
+          "samples": [
+            "step_wood_a",
+            "step_wood_b"
+          ],
+          "rate": {
+            "control": "speed",
+            "lo": 0.9,
+            "hi": 1.1
+          },
+          "variation": 0.04
+        },
+        {
+          "id": "wind",
+          "type": "noise",
+          "wave": "sine",
+          "frequency": 200,
+          "gain": {
+            "control": "air",
+            "lo": 0,
+            "hi": 0.25
+          },
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "air",
+              "op": "above",
+              "threshold": 0.01
+            },
+            {
+              "control": "grounded",
+              "op": "below",
+              "threshold": 0.5
+            },
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": null,
+          "filter": {
+            "type": "lowpass",
+            "cutoff": 800
+          },
+          "envelope": {
+            "attack": 0.003,
+            "decay": 0.1,
+            "release": 0.05
+          },
+          "pitchEnd": 1
+        },
+        {
+          "id": "land_thud",
+          "type": "sample",
+          "gain": 0.55,
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": "land",
+          "filter": null,
+          "samples": [
+            "land_soft_a",
+            "land_soft_b"
+          ],
+          "rate": 1,
+          "variation": 0.03
+        },
+        {
+          "id": "pickup_chime",
+          "type": "sample",
+          "gain": 0.3,
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": "pickup",
+          "filter": null,
+          "samples": [
+            "pickup_confirm"
+          ],
+          "rate": 0.95,
+          "variation": 0.02
+        },
+        {
+          "id": "hurt_buzz",
+          "type": "sample",
+          "gain": 0.7,
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.1
+            }
+          ],
+          "event": "hurt",
+          "filter": null,
+          "samples": [
+            "hurt_error"
+          ],
+          "rate": 1.15,
+          "variation": 0.01
+        }
+      ]
+    },
+    "layerId": "pickup_chime",
+    "lockedIds": [
+      "footsteps",
+      "wind",
+      "land_thud",
+      "hurt_buzz"
+    ],
+    "projectDigest": "5074aa275f5b1b89",
+    "contract": {
+      "version": 1,
+      "requiredEvents": [],
+      "cases": [
+        {
+          "id": "Locked wind contradiction",
+          "trace": {
+            "version": 1,
+            "durationMs": 1000,
+            "initial": {
+              "speed": 0,
+              "air": 1,
+              "grounded": 0,
+              "alive": 1
+            },
+            "commands": []
+          },
+          "expect": {
+            "events": {},
+            "maxPreLimitPeak": 0.9,
+            "minRMS": 0,
+            "silence": [
+              {
+                "fromMs": 300,
+                "toMs": 900,
+                "maxRMS": 0
+              }
+            ]
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "source": "Deliberately impossible pickup-only edit: active locked wind must be silent"
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "patch": {
+      "layerId": "pickup_chime",
+      "changes": {
+        "gain": 0.31
+      }
+    },
+    "model": "muse-glimmer:30b-mlx",
+    "eval_count": 415,
+    "done_reason": "stop",
+    "modelSeconds": 43.899,
+    "attempts": [
+      {
+        "output": {
+          "layerId": "pickup_chime",
+          "changes": {
+            "gain": 0.31
+          }
+        },
+        "verification": {
+          "ok": false,
+          "error": "Gameplay contract failed: Locked wind contradiction: silence 300\u2013900ms RMS 0.016924 exceeds 0",
+          "contract": {
+            "version": 1,
+            "pass": false,
+            "contractSHA256": "c98f8ed9f1b8d3367b6dec88336a347351729f43cf6455b87659a2bbf63871b9",
+            "rigSHA256": "583b612af5e73a7401b0d783024f875de9e4658abc9b710fd836ed67e245af19",
+            "settings": {
+              "sampleRate": 48000,
+              "blockSize": 128,
+              "seed": 17,
+              "epsilon": 1e-09,
+              "cueWindowMs": 250
+            },
+            "cases": [
+              {
+                "id": "Locked wind contradiction",
+                "pass": false,
+                "failures": [
+                  "silence 300\u2013900ms RMS 0.016924 exceeds 0"
+                ],
+                "provenance": {
+                  "kind": "synthetic",
+                  "source": "Deliberately impossible pickup-only edit: active locked wind must be silent"
+                },
+                "traceSHA256": "9787f6f50533bbb7d7e6c74c8e6014912ba9c24c10b47b4b9f76173fb6b5c1c9",
+                "pcmSHA256": "2943a4816634bedeec2de8aeb3e6f876235e38ffcf0f1d026e1484ea393cfc10",
+                "commands": 0,
+                "events": {},
+                "rms": 0.016936385502251378,
+                "summary": {
+                  "commandsApplied": 0,
+                  "eventCommands": 0,
+                  "addedVoices": 0,
+                  "peak": 0.06791811436414719,
+                  "preLimitPeak": 0.08510249740465557,
+                  "saturatedSamples": 0
+                },
+                "silence": [
+                  {
+                    "fromMs": 300,
+                    "toMs": 900,
+                    "maxRMS": 0,
+                    "rms": 0.01692445601686923
+                  }
+                ]
+              }
+            ],
+            "coverage": {},
+            "missingEvents": [],
+            "seconds": 0.013479916999999985,
+            "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+            "componentSHA256": "dbc93a118590ed9ff1d3327c8b040f6351c0c49e05a0dd177b217d4d1e3b3188",
+            "projectSnapshotSHA256": "5074aa275f5b1b89c92c7f1801b0f2c008e2611b20e407ec69d0b7d916a0b040"
+          },
+          "seconds": 0.1983
+        }
+      },
+      {
+        "output": {
+          "layerId": "pickup_chime",
+          "changes": {
+            "gain": 0.31
+          }
+        },
+        "verification": {
+          "ok": false,
+          "error": "Gameplay contract failed: Locked wind contradiction: silence 300\u2013900ms RMS 0.016924 exceeds 0",
+          "contract": {
+            "version": 1,
+            "pass": false,
+            "contractSHA256": "c98f8ed9f1b8d3367b6dec88336a347351729f43cf6455b87659a2bbf63871b9",
+            "rigSHA256": "583b612af5e73a7401b0d783024f875de9e4658abc9b710fd836ed67e245af19",
+            "settings": {
+              "sampleRate": 48000,
+              "blockSize": 128,
+              "seed": 17,
+              "epsilon": 1e-09,
+              "cueWindowMs": 250
+            },
+            "cases": [
+              {
+                "id": "Locked wind contradiction",
+                "pass": false,
+                "failures": [
+                  "silence 300\u2013900ms RMS 0.016924 exceeds 0"
+                ],
+                "provenance": {
+                  "kind": "synthetic",
+                  "source": "Deliberately impossible pickup-only edit: active locked wind must be silent"
+                },
+                "traceSHA256": "9787f6f50533bbb7d7e6c74c8e6014912ba9c24c10b47b4b9f76173fb6b5c1c9",
+                "pcmSHA256": "2943a4816634bedeec2de8aeb3e6f876235e38ffcf0f1d026e1484ea393cfc10",
+                "commands": 0,
+                "events": {},
+                "rms": 0.016936385502251378,
+                "summary": {
+                  "commandsApplied": 0,
+                  "eventCommands": 0,
+                  "addedVoices": 0,
+                  "peak": 0.06791811436414719,
+                  "preLimitPeak": 0.08510249740465557,
+                  "saturatedSamples": 0
+                },
+                "silence": [
+                  {
+                    "fromMs": 300,
+                    "toMs": 900,
+                    "maxRMS": 0,
+                    "rms": 0.01692445601686923
+                  }
+                ]
+              }
+            ],
+            "coverage": {},
+            "missingEvents": [],
+            "seconds": 0.024446957999999994,
+            "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+            "componentSHA256": "dbc93a118590ed9ff1d3327c8b040f6351c0c49e05a0dd177b217d4d1e3b3188",
+            "projectSnapshotSHA256": "5074aa275f5b1b89c92c7f1801b0f2c008e2611b20e407ec69d0b7d916a0b040"
+          },
+          "seconds": 0.3183
+        }
+      }
+    ],
+    "verified": false,
+    "validationError": "Gameplay contract failed: Locked wind contradiction: silence 300\u2013900ms RMS 0.016924 exceeds 0",
+    "seconds": 73.658
+  },
+  "scope": "Actual local model output; not yet trusted or accepted by the runtime."
+}

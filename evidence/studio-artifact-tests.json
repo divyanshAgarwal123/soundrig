@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "cues": 11,
+  "maximumPCM16Error": 0.000015259252449981164,
+  "lsb": 0.00003051850947599719,
+  "componentHashMatches": true,
+  "verifierExitCodes": {
+    "valid": 0,
+    "wrongExpectedCount": 1,
+    "staleQuality": 2
+  },
+  "scope": "Actual browser-downloaded cue pack compared to independent live component render; offline verifier mutations. Browser engine playback checked separately."
+}

@@ -1,0 +1,16 @@
+.soundrig-revisions/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-*
+.godot/
+.qodo/
+.qodo-review/
+.qa-output/
+# Historical fixtures below are explicitly tracked in the baseline.
+evidence/*
+exports/*

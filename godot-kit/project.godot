@@ -1,0 +1,13 @@
+config_version=5
+
+[application]
+config/name="SoundRig cue check"
+run/main_scene="res://demo.tscn"
+
+[display]
+window/size/viewport_width=850
+window/size/viewport_height=560
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.949, 0.918, 0.863, 1)

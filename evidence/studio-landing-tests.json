@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 4,
+  "scope": "Synthetic delayed decode selection, active playback hide, pending decode navigation, context recreation. Actual browser listening controls checked separately."
+}

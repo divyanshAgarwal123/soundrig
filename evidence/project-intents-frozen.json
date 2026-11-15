@@ -1,0 +1,27 @@
+{
+  "beforeModelCalls": true,
+  "cases": [
+    {
+      "id": "imported-pickup-edit",
+      "target": "pickup_chime",
+      "prompt": "Set only pickup gain to fixed0.22. Keep its pickup_confirm sample ID, rate and every other field unchanged. This sample is my imported custom-pickup.wav. Keep all other layers locked.",
+      "expected": {
+        "gain": 0.22,
+        "samples": [
+          "pickup_confirm"
+        ]
+      }
+    },
+    {
+      "id": "imported-hurt-edit",
+      "target": "hurt_buzz",
+      "prompt": "Set only this imported damage alert playback rate to fixed1.15. Keep its hurt_error sample ID, gain and every other field unchanged. Keep all other layers locked.",
+      "expected": {
+        "rate": 1.15,
+        "samples": [
+          "hurt_error"
+        ]
+      }
+    }
+  ]
+}

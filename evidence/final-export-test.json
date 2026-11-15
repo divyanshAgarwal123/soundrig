@@ -1,0 +1,36 @@
+{
+  "pass": true,
+  "moduleSHA256": "cc5380f5ebeec20d1a1680fbc7b44fa66977acdd80a9be646dd39dba023ba6e3",
+  "exportBytes": 357576,
+  "cases": [
+    {
+      "file": "exports/browser-captured-trace.json",
+      "commands": 167,
+      "samples": 288000,
+      "events": [
+        "pickup",
+        "land"
+      ],
+      "pass": true
+    },
+    {
+      "file": "example-trace.json",
+      "commands": 9,
+      "samples": 288000,
+      "events": [
+        "land",
+        "pickup",
+        "hurt"
+      ],
+      "pass": true
+    }
+  ],
+  "downloadedWav": {
+    "byteExact": true,
+    "frames": 288000,
+    "sampleRate": 48000,
+    "channels": 1
+  },
+  "actualEmbeddedProcessorExecuted": true,
+  "scope": "CUA-downloaded final Meta-edited component and WAV, executed independently in Node. Excludes browser/device scheduling and human quality judgments."
+}

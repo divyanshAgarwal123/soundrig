@@ -1,0 +1,9 @@
+{
+  "kind": "compile",
+  "request": {
+    "prompt": "Build a balanced wooden-toy sound kit. Use both wood footstep variations while running on the ground and alive, soft heavy landing variations, a pickup confirmation and a short hurt alert. Keep wind filtered, following air movement, and silent on the ground or after death. No footsteps at rest, in the air or after death. Use the existing catalog."
+  },
+  "attempt": 1,
+  "stage": "model failed",
+  "error": "Authoring is disabled for the offline playback test."
+}

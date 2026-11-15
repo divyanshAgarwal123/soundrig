@@ -1,0 +1,27 @@
+{
+  "request": {
+    "prompt": "Generate a new60second orchestral music score from scratch, with strings and a sung choir. Do not substitute existing sample IDs."
+  },
+  "response": {
+    "rig": {
+      "unsupported": "Music generation and orchestral score creation is not supported; only game audio behavior mapping using the provided catalog and controls is allowed."
+    },
+    "model": "muse-glimmer:30b-mlx",
+    "eval_count": 116,
+    "done_reason": "stop",
+    "modelSeconds": 52.756,
+    "attempts": [
+      {
+        "output": {
+          "unsupported": "Music generation and orchestral score creation is not supported; only game audio behavior mapping using the provided catalog and controls is allowed."
+        },
+        "verification": {
+          "unsupported": true
+        }
+      }
+    ],
+    "verified": false,
+    "seconds": 52.772
+  },
+  "scope": "Actual local model output; not yet trusted or accepted by the runtime."
+}

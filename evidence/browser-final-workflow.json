@@ -1,0 +1,76 @@
+{
+  "scope": "App-owned browser diagnostics, separate from independent verification",
+  "liveAudio": {
+    "pass": true,
+    "runs": 9,
+    "maxRoundTripMs": 5.600000000093132,
+    "medianRoundTripMs": 5.2999999998137355,
+    "receivedToAppliedFrames": 0,
+    "blockLength": 128,
+    "sampleRate": 48000,
+    "firstSignalIndex": 0,
+    "firstPeak": 0.02175934300647067,
+    "browserBaseLatency": 0.005333333333333333,
+    "browserOutputLatency": 0.032,
+    "scope": "Muted live browser worklet; message/ack timing, not speaker latency or a listening assessment."
+  },
+  "exportParity": {
+    "pass": true,
+    "samples": 48000,
+    "digest": "cc5380f5ebee",
+    "event": "pickup",
+    "controls": {
+      "speed": 1,
+      "air": 0.7,
+      "grounded": 0,
+      "alive": 1
+    }
+  },
+  "wavReplay": null,
+  "lastMetaPatch": {
+    "record": "patch-2e3cd2a356e6.json",
+    "seconds": 37.913,
+    "target": "wind",
+    "lockedLayers": [
+      "footsteps",
+      "land_thud",
+      "pickup_chime",
+      "hurt_buzz"
+    ],
+    "preserved": true
+  },
+  "processor": {
+    "sampleRate": 48000,
+    "maxRenderMs": null
+  },
+  "traceReplay": {
+    "pass": true,
+    "durationMs": 6000,
+    "summary": {
+      "commandsApplied": 167,
+      "eventCommands": 2,
+      "addedVoices": 2,
+      "peak": 0.3121732771396637,
+      "preLimitPeak": 0.4120555179547264,
+      "saturatedSamples": 0
+    }
+  },
+  "comparison": {
+    "durationMs": 6000,
+    "commands": 167,
+    "gains": [
+      34.71484063867387,
+      2.078777511146373
+    ],
+    "targetRms": 0.04772528529501926,
+    "summary": {
+      "commandsApplied": 167,
+      "eventCommands": 2,
+      "addedVoices": 2,
+      "peak": 0.3121732771396637,
+      "preLimitPeak": 0.4120555179547264,
+      "saturatedSamples": 0
+    },
+    "scope": "Whole-clip RMS matching with a shared0.7 sample-peak ceiling; not perceptual loudness or a preference result."
+  }
+}

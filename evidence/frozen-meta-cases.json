@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "id": "concrete-kit",
+      "kind": "compile",
+      "prompt": "Build this platformer a balanced concrete sound kit. Use the two concrete footstep variants while running grounded and alive; filtered wind only airborne and alive, soft heavy landings, a pickup confirmation and a hurt alert. Preserve silence at rest and after death. Use the existing catalog.",
+      "material": "concrete"
+    },
+    {
+      "id": "wood-kit",
+      "kind": "compile",
+      "prompt": "Create an intimate wooden-toy platformer kit using both wood footstep variants, soft landing variations, confirmation pickup and short hurt alert. Wind should follow vertical air motion and stop grounded or dead. Footsteps stop at rest, while airborne and after death. Use only the supplied catalog.",
+      "material": "wood"
+    },
+    {
+      "id": "wind-only",
+      "kind": "patch",
+      "target": "wind",
+      "prompt": "Lower only the wind lowpass cutoff to a fixed650Hz. Keep its air gain mapping and all conditions. Preserve all locked layers.",
+      "cutoff": 650
+    },
+    {
+      "id": "wood-only",
+      "kind": "patch",
+      "target": "footsteps",
+      "prompt": "Change only the footstep sample pool to step_wood_a and step_wood_b. Keep its gain, cadence, rate, variation, filter and conditions exactly. Preserve all locked layers.",
+      "material": "wood"
+    },
+    {
+      "id": "unsupported-speech",
+      "kind": "compile",
+      "prompt": "Generate new spoken dialogue: a wizard must say Welcome brave traveler in a realistic voice. I need newly generated speech, not a substitute alert sound.",
+      "unsupported": true
+    },
+    {
+      "id": "unsupported-score",
+      "kind": "compile",
+      "prompt": "Generate a new60second orchestral music score from scratch, with strings and a sung choir. Do not substitute existing sample IDs.",
+      "unsupported": true
+    }
+  ],
+  "expected": "Game schema/interface,10 deterministic behavior checks, example-trace headroom; named material/cutoff checks and declared unsupported requests. No human-quality success criterion."
+}

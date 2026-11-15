@@ -1,0 +1,12 @@
+{
+  "snapshotBytes": 3102172,
+  "validatedSaveSeconds": 0.5772737079969374,
+  "validatedLoadSeconds": 0.5752972080008476,
+  "retainedRecordsAtByteQuota": 16,
+  "logicalBytes": 49634752,
+  "physicalDatabaseBytes": 49704960,
+  "metadataListMs": 0.22525000531459227,
+  "processPeakRSSRaw": 141770752,
+  "rssUnit": "bytes on macOS, KiB on Linux",
+  "scope": "Synthetic1.5s stereo padded originals in all8slots, real validation once each save/load; quota fill uses already validated data. Process high-water RSS, not incremental browser memory or human time."
+}

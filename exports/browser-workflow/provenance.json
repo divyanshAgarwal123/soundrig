@@ -1,0 +1,205 @@
+{
+  "preparation": {
+    "name": "Parcel Runner \u2014 custom cues",
+    "importedSlots": [
+      "pickup_confirm",
+      "hurt_error"
+    ],
+    "encodedPCMBytes": 189676,
+    "decodedBytesPerRealm": 284508,
+    "seconds": 2.3748759999999995,
+    "assets": {
+      "pickup_confirm": {
+        "title": "custom-pickup.wav",
+        "pack": "project",
+        "sourceFile": "custom-pickup.wav",
+        "author": "User supplied",
+        "license": "User-declared: Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+        "licenseNote": "Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+        "sourceSHA256": "3cb8da88e3cb747c437d92b241ebca431b20b7fa9a210a0f95158b4444fe89dc",
+        "pcmSHA256": "5c7e956313baa9b42194959d4cd7f3799ff7e16d165617991ac75b972825e0dd",
+        "sampleRate": 48000,
+        "frames": 23244,
+        "seconds": 0.48425,
+        "peak": 0.41741943359375,
+        "rms": 0.12000007647117808,
+        "dc": 1.9693842362545173e-08,
+        "sourceDC": -1.339713901205395e-05,
+        "sourceChannels": 2,
+        "sourceNearFullScaleSamples": 0,
+        "trimmedLeadingSeconds": 0.0,
+        "trimmedTrailingSeconds": 0.006166666666666667,
+        "preparationGain": 0.6542419608944406,
+        "preparation": "Stereo mean; digital/quiet-baseline padding trim before weighted DC removal; 2ms fades; RMS target0.12, gain\u22644 and peak\u22640.8; source rate retained. Full-scale source clipping cannot be recovered."
+      },
+      "hurt_error": {
+        "title": "custom-hurt.wav",
+        "pack": "project",
+        "sourceFile": "custom-hurt.wav",
+        "author": "User supplied",
+        "license": "User-declared: Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+        "licenseNote": "Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+        "sourceSHA256": "5244068d5bcb276f5f03d139e7a7748382f737780599547a8a71625218120239",
+        "pcmSHA256": "3c621e47b3eb533f105623eb179cadf646912db2ddb7788406304aa04f44c589",
+        "sampleRate": 48000,
+        "frames": 5016,
+        "seconds": 0.1045,
+        "peak": 0.61761474609375,
+        "rms": 0.11999978374933241,
+        "dc": 7.30085601076555e-08,
+        "sourceDC": 0.00028380252527848384,
+        "sourceChannels": 2,
+        "sourceNearFullScaleSamples": 0,
+        "trimmedLeadingSeconds": 0.0,
+        "trimmedTrailingSeconds": 0.0,
+        "preparationGain": 0.8506857151990781,
+        "preparation": "Stereo mean; digital/quiet-baseline padding trim before weighted DC removal; 2ms fades; RMS target0.12, gain\u22644 and peak\u22640.8; source rate retained. Full-scale source clipping cannot be recovered."
+      }
+    },
+    "sourceNotes": "User declarations are retained, not ownership verified."
+  },
+  "contract": {
+    "version": 1,
+    "pass": true,
+    "contractSHA256": "595f7d7c9b5d261176305c461bd08a4eb0081f67e1437cfba27f3ec405b0ea01",
+    "rigSHA256": "ad77fcf514503983dd33b369f778839f8a292f3182f7fecd3529a82a22845c07",
+    "settings": {
+      "sampleRate": 48000,
+      "blockSize": 128,
+      "seed": 17,
+      "epsilon": 1e-09,
+      "cueWindowMs": 250
+    },
+    "cases": [
+      {
+        "id": "Connected runner",
+        "pass": true,
+        "failures": [],
+        "provenance": {
+          "kind": "captured",
+          "source": "Actual independent runner; separate outcomes1land,2parcels,1hit",
+          "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}"
+        },
+        "traceSHA256": "73261386fa110635453c083dd7a8889e3dc6c8e1f750de46ae8d180e31c70815",
+        "pcmSHA256": "1cca2475f3c7c82f7ab2af2cb1ab904463184d069538473790f36009a9815cb3",
+        "commands": 109,
+        "events": {
+          "land": {
+            "count": 1,
+            "expected": 1,
+            "minimumCueRMS": 0.049943851195268174,
+            "threshold": 0.001
+          },
+          "pickup": {
+            "count": 2,
+            "expected": 2,
+            "minimumCueRMS": 0.02606162792480819,
+            "threshold": 0.001
+          },
+          "hurt": {
+            "count": 1,
+            "expected": 1,
+            "minimumCueRMS": 0.02191929987338726,
+            "threshold": 0.001
+          }
+        },
+        "rms": 0.01860354785151303,
+        "summary": {
+          "commandsApplied": 109,
+          "eventCommands": 4,
+          "addedVoices": 4,
+          "peak": 0.2623598277568817,
+          "preLimitPeak": 0.3405292288186465,
+          "saturatedSamples": 0
+        },
+        "silence": []
+      },
+      {
+        "id": "Dead idle",
+        "pass": true,
+        "failures": [],
+        "provenance": {
+          "kind": "synthetic",
+          "source": "Synthetic dead-idle control"
+        },
+        "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+        "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+        "commands": 0,
+        "events": {},
+        "rms": 0,
+        "summary": {
+          "commandsApplied": 0,
+          "eventCommands": 0,
+          "addedVoices": 0,
+          "peak": 0,
+          "preLimitPeak": 0,
+          "saturatedSamples": 0
+        },
+        "silence": [
+          {
+            "fromMs": 0,
+            "toMs": 1000,
+            "maxRMS": 0,
+            "rms": 0
+          }
+        ]
+      },
+      {
+        "id": "Adapter platformer",
+        "pass": true,
+        "failures": [],
+        "provenance": {
+          "kind": "captured",
+          "source": "Actual Phaser adapter run; separate game counters1landing,2pickups,0damage",
+          "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}"
+        },
+        "traceSHA256": "010c173d08b0b0142e96026f0e2f6df697767cb52236e4fc791425d2598728f3",
+        "pcmSHA256": "48629682b667592d60a7d2ed7bee1129c2a987284b8f8c031b7d0eccbfa587e0",
+        "commands": 240,
+        "events": {
+          "land": {
+            "count": 1,
+            "expected": 1,
+            "minimumCueRMS": 0.03458882780905187,
+            "threshold": 0.001
+          },
+          "pickup": {
+            "count": 2,
+            "expected": 2,
+            "minimumCueRMS": 0.02606162792480819,
+            "threshold": 0.001
+          },
+          "hurt": {
+            "count": 0,
+            "expected": 0,
+            "minimumCueRMS": null,
+            "threshold": 0
+          }
+        },
+        "rms": 0.012703187534775283,
+        "summary": {
+          "commandsApplied": 240,
+          "eventCommands": 3,
+          "addedVoices": 3,
+          "peak": 0.1330552101135254,
+          "preLimitPeak": 0.1678785532293828,
+          "saturatedSamples": 0
+        },
+        "silence": []
+      }
+    ],
+    "coverage": {
+      "land": 2,
+      "pickup": 4,
+      "hurt": 1
+    },
+    "missingEvents": [],
+    "seconds": 0.13580241599999998,
+    "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+    "projectSHA256": "03f783ef93905347954841602b7ffe7f50fda769e32e149fb78bf7ee4676f9a5",
+    "componentSHA256": "a7fd5dcc9365f5518cb749183d922350fc961852124336d72f5994ea560d9ae7",
+    "bindingsSHA256": "e02755117606ad526f610b571400a8da5183a14fba600c5d254eda11e93e6016"
+  },
+  "runtimeSchema": 3,
+  "bindingsVersion": 1
+}

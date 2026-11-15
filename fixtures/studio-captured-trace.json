@@ -1,0 +1,1203 @@
+{
+  "version": 1,
+  "durationMs": 6000,
+  "initial": {
+    "speed": 0,
+    "air": 0.0025,
+    "grounded": 1,
+    "alive": 1
+  },
+  "commands": [
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 1,
+        "air": 1
+      },
+      "atMs": 506.3999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9848,
+        "grounded": 0
+      },
+      "atMs": 515
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9697
+      },
+      "atMs": 531.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9545
+      },
+      "atMs": 548.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9394
+      },
+      "atMs": 565.1999999992549
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9242
+      },
+      "atMs": 581.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9091
+      },
+      "atMs": 598.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8939
+      },
+      "atMs": 614.3000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8788
+      },
+      "atMs": 630.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8636
+      },
+      "atMs": 648.3999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8485
+      },
+      "atMs": 664.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8333
+      },
+      "atMs": 681.3999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8182
+      },
+      "atMs": 696.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.803
+      },
+      "atMs": 715.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7879
+      },
+      "atMs": 731.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7727
+      },
+      "atMs": 748.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7576
+      },
+      "atMs": 765.1999999992549
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7424
+      },
+      "atMs": 781.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7273
+      },
+      "atMs": 798.3000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7121
+      },
+      "atMs": 815.3000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.697
+      },
+      "atMs": 831.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6818
+      },
+      "atMs": 848.3000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6667
+      },
+      "atMs": 865.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6515
+      },
+      "atMs": 882.3000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6364
+      },
+      "atMs": 898.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6212
+      },
+      "atMs": 914.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6061
+      },
+      "atMs": 931.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5909
+      },
+      "atMs": 948.1999999992549
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5758
+      },
+      "atMs": 965.1999999992549
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5606
+      },
+      "atMs": 981.8000000007451
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5455
+      },
+      "atMs": 997.6999999992549
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5303
+      },
+      "atMs": 1015.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5152
+      },
+      "atMs": 1030.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5
+      },
+      "atMs": 1048.3999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4848
+      },
+      "atMs": 1065.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4697
+      },
+      "atMs": 1081.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4545
+      },
+      "atMs": 1098.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4394
+      },
+      "atMs": 1115.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4242
+      },
+      "atMs": 1132.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4091
+      },
+      "atMs": 1146.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3939
+      },
+      "atMs": 1165.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3788
+      },
+      "atMs": 1181.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3636
+      },
+      "atMs": 1198.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3485
+      },
+      "atMs": 1215.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3333
+      },
+      "atMs": 1231.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3182
+      },
+      "atMs": 1248.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.303
+      },
+      "atMs": 1264.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2879
+      },
+      "atMs": 1280.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2727
+      },
+      "atMs": 1298.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2576
+      },
+      "atMs": 1313.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2424
+      },
+      "atMs": 1331.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2273
+      },
+      "atMs": 1347.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2121
+      },
+      "atMs": 1365.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.197
+      },
+      "atMs": 1381.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1818
+      },
+      "atMs": 1397.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1667
+      },
+      "atMs": 1415.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1515
+      },
+      "atMs": 1431.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1364
+      },
+      "atMs": 1448.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1212
+      },
+      "atMs": 1465.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1061
+      },
+      "atMs": 1480.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0909
+      },
+      "atMs": 1498.3999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0758
+      },
+      "atMs": 1515.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0606
+      },
+      "atMs": 1530.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0455
+      },
+      "atMs": 1548.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0303
+      },
+      "atMs": 1565.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0152
+      },
+      "atMs": 1581.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0
+      },
+      "atMs": 1598.3999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0152
+      },
+      "atMs": 1614.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0303
+      },
+      "atMs": 1631.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0455
+      },
+      "atMs": 1648.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0606
+      },
+      "atMs": 1665.0999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0758
+      },
+      "atMs": 1681.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0909
+      },
+      "atMs": 1698.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1061
+      },
+      "atMs": 1715.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1212
+      },
+      "atMs": 1731.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1364
+      },
+      "atMs": 1748.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1515
+      },
+      "atMs": 1765.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1667
+      },
+      "atMs": 1781.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1818
+      },
+      "atMs": 1798.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.197
+      },
+      "atMs": 1813.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2121
+      },
+      "atMs": 1831.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2273
+      },
+      "atMs": 1848.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2424
+      },
+      "atMs": 1865.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2576
+      },
+      "atMs": 1882.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2727
+      },
+      "atMs": 1896.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2879
+      },
+      "atMs": 1915
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.303
+      },
+      "atMs": 1931.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3182
+      },
+      "atMs": 1948.5999999977648
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3333
+      },
+      "atMs": 1964
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3485
+      },
+      "atMs": 1981.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3636
+      },
+      "atMs": 1998.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3788
+      },
+      "atMs": 2014.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.3939
+      },
+      "atMs": 2031.8999999985099
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4091
+      },
+      "atMs": 2048.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4242
+      },
+      "atMs": 2065.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4394
+      },
+      "atMs": 2081.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4545
+      },
+      "atMs": 2098.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4697
+      },
+      "atMs": 2115.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.4848
+      },
+      "atMs": 2132.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5
+      },
+      "atMs": 2148.599999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5152
+      },
+      "atMs": 2165.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5303
+      },
+      "atMs": 2180.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5455
+      },
+      "atMs": 2198.599999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5606
+      },
+      "atMs": 2214.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5758
+      },
+      "atMs": 2230.89999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.5909
+      },
+      "atMs": 2248.39999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6061
+      },
+      "atMs": 2265.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6212
+      },
+      "atMs": 2283.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6364
+      },
+      "atMs": 2298.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6515
+      },
+      "atMs": 2313.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6667
+      },
+      "atMs": 2331.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.6818
+      },
+      "atMs": 2346.89999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.697
+      },
+      "atMs": 2365.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7121
+      },
+      "atMs": 2382
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7273
+      },
+      "atMs": 2398.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7424
+      },
+      "atMs": 2414.599999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7576
+      },
+      "atMs": 2430.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7727
+      },
+      "atMs": 2446.89999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.7879
+      },
+      "atMs": 2464.39999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.803
+      },
+      "atMs": 2482.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8182
+      },
+      "atMs": 2496.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8333
+      },
+      "atMs": 2515
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8485
+      },
+      "atMs": 2530.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8636
+      },
+      "atMs": 2548
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8788
+      },
+      "atMs": 2565.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.8939
+      },
+      "atMs": 2581.89999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9091
+      },
+      "atMs": 2596.800000000745
+    },
+    {
+      "type": "event",
+      "event": "pickup",
+      "intensity": 1,
+      "atMs": 2613.699999999255
+    },
+    {
+      "type": "event",
+      "event": "land",
+      "intensity": 0.6,
+      "atMs": 2614.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9242,
+        "grounded": 1
+      },
+      "atMs": 2614.599999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9394,
+        "grounded": 0
+      },
+      "atMs": 2631.89999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9545
+      },
+      "atMs": 2648.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9697
+      },
+      "atMs": 2665.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.9848
+      },
+      "atMs": 2681.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.2,
+        "grounded": 1
+      },
+      "atMs": 2698.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1848,
+        "grounded": 0
+      },
+      "atMs": 2714
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1697
+      },
+      "atMs": 2732.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1545
+      },
+      "atMs": 2748.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1394
+      },
+      "atMs": 2765.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1242
+      },
+      "atMs": 2781.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1091
+      },
+      "atMs": 2798.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0939
+      },
+      "atMs": 2815.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0788
+      },
+      "atMs": 2831.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0636
+      },
+      "atMs": 2848.39999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0485
+      },
+      "atMs": 2864.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0333
+      },
+      "atMs": 2881.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0182
+      },
+      "atMs": 2898.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.003
+      },
+      "atMs": 2915.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0121
+      },
+      "atMs": 2930.39999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0273
+      },
+      "atMs": 2948.39999999851
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0424
+      },
+      "atMs": 2965.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0576
+      },
+      "atMs": 2981.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0727
+      },
+      "atMs": 2998.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0879
+      },
+      "atMs": 3013.599999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.103
+      },
+      "atMs": 3031.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1182
+      },
+      "atMs": 3048.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1333
+      },
+      "atMs": 3065.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1485
+      },
+      "atMs": 3081.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1636
+      },
+      "atMs": 3098.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.1788
+      },
+      "atMs": 3115.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0388,
+        "grounded": 1
+      },
+      "atMs": 3132
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0236,
+        "grounded": 0
+      },
+      "atMs": 3148.599999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0085
+      },
+      "atMs": 3165.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0067
+      },
+      "atMs": 3182.199999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0218
+      },
+      "atMs": 3197.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0074,
+        "grounded": 1
+      },
+      "atMs": 3215.099999997765
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0016
+      },
+      "atMs": 3231.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0027
+      },
+      "atMs": 3248.699999999255
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "air": 0.0025
+      },
+      "atMs": 3265.5
+    }
+  ]
+}

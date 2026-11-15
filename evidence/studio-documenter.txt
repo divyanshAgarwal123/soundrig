@@ -1,0 +1,511 @@
+Message Type: FINAL_ANSWER
+Task name: /root
+Sender: /root/studio_documenter
+Payload:
+Replace `<original-workspace>/soundrig-proof/studio/DESIGN.md` with:
+
+```markdown
+---
+name: SoundRig
+description: A soundcheck pressing room for recorded game effects.
+colors:
+  paper: "#f2eadc"
+  ink: "#20221c"
+  accent: "#df6a39"
+  sage: "#c0c1aa"
+  muted: "#56534b"
+  line: "#858274"
+  white: "#fff9f2"
+  quiet: "#eee0cf"
+  hover: "#cd5726"
+  focus: "#793b21"
+  error: "#8b2c17"
+typography:
+  display:
+    fontFamily: "SoundRigDisplay, system-ui, sans-serif"
+    fontSize: "clamp(60px, 10.96vw, 163px)"
+    fontWeight: 400
+    lineHeight: 0.83
+    letterSpacing: "-0.04em"
+  headline:
+    fontFamily: "SoundRigDisplay, system-ui, sans-serif"
+    fontSize: "clamp(34px, 4.1vw, 62px)"
+    fontWeight: 400
+    lineHeight: 1.05
+    letterSpacing: "-0.04em"
+  guide-title:
+    fontFamily: "SoundRigDisplay, system-ui, sans-serif"
+    fontSize: "clamp(40px, 6vw, 80px)"
+    fontWeight: 400
+    lineHeight: 1.06
+    letterSpacing: "-0.04em"
+  title:
+    fontFamily: "SoundRigDisplay, system-ui, sans-serif"
+    fontSize: "20px"
+    fontWeight: 400
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  body:
+    fontFamily: "DM, system-ui, sans-serif"
+    fontSize: "16px"
+    fontWeight: 400
+    lineHeight: 1.5
+  label:
+    fontFamily: "DM, system-ui, sans-serif"
+    fontSize: "12px"
+    fontWeight: 600
+    lineHeight: 1.5
+  data:
+    fontFamily: "ui-monospace, monospace"
+    fontSize: "12px"
+    lineHeight: 1.6
+rounded:
+  portable: "4px"
+  control: "6px"
+  selector: "10px"
+  listening-action: "12px"
+  action: "14px"
+  circle: "50%"
+spacing:
+  compact: "8px"
+  control: "12px"
+  related: "18px"
+  group: "24px"
+  workspace: "34px"
+  section: "60px"
+components:
+  button-marketing:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.white}"
+    rounded: "{rounded.action}"
+    padding: "12px 24px"
+  button-marketing-hover:
+    backgroundColor: "{colors.hover}"
+  button-studio:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+    padding: "11px 14px"
+  button-secondary:
+    backgroundColor: "transparent"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+    padding: "11px 14px"
+  button-secondary-hover:
+    backgroundColor: "{colors.sage}"
+  field:
+    backgroundColor: "{colors.white}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.control}"
+    padding: "10px 12px"
+  cue-selector:
+    backgroundColor: "{colors.sage}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.selector}"
+    padding: "5px 8px"
+  cue-selector-selected:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.white}"
+  version-selector-selected:
+    backgroundColor: "{colors.sage}"
+    textColor: "{colors.ink}"
+  play-control:
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.circle}"
+    width: "52px"
+    height: "52px"
+---
+
+# Design System: SoundRig
+
+## Overview
+
+**Creative North Star: "Soundcheck pressing room"**
+
+SoundRig borrows the physical confidence of a test-pressing sleeve: warm paper, orange ink, oversized lettering and a dimensional record. The typography and working audio comparison carry the identity. The artwork supplies atmosphere while native controls carry every action.
+
+The landing page is expansive, the studio is dense enough for repeated work, and the guide is paced for reading. They share the same paper, ink, display face, restrained curves and thin separators.
+
+**Key Characteristics:**
+- Warm neutral paper with a subdued raster grain.
+- Rounded-dot display lettering paired with clear sans-serif controls.
+- Orange actions, sage comparison states and factual audio feedback.
+- Flat working surfaces separated by rules.
+- Listening controls before artwork on phones and tablets.
+
+## Colors
+
+The palette resembles a printed sleeve: dark ink and orange on warm neutral paper, with sage as a quiet comparison color.
+
+### Primary
+
+- **Pressing Orange — accent:** Main actions, selected game cues, playback progress, carets and native range/checkbox accents.
+- **Burnt Orange — hover:** Hover treatment for marketing buttons.
+
+### Secondary
+
+- **Sleeve Sage — sage:** Unselected game cues, selected playback versions and studio secondary-button hover.
+
+### Neutral
+
+- **Warm Paper — paper:** Page canvas and the backing beneath the paper texture.
+- **Printing Ink — ink:** Headlines, body text, strong rules and the circular play control.
+- **Soft Ink — muted:** Supporting text and factual status details.
+- **Rule Gray — line:** Field outlines and secondary separators.
+- **Chalk — white:** Field interiors and marketing-action text.
+- **Paper Wash — quiet:** Bindings, code, diffs and diagnostic surfaces.
+- **Focus Brown — focus:** Visible keyboard outlines.
+- **Error Rust — error:** Failed or invalid states, accompanied by explanatory text.
+
+**The Paper Rule.** Keep paper neutral and legible beneath the texture. The shipped surface places a translucent paper-colored layer over the raster grain; the grain must not become a yellow cast.
+
+## Typography
+
+**Display Font:** SoundRig Display, served locally as `SoundRigDisplay`, with a sans-serif fallback.  
+**Body Font:** DM Sans, served locally as `DM`, with a sans-serif fallback.  
+**Data Font:** UI monospace.
+
+The display face is an OFL derivative of Archivo Black, retaining its heavy sleeve lettering while rounding the i tittle and period. DM Sans carries the working interface without competing with it. The original font, derivative recipe, provenance and license remain in the project.
+
+### Hierarchy
+
+- **Display:** The landing headline uses the frontmatter display role. At phone widths it becomes `clamp(34px, 9.8vw, 74px)` with a looser line height (`0.96`); at very wide widths it becomes `11vw`. The first line is slightly compressed horizontally above phone widths.
+- **Headline:** The studio page title uses the headline role. At the smallest breakpoint it is `(36px)` with a compact measure `(12ch)`.
+- **Guide title:** The guide uses its own fluid title role with a maximum measure `(16ch)`.
+- **Title:** Studio section headings use the title role. Larger grouping titles use `(26–30px)`. Landing story headings remain fluid and use the same display face.
+- **Body:** The shared base is the body role. Landing story copy grows to `(18px)` on larger screens; guide paragraphs and lists stay within `(70ch)`.
+- **Label:** Studio field labels use the label role. Supporting interface text commonly uses `(11–14px)`.
+- **Data:** Monospace belongs to bindings, JSON and integration examples. Timings and live values use tabular numerals.
+
+**The Sleeve Type Rule.** Use SoundRig Display for identity and headings; keep control labels, explanations and operational state in DM Sans. Portable hosts retain the local display face for their title and use a system sans-serif body.
+
+## Layout
+
+The shared header and landing sections use proportional side margins `(2.4%)`, increasing to `(5%)` on phones. Thin horizontal rules establish the section rhythm. Content is grouped through space and alignment rather than repeated cards.
+
+The studio has a centered maximum width `(1487px)`. Above `(1000px)`, the game and editor form a `1.35fr / minmax(350px, 1fr)` grid with a gap `(34px)` and a vertical separator. The game keeps its `(4:3)` viewport. At and below that breakpoint, the game precedes the editor and separation becomes horizontal.
+
+The guide has a maximum width `(1220px)`, generous desktop padding `(70px 30px)` and readable paragraph measures. Its table of contents wraps naturally.
+
+The observed spacing vocabulary is deliberately mixed: compact control gaps, modest group spacing and larger ruled sections. Use the frontmatter spacing values as recurring anchors rather than forcing all dimensions onto an invented modular scale.
+
+Responsive behavior:
+- At and below `(1100px)`, the landing becomes a vertical flow: headline, introduction, studio action, full-width audio comparison, then record artwork. The tablet record is a partial arc, offset to the right.
+- At and below `(1000px)`, the studio and lower landing editorial columns stack.
+- At and below `(760px)`, the header wraps, its additional studio-action link is hidden, margins widen proportionally, typography reduces and selectors become more compact.
+- At and below `(560px)`, studio controls wrap more freely, volume gets a full row and behavioral results become a single column.
+- At and above `(1600px)`, the landing headline scales with the viewport and the audio comparison is capped `(860px)`.
+
+**The Controls First Rule.** On phones and tablets, keep audio comparison and the studio action before the record artwork.
+
+## Elevation & Depth
+
+Working UI is flat: there are no CSS box shadows. Rules, paper wash and tonal changes separate information. The record raster supplies the landing's physical volume and lighting; do not translate its dimensional appearance into raised interface panels.
+
+**The Flat Workbench Rule.** Keep controls and working sections on the paper plane. Use thin separators and quiet fills to express grouping.
+
+## Shapes
+
+The record, brand mark and play button share circular geometry. Rectangular controls use restrained curves: the studio uses the control radius, portable hosts use the smaller portable radius, cue selectors use the selector radius and marketing actions use the action radius. The large listening action has its own intermediate radius.
+
+Fields and most working controls use one-pixel borders. Landing selectors and actions have more generous silhouettes; studio controls stay compact. The game viewport clips its contents within a small radius.
+
+## Components
+
+### Buttons
+
+Marketing actions are broad orange shapes with chalk text and bold sans-serif labels. Their hover color deepens; pressing moves them down `(1px)`.
+
+Studio primary actions use orange with ink text. Hover retains orange and adds an ink border. Secondary studio buttons are transparent at rest and sage on hover. Standard studio padding is recorded in the frontmatter; gameplay and movement controls have a minimum height `(44px)`.
+
+Shared keyboard focus is a visible brown outline `(3px)` with an offset `(4px)`. Disabled shared buttons use reduced opacity `(0.45)` and a wait cursor. Portable hosts retain their compact local control treatment.
+
+Color and transform transitions are short `(0.18s ease)`. Reduced-motion preference removes CSS animation, transitions and smooth scrolling.
+
+### Cue and Version Selectors
+
+The listening comparison uses native radios inside labeled groups. Cue options are sage at rest and orange when selected. Version options are outlined at rest and sage when selected. At and below the tablet breakpoint, selected radio text uses ink. Focus is drawn around the visible radio label, not its visually hidden input.
+
+The selector row pairs a fixed-width descriptive label with flexible options. Phone labels and corner radii become smaller without changing the native selection behavior.
+
+### Inputs and Fields
+
+Text fields, selects and textareas use chalk interiors, ink text, one-pixel rule-gray outlines and the studio control radius. Textareas resize vertically. Range controls and checkboxes use orange as their native accent. Errors combine rust text with an explanation; color alone does not carry the failure.
+
+### Working Containers
+
+Bindings, code and diffs use paper wash. Projects, replay, saved checks and delivery are flat sections with ruled boundaries. Technical details use native disclosures, keeping JSON and wiring below the primary task. Long code and source notes wrap; diagnostic areas may scroll within a bounded height.
+
+### Navigation
+
+The header pairs the circular record mark with the display wordmark. Text navigation uses DM Sans; hover and the current page are underlined. The studio's in-page workflow links use orange bottom rules. Footer links are smaller and wrap when needed.
+
+### Listening Comparison
+
+The circular ink play button sits beside elapsed time, the waveform and duration. The waveform is drawn from the selected cue's peak data; orange indicates elapsed playback and sage indicates the remaining waveform.
+
+Playback begins from an explicit user action. Changing cue or version stops the previous playback; hiding or leaving the page also stops it. The play button's accessible label changes with state. Loading and errors are announced in a status region. The waveform remains functional playback feedback when reduced motion is requested.
+
+### Portable Hosts
+
+The standalone runner, workflow runner and delivered-sprite consumer carry the warm paper, ink and local display title into independent output. They use narrower reading containers, compact native controls and simple ruled/code surfaces. Their system body fonts and smaller corner radius are scoped output variants, not replacements for the shared site typography.
+
+## Do's and Don'ts
+
+### Do:
+- **Do** keep warm paper, printing ink and orange as the shared visual foundation.
+- **Do** retain the local SoundRig Display font and its rounded punctuation in site and portable titles.
+- **Do** put audio controls before record artwork on phones and tablets.
+- **Do** use native controls, explicit focus and factual playback or validation state.
+- **Do** separate working sections with rules, space and quiet fills.
+- **Do** preserve readable text measures and wrap long code or source notes.
+
+### Don't:
+- **Don't** turn the subdued paper grain into a strong yellow surface.
+- **Don't** replace working interface text with raster artwork.
+- **Don't** use the record's dimensional lighting as a reason to add shadows to controls or working panels.
+- **Don't** use display lettering for dense operational text.
+- **Don't** imply music generation, listening preference or product validation through the imagery or interface.
+```
+
+Create `<original-workspace>/soundrig-proof/studio/.impeccable/design.json` with:
+
+```json
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T10:41:57Z",
+  "title": "Design System: SoundRig",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f2eadc",
+        "tonalRamp": ["oklch(15% 0.0205 81.78)", "oklch(26% 0.0205 81.78)", "oklch(38% 0.0205 81.78)", "oklch(49% 0.0205 81.78)", "oklch(61% 0.0205 81.78)", "oklch(72% 0.0205 81.78)", "oklch(84% 0.0205 81.78)", "oklch(95% 0.0205 81.78)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Printing Ink",
+        "canonical": "#20221c",
+        "tonalRamp": ["oklch(15% 0.0114 122.24)", "oklch(26% 0.0114 122.24)", "oklch(38% 0.0114 122.24)", "oklch(49% 0.0114 122.24)", "oklch(61% 0.0114 122.24)", "oklch(72% 0.0114 122.24)", "oklch(84% 0.0114 122.24)", "oklch(95% 0.0114 122.24)"]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Pressing Orange",
+        "canonical": "#df6a39",
+        "tonalRamp": ["oklch(15% 0.1593 41.92)", "oklch(26% 0.1593 41.92)", "oklch(38% 0.1593 41.92)", "oklch(49% 0.1593 41.92)", "oklch(61% 0.1593 41.92)", "oklch(72% 0.1593 41.92)", "oklch(84% 0.1593 41.92)", "oklch(95% 0.1593 41.92)"]
+      },
+      "sage": {
+        "role": "secondary",
+        "displayName": "Sleeve Sage",
+        "canonical": "#c0c1aa",
+        "tonalRamp": ["oklch(15% 0.0315 109.12)", "oklch(26% 0.0315 109.12)", "oklch(38% 0.0315 109.12)", "oklch(49% 0.0315 109.12)", "oklch(61% 0.0315 109.12)", "oklch(72% 0.0315 109.12)", "oklch(84% 0.0315 109.12)", "oklch(95% 0.0315 109.12)"]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#56534b",
+        "tonalRamp": ["oklch(15% 0.0134 89.83)", "oklch(26% 0.0134 89.83)", "oklch(38% 0.0134 89.83)", "oklch(49% 0.0134 89.83)", "oklch(61% 0.0134 89.83)", "oklch(72% 0.0134 89.83)", "oklch(84% 0.0134 89.83)", "oklch(95% 0.0134 89.83)"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Rule Gray",
+        "canonical": "#858274",
+        "tonalRamp": ["oklch(15% 0.0209 97.04)", "oklch(26% 0.0209 97.04)", "oklch(38% 0.0209 97.04)", "oklch(49% 0.0209 97.04)", "oklch(61% 0.0209 97.04)", "oklch(72% 0.0209 97.04)", "oklch(84% 0.0209 97.04)", "oklch(95% 0.0209 97.04)"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "#fff9f2",
+        "tonalRamp": ["oklch(15% 0.0113 71.90)", "oklch(26% 0.0113 71.90)", "oklch(38% 0.0113 71.90)", "oklch(49% 0.0113 71.90)", "oklch(61% 0.0113 71.90)", "oklch(72% 0.0113 71.90)", "oklch(84% 0.0113 71.90)", "oklch(95% 0.0113 71.90)"]
+      },
+      "quiet": {
+        "role": "neutral",
+        "displayName": "Paper Wash",
+        "canonical": "#eee0cf",
+        "tonalRamp": ["oklch(15% 0.0274 72.80)", "oklch(26% 0.0274 72.80)", "oklch(38% 0.0274 72.80)", "oklch(49% 0.0274 72.80)", "oklch(61% 0.0274 72.80)", "oklch(72% 0.0274 72.80)", "oklch(84% 0.0274 72.80)", "oklch(95% 0.0274 72.80)"]
+      },
+      "hover": {
+        "role": "primary",
+        "displayName": "Burnt Orange",
+        "canonical": "#cd5726",
+        "tonalRamp": ["oklch(15% 0.1619 40.92)", "oklch(26% 0.1619 40.92)", "oklch(38% 0.1619 40.92)", "oklch(49% 0.1619 40.92)", "oklch(61% 0.1619 40.92)", "oklch(72% 0.1619 40.92)", "oklch(84% 0.1619 40.92)", "oklch(95% 0.1619 40.92)"]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus Brown",
+        "canonical": "#793b21",
+        "tonalRamp": ["oklch(15% 0.0948 42.44)", "oklch(26% 0.0948 42.44)", "oklch(38% 0.0948 42.44)", "oklch(49% 0.0948 42.44)", "oklch(61% 0.0948 42.44)", "oklch(72% 0.0948 42.44)", "oklch(84% 0.0948 42.44)", "oklch(95% 0.0948 42.44)"]
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error Rust",
+        "canonical": "#8b2c17",
+        "tonalRamp": ["oklch(15% 0.1332 33.93)", "oklch(26% 0.1332 33.93)", "oklch(38% 0.1332 33.93)", "oklch(49% 0.1332 33.93)", "oklch(61% 0.1332 33.93)", "oklch(72% 0.1332 33.93)", "oklch(84% 0.1332 33.93)", "oklch(95% 0.1332 33.93)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {"displayName": "Sleeve Display", "purpose": "Oversized landing headline; responsive variants remain in Layout and Typography."},
+      "headline": {"displayName": "Studio Headline", "purpose": "Main studio page title."},
+      "guide-title": {"displayName": "Guide Title", "purpose": "Reading surface title."},
+      "title": {"displayName": "Working Title", "purpose": "Studio section headings."},
+      "body": {"displayName": "DM Sans Body", "purpose": "Shared prose and native controls; the source family alias is DM."},
+      "label": {"displayName": "Working Label", "purpose": "Studio field labels."},
+      "data": {"displayName": "Technical Data", "purpose": "Code, bindings and JSON."}
+    },
+    "shadows": [],
+    "motion": [
+      {"name": "control-transition", "value": "background .18s ease, transform .18s ease", "purpose": "Short button state transitions; removed for reduced motion."},
+      {"name": "press-offset", "value": "translateY(1px)", "purpose": "Shared pressed-button feedback."},
+      {"name": "page-scroll", "value": "smooth", "purpose": "Shared in-page navigation; becomes auto for reduced motion."}
+    ],
+    "breakpoints": [
+      {"name": "studio-small-max", "value": "560px"},
+      {"name": "phone-max", "value": "760px"},
+      {"name": "workspace-stack-max", "value": "1000px"},
+      {"name": "tablet-max", "value": "1100px"},
+      {"name": "desktop-audition-spacing-max", "value": "1460px"},
+      {"name": "wide-min", "value": "1600px"}
+    ]
+  },
+  "components": [
+    {
+      "name": "Marketing Action",
+      "kind": "button",
+      "refersTo": "button-marketing",
+      "description": "A generous orange link for entering or continuing the studio workflow.",
+      "html": "<a class=\"ds-marketing\" href=\"#studio-preview\">Open studio <svg viewBox=\"0 0 28 24\" aria-hidden=\"true\"><path d=\"M1 12h24M15 2l10 10-10 10\"/></svg></a>",
+      "css": ".ds-marketing{display:inline-flex;align-items:center;justify-content:center;gap:24px;padding:12px 24px;border:0;border-radius:14px;background:var(--color-accent,#df6a39);color:var(--color-white,#fff9f2);font:700 19px/1.5 var(--font-body,DM,system-ui,sans-serif);text-decoration:none;white-space:nowrap;transition:background .18s ease,transform .18s ease}.ds-marketing svg{width:28px;height:24px;fill:none;stroke:currentColor;stroke-width:3}.ds-marketing:hover{background:var(--color-hover,#cd5726)}.ds-marketing:focus-visible{outline:3px solid var(--color-focus,#793b21);outline-offset:4px}.ds-marketing:active{transform:translateY(1px)}@media(prefers-reduced-motion:reduce){.ds-marketing{transition:none}}"
+    },
+    {
+      "name": "Studio Primary",
+      "kind": "button",
+      "refersTo": "button-studio",
+      "description": "Ink text on orange for an explicit working action.",
+      "html": "<button class=\"ds-studio-primary\" type=\"button\">Enable audio</button>",
+      "css": ".ds-studio-primary{padding:11px 14px;min-height:44px;border:1px solid transparent;border-radius:6px;background:var(--color-accent,#df6a39);color:var(--color-ink,#20221c);font:700 16px/1.5 var(--font-body,DM,system-ui,sans-serif);cursor:pointer;transition:background .18s ease,transform .18s ease}.ds-studio-primary:hover{background:var(--color-accent,#df6a39);border-color:var(--color-ink,#20221c)}.ds-studio-primary:focus-visible{outline:3px solid var(--color-focus,#793b21);outline-offset:4px}.ds-studio-primary:active{transform:translateY(1px)}.ds-studio-primary:disabled{opacity:.45;cursor:wait}@media(prefers-reduced-motion:reduce){.ds-studio-primary{transition:none}}"
+    },
+    {
+      "name": "Studio Secondary",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A transparent outlined control that gains sage on hover.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">Replay current kit</button>",
+      "css": ".ds-secondary{padding:11px 14px;min-height:42px;border:1px solid var(--color-line,#858274);border-radius:6px;background:transparent;color:var(--color-ink,#20221c);font:400 16px/1.5 var(--font-body,DM,system-ui,sans-serif);cursor:pointer;transition:background .18s ease,transform .18s ease}.ds-secondary:hover{background:var(--color-sage,#c0c1aa)}.ds-secondary:focus-visible{outline:3px solid var(--color-focus,#793b21);outline-offset:4px}.ds-secondary:active{transform:translateY(1px)}.ds-secondary:disabled{opacity:.45;cursor:wait}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none}}"
+    },
+    {
+      "name": "Studio Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "A labeled native field with a chalk interior and explicit keyboard focus.",
+      "html": "<label class=\"ds-field-label\" for=\"ds-source-note\">Source / license note</label><input class=\"ds-field\" id=\"ds-source-note\" type=\"text\" placeholder=\"For example: recorded by me\">",
+      "css": ".ds-field-label{display:block;margin:10px 0 5px;color:var(--color-ink,#20221c);font:600 12px/1.5 var(--font-body,DM,system-ui,sans-serif)}.ds-field{width:100%;padding:10px 12px;border:1px solid var(--color-line,#858274);border-radius:6px;background:var(--color-white,#fff9f2);color:var(--color-ink,#20221c);caret-color:var(--color-accent,#df6a39);font:400 16px/1.45 var(--font-body,DM,system-ui,sans-serif)}.ds-field:focus-visible{outline:3px solid var(--color-focus,#793b21);outline-offset:4px}"
+    },
+    {
+      "name": "Cue Selector",
+      "kind": "chip",
+      "refersTo": "cue-selector",
+      "description": "Native radio choices with sage defaults and an orange selection.",
+      "html": "<fieldset class=\"ds-cues\" aria-label=\"Game cue\"><label><input type=\"radio\" name=\"ds-cue-preview\" value=\"pickup\"><span>Pickup</span></label><label><input type=\"radio\" name=\"ds-cue-preview\" value=\"land\" checked><span>Landing</span></label><label><input type=\"radio\" name=\"ds-cue-preview\" value=\"hurt\"><span>Damage</span></label></fieldset>",
+      "css": ".ds-cues{display:flex;gap:6px;border:0;margin:0;padding:0;min-width:0;font:700 20px/1.5 var(--font-body,DM,system-ui,sans-serif)}.ds-cues label{flex:1;position:relative;cursor:pointer}.ds-cues input{position:absolute;opacity:0;width:1px;height:1px}.ds-cues span{display:block;min-height:40px;padding:5px 8px;border:1px solid transparent;border-radius:10px;background:var(--color-sage,#c0c1aa);color:var(--color-ink,#20221c);text-align:center}.ds-cues input:checked+span{background:var(--color-accent,#df6a39);color:var(--color-white,#fff9f2)}.ds-cues input:focus-visible+span{outline:3px solid var(--color-focus,#793b21);outline-offset:3px}@media(max-width:1100px){.ds-cues input:checked+span{color:var(--color-ink,#20221c)}}@media(max-width:760px){.ds-cues{font-size:15px}.ds-cues span{padding:8px 4px;border-radius:6px}}"
+    },
+    {
+      "name": "Version Selector",
+      "kind": "chip",
+      "refersTo": "version-selector-selected",
+      "description": "An outlined radio comparison whose selected version uses sage.",
+      "html": "<fieldset class=\"ds-versions\" aria-label=\"Playback version\"><label><input type=\"radio\" name=\"ds-version-preview\" value=\"before\"><span>Before</span></label><label><input type=\"radio\" name=\"ds-version-preview\" value=\"clean\" checked><span>Clean</span></label></fieldset>",
+      "css": ".ds-versions{display:flex;gap:6px;max-width:398px;border:0;margin:0;padding:0;font:700 20px/1.5 var(--font-body,DM,system-ui,sans-serif)}.ds-versions label{flex:1;position:relative;cursor:pointer}.ds-versions input{position:absolute;opacity:0;width:1px;height:1px}.ds-versions span{display:block;min-height:40px;padding:5px 8px;border:1px solid var(--color-line,#858274);border-radius:10px;background:transparent;color:var(--color-ink,#20221c);text-align:center}.ds-versions input:checked+span{background:var(--color-sage,#c0c1aa)}.ds-versions input:focus-visible+span{outline:3px solid var(--color-focus,#793b21);outline-offset:3px}@media(max-width:760px){.ds-versions{font-size:15px}.ds-versions span{padding:8px 4px;border-radius:6px}}"
+    },
+    {
+      "name": "Circular Play Control",
+      "kind": "button",
+      "refersTo": "play-control",
+      "description": "The ink circular audio trigger beside the waveform.",
+      "html": "<button class=\"ds-play\" type=\"button\" aria-label=\"Play selected cue\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m8 4 13 8-13 8Z\"/></svg></button>",
+      "css": ".ds-play{display:grid;place-items:center;width:52px;height:52px;padding:0;border:0;border-radius:50%;background:var(--color-ink,#20221c);color:var(--color-paper,#f2eadc);cursor:pointer}.ds-play svg{width:23px;height:23px;fill:currentColor}.ds-play:focus-visible{outline:3px solid var(--color-focus,#793b21);outline-offset:4px}.ds-play:active{transform:translateY(1px)}.ds-play:disabled{opacity:.45;cursor:wait}@media(max-width:760px){.ds-play{width:44px;height:44px}}"
+    },
+    {
+      "name": "Text Navigation",
+      "kind": "nav",
+      "description": "Direct text links with underlined hover and current-page state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation preview\"><a href=\"#studio-preview\" aria-current=\"page\">Studio</a><a href=\"#guide-preview\">How it works</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:38px;font:600 23px/1.5 var(--font-body,DM,system-ui,sans-serif)}.ds-nav a{color:var(--color-ink,#20221c);text-decoration:none;text-underline-offset:5px;white-space:nowrap}.ds-nav a:hover,.ds-nav a[aria-current=page]{text-decoration:underline}.ds-nav a:focus-visible{outline:3px solid var(--color-focus,#793b21);outline-offset:4px}@media(max-width:1100px){.ds-nav{gap:24px;font-size:17px}}@media(max-width:760px){.ds-nav{gap:18px;font-size:15px}}"
+    },
+    {
+      "name": "Live Bindings Readout",
+      "kind": "custom",
+      "description": "A flat paper-wash data group with tabular monospace values.",
+      "html": "<dl class=\"ds-bindings\"><div><dt>speed</dt><dd>0.42</dd></div><div><dt>air</dt><dd>0.00</dd></div><div><dt>grounded</dt><dd>1</dd></div><div><dt>alive</dt><dd>1</dd></div></dl>",
+      "css": ".ds-bindings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:17px 0;padding:12px;border:0;background:var(--color-quiet,#eee0cf);color:var(--color-ink,#20221c)}.ds-bindings dt{color:var(--color-muted,#56534b);font:400 11px/1.5 var(--font-body,DM,system-ui,sans-serif)}.ds-bindings dd{margin:3px 0 0;font:400 15px/1.5 var(--font-data,ui-monospace,monospace);font-variant-numeric:tabular-nums}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Soundcheck pressing room",
+    "overview": "SoundRig borrows the physical confidence of a test-pressing sleeve: warm paper, orange ink, oversized lettering and a dimensional record. The typography and working audio comparison carry the identity. The artwork supplies atmosphere while native controls carry every action.\n\nThe landing page is expansive, the studio is dense enough for repeated work, and the guide is paced for reading. They share the same paper, ink, display face, restrained curves and thin separators.",
+    "keyCharacteristics": [
+      "Warm neutral paper with a subdued raster grain.",
+      "Rounded-dot display lettering paired with clear sans-serif controls.",
+      "Orange actions, sage comparison states and factual audio feedback.",
+      "Flat working surfaces separated by rules.",
+      "Listening controls before artwork on phones and tablets."
+    ],
+    "rules": [
+      {
+        "name": "The Paper Rule",
+        "body": "Keep paper neutral and legible beneath the texture. The shipped surface places a translucent paper-colored layer over the raster grain; the grain must not become a yellow cast.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sleeve Type Rule",
+        "body": "Use SoundRig Display for identity and headings; keep control labels, explanations and operational state in DM Sans. Portable hosts retain the local display face for their title and use a system sans-serif body.",
+        "section": "typography"
+      },
+      {
+        "name": "The Controls First Rule",
+        "body": "On phones and tablets, keep audio comparison and the studio action before the record artwork.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Workbench Rule",
+        "body": "Keep controls and working sections on the paper plane. Use thin separators and quiet fills to express grouping.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep warm paper, printing ink and orange as the shared visual foundation.",
+      "**Do** retain the local SoundRig Display font and its rounded punctuation in site and portable titles.",
+      "**Do** put audio controls before record artwork on phones and tablets.",
+      "**Do** use native controls, explicit focus and factual playback or validation state.",
+      "**Do** separate working sections with rules, space and quiet fills.",
+      "**Do** preserve readable text measures and wrap long code or source notes."
+    ],
+    "donts": [
+      "**Don't** turn the subdued paper grain into a strong yellow surface.",
+      "**Don't** replace working interface text with raster artwork.",
+      "**Don't** use the record's dimensional lighting as a reason to add shadows to controls or working panels.",
+      "**Don't** use display lettering for dense operational text.",
+      "**Don't** imply music generation, listening preference or product validation through the imagery or interface."
+    ]
+  }
+}
+```
+
+Source references:
+
+- Shared primitives, typography, buttons, selectors, focus, reading measures: [site.css:1](<original-workspace>/soundrig-proof/studio/site.css:1) and [site.css:2](<original-workspace>/soundrig-proof/studio/site.css:2).
+- Responsive rules and reduced motion: [site.css:3](<original-workspace>/soundrig-proof/studio/site.css:3), [site.css:5](<original-workspace>/soundrig-proof/studio/site.css:5), [site.css:6](<original-workspace>/soundrig-proof/studio/site.css:6), [site.css:18](<original-workspace>/soundrig-proof/studio/site.css:18), [site.css:25](<original-workspace>/soundrig-proof/studio/site.css:25), [site.css:28](<original-workspace>/soundrig-proof/studio/site.css:28), [site.css:29](<original-workspace>/soundrig-proof/studio/site.css:29).
+- Composed studio overrides, field treatment and final primary hover: [studio.css:1](<original-workspace>/soundrig-proof/studio/studio.css:1), [studio.css:2](<original-workspace>/soundrig-proof/studio/studio.css:2), [studio.css:3](<original-workspace>/soundrig-proof/studio/studio.css:3), [studio.css:7](<original-workspace>/soundrig-proof/studio/studio.css:7), [studio.css:8](<original-workspace>/soundrig-proof/studio/studio.css:8). Base layout mechanics: [style.css:2](<original-workspace>/soundrig-proof/studio/style.css:2).
+- Native comparison markup: [index.html:1](<original-workspace>/soundrig-proof/studio/index.html:1). Playback stops, announcements and actual waveform progress: [landing.mjs:1](<original-workspace>/soundrig-proof/studio/landing.mjs:1).
+- Portable variations: [standalone-host.html:2](<original-workspace>/soundrig-proof/studio/standalone-host.html:2), [workflow-host.html:2](<original-workspace>/soundrig-proof/studio/workflow-host.html:2), [delivery-consumer.html:1](<original-workspace>/soundrig-proof/studio/delivery-consumer.html:1).
+- Font identity and distribution: [fonts/provenance.json](<original-workspace>/soundrig-proof/studio/fonts/provenance.json), [THIRD_PARTY_NOTICES.md:33](<original-workspace>/soundrig-proof/studio/THIRD_PARTY_NOTICES.md:33), [project_api.py:82](<original-workspace>/soundrig-proof/studio/project_api.py:82), [delivery.py:33](<original-workspace>/soundrig-proof/studio/delivery.py:33).
+
+Five-line system summary:
+1. Palette: neutral warm paper, orange, ink, sage, chalk and quiet paper wash.
+2. Type: local SoundRig Display for identity/headings; DM Sans for the site UI; monospace for data.
+3. Scale: expansive fluid landing, 34–62px studio title, 20px working headings, 16px body, compact labels.
+4. Rules: Paper, Sleeve Type, Controls First and Flat Workbench.
+5. Behavior: native accessible controls, explicit audio activation, factual waveform/status feedback, reduced-motion CSS.
+
+Not canonized or repaired: residual mint game-scene fills and minor hard-coded legacy dividers remain local implementation carryovers; portable system-body/4px-control variants remain scoped outputs. Read-only handoff; no files changed or browser/tests run.

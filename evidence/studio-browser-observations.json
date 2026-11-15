@@ -1,0 +1,67 @@
+{
+  "scope": "Root observations through native browser controls and visible status. Not an external user study or independent speaker recording.",
+  "meta": {
+    "record": "patch-9b3fe8e65e92.json",
+    "seconds": 44.947,
+    "quality": "studio",
+    "lockedLayersExactlyPreserved": 4,
+    "savedChecksPassed": 3,
+    "requested": {
+      "gain": 0.26,
+      "rate": 1.05
+    }
+  },
+  "defaultAudioStart": "Audio on",
+  "realCaptureReplay": {
+    "commandsApplied": 169,
+    "eventCommands": 2,
+    "saturatedSamples": 0
+  },
+  "invalidSavedProject": "Rejected unsupported quality; prior project retained",
+  "savedProjectReopen": {
+    "version": 2,
+    "quality": "studio",
+    "customSlots": 2
+  },
+  "wavImport": "Actual Kenney CC0 WAV selected and staged through visible file chooser; original fixture restored for final delivery",
+  "manualQualitySwitch": [
+    "classic",
+    "studio"
+  ],
+  "savedCheckParity": "PASS3checks browser/export PCM matched",
+  "downloadedCueConsumer": {
+    "server": "http://127.0.0.1:8782/",
+    "files": 24,
+    "spriteLoaded": true,
+    "quality": "studio",
+    "played": 5,
+    "markers": [
+      "land_01",
+      "pickup_02",
+      "hurt_03",
+      "footstep_01",
+      "footstep_02"
+    ],
+    "font": "SoundRigDisplay loaded"
+  },
+  "downloadedWorkflowConsumer": {
+    "server": "http://127.0.0.1:8783/",
+    "files": 17,
+    "savedChecksPassed": 3,
+    "replay": {
+      "commands": 169,
+      "events": 2,
+      "overloadedSamples": 0
+    },
+    "font": "SoundRigDisplay loaded"
+  },
+  "componentHost": "Actual standalone bundle loaded; audio running at48000Hz,0.96%RMS; no authoring request by host",
+  "landing": "Actual audio start, then cue selection stopped playback; delayed-decode races covered by synthetic unit test",
+  "notEstablished": [
+    "External developer adoption",
+    "Time saved versus incumbent",
+    "Blinded listening preference",
+    "Physical speaker quality or device latency",
+    "Public submission/video"
+  ]
+}

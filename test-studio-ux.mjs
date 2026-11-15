@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createJumpGate} from './game-controls.mjs';
+import {selectEditor} from './studio-ux.mjs';
+const jump=createJumpGate();
+assert.equal(jump.step(0,true),false);
+jump.press(50);assert.equal(jump.step(70,false),true);assert.equal(jump.step(71,false),false);
+jump.press(200);assert.equal(jump.step(240,false),false);assert.equal(jump.step(300,true),true);
+jump.press(400);assert.equal(jump.step(530,true),false);jump.clear();assert.equal(jump.step(531,true),false);
+const panels=['cues','recordings','meta','delivery'].map(id=>({id:'panel-'+id,hidden:id!=='cues'}));
+const tabs=panels.map(p=>({id:p.id.replace('panel','tab'),attrs:{'aria-controls':p.id},getAttribute(k){return this.attrs[k];},setAttribute(k,v){this.attrs[k]=v;},focus(){this.focused=true;}}));
+selectEditor(tabs,panels,'tab-recordings',true);
+assert.deepEqual(panels.map(p=>p.hidden),[true,false,true,true]);assert.equal(tabs[1].attrs['aria-selected'],'true');assert(tabs[1].focused);assert.deepEqual(tabs.map(t=>t.tabIndex),[-1,0,-1,-1]);
+selectEditor(tabs,panels,'missing');assert.equal(panels[1].hidden,false);
+const html=fs.readFileSync(new URL('studio.html',import.meta.url),'utf8');
+const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,'DOM IDs must stay unique');
+for(const tab of tabs)assert(html.includes(`id="${tab.id}"`)&&html.includes(`id="${tab.attrs['aria-controls']}"`));
+for(const file of ['game.mjs','game-controls.mjs','studio-ux.mjs']){const response=await fetch('http://127.0.0.1:8772/'+file);assert.equal(response.status,200,file);assert.match(response.headers.get('content-type'),/javascript/);}
+const report={pass:true,cases:7,scope:'Pure jump buffering/coyote/expiry/reset, tab selection and focus, invalid target preservation and unique HTML IDs. Real gameplay and keyboard paths verified in browser separately.'};
+fs.writeFileSync(new URL('evidence/studio-ux-tests.json',import.meta.url),JSON.stringify(report,null,2));console.log(JSON.stringify(report));

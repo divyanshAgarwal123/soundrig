@@ -1,0 +1,12 @@
+{
+  "ArchivoBlack.ttf": "https://raw.githubusercontent.com/google/fonts/main/ofl/archivoblack/ArchivoBlack-Regular.ttf",
+  "ArchivoBlack-OFL.txt": "https://raw.githubusercontent.com/google/fonts/main/ofl/archivoblack/OFL.txt",
+  "DMSans.ttf": "https://raw.githubusercontent.com/google/fonts/main/ofl/dmsans/DMSans%5Bopsz,wght%5D.ttf",
+  "DMSans-OFL.txt": "https://raw.githubusercontent.com/google/fonts/main/ofl/dmsans/OFL.txt",
+  "SoundRigDisplay.ttf": {
+    "source": "ArchivoBlack.ttf, retained in this directory",
+    "license": "SIL OFL1.1; ArchivoBlack-OFL.txt",
+    "changes": "Renamed SoundRig Display; round i tittle and period; other glyphs and advance widths retained",
+    "recipe": "../prepare_display_font.py"
+  }
+}

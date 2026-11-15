@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "cases": 9,
+  "files": 24,
+  "scope": "Actual generated ZIP, WAV/sprite frame identity, metadata/atomic controls and local HTTP checks. Actual browser download/playback checked separately."
+}

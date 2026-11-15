@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "scope": "Root CUA browser observations after reviewer fixes; no new model calls",
+  "beforeRepair": {
+    "textareaSpacePrevented": true
+  },
+  "afterRepair": {
+    "textareaSpaceInserted": true,
+    "textareaArrowLeftMovedCaret": true,
+    "volumeArrowRight": {
+      "before": 60,
+      "after": 61
+    },
+    "focusedGameArrow": {
+      "beforeX": 100,
+      "afterX": 249
+    },
+    "formFocusedGameArrow": {
+      "beforeX": 263,
+      "afterX": 263
+    },
+    "materialEditDiffVisible": true,
+    "restoreCuratedDiffHidden": true,
+    "manualJSONInstallDiffHidden": true
+  },
+  "viewportWidths": [
+    1280,
+    390
+  ],
+  "horizontalOverflow": false
+}

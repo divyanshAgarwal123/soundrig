@@ -1,0 +1,27 @@
+{
+  "pass": true,
+  "bankBytes": 524288,
+  "decodedBytesPerRealm": 786432,
+  "moduleBytes": 1128475,
+  "contractBytes": 32736,
+  "cases": 6,
+  "durationMs": 30000,
+  "eventCommands": [
+    206,
+    89,
+    89,
+    89,
+    89,
+    89
+  ],
+  "cueMetricsPerCase": 3,
+  "silenceWindowsPerCase": 4,
+  "coldGenericAndContractMs": 1173.7451660000002,
+  "warmContractMs": 1104.5668329999999,
+  "peakProcessRSSBytes": 162250752,
+  "importsPerCandidate": 1,
+  "negativeOverloadDetected": true,
+  "deliberateHeadroomFailureDetected": true,
+  "scope": "Node maximum valid project/contract workload; not physical-device latency, total browser memory or a hard realtime guarantee.",
+  "coldProcessPlusWarmWallSeconds": 2.3699504579999484
+}

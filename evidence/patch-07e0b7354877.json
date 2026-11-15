@@ -1,0 +1,2852 @@
+{
+  "request": {
+    "prompt": "Set only pickup sample rate to0.95 and gain to0.30. Keep all other fields and every locked layer unchanged.",
+    "rig": {
+      "version": 3,
+      "controls": [
+        {
+          "id": "speed",
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "air",
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "grounded",
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "alive",
+          "min": 0,
+          "max": 1
+        }
+      ],
+      "events": [
+        "land",
+        "pickup",
+        "hurt"
+      ],
+      "master": 0.65,
+      "layers": [
+        {
+          "id": "footsteps",
+          "type": "sample",
+          "gain": {
+            "control": "speed",
+            "lo": 0,
+            "hi": 0.6
+          },
+          "pulseHz": {
+            "control": "speed",
+            "lo": 2,
+            "hi": 9
+          },
+          "when": [
+            {
+              "control": "speed",
+              "op": "above",
+              "threshold": 0.01
+            },
+            {
+              "control": "grounded",
+              "op": "above",
+              "threshold": 0.5
+            },
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": null,
+          "filter": null,
+          "samples": [
+            "step_wood_a",
+            "step_wood_b"
+          ],
+          "rate": {
+            "control": "speed",
+            "lo": 0.9,
+            "hi": 1.1
+          },
+          "variation": 0.04
+        },
+        {
+          "id": "wind",
+          "type": "noise",
+          "wave": "sine",
+          "frequency": 200,
+          "gain": {
+            "control": "air",
+            "lo": 0,
+            "hi": 0.25
+          },
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "air",
+              "op": "above",
+              "threshold": 0.01
+            },
+            {
+              "control": "grounded",
+              "op": "below",
+              "threshold": 0.5
+            },
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": null,
+          "filter": {
+            "type": "lowpass",
+            "cutoff": 800
+          },
+          "envelope": {
+            "attack": 0.003,
+            "decay": 0.1,
+            "release": 0.05
+          },
+          "pitchEnd": 1
+        },
+        {
+          "id": "land_thud",
+          "type": "sample",
+          "gain": 0.55,
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": "land",
+          "filter": null,
+          "samples": [
+            "land_soft_a",
+            "land_soft_b"
+          ],
+          "rate": 1,
+          "variation": 0.03
+        },
+        {
+          "id": "pickup_chime",
+          "type": "sample",
+          "gain": 0.22,
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.5
+            }
+          ],
+          "event": "pickup",
+          "filter": null,
+          "samples": [
+            "pickup_confirm"
+          ],
+          "rate": 1,
+          "variation": 0.02
+        },
+        {
+          "id": "hurt_buzz",
+          "type": "sample",
+          "gain": 0.7,
+          "pulseHz": 0,
+          "when": [
+            {
+              "control": "alive",
+              "op": "above",
+              "threshold": 0.1
+            }
+          ],
+          "event": "hurt",
+          "filter": null,
+          "samples": [
+            "hurt_error"
+          ],
+          "rate": 1.15,
+          "variation": 0.01
+        }
+      ]
+    },
+    "layerId": "pickup_chime",
+    "lockedIds": [
+      "footsteps",
+      "wind",
+      "land_thud",
+      "hurt_buzz"
+    ],
+    "projectDigest": "5074aa275f5b1b89",
+    "contract": {
+      "version": 1,
+      "requiredEvents": [
+        "land",
+        "pickup",
+        "hurt"
+      ],
+      "cases": [
+        {
+          "id": "Runner",
+          "trace": {
+            "version": 1,
+            "durationMs": 6000,
+            "initial": {
+              "speed": 0,
+              "air": 0,
+              "grounded": 1,
+              "alive": 1
+            },
+            "commands": [
+              {
+                "type": "controls",
+                "controls": {
+                  "speed": 1
+                },
+                "atMs": 520.9000000003725
+              },
+              {
+                "type": "event",
+                "event": "pickup",
+                "intensity": 1,
+                "atMs": 1261.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "speed": 0
+                },
+                "atMs": 1918.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9815757575757577,
+                  "grounded": 0
+                },
+                "atMs": 1951.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9631515151515152
+                },
+                "atMs": 1960
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9435757575757577
+                },
+                "atMs": 1968.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9205454545454547
+                },
+                "atMs": 1978.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9018909090909083
+                },
+                "atMs": 1986.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.883466666666666
+                },
+                "atMs": 1994.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8634303030303048
+                },
+                "atMs": 2003.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8443151515151507
+                },
+                "atMs": 2011.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8284242424242424
+                },
+                "atMs": 2018.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8051636363636355
+                },
+                "atMs": 2028.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.786969696969697
+                },
+                "atMs": 2036.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7676242424242432
+                },
+                "atMs": 2044.7999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7512727272727272
+                },
+                "atMs": 2051.7999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7282424242424242
+                },
+                "atMs": 2061.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7112000000000008
+                },
+                "atMs": 2069.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6904727272727281
+                },
+                "atMs": 2078.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6748121212121237
+                },
+                "atMs": 2085.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6531636363636355
+                },
+                "atMs": 2094.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6331272727272744
+                },
+                "atMs": 2103.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.616084848484851
+                },
+                "atMs": 2110.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5960484848484857
+                },
+                "atMs": 2119.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5764727272727281
+                },
+                "atMs": 2127.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5562060606060631
+                },
+                "atMs": 2136.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5384727272727281
+                },
+                "atMs": 2144.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5177454545454554
+                },
+                "atMs": 2153.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.49909090909090903
+                },
+                "atMs": 2161.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4797454545454553
+                },
+                "atMs": 2169.7999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4604000000000016
+                },
+                "atMs": 2178.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4412848484848476
+                },
+                "atMs": 2186.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.42216969696969775
+                },
+                "atMs": 2194.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4030545454545479
+                },
+                "atMs": 2203.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.38370909090909
+                },
+                "atMs": 2211.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.36459393939394014
+                },
+                "atMs": 2219.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.34547878787879027
+                },
+                "atMs": 2228
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3261333333333324
+                },
+                "atMs": 2236.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.30932121212121283
+                },
+                "atMs": 2243.7999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2872121212121211
+                },
+                "atMs": 2253.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2687878787878787
+                },
+                "atMs": 2261.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.24944242424242494
+                },
+                "atMs": 2269.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.23009696969697122
+                },
+                "atMs": 2278.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2109818181818172
+                },
+                "atMs": 2286.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.19186666666666735
+                },
+                "atMs": 2294.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.17436363636363622
+                },
+                "atMs": 2302.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.15294545454545608
+                },
+                "atMs": 2311.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.13452121212121365
+                },
+                "atMs": 2319.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.11540606060605962
+                },
+                "atMs": 2327.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.09583030303030204
+                },
+                "atMs": 2336.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.07694545454545608
+                },
+                "atMs": 2344.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.05736969696969851
+                },
+                "atMs": 2353.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.03894545454545608
+                },
+                "atMs": 2361.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.022133333333332353
+                },
+                "atMs": 2368.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.0006666666666668086
+                },
+                "atMs": 2378.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.018860606060605363
+                },
+                "atMs": 2386.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.03843636363636294
+                },
+                "atMs": 2394.7999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.05755151515151277
+                },
+                "atMs": 2403
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.07666666666666681
+                },
+                "atMs": 2411.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.09578181818181665
+                },
+                "atMs": 2419.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.11512727272727034
+                },
+                "atMs": 2428.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.13355151515151276
+                },
+                "atMs": 2436.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.15381818181818194
+                },
+                "atMs": 2444.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.17063030303030147
+                },
+                "atMs": 2452.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.19250909090908935
+                },
+                "atMs": 2461.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.21070303030302792
+                },
+                "atMs": 2469.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2279757575757552
+                },
+                "atMs": 2477.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.25008484848484697
+                },
+                "atMs": 2486.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.26850909090908937
+                },
+                "atMs": 2494.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2878545454545431
+                },
+                "atMs": 2503.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3053575757575743
+                },
+                "atMs": 2510.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.32654545454545475
+                },
+                "atMs": 2520
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.345200000000001
+                },
+                "atMs": 2528.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.36477575757575864
+                },
+                "atMs": 2536.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3836606060606046
+                },
+                "atMs": 2544.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4027757575757586
+                },
+                "atMs": 2553
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.42212121212121234
+                },
+                "atMs": 2561.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4412363636363622
+                },
+                "atMs": 2569.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4605818181818159
+                },
+                "atMs": 2578
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4796969696969699
+                },
+                "atMs": 2586.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.49881212121211976
+                },
+                "atMs": 2594.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5181575757575735
+                },
+                "atMs": 2603
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5354303030303007
+                },
+                "atMs": 2610.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5552363636363622
+                },
+                "atMs": 2619.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5759636363636349
+                },
+                "atMs": 2628.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5948484848484851
+                },
+                "atMs": 2636.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6139636363636349
+                },
+                "atMs": 2644.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6333090909090886
+                },
+                "atMs": 2653
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6524242424242427
+                },
+                "atMs": 2661.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6715393939393924
+                },
+                "atMs": 2669.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6890424242424236
+                },
+                "atMs": 2677.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7102303030303041
+                },
+                "atMs": 2686.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7288848484848461
+                },
+                "atMs": 2694.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7484606060606038
+                },
+                "atMs": 2703
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7675757575757578
+                },
+                "atMs": 2711.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7866909090909076
+                },
+                "atMs": 2719.5999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8060363636363613
+                },
+                "atMs": 2728
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8249212121212114
+                },
+                "atMs": 2736.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8442666666666652
+                },
+                "atMs": 2744.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8636121212121188
+                },
+                "atMs": 2753
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8795030303030313
+                },
+                "atMs": 2759.7999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9025333333333344
+                },
+                "atMs": 2770
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9209575757575768
+                },
+                "atMs": 2777.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9403030303030305
+                },
+                "atMs": 2786.2999999998137
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9594181818181803
+                },
+                "atMs": 2794.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9785333333333344
+                },
+                "atMs": 2802.9000000003725
+              },
+              {
+                "type": "event",
+                "event": "land",
+                "intensity": 1,
+                "atMs": 2811
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0,
+                  "grounded": 1
+                },
+                "atMs": 2811.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "speed": 1
+                },
+                "atMs": 3102.9000000003725
+              },
+              {
+                "type": "event",
+                "event": "pickup",
+                "intensity": 1,
+                "atMs": 3261.5
+              },
+              {
+                "type": "event",
+                "event": "hurt",
+                "intensity": 1,
+                "atMs": 3886.0999999996275
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "speed": 0,
+                  "alive": 0
+                },
+                "atMs": 3886.2999999998137
+              }
+            ]
+          },
+          "expect": {
+            "events": {
+              "land": {
+                "count": 1,
+                "minRMS": 0.001
+              },
+              "pickup": {
+                "count": 2,
+                "minRMS": 0.001
+              },
+              "hurt": {
+                "count": 1,
+                "minRMS": 0.001
+              }
+            },
+            "maxPreLimitPeak": 0.9,
+            "minRMS": 0,
+            "silence": []
+          },
+          "provenance": {
+            "kind": "imported",
+            "source": "Saved real run; game counters1land,2pickups,1hit. Lossless control compaction."
+          }
+        },
+        {
+          "id": "Platformer",
+          "trace": {
+            "version": 1,
+            "durationMs": 6000,
+            "initial": {
+              "speed": 0,
+              "air": 0,
+              "grounded": 1,
+              "alive": 1
+            },
+            "commands": [
+              {
+                "type": "controls",
+                "controls": {
+                  "speed": 1
+                },
+                "atMs": 535.6000000005588
+              },
+              {
+                "type": "event",
+                "event": "pickup",
+                "intensity": 1,
+                "atMs": 1552.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "speed": 0
+                },
+                "atMs": 1936.1000000005588
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9848484848484849,
+                  "grounded": 0
+                },
+                "atMs": 1968.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9696969696969697
+                },
+                "atMs": 1985.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9545454545454546
+                },
+                "atMs": 2002.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9393939393939394
+                },
+                "atMs": 2018.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9242424242424242
+                },
+                "atMs": 2035.6000000005588
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9090909090909091
+                },
+                "atMs": 2051.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8939393939393939
+                },
+                "atMs": 2068.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8787878787878788
+                },
+                "atMs": 2085.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8636363636363636
+                },
+                "atMs": 2102.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8484848484848485
+                },
+                "atMs": 2118.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8333333333333334
+                },
+                "atMs": 2134.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8181818181818182
+                },
+                "atMs": 2151.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.803030303030303
+                },
+                "atMs": 2168.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7878787878787878
+                },
+                "atMs": 2185
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7727272727272727
+                },
+                "atMs": 2200.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7575757575757576
+                },
+                "atMs": 2217.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7424242424242424
+                },
+                "atMs": 2236.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7272727272727273
+                },
+                "atMs": 2251.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7121212121212122
+                },
+                "atMs": 2268.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.696969696969697
+                },
+                "atMs": 2283.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6818181818181818
+                },
+                "atMs": 2301.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6666666666666666
+                },
+                "atMs": 2318
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6515151515151515
+                },
+                "atMs": 2335.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6363636363636364
+                },
+                "atMs": 2350.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6212121212121212
+                },
+                "atMs": 2368.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6060606060606061
+                },
+                "atMs": 2384.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5909090909090909
+                },
+                "atMs": 2401.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5757575757575758
+                },
+                "atMs": 2418.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5606060606060606
+                },
+                "atMs": 2434.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5454545454545454
+                },
+                "atMs": 2451.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5303030303030303
+                },
+                "atMs": 2468.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5151515151515151
+                },
+                "atMs": 2485.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5
+                },
+                "atMs": 2502.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.48484848484848486
+                },
+                "atMs": 2518.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4696969696969697
+                },
+                "atMs": 2534.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.45454545454545453
+                },
+                "atMs": 2552
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4393939393939394
+                },
+                "atMs": 2568.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.42424242424242425
+                },
+                "atMs": 2584.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4090909090909091
+                },
+                "atMs": 2600.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3939393939393939
+                },
+                "atMs": 2618.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3787878787878788
+                },
+                "atMs": 2634.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.36363636363636365
+                },
+                "atMs": 2652.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3484848484848485
+                },
+                "atMs": 2667.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3333333333333333
+                },
+                "atMs": 2684.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3181818181818182
+                },
+                "atMs": 2702.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.30303030303030304
+                },
+                "atMs": 2718.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2878787878787879
+                },
+                "atMs": 2735.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2727272727272727
+                },
+                "atMs": 2751.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.25757575757575757
+                },
+                "atMs": 2768.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.24242424242424243
+                },
+                "atMs": 2785.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.22727272727272727
+                },
+                "atMs": 2803.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.21212121212121213
+                },
+                "atMs": 2818.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.19696969696969696
+                },
+                "atMs": 2835.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.18181818181818182
+                },
+                "atMs": 2852.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.16666666666666666
+                },
+                "atMs": 2868.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.15151515151515152
+                },
+                "atMs": 2884.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.13636363636363635
+                },
+                "atMs": 2902.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.12121212121212122
+                },
+                "atMs": 2918.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.10606060606060606
+                },
+                "atMs": 2934.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.09090909090909091
+                },
+                "atMs": 2951.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.07575757575757576
+                },
+                "atMs": 2968.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.06060606060606061
+                },
+                "atMs": 2984.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.045454545454545456
+                },
+                "atMs": 3002.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.030303030303030304
+                },
+                "atMs": 3019.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.015151515151515152
+                },
+                "atMs": 3034.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0
+                },
+                "atMs": 3051.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.015151515151515152
+                },
+                "atMs": 3068.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.030303030303030304
+                },
+                "atMs": 3085.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.045454545454545456
+                },
+                "atMs": 3102.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.06060606060606061
+                },
+                "atMs": 3118.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.07575757575757576
+                },
+                "atMs": 3135
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.09090909090909091
+                },
+                "atMs": 3152.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.10606060606060606
+                },
+                "atMs": 3168.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.12121212121212122
+                },
+                "atMs": 3184.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.13636363636363635
+                },
+                "atMs": 3200.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.15151515151515152
+                },
+                "atMs": 3218
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.16666666666666666
+                },
+                "atMs": 3234.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.18181818181818182
+                },
+                "atMs": 3252
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.19696969696969696
+                },
+                "atMs": 3268.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.21212121212121213
+                },
+                "atMs": 3285.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.22727272727272727
+                },
+                "atMs": 3302.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.24242424242424243
+                },
+                "atMs": 3318.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.25757575757575757
+                },
+                "atMs": 3334.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2727272727272727
+                },
+                "atMs": 3350.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.2878787878787879
+                },
+                "atMs": 3368
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.30303030303030304
+                },
+                "atMs": 3385.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3181818181818182
+                },
+                "atMs": 3401.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3333333333333333
+                },
+                "atMs": 3418.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3484848484848485
+                },
+                "atMs": 3435.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.36363636363636365
+                },
+                "atMs": 3451.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3787878787878788
+                },
+                "atMs": 3468.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.3939393939393939
+                },
+                "atMs": 3484.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4090909090909091
+                },
+                "atMs": 3501.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.42424242424242425
+                },
+                "atMs": 3518.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4393939393939394
+                },
+                "atMs": 3534.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.45454545454545453
+                },
+                "atMs": 3551.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.4696969696969697
+                },
+                "atMs": 3568
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.48484848484848486
+                },
+                "atMs": 3584.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5
+                },
+                "atMs": 3601.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5151515151515151
+                },
+                "atMs": 3618.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5303030303030303
+                },
+                "atMs": 3636.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5454545454545454
+                },
+                "atMs": 3651.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5606060606060606
+                },
+                "atMs": 3668.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5757575757575758
+                },
+                "atMs": 3684.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.5909090909090909
+                },
+                "atMs": 3701.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6060606060606061
+                },
+                "atMs": 3718.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6212121212121212
+                },
+                "atMs": 3734.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6363636363636364
+                },
+                "atMs": 3751.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6515151515151515
+                },
+                "atMs": 3768.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6666666666666666
+                },
+                "atMs": 3785.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.6818181818181818
+                },
+                "atMs": 3803.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.696969696969697
+                },
+                "atMs": 3818.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7121212121212122
+                },
+                "atMs": 3833.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7272727272727273
+                },
+                "atMs": 3851.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7424242424242424
+                },
+                "atMs": 3868
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7575757575757576
+                },
+                "atMs": 3885.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7727272727272727
+                },
+                "atMs": 3901.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.7878787878787878
+                },
+                "atMs": 3918.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.803030303030303
+                },
+                "atMs": 3934.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8181818181818182
+                },
+                "atMs": 3951.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8333333333333334
+                },
+                "atMs": 3967.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8484848484848485
+                },
+                "atMs": 3984.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8636363636363636
+                },
+                "atMs": 4000.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8787878787878788
+                },
+                "atMs": 4018.7000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.8939393939393939
+                },
+                "atMs": 4034.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9090909090909091
+                },
+                "atMs": 4050.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9242424242424242
+                },
+                "atMs": 4067.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9393939393939394
+                },
+                "atMs": 4086.2000000001863
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9545454545454546
+                },
+                "atMs": 4102.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9696969696969697
+                },
+                "atMs": 4118
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.9848484848484849
+                },
+                "atMs": 4134.5
+              },
+              {
+                "type": "event",
+                "event": "land",
+                "intensity": 0.65,
+                "atMs": 4151.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0,
+                  "grounded": 1
+                },
+                "atMs": 4151.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.18484848484848485,
+                  "grounded": 0
+                },
+                "atMs": 4168.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.1696969696969697
+                },
+                "atMs": 4185
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.15454545454545454
+                },
+                "atMs": 4201.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.1393939393939394
+                },
+                "atMs": 4218.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.12424242424242424
+                },
+                "atMs": 4234.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.10909090909090909
+                },
+                "atMs": 4251.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.09393939393939393
+                },
+                "atMs": 4268.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.07878787878787878
+                },
+                "atMs": 4284.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.06363636363636363
+                },
+                "atMs": 4301.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.048484848484848485
+                },
+                "atMs": 4317.700000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.03333333333333333
+                },
+                "atMs": 4334.600000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.01818181818181818
+                },
+                "atMs": 4351.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.0030303030303030303
+                },
+                "atMs": 4367.9000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.012121212121212121
+                },
+                "atMs": 4384.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.02727272727272727
+                },
+                "atMs": 4403.100000000559
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.04242424242424243
+                },
+                "atMs": 4417.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.05757575757575758
+                },
+                "atMs": 4434.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.07272727272727272
+                },
+                "atMs": 4451.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.08787878787878788
+                },
+                "atMs": 4468.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.10303030303030303
+                },
+                "atMs": 4484.5
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.11818181818181818
+                },
+                "atMs": 4501.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.13333333333333333
+                },
+                "atMs": 4517.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.1484848484848485
+                },
+                "atMs": 4536
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.16363636363636364
+                },
+                "atMs": 4552
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.1787878787878788
+                },
+                "atMs": 4568.4000000003725
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0,
+                  "grounded": 1
+                },
+                "atMs": 4585
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.02363636363636364,
+                  "grounded": 0
+                },
+                "atMs": 4601.700000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.008484848484848487
+                },
+                "atMs": 4616.300000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.0066666666666666645
+                },
+                "atMs": 4634.800000000745
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0.021818181818181816
+                },
+                "atMs": 4651.200000000186
+              },
+              {
+                "type": "controls",
+                "controls": {
+                  "air": 0,
+                  "grounded": 1
+                },
+                "atMs": 4668.600000000559
+              }
+            ]
+          },
+          "expect": {
+            "events": {
+              "land": {
+                "count": 1,
+                "minRMS": 0.001
+              },
+              "pickup": {
+                "count": 1,
+                "minRMS": 0.001
+              },
+              "hurt": {
+                "count": 0,
+                "minRMS": 0
+              }
+            },
+            "maxPreLimitPeak": 0.9,
+            "minRMS": 0,
+            "silence": []
+          },
+          "provenance": {
+            "kind": "imported",
+            "source": "Saved real run; game counters1land,1pickup,0hits. Lossless control compaction."
+          }
+        },
+        {
+          "id": "Dead idle",
+          "trace": {
+            "version": 1,
+            "durationMs": 1000,
+            "initial": {
+              "speed": 0,
+              "air": 0,
+              "grounded": 1,
+              "alive": 0
+            },
+            "commands": []
+          },
+          "expect": {
+            "events": {},
+            "maxPreLimitPeak": 0.001,
+            "minRMS": 0,
+            "silence": [
+              {
+                "fromMs": 0,
+                "toMs": 1000,
+                "maxRMS": 0
+              }
+            ]
+          },
+          "provenance": {
+            "kind": "synthetic",
+            "source": "Synthetic dead-idle control"
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "patch": {
+      "layerId": "pickup_chime",
+      "changes": {
+        "gain": 0.3,
+        "rate": 0.95
+      }
+    },
+    "model": "muse-glimmer:30b-mlx",
+    "eval_count": 176,
+    "done_reason": "stop",
+    "modelSeconds": 37.838,
+    "attempts": [
+      {
+        "output": {
+          "layerId": "pickup_chime",
+          "changes": {
+            "gain": 0.3,
+            "rate": 0.95
+          }
+        },
+        "verification": {
+          "ok": true,
+          "checks": [
+            {
+              "id": "master-level",
+              "pass": true,
+              "detail": "Kit output is enabled"
+            },
+            {
+              "id": "walking-source",
+              "pass": true,
+              "detail": "Footsteps use a continuous walking cadence"
+            },
+            {
+              "id": "wind-source",
+              "pass": true,
+              "detail": "Wind uses filtered continuous noise"
+            },
+            {
+              "id": "footsteps-run",
+              "pass": true,
+              "detail": "Footsteps respond to movement"
+            },
+            {
+              "id": "footsteps-rest",
+              "pass": true,
+              "detail": "No footsteps while still"
+            },
+            {
+              "id": "footsteps-air",
+              "pass": true,
+              "detail": "No footsteps in the air"
+            },
+            {
+              "id": "footsteps-death",
+              "pass": true,
+              "detail": "No footsteps after death"
+            },
+            {
+              "id": "wind-air",
+              "pass": true,
+              "detail": "Wind responds to air movement"
+            },
+            {
+              "id": "wind-ground",
+              "pass": true,
+              "detail": "Wind stops on the ground"
+            },
+            {
+              "id": "wind-death",
+              "pass": true,
+              "detail": "Wind stops after death"
+            },
+            {
+              "id": "event-land",
+              "pass": true,
+              "detail": "Audible finite land sound is mapped"
+            },
+            {
+              "id": "event-pickup",
+              "pass": true,
+              "detail": "Audible finite pickup sound is mapped"
+            },
+            {
+              "id": "event-hurt",
+              "pass": true,
+              "detail": "Audible finite hurt sound is mapped"
+            }
+          ],
+          "signal": {
+            "commandsApplied": 9,
+            "eventCommands": 3,
+            "addedVoices": 3,
+            "peak": 0.27527666091918945,
+            "preLimitPeak": 0.3587310784949027,
+            "saturatedSamples": 0
+          },
+          "contract": {
+            "version": 1,
+            "pass": true,
+            "contractSHA256": "521c7df3ccbedbc07afc46b6fd664e60ca3d28c1b26db3e74815a601bd2cbb25",
+            "rigSHA256": "ad77fcf514503983dd33b369f778839f8a292f3182f7fecd3529a82a22845c07",
+            "settings": {
+              "sampleRate": 48000,
+              "blockSize": 128,
+              "seed": 17,
+              "epsilon": 1e-09,
+              "cueWindowMs": 250
+            },
+            "cases": [
+              {
+                "id": "Runner",
+                "pass": true,
+                "failures": [],
+                "provenance": {
+                  "kind": "imported",
+                  "source": "Saved real run; game counters1land,2pickups,1hit. Lossless control compaction."
+                },
+                "traceSHA256": "e48400086ba181e88d7642b01cc67f25097bca143dfa1de6ccb9b6af7b20c542",
+                "pcmSHA256": "4cc20a3dfe4c82c350243c7934817bea136c24e35c4b5e82da9ace1111d740cf",
+                "commands": 112,
+                "events": {
+                  "land": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.049943851195268174,
+                    "threshold": 0.001
+                  },
+                  "pickup": {
+                    "count": 2,
+                    "expected": 2,
+                    "minimumCueRMS": 0.02606162792480819,
+                    "threshold": 0.001
+                  },
+                  "hurt": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.02191929987338726,
+                    "threshold": 0.001
+                  }
+                },
+                "rms": 0.023399122509121337,
+                "summary": {
+                  "commandsApplied": 112,
+                  "eventCommands": 4,
+                  "addedVoices": 4,
+                  "peak": 0.26977166533470154,
+                  "preLimitPeak": 0.3509463798870621,
+                  "saturatedSamples": 0
+                },
+                "silence": []
+              },
+              {
+                "id": "Platformer",
+                "pass": true,
+                "failures": [],
+                "provenance": {
+                  "kind": "imported",
+                  "source": "Saved real run; game counters1land,1pickup,0hits. Lossless control compaction."
+                },
+                "traceSHA256": "64ee7432219ccde08f6497e69dd3dd2fd116b83faae36e2b8da924530111e56f",
+                "pcmSHA256": "87c0d553bfba9c341166c2934cc85532c25aae7da963b2c8f7265be09d44237e",
+                "commands": 167,
+                "events": {
+                  "land": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.032596084815783986,
+                    "threshold": 0.001
+                  },
+                  "pickup": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.02606162792480819,
+                    "threshold": 0.001
+                  },
+                  "hurt": {
+                    "count": 0,
+                    "expected": 0,
+                    "minimumCueRMS": null,
+                    "threshold": 0
+                  }
+                },
+                "rms": 0.01933726877836214,
+                "summary": {
+                  "commandsApplied": 167,
+                  "eventCommands": 2,
+                  "addedVoices": 2,
+                  "peak": 0.2697785198688507,
+                  "preLimitPeak": 0.3509560517241131,
+                  "saturatedSamples": 0
+                },
+                "silence": []
+              },
+              {
+                "id": "Dead idle",
+                "pass": true,
+                "failures": [],
+                "provenance": {
+                  "kind": "synthetic",
+                  "source": "Synthetic dead-idle control"
+                },
+                "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+                "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+                "commands": 0,
+                "events": {},
+                "rms": 0,
+                "summary": {
+                  "commandsApplied": 0,
+                  "eventCommands": 0,
+                  "addedVoices": 0,
+                  "peak": 0,
+                  "preLimitPeak": 0,
+                  "saturatedSamples": 0
+                },
+                "silence": [
+                  {
+                    "fromMs": 0,
+                    "toMs": 1000,
+                    "maxRMS": 0,
+                    "rms": 0
+                  }
+                ]
+              }
+            ],
+            "coverage": {
+              "land": 2,
+              "pickup": 3,
+              "hurt": 1
+            },
+            "missingEvents": [],
+            "seconds": 0.10555945900000001,
+            "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+            "componentSHA256": "a7fd5dcc9365f5518cb749183d922350fc961852124336d72f5994ea560d9ae7",
+            "projectSnapshotSHA256": "5074aa275f5b1b89c92c7f1801b0f2c008e2611b20e407ec69d0b7d916a0b040"
+          },
+          "seconds": 0.2635
+        }
+      }
+    ],
+    "verified": true,
+    "checks": [
+      {
+        "id": "master-level",
+        "pass": true,
+        "detail": "Kit output is enabled"
+      },
+      {
+        "id": "walking-source",
+        "pass": true,
+        "detail": "Footsteps use a continuous walking cadence"
+      },
+      {
+        "id": "wind-source",
+        "pass": true,
+        "detail": "Wind uses filtered continuous noise"
+      },
+      {
+        "id": "footsteps-run",
+        "pass": true,
+        "detail": "Footsteps respond to movement"
+      },
+      {
+        "id": "footsteps-rest",
+        "pass": true,
+        "detail": "No footsteps while still"
+      },
+      {
+        "id": "footsteps-air",
+        "pass": true,
+        "detail": "No footsteps in the air"
+      },
+      {
+        "id": "footsteps-death",
+        "pass": true,
+        "detail": "No footsteps after death"
+      },
+      {
+        "id": "wind-air",
+        "pass": true,
+        "detail": "Wind responds to air movement"
+      },
+      {
+        "id": "wind-ground",
+        "pass": true,
+        "detail": "Wind stops on the ground"
+      },
+      {
+        "id": "wind-death",
+        "pass": true,
+        "detail": "Wind stops after death"
+      },
+      {
+        "id": "event-land",
+        "pass": true,
+        "detail": "Audible finite land sound is mapped"
+      },
+      {
+        "id": "event-pickup",
+        "pass": true,
+        "detail": "Audible finite pickup sound is mapped"
+      },
+      {
+        "id": "event-hurt",
+        "pass": true,
+        "detail": "Audible finite hurt sound is mapped"
+      }
+    ],
+    "contract": {
+      "version": 1,
+      "pass": true,
+      "contractSHA256": "521c7df3ccbedbc07afc46b6fd664e60ca3d28c1b26db3e74815a601bd2cbb25",
+      "rigSHA256": "ad77fcf514503983dd33b369f778839f8a292f3182f7fecd3529a82a22845c07",
+      "settings": {
+        "sampleRate": 48000,
+        "blockSize": 128,
+        "seed": 17,
+        "epsilon": 1e-09,
+        "cueWindowMs": 250
+      },
+      "cases": [
+        {
+          "id": "Runner",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "imported",
+            "source": "Saved real run; game counters1land,2pickups,1hit. Lossless control compaction."
+          },
+          "traceSHA256": "e48400086ba181e88d7642b01cc67f25097bca143dfa1de6ccb9b6af7b20c542",
+          "pcmSHA256": "4cc20a3dfe4c82c350243c7934817bea136c24e35c4b5e82da9ace1111d740cf",
+          "commands": 112,
+          "events": {
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.049943851195268174,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 2,
+              "expected": 2,
+              "minimumCueRMS": 0.02606162792480819,
+              "threshold": 0.001
+            },
+            "hurt": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.02191929987338726,
+              "threshold": 0.001
+            }
+          },
+          "rms": 0.023399122509121337,
+          "summary": {
+            "commandsApplied": 112,
+            "eventCommands": 4,
+            "addedVoices": 4,
+            "peak": 0.26977166533470154,
+            "preLimitPeak": 0.3509463798870621,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        },
+        {
+          "id": "Platformer",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "imported",
+            "source": "Saved real run; game counters1land,1pickup,0hits. Lossless control compaction."
+          },
+          "traceSHA256": "64ee7432219ccde08f6497e69dd3dd2fd116b83faae36e2b8da924530111e56f",
+          "pcmSHA256": "87c0d553bfba9c341166c2934cc85532c25aae7da963b2c8f7265be09d44237e",
+          "commands": 167,
+          "events": {
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.032596084815783986,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.02606162792480819,
+              "threshold": 0.001
+            },
+            "hurt": {
+              "count": 0,
+              "expected": 0,
+              "minimumCueRMS": null,
+              "threshold": 0
+            }
+          },
+          "rms": 0.01933726877836214,
+          "summary": {
+            "commandsApplied": 167,
+            "eventCommands": 2,
+            "addedVoices": 2,
+            "peak": 0.2697785198688507,
+            "preLimitPeak": 0.3509560517241131,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        },
+        {
+          "id": "Dead idle",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "synthetic",
+            "source": "Synthetic dead-idle control"
+          },
+          "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+          "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+          "commands": 0,
+          "events": {},
+          "rms": 0,
+          "summary": {
+            "commandsApplied": 0,
+            "eventCommands": 0,
+            "addedVoices": 0,
+            "peak": 0,
+            "preLimitPeak": 0,
+            "saturatedSamples": 0
+          },
+          "silence": [
+            {
+              "fromMs": 0,
+              "toMs": 1000,
+              "maxRMS": 0,
+              "rms": 0
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "land": 2,
+        "pickup": 3,
+        "hurt": 1
+      },
+      "missingEvents": [],
+      "seconds": 0.10555945900000001,
+      "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+      "componentSHA256": "a7fd5dcc9365f5518cb749183d922350fc961852124336d72f5994ea560d9ae7",
+      "projectSnapshotSHA256": "5074aa275f5b1b89c92c7f1801b0f2c008e2611b20e407ec69d0b7d916a0b040"
+    },
+    "baselineContract": {
+      "version": 1,
+      "pass": true,
+      "contractSHA256": "521c7df3ccbedbc07afc46b6fd664e60ca3d28c1b26db3e74815a601bd2cbb25",
+      "rigSHA256": "d50b2a4eb4b884fb4093e2f8ebe9982fbc5ab697193de3825e4a2ae73900c81e",
+      "settings": {
+        "sampleRate": 48000,
+        "blockSize": 128,
+        "seed": 17,
+        "epsilon": 1e-09,
+        "cueWindowMs": 250
+      },
+      "cases": [
+        {
+          "id": "Runner",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "imported",
+            "source": "Saved real run; game counters1land,2pickups,1hit. Lossless control compaction."
+          },
+          "traceSHA256": "e48400086ba181e88d7642b01cc67f25097bca143dfa1de6ccb9b6af7b20c542",
+          "pcmSHA256": "101357eaf04375249b34ebebd289a3c96bf90e9465ebbe1746c026e8ffd4230b",
+          "commands": 112,
+          "events": {
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.049943851195268174,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 2,
+              "expected": 2,
+              "minimumCueRMS": 0.018690246737904127,
+              "threshold": 0.001
+            },
+            "hurt": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.02191929987338726,
+              "threshold": 0.001
+            }
+          },
+          "rms": 0.022769324602501265,
+          "summary": {
+            "commandsApplied": 112,
+            "eventCommands": 4,
+            "addedVoices": 4,
+            "peak": 0.26977166533470154,
+            "preLimitPeak": 0.3509463798870621,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        },
+        {
+          "id": "Platformer",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "imported",
+            "source": "Saved real run; game counters1land,1pickup,0hits. Lossless control compaction."
+          },
+          "traceSHA256": "64ee7432219ccde08f6497e69dd3dd2fd116b83faae36e2b8da924530111e56f",
+          "pcmSHA256": "b0ab9ee1599f901e686d3be02380709da4fe71ef6bf811888480fa18b80166d7",
+          "commands": 167,
+          "events": {
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.032596084815783986,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.018690246737904127,
+              "threshold": 0.001
+            },
+            "hurt": {
+              "count": 0,
+              "expected": 0,
+              "minimumCueRMS": null,
+              "threshold": 0
+            }
+          },
+          "rms": 0.01896305011364207,
+          "summary": {
+            "commandsApplied": 167,
+            "eventCommands": 2,
+            "addedVoices": 2,
+            "peak": 0.2697785198688507,
+            "preLimitPeak": 0.3509560517241131,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        },
+        {
+          "id": "Dead idle",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "synthetic",
+            "source": "Synthetic dead-idle control"
+          },
+          "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+          "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+          "commands": 0,
+          "events": {},
+          "rms": 0,
+          "summary": {
+            "commandsApplied": 0,
+            "eventCommands": 0,
+            "addedVoices": 0,
+            "peak": 0,
+            "preLimitPeak": 0,
+            "saturatedSamples": 0
+          },
+          "silence": [
+            {
+              "fromMs": 0,
+              "toMs": 1000,
+              "maxRMS": 0,
+              "rms": 0
+            }
+          ]
+        }
+      ],
+      "coverage": {
+        "land": 2,
+        "pickup": 3,
+        "hurt": 1
+      },
+      "missingEvents": [],
+      "seconds": 0.106494167,
+      "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+      "projectSHA256": "d9bf387e8907e34317d74ab3bb9696d744c3fa6864835899d366d792f3535765",
+      "componentSHA256": "7df4f660a931e73640b7eea5c8cbaedb83b0fb67f60ea7669043da5fa19747d7"
+    },
+    "seconds": 38.326
+  },
+  "scope": "Actual local model output; not yet trusted or accepted by the runtime."
+}

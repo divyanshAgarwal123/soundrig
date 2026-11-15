@@ -1,0 +1,8 @@
+{
+  "pass": true,
+  "savedRevisions": 10,
+  "allIDsSurvived": true,
+  "oldPID": 11553,
+  "newPID": 35366,
+  "scope": "Actual source server restart and SQLite metadata persistence; not a power-loss or operating-system crash test."
+}

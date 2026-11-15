@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 14,
+  "scope": "Snapshot rejection/diffs, real ProjectLoader backup/commit failures preserving original active player, exact-once candidate disposal, successful commit before cleanup and cleanup warnings. Fake audio objects; browser workflow separate."
+}

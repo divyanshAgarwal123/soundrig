@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import {createHash} from 'node:crypto';
+import {projectModule} from './project-runtime.mjs';
+const chunks=[];for await(const chunk of process.stdin)chunks.push(chunk);
+const bytes=Buffer.concat(chunks);if(bytes.length>4194304)throw Error('Project input exceeds4MiB');
+const {project,pack,trace:inputTrace}=JSON.parse(bytes),rig=project.rig;
+const {module,imported}=await projectModule(rig,pack,project.clearMix,project.quality);
+const trace=imported.validateTrace(rig,inputTrace??JSON.parse(fs.readFileSync(new URL('example-trace.json',import.meta.url))));
+const rendered=imported.renderTrace(rig,trace);
+const example=JSON.parse(fs.readFileSync(new URL('example-trace.json',import.meta.url)));
+if(imported.renderTrace(rig,example).summary.peak<1e-5)throw Error('Imported project produces silent output');
+const canonical=new Uint8Array(rendered.pcm.length*4),view=new DataView(canonical.buffer);
+for(let i=0;i<rendered.pcm.length;i++)view.setFloat32(i*4,rendered.pcm[i],true);
+const tracePCMHash=createHash('sha256').update(canonical).digest('hex');
+process.stdout.write(JSON.stringify({module,signal:rendered.summary,trace,tracePCMHash,exportBytes:Buffer.byteLength(module)}));

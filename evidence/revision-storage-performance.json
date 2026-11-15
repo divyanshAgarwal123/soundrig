@@ -1,0 +1,9 @@
+{
+  "records": 24,
+  "logicalSnapshotBytes": 4358160,
+  "physicalDatabaseBytes": 4386816,
+  "save24Seconds": 0.06989524999517016,
+  "listMedianMs": 0.23104199499357492,
+  "listMaxMs": 0.4142500038142316,
+  "scope": "Prevalidated snapshots: SQLite/serialization only, excludes WAV/validator/worklet and human time."
+}

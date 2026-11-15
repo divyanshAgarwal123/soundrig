@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 5,
+  "scope": "Synthetic model/checker failure fixtures; no live Meta calls or quality claims."
+}

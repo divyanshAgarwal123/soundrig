@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "source": "Root-operated in-app browser; actual UI and native key input, not an external user study",
+  "viewports": [{"width":1280,"overflow":false},{"width":768,"overflow":false},{"width":390,"overflow":false}],
+  "game": {"hazardRun":{"masters":3,"outcome":"The rolling press caught you. Restart to try again."},"completedRun":{"masters":8,"outcome":"All eight masters delivered. Restart to try another mix.","pauseDisabled":true},"route":"Actual native key input reached both lower-shelf masters, both middle-shelf masters, the top master and the three ground masters. No game-state mutation or teleport was used.","pauseAndResume":true,"restartAfterFailureAndCompletion":true},
+  "editor": {"arrowRightToRecordings":true,"endKeyToDelivery":true,"recordingPreviewAndDiscardAt390":true,"checkedCueEdit":"Cue edit applied. 3 saved checks passed.","undo":"Prior cue settings restored. 3 saved checks passed.","savedChecks":"PASS · 3 checks · browser/export PCM matched.","replayLockedRestartAndPause":true,"stoppedReplayAndUnlocked":true,"headerDeliveryLinkRevealedPanel":true},
+  "download":{"path":"soundrig-godot-cues (3).zip","files":31,"bytes":926611,"sha256":"6995ee3ed7325beff8f7d540ccf2e6b2fb3bd170fed4bf8b00a67c6ea00d1726","zipCRC":"pass"},
+  "finalDesktop":{"visibleNonTertiaryButtonMinimumHeight":44,"gameInstructionFontPx":12,"consoleErrorsObserved":[]},
+  "limits":["Phone/tablet viewport emulation does not establish physical touch behavior","No outside usability test or full screen-reader audit","No new model call or blinded listening test","Desktop and phone screenshots show different moments within the same pass"]
+}

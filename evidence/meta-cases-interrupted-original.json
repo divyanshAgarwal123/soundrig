@@ -1,0 +1,21 @@
+{
+  "completed": 1,
+  "total": 6,
+  "passed": 0,
+  "results": [
+    {
+      "id": "concrete-kit",
+      "pass": false,
+      "httpStatus": 503,
+      "seconds": 270.131,
+      "record": null,
+      "attempts": 0,
+      "errors": [],
+      "response": {
+        "error": "Local Meta authoring is unavailable. Your current rig and exports still work.",
+        "reason": "Command '['node', '<original-workspace>/soundrig-proof/build/check-authoring.mjs']' timed out after 4 seconds"
+      }
+    }
+  ],
+  "scope": "Six frozen local cases; not a population success rate or human preference study."
+}

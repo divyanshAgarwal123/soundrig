@@ -1,0 +1,94 @@
+{
+  "pass": true,
+  "scope": "Root CUA browser observations, not an external user study",
+  "authoringEnabledDuringTest": false,
+  "beforeCalls": {
+    "compile": 0,
+    "patch": 0,
+    "upstream": 0
+  },
+  "afterCalls": {
+    "compile": 0,
+    "patch": 0,
+    "upstream": 0
+  },
+  "countersNote": "Authoring server had been restarted after the two recorded real Meta calls; raw records retain those calls. These zero counters cover only the independent-host test interval.",
+  "independentHost": {
+    "port": 8780,
+    "server": "Python standard static HTTP server over actual browser-downloaded and extracted ZIP",
+    "noPhaserOrAuthoringClient": true,
+    "distance": 351,
+    "score": 2,
+    "landings": 1,
+    "hits": 1,
+    "renderedEvents": 4,
+    "traceCommands": 113,
+    "events": [
+      "pickup",
+      "land",
+      "pickup",
+      "hurt"
+    ],
+    "replayCommands": 113,
+    "replayOverloadedSamples": 0
+  },
+  "workbench": {
+    "liveCapturedCommands": 167,
+    "events": [
+      "pickup",
+      "land"
+    ],
+    "overloadedSamples": 0,
+    "returnedRunnerTraceCommands": 113,
+    "returnedRunnerTraceEvents": 4,
+    "returnedRunnerReplayOverloadedSamples": 0
+  },
+  "importFailureControls": {
+    "invalidWavRetainedRigAndAudioOn": true,
+    "corruptProjectRetainedRigAndAudioOn": true
+  },
+  "headroomUI": {
+    "beforeMaster": 0.8,
+    "afterMaster": 0.722,
+    "beforePreLimitPeak": 0.72,
+    "afterPreLimitPeak": 0.65,
+    "scope": "Trace-specific correction; original Meta rig restored afterward."
+  },
+  "captureControl": {
+    "retainedFile": "inactive-capture-trace.json",
+    "events": 0,
+    "usedForSuccessClaims": false,
+    "note": "Early UI dispatch did not produce an eventful capture. The exact cause was not established; subsequent visible-game capture and independent-runner capture were verified."
+  },
+  "finalPackageRetest": {
+    "digest": "a826acf2abff",
+    "traceCommands": 113,
+    "score": 2,
+    "landings": 1,
+    "hits": 1,
+    "renderedEvents": 4,
+    "replayOverloadedSamples": 0,
+    "scope": "Root CUA observations over final extracted ZIP on8780."
+  },
+  "layout": {
+    "workbenchWidths": [
+      1280,
+      667,
+      390
+    ],
+    "hostWidths": [
+      1280,
+      390
+    ],
+    "noHorizontalOverflow": true,
+    "scope": "Root DOM measurements and saved full-page captures, not physical mobile-device testing."
+  },
+  "savedExample": {
+    "loadedTwoCustom48kWavs": true,
+    "newInference": false
+  },
+  "startupStatus": {
+    "disabledPersistsAcrossReload": true,
+    "restoredEnabledAtFinish": true
+  }
+}

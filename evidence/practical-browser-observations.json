@@ -1,0 +1,29 @@
+{
+  "scope": "Root CUA observations and sealed downloads, separate from outside user research.",
+  "browserCases": {
+    "checkedCueEdit": "0.24 gain/1.01 rate applied after3 saved checks",
+    "undo": "prior settings restored with3 checks passing",
+    "rejectedCueEdit": "0.00001 gain rejected; pickup cue RMS below0.001",
+    "recordingAB": "Original0.490417s/currentTime0.038676/pausedfalse; prepared0.48425s/currentTime0.019418/pausedfalse; no media errors",
+    "destinationChange": "hides prior preview",
+    "malformedWAV": "rejected at preview; current project retained",
+    "successfulRecordingApply": "3 saved checks passed before activation; Discard disabled during commit",
+    "quietRecordingApply": "RMS0.000332 below0.001 rejected; current project retained",
+    "keyboard": "Enter activates Preview; Tab after pitch-rate focuses mix-apply",
+    "consoleErrors": []
+  },
+  "responsive": {
+    "studio": [
+      1440,
+      768,
+      390
+    ],
+    "scrollWidthEqualsViewport": true,
+    "numberInputCSSHeight": 44.3984375,
+    "numberInputFont": "16px",
+    "guideAndLandingPhoneWidth": 390,
+    "guideAndLandingOverflow": false,
+    "longCaptureScaling": "Images above6000px height were proportionately reduced by the browser tool; source viewports are recorded separately."
+  },
+  "quietFailureOriginalAssetsUnchanged": true
+}

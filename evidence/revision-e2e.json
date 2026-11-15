@@ -1,0 +1,20 @@
+{
+  "pass": true,
+  "originalWAVAndSourceNotesRetained": true,
+  "snapshotSurvivedStoreReopen": true,
+  "realCapturedCommands": 19,
+  "independentExports": [
+    {
+      "sha256": "284724437aca94fcff6fc23f59160fb3f7ed6f4ae4caa3c2438e7eeae5e609bd",
+      "checks": 4,
+      "componentSHA256": "6d62054811671d33212a4f679647458227d2fab8c3933d6872b4bdd317a83848"
+    },
+    {
+      "sha256": "92756c449fd14c529a292c7c4aaed2fe9f036eafca230f3b82c46251aae733b8",
+      "checks": 4,
+      "componentSHA256": "6d62054811671d33212a4f679647458227d2fab8c3933d6872b4bdd317a83848"
+    }
+  ],
+  "newModelCalls": 0,
+  "scope": "Real saved browser session, SQLite reopen, regenerated and browser-downloaded independent verifiers; no fresh model, outside user or physical listening judgment."
+}

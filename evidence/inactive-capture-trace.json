@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "durationMs": 6000,
+  "initial": {
+    "speed": 0,
+    "air": 0,
+    "grounded": 1,
+    "alive": 1
+  },
+  "commands": []
+}

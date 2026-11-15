@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "cases": 3,
+  "checks": [
+    "overlapping pending listens create only one tracked source",
+    "stop cancels a pending resume without starting audio",
+    "muted preview starts at zero gain and stop tracks every source"
+  ],
+  "scope": "Actual app preview functions with delayed Web Audio fixtures; not device listening evidence."
+}

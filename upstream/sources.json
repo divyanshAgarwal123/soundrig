@@ -1,0 +1,26 @@
+[
+  {
+    "file": "vendor/phaser-3.90.0.min.js",
+    "url": "https://cdn.jsdelivr.net/npm/phaser@3.90.0/dist/phaser.min.js",
+    "sha256": "e92ddef111ba42e92d316979c732311757093688ea1810591cb7aa2858eba7a7",
+    "bytes": 1196122
+  },
+  {
+    "file": "vendor/PHASER-LICENSE.md",
+    "url": "https://cdn.jsdelivr.net/npm/phaser@3.90.0/LICENSE.md",
+    "sha256": "080f3d5539e766bb556df5b8e86c4f5d581ece35c692b80956ca352b84d29134",
+    "bytes": 1120
+  },
+  {
+    "file": "upstream/part10.html",
+    "url": "https://raw.githubusercontent.com/phaserjs/examples/master/public/src/games/firstgame/part10.html",
+    "sha256": "c905ff1ba4d702de39532e90da24a136fbbc7b104d5bbdc2ef2ab0c37e397c87",
+    "bytes": 4996
+  },
+  {
+    "file": "upstream/README.md",
+    "url": "https://raw.githubusercontent.com/phaserjs/examples/master/README.md",
+    "sha256": "e474b6c49e2ebf9aaf8c8832e38885407cd36cc57763e86d523f06d3d2cbc35c",
+    "bytes": 1712
+  }
+]

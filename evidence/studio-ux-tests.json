@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 7,
+  "scope": "Pure jump buffering/coyote/expiry/reset, tab selection and focus, invalid target preservation and unique HTML IDs. Real gameplay and keyboard paths verified in browser separately."
+}

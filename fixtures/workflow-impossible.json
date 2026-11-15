@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "requiredEvents": [],
+  "cases": [
+    {
+      "id": "Locked wind contradiction",
+      "trace": {
+        "version": 1,
+        "durationMs": 1000,
+        "initial": {
+          "speed": 0,
+          "air": 1,
+          "grounded": 0,
+          "alive": 1
+        },
+        "commands": []
+      },
+      "expect": {
+        "events": {},
+        "maxPreLimitPeak": 0.9,
+        "minRMS": 0,
+        "silence": [
+          {
+            "fromMs": 300,
+            "toMs": 900,
+            "maxRMS": 0
+          }
+        ]
+      },
+      "provenance": {
+        "kind": "synthetic",
+        "source": "Deliberately impossible pickup-only edit: active locked wind must be silent"
+      }
+    }
+  ]
+}

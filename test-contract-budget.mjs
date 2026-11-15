@@ -1,0 +1,16 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {projectModule} from './project-runtime.mjs';import {checkContract} from './quality-contract.mjs';import {gameChecks} from './checks.mjs';
+const chunks=[];for await(const c of process.stdin)chunks.push(c);const input=JSON.parse(Buffer.concat(chunks));
+const start=performance.now(),{module,imported}=await projectModule(input.project.rig,input.pack,true,input.project.quality);
+assert(gameChecks(input.project.rig).every(x=>x.pass));imported.renderTrace(input.project.rig,JSON.parse(fs.readFileSync(new URL('example-trace.json',import.meta.url))));
+const cases=[];for(let k=0;k<6;k++){const commands=Array.from({length:89},(_,i)=>({atMs:i*55,type:'event',event:['land','pickup','hurt'][i%3]}));const counts=Object.fromEntries(['land','pickup','hurt'].map(e=>[e,{count:commands.filter(c=>c.event===e).length,minRMS:1e-9}]));cases.push({id:'Maximum workload '+k,trace:{version:1,durationMs:5000,initial:{speed:1,air:0,grounded:1,alive:1},commands},expect:{events:counts,maxPreLimitPeak:2,minRMS:0,silence:Array.from({length:4},(_,i)=>({fromMs:i*1000,toMs:i*1000+999,maxRMS:1}))},provenance:{kind:'synthetic',source:'Maximum permitted prepared bank,6layers,30s,12 overlapping voices; signal failure is expected'}});}
+const contract={version:1,requiredEvents:['land','pickup','hurt'],cases};
+if(input.project.quality==='studio')cases[0].expect.maxPreLimitPeak=0;
+// Fill the remaining byte budget with ordered simultaneous event commands.
+while(true){const c=cases[0];c.trace.commands.push({atMs:4999,type:'event',event:'pickup'});c.expect.events.pickup.count++;if(Buffer.byteLength(JSON.stringify(contract))>32768){c.trace.commands.pop();c.expect.events.pickup.count--;break;}}
+assert(Buffer.byteLength(JSON.stringify(contract))<=32768);assert(Buffer.byteLength(JSON.stringify(contract))>32700);
+const cold=await checkContract(imported,input.project.rig,contract),coldEnd=performance.now();
+const warm=await checkContract(imported,input.project.rig,contract);assert(!cold.pass);if(input.project.quality!=='studio')assert(cold.cases.some(c=>c.summary.saturatedSamples));
+if(input.project.quality==='studio'){assert(cold.cases[0].failures.some(f=>f.startsWith('pre-limiter peak ')));assert(cold.cases[0].failures.every(f=>f.startsWith('pre-limiter peak ')));assert(cold.cases.slice(1).every(c=>c.pass));}
+assert.equal(cold.contractSHA256,warm.contractSHA256);assert(coldEnd-start<15000);
+console.log(JSON.stringify({pass:true,bankBytes:input.report.encodedPCMBytes,decodedBytesPerRealm:input.report.decodedBytesPerRealm,moduleBytes:Buffer.byteLength(module),contractBytes:Buffer.byteLength(JSON.stringify(contract)),cases:6,durationMs:30000,eventCommands:cases.map(c=>c.trace.commands.length),cueMetricsPerCase:3,silenceWindowsPerCase:4,coldGenericAndContractMs:coldEnd-start,warmContractMs:warm.seconds*1000,peakProcessRSSBytes:process.resourceUsage().maxRSS*1024,importsPerCandidate:1,negativeOverloadDetected:cold.cases.some(c=>c.summary.saturatedSamples>0),deliberateHeadroomFailureDetected:!cold.pass,scope:'Node maximum valid project/contract workload; not physical-device latency, total browser memory or a hard realtime guarantee.'}));

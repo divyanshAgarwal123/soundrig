@@ -1,0 +1,10 @@
+{
+  "pre": 9030,
+  "post": 12474,
+  "coverage": "partial",
+  "scope": "Saved text estimates, not billing; excludes unlogged file reads/context/internal reasoning. Original CLI artifact presence labels full.",
+  "validation": {
+    "ok": true,
+    "problems": []
+  }
+}

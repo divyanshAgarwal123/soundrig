@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "modelAvailable": true,
+  "model": "muse-glimmer:30b-mlx",
+  "calls": {
+    "compile": 0,
+    "patch": 2,
+    "upstream": 3
+  }
+}

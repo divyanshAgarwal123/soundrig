@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 9,
+  "scope": "Actual Node validators, maximum permitted bank/contract workload and explicit synthetic model fixtures; no new inference calls."
+}

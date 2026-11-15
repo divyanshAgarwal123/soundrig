@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 4,
+  "scope": "Existing preparation identity, source retention, matched RMS, DC/edge/padding controls, warnings, admission and HTTP boundary. No listening preference claim."
+}

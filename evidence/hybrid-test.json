@@ -1,0 +1,88 @@
+{
+  "pass": true,
+  "cases": 17,
+  "results": [
+    {
+      "name": "catalog PCM is bounded, finite, mono and exactzero at both endpoints",
+      "pass": true
+    },
+    {
+      "name": "bad samples, duplicate pools, rates and extra model code reject",
+      "pass": true
+    },
+    {
+      "name": "verifier rejects silent kits, disconnected footsteps, silent events and wrong wind source",
+      "pass": true
+    },
+    {
+      "name": "downloadable recorder produces a valid independent host trace",
+      "pass": true
+    },
+    {
+      "name": "minimal Phaser baseline gates and alternates footsteps using standard sound calls",
+      "pass": true
+    },
+    {
+      "name": "null controls/intensities and malformed traces reject before scheduling",
+      "pass": true
+    },
+    {
+      "name": "sample event terminates and no-repeat selection is deterministic",
+      "pass": true
+    },
+    {
+      "name": "unchanged event layer stays independent of other events and layer order",
+      "pass": true
+    },
+    {
+      "name": "sample trace PCM is independent of block partition",
+      "pass": true
+    },
+    {
+      "name": "sample playback remains finite and terminates at supported output rates",
+      "pass": true
+    },
+    {
+      "name": "rest and inactive footsteps are silent; a normal trace does not overload the mix",
+      "pass": true
+    },
+    {
+      "name": "RMS comparison is equal-level, peak-safe and refuses silent inputs",
+      "pass": true
+    },
+    {
+      "name": "WAV accepts nominal Float32 limiter ceiling and rejects genuine excess or noninteger rates",
+      "pass": true
+    },
+    {
+      "name": "maximum trace has1200 commands and exact same-time order",
+      "pass": true
+    },
+    {
+      "name": "actual worklet replay matches off-quantum, same-frame and midquantum offline trace",
+      "pass": true
+    },
+    {
+      "name": "standalone export includes source rights and reproduces sample trace",
+      "pass": true
+    },
+    {
+      "name": "actual embedded exported processor reproduces sample trace",
+      "pass": true
+    }
+  ],
+  "exportBytes": 358756,
+  "decodedPCMBytes": 214676,
+  "stress": {
+    "blocks": 1000,
+    "sampleRate": 48000,
+    "blockFrames": 128,
+    "voiceCap": 12,
+    "p50Ms": 0.044791000000032,
+    "p99Ms": 0.12450000000001182,
+    "maxMs": 0.4823340000000371,
+    "saturatedSamples": 13963,
+    "scope": "Node actual DSP stress; not browser callback or device underrun measurement."
+  },
+  "limitation": "Recorded source timbres, correctness, level matching and artifacts do not establish human preference or task savings."
+}

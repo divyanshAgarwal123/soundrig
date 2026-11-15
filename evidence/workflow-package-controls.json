@@ -1,0 +1,36 @@
+{
+  "pass": true,
+  "controls": [
+    {
+      "name": "matching project and component",
+      "exit": 0,
+      "pass": true
+    },
+    {
+      "name": "stale editable recipe",
+      "exit": 2,
+      "pass": true
+    },
+    {
+      "name": "stale project mix",
+      "exit": 2,
+      "pass": true
+    },
+    {
+      "name": "invalid binding version",
+      "exit": 2,
+      "pass": true
+    },
+    {
+      "name": "tightened headroom actually fails signal check",
+      "exit": 1,
+      "pass": true
+    },
+    {
+      "name": "component bytes changed",
+      "exit": 2,
+      "pass": true
+    }
+  ],
+  "scope": "Actual generated/extracted package, synthetic mutations, no model/server dependency in verifier. Browser download checked separately."
+}

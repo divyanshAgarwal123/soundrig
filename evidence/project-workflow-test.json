@@ -1,0 +1,62 @@
+{
+  "pass": true,
+  "meta": [
+    {
+      "id": "imported-pickup-edit",
+      "record": "patch-59adb8273e64.json",
+      "seconds": 24.229,
+      "validatorSeconds": 0.2377,
+      "lockedLayers": 4,
+      "pass": true
+    },
+    {
+      "id": "imported-hurt-edit",
+      "record": "patch-3062e57806d2.json",
+      "seconds": 24.002,
+      "validatorSeconds": 0.1629,
+      "lockedLayers": 4,
+      "pass": true
+    }
+  ],
+  "traces": [
+    {
+      "file": "exports/browser-project-trace.json",
+      "commands": 167,
+      "events": [
+        "pickup",
+        "land"
+      ],
+      "samples": 288000,
+      "pass": true
+    },
+    {
+      "file": "exports/runner-real-trace.json",
+      "commands": 113,
+      "events": [
+        "pickup",
+        "land",
+        "pickup",
+        "hurt"
+      ],
+      "samples": 288000,
+      "pass": true
+    },
+    {
+      "file": "example-trace.json",
+      "commands": 9,
+      "events": [
+        "land",
+        "pickup",
+        "hurt"
+      ],
+      "samples": 288000,
+      "pass": true
+    }
+  ],
+  "moduleSHA256": "7df4f660a931e73640b7eea5c8cbaedb83b0fb67f60ea7669043da5fa19747d7",
+  "moduleBytes": 453935,
+  "actualEmbeddedProcessorExecuted": true,
+  "downloadedWavByteExact": true,
+  "zipComponentByteExact": true,
+  "scope": "Actual downloaded project/component/WAV, two actual local Meta results, both real browser-game captures. Node processor parity is not device latency or human preference."
+}

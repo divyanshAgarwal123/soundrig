@@ -1,0 +1,87 @@
+{
+  "pass": true,
+  "cases": 20,
+  "results": [
+    {
+      "name": "one normalization stream, deduplicated state and equal-time controls before event",
+      "pass": true
+    },
+    {
+      "name": "new connections and stopped processors cannot produce a successful capture",
+      "pass": true
+    },
+    {
+      "name": "concurrent starts coalesce and stale disposed starts preserve the newer node",
+      "pass": true
+    },
+    {
+      "name": "post-cutoff outcome and invalid finish clock refuse publication",
+      "pass": true
+    },
+    {
+      "name": "bad maps/raw values/aliases reject before live mutation",
+      "pass": true
+    },
+    {
+      "name": "physics float noise is quantized once for live and captured controls",
+      "pass": true
+    },
+    {
+      "name": "overflow invalidates capture and cannot publish partial success",
+      "pass": true
+    },
+    {
+      "name": "pause/context suspension invalidates capture and start needs explicit call",
+      "pass": true
+    },
+    {
+      "name": "late completion cannot replace a later capture; backwards clock fails",
+      "pass": true
+    },
+    {
+      "name": "Phaser lifecycle owns exact listeners, restart does not duplicate or remove others",
+      "pass": true
+    },
+    {
+      "name": "actual game cleanup tolerates Phaser clearing physics.world before shutdown",
+      "pass": true
+    },
+    {
+      "name": "actual game pause commits before replay can start audio",
+      "pass": true
+    },
+    {
+      "name": "disposed pending start cannot reactivate forwarding",
+      "pass": true
+    },
+    {
+      "name": "independently calculated RMS and canonical identity",
+      "pass": true
+    },
+    {
+      "name": "analytical event-window isolation, trace-end clipping and silence threshold",
+      "pass": true
+    },
+    {
+      "name": "recorded outcomes and dead silence pass exact runtime",
+      "pass": true
+    },
+    {
+      "name": "lossless control compaction preserves original recorded PCM and event order",
+      "pass": true
+    },
+    {
+      "name": "shared wrong alias, muted cue and missing coverage fail independent expectations",
+      "pass": true
+    },
+    {
+      "name": "declared loudness and silent-window mutations fail",
+      "pass": true
+    },
+    {
+      "name": "strict contract schema, byte/duration/case/window bounds",
+      "pass": true
+    }
+  ],
+  "scope": "Executed adapter/Phaser-emitter lifecycle and arithmetic contract tests; fake audio contexts do not establish device playback."
+}

@@ -1,0 +1,216 @@
+{
+  "regions": [
+    {
+      "id": "paper",
+      "kind": "texture",
+      "pixelBox": {
+        "x": 650,
+        "y": 365,
+        "w": 100,
+        "h": 20
+      },
+      "note": "Warm cream lightly textured paper material, no ink"
+    },
+    {
+      "id": "brand",
+      "kind": "text",
+      "pixelBox": {
+        "x": 36,
+        "y": 10,
+        "w": 260,
+        "h": 44
+      },
+      "note": "SoundRig bold black grotesk wordmark"
+    },
+    {
+      "id": "nav",
+      "kind": "control",
+      "pixelBox": {
+        "x": 975,
+        "y": 12,
+        "w": 482,
+        "h": 47
+      },
+      "note": "Studio and How it works links, Open studio button"
+    },
+    {
+      "id": "headline-one",
+      "kind": "text",
+      "pixelBox": {
+        "x": 30,
+        "y": 96,
+        "w": 1315,
+        "h": 130
+      },
+      "note": "Sound that plays, black heavy wide grotesk roman headline"
+    },
+    {
+      "id": "headline-two",
+      "kind": "text",
+      "pixelBox": {
+        "x": 30,
+        "y": 232,
+        "w": 655,
+        "h": 127
+      },
+      "note": "its part. black heavy wide grotesk roman headline"
+    },
+    {
+      "id": "intro",
+      "kind": "text",
+      "pixelBox": {
+        "x": 36,
+        "y": 390,
+        "w": 840,
+        "h": 32
+      },
+      "note": "Turn your game sounds into a tested, portable sound kit."
+    },
+    {
+      "id": "studio-action",
+      "kind": "control",
+      "pixelBox": {
+        "x": 36,
+        "y": 449,
+        "w": 353,
+        "h": 64
+      },
+      "note": "Open studio orange primary action with arrow"
+    },
+    {
+      "id": "promise",
+      "kind": "text",
+      "pixelBox": {
+        "x": 453,
+        "y": 449,
+        "w": 350,
+        "h": 53
+      },
+      "note": "Your recordings. Meta-shaped behavior. No model during play."
+    },
+    {
+      "id": "record",
+      "kind": "plate",
+      "pixelBox": {
+        "x": 760,
+        "y": 203,
+        "w": 727,
+        "h": 757
+      },
+      "note": "Photographic black vinyl disc with orange original game cue label; intentionally bleeds beyond right/bottom viewport",
+      "bleed": true
+    },
+    {
+      "id": "cue-label",
+      "kind": "text",
+      "pixelBox": {
+        "x": 36,
+        "y": 566,
+        "w": 98,
+        "h": 23
+      },
+      "note": "Game cue label for audition controls"
+    },
+    {
+      "id": "cue-select",
+      "kind": "control",
+      "pixelBox": {
+        "x": 175,
+        "y": 557,
+        "w": 597,
+        "h": 41
+      },
+      "note": "Pickup Landing Damage selection buttons"
+    },
+    {
+      "id": "version-label",
+      "kind": "text",
+      "pixelBox": {
+        "x": 36,
+        "y": 628,
+        "w": 89,
+        "h": 23
+      },
+      "note": "Version label for audition controls"
+    },
+    {
+      "id": "version-select",
+      "kind": "control",
+      "pixelBox": {
+        "x": 175,
+        "y": 618,
+        "w": 398,
+        "h": 42
+      },
+      "note": "Before Clean radio choices"
+    },
+    {
+      "id": "waveform",
+      "kind": "control",
+      "pixelBox": {
+        "x": 36,
+        "y": 684,
+        "w": 718,
+        "h": 57
+      },
+      "note": "Playback action and signal waveform with elapsed time"
+    },
+    {
+      "id": "listen",
+      "kind": "control",
+      "pixelBox": {
+        "x": 36,
+        "y": 760,
+        "w": 707,
+        "h": 55
+      },
+      "note": "Hear the difference orange audition action"
+    },
+    {
+      "id": "track-one",
+      "kind": "text",
+      "pixelBox": {
+        "x": 50,
+        "y": 842,
+        "w": 673,
+        "h": 21
+      },
+      "note": "Pickup collect item and actual duration line"
+    },
+    {
+      "id": "track-two",
+      "kind": "text",
+      "pixelBox": {
+        "x": 50,
+        "y": 874,
+        "w": 673,
+        "h": 21
+      },
+      "note": "Landing touch ground and actual duration line"
+    },
+    {
+      "id": "track-three",
+      "kind": "text",
+      "pixelBox": {
+        "x": 50,
+        "y": 905,
+        "w": 673,
+        "h": 21
+      },
+      "note": "Damage take hit and actual duration line"
+    },
+    {
+      "id": "next-heading",
+      "kind": "text",
+      "pixelBox": {
+        "x": 35,
+        "y": 987,
+        "w": 1077,
+        "h": 51
+      },
+      "note": "From a sound file to a working game. section heading"
+    }
+  ],
+  "allowUncovered": true,
+  "coverageNote": "Human reviewed original and masked comparison. Flagged cells straddle already inventoried text/control bounds; no additional element is omitted."
+}

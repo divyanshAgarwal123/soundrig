@@ -1,0 +1,163 @@
+{
+  "pass": true,
+  "cases": 10,
+  "results": [
+    {
+      "name": "default mix and default bank preserve frozen baseline PCM",
+      "pass": true
+    },
+    {
+      "name": "imported48k assets stay isolated from default module and preserve source metadata",
+      "pass": true
+    },
+    {
+      "name": "metadata containing export text and HTML survives both bundled realms",
+      "pass": true
+    },
+    {
+      "name": "cue focus lowers background≥9dB while event-only PCM stays exact",
+      "pass": true
+    },
+    {
+      "name": "zero-intensity cues do not duck and partition sizes remain exact",
+      "pass": true
+    },
+    {
+      "name": "actual exported AudioWorklet reproduces project trace at44.1/48/96k",
+      "pass": true
+    },
+    {
+      "name": "module/start/ack failures retain the old playing project",
+      "pass": true
+    },
+    {
+      "name": "successful activation stops/disposes previous player; ninth import refused first",
+      "pass": true
+    },
+    {
+      "name": "overlapping activation is rejected without consuming a second import",
+      "pass": true
+    },
+    {
+      "name": "eight distinct maximum-bank modules fit bundle budget and bounded DSP workload",
+      "pass": true
+    }
+  ],
+  "backgroundChangeDB": -11.056745941962538,
+  "eventOnlyPCMUnchanged": true,
+  "preparedSources": {
+    "pickup_confirm": {
+      "title": "custom-pickup.wav",
+      "pack": "project",
+      "sourceFile": "custom-pickup.wav",
+      "author": "User supplied",
+      "license": "User-declared: Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+      "licenseNote": "Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+      "sourceSHA256": "3cb8da88e3cb747c437d92b241ebca431b20b7fa9a210a0f95158b4444fe89dc",
+      "pcmSHA256": "5c7e956313baa9b42194959d4cd7f3799ff7e16d165617991ac75b972825e0dd",
+      "sampleRate": 48000,
+      "frames": 23244,
+      "seconds": 0.48425,
+      "peak": 0.41741943359375,
+      "rms": 0.12000007647117808,
+      "dc": 1.9693842362545173e-8,
+      "sourceDC": -0.00001339713901205395,
+      "sourceChannels": 2,
+      "sourceNearFullScaleSamples": 0,
+      "trimmedLeadingSeconds": 0,
+      "trimmedTrailingSeconds": 0.006166666666666667,
+      "preparationGain": 0.6542419608944406,
+      "preparation": "Stereo mean; digital/quiet-baseline padding trim before weighted DC removal; 2ms fades; RMS target0.12, gain≤4 and peak≤0.8; source rate retained. Full-scale source clipping cannot be recovered."
+    },
+    "hurt_error": {
+      "title": "custom-hurt.wav",
+      "pack": "project",
+      "sourceFile": "custom-hurt.wav",
+      "author": "User supplied",
+      "license": "User-declared: Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+      "licenseNote": "Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+      "sourceSHA256": "5244068d5bcb276f5f03d139e7a7748382f737780599547a8a71625218120239",
+      "pcmSHA256": "3c621e47b3eb533f105623eb179cadf646912db2ddb7788406304aa04f44c589",
+      "sampleRate": 48000,
+      "frames": 5016,
+      "seconds": 0.1045,
+      "peak": 0.61761474609375,
+      "rms": 0.11999978374933241,
+      "dc": 7.30085601076555e-8,
+      "sourceDC": 0.00028380252527848384,
+      "sourceChannels": 2,
+      "sourceNearFullScaleSamples": 0,
+      "trimmedLeadingSeconds": 0,
+      "trimmedTrailingSeconds": 0,
+      "preparationGain": 0.8506857151990781,
+      "preparation": "Stereo mean; digital/quiet-baseline padding trim before weighted DC removal; 2ms fades; RMS target0.12, gain≤4 and peak≤0.8; source rate retained. Full-scale source clipping cannot be recovered."
+    }
+  },
+  "maximumBank": [
+    {
+      "generation": 1,
+      "importMs": 35.69983400000001,
+      "sourceBytes": 1102920,
+      "rss": 170852352,
+      "heapUsed": 62369296
+    },
+    {
+      "generation": 2,
+      "importMs": 35.718875000000025,
+      "sourceBytes": 1102920,
+      "rss": 185974784,
+      "heapUsed": 66698440
+    },
+    {
+      "generation": 3,
+      "importMs": 35.494417,
+      "sourceBytes": 1102920,
+      "rss": 213614592,
+      "heapUsed": 63811464
+    },
+    {
+      "generation": 4,
+      "importMs": 35.34162500000002,
+      "sourceBytes": 1102920,
+      "rss": 235241472,
+      "heapUsed": 62983312
+    },
+    {
+      "generation": 5,
+      "importMs": 34.327458999999976,
+      "sourceBytes": 1102920,
+      "rss": 269271040,
+      "heapUsed": 114638784
+    },
+    {
+      "generation": 6,
+      "importMs": 35.247792000000004,
+      "sourceBytes": 1102920,
+      "rss": 279642112,
+      "heapUsed": 115559752
+    },
+    {
+      "generation": 7,
+      "importMs": 37.43987500000003,
+      "sourceBytes": 1102920,
+      "rss": 332759040,
+      "heapUsed": 167262360
+    },
+    {
+      "generation": 8,
+      "importMs": 35.89979099999994,
+      "sourceBytes": 1102920,
+      "rss": 313556992,
+      "heapUsed": 117976752
+    }
+  ],
+  "stress": {
+    "p99Ms": 0.1566249999999627,
+    "maxMs": 0.7661669999999958,
+    "blockBudgetMs": 2.6666666666666665,
+    "blocks": 1000,
+    "continuousVoices": 5,
+    "eventCap": 12
+  },
+  "scope": "Executed signal/parser/transaction/module/worklet checks. Node memory/CPU excludes browser scheduling and physical playback. Signal improvements do not establish human preference."
+}

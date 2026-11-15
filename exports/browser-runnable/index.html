@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SoundRig — your exported runner</title>
+<style>:root{color-scheme:light;font:15px/1.5 system-ui;color:#19322f;background:#f5f4ec}body{max-width:900px;margin:auto;padding:24px}h1{font-size:26px;line-height:1.2}p{max-width:72ch;color:#52625c}button{font:inherit;color:inherit;background:transparent;border:1px solid #506963;border-radius:4px;padding:10px 14px;min-height:44px;cursor:pointer}button:hover{background:#e8eae1}button:disabled{opacity:.5}button:focus-visible,canvas:focus-visible{outline:3px solid #245844;outline-offset:3px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}canvas{display:block;width:100%;height:auto;background:#c7d8d1;border:1px solid #506963;border-radius:4px}pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere;background:#e8eae1;padding:14px;max-height:220px;overflow:auto}a{color:inherit;text-underline-offset:3px}#run{touch-action:none}::selection{background:#b7d0b5}footer{border-top:1px solid #506963;margin-top:24px;padding:12px 0;font-size:12px}</style></head><body>
+<h1>Your sounds, in a game you can keep.</h1><p>This runner uses plain JavaScript and the exported SoundRig component. No game engine, model, authoring server or external asset request is needed.</p>
+<p id="name"></p><canvas id="world" width="800" height="260" tabindex="0" role="application" aria-label="Playable exported runner"></canvas>
+<div class="actions"><button id="audio">Enable audio</button><button id="run">Move right</button><button id="jump">Jump</button><button id="reset">Restart</button></div>
+<p>Click the game, then hold Right to run and Up to jump. Collect the first parcel at 120 metres; jump over the barrier at 350. Movement buttons work with keyboard and touch.</p>
+<p id="status" role="status">Loading the standalone component…</p><pre id="stats" aria-live="off"></pre>
+<div class="actions"><button id="record">Capture 6 seconds</button><button id="replay">Replay trace</button><button id="trace-download" disabled>Download captured trace</button></div>
+<p id="trace-status" role="status">The included trace comes from the workbench export.</p><details><summary>Use this interface in your game</summary><pre>import {createPlayer} from './component.mjs';
+const audio = createPlayer();
+// Inside a user gesture:
+await audio.start();
+// From your engine's update/collision hooks:
+audio.set({speed, air, grounded, alive});
+audio.emit('pickup', 1);</pre><label for="captured-json">Captured trace JSON — paste this into SoundRig to check an edit against this game</label><textarea id="captured-json" readonly rows="5" style="display:block;width:100%;box-sizing:border-box;font:12px/1.5 monospace;margin-top:8px" aria-label="Captured trace JSON"></textarea></details>
+<footer><a href="project.json" download>Editable project</a> · <a href="provenance.json">Sound provenance and source declarations</a><p>Original geometric JavaScript runner. Recorded sounds and their declarations travel with the component. A user declaration does not verify ownership.</p></footer>
+<script type="module" src="host.mjs"></script></body></html>

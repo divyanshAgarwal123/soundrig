@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "archiveSHA256": "2c98d216a6fe3f69a2f9fe8970a4b5ad10f203465b061ddad37bdea090d0d617",
+  "archive": "/Users/divyanshagarwal/Downloads/soundrig-godot-cues (2).zip",
+  "cases": [
+    {
+      "case": "native-kit",
+      "cleanup": true,
+      "loadedCues": 11,
+      "pass": true,
+      "scope": "Godot playback state; no speaker/listener assessment",
+      "starts": 34,
+      "stolen": 18,
+      "voicePool": 12,
+      "seconds": 2.64
+    },
+    {
+      "case": "relocated-kit-same-call",
+      "cleanup": true,
+      "loadedCues": 11,
+      "pass": true,
+      "scope": "Godot playback state; no speaker/listener assessment",
+      "starts": 34,
+      "stolen": 18,
+      "voicePool": 12,
+      "seconds": 2.658
+    },
+    {
+      "case": "native-demo-scene",
+      "pass": true
+    },
+    {
+      "case": "hash-corruption",
+      "pass": true,
+      "rejected": "Cue hash mismatch: pickup_01",
+      "seconds": 0.165
+    },
+    {
+      "case": "truncated-wav",
+      "pass": true,
+      "rejected": "Invalid PCM16 mono 48 kHz WAV: pickup_01",
+      "seconds": 0.16
+    },
+    {
+      "case": "oversized-wav-before-read",
+      "pass": true,
+      "rejected": "Missing or oversized cue: pickup_01",
+      "seconds": 0.258
+    },
+    {
+      "case": "malformed-manifest",
+      "pass": true,
+      "rejected": "Invalid cue manifest JSON.",
+      "seconds": 0.265
+    }
+  ],
+  "newModelCalls": 0,
+  "scope": "Actual official Godot engine with Dummy audio driver: PCM loading, playback states, native scene, relocation, bounded voices, cleanup and corruption controls. No physical speakers, listening preference, outside developers or human task-time comparison."
+}

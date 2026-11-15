@@ -1,0 +1,178 @@
+{
+  "version": 2,
+  "controls": [
+    {
+      "id": "speed",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "id": "air",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "id": "grounded",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "id": "alive",
+      "min": 0,
+      "max": 1
+    }
+  ],
+  "events": [
+    "land",
+    "pickup",
+    "hurt"
+  ],
+  "master": 0.25,
+  "layers": [
+    {
+      "id": "footsteps",
+      "type": "noise",
+      "wave": "sine",
+      "frequency": 200,
+      "gain": {
+        "control": "speed",
+        "lo": 0,
+        "hi": 0.08
+      },
+      "pulseHz": {
+        "control": "speed",
+        "lo": 0,
+        "hi": 10
+      },
+      "when": [
+        {
+          "control": "speed",
+          "op": "above",
+          "threshold": 0.01
+        },
+        {
+          "control": "grounded",
+          "op": "above",
+          "threshold": 0.5
+        },
+        {
+          "control": "alive",
+          "op": "above",
+          "threshold": 0.5
+        }
+      ],
+      "event": null,
+      "filter": {
+        "type": "lowpass",
+        "cutoff": 1200
+      },
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.15,
+        "release": 0.05
+      },
+      "pitchEnd": 1
+    },
+    {
+      "id": "wind",
+      "type": "noise",
+      "wave": "sine",
+      "frequency": 200,
+      "gain": {
+        "control": "air",
+        "lo": 0,
+        "hi": 0.06
+      },
+      "pulseHz": 0,
+      "when": [
+        {
+          "control": "air",
+          "op": "above",
+          "threshold": 0.01
+        },
+        {
+          "control": "grounded",
+          "op": "below",
+          "threshold": 0.5
+        },
+        {
+          "control": "alive",
+          "op": "above",
+          "threshold": 0.5
+        }
+      ],
+      "event": null,
+      "filter": {
+        "type": "lowpass",
+        "cutoff": {
+          "control": "air",
+          "lo": 400,
+          "hi": 1800
+        }
+      },
+      "envelope": {
+        "attack": 0.05,
+        "decay": 0.4,
+        "release": 0.2
+      },
+      "pitchEnd": 1
+    },
+    {
+      "id": "land_thud",
+      "type": "noise",
+      "wave": "sine",
+      "frequency": 200,
+      "gain": 0.07,
+      "pulseHz": 0,
+      "when": [],
+      "event": "land",
+      "filter": {
+        "type": "lowpass",
+        "cutoff": 600
+      },
+      "envelope": {
+        "attack": 0.005,
+        "decay": 0.12,
+        "release": 0.08
+      },
+      "pitchEnd": 0.7
+    },
+    {
+      "id": "pickup_chime",
+      "type": "tone",
+      "wave": "sine",
+      "frequency": 880,
+      "gain": 0.09,
+      "pulseHz": 0,
+      "when": [],
+      "event": "pickup",
+      "filter": null,
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.25,
+        "release": 0.12
+      },
+      "pitchEnd": 1.6
+    },
+    {
+      "id": "hurt_buzz",
+      "type": "tone",
+      "wave": "sawtooth",
+      "frequency": 320,
+      "gain": 0.1,
+      "pulseHz": 0,
+      "when": [],
+      "event": "hurt",
+      "filter": {
+        "type": "highpass",
+        "cutoff": 800
+      },
+      "envelope": {
+        "attack": 0.01,
+        "decay": 0.3,
+        "release": 0.15
+      },
+      "pitchEnd": 0.4
+    }
+  ]
+}

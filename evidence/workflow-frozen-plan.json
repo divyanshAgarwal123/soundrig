@@ -1,0 +1,19 @@
+{
+  "beforeNewInference": true,
+  "contract": "fixtures/workflow-contract.json",
+  "goodPrompt": "Set only pickup sample rate to0.95 and gain to0.30. Keep all other fields and every locked layer unchanged.",
+  "badControl": "Locked continuous wind active in an explicit silence window. The target pickup layer cannot repair it. Both bounded attempts must fail or abstain; active rig retained.",
+  "independentExpectedOutcomes": {
+    "runner": {
+      "land": 1,
+      "pickup": 2,
+      "hurt": 1
+    },
+    "phaser": {
+      "land": 1,
+      "pickup": 1,
+      "hurt": 0
+    }
+  },
+  "scope": "Engineering frozen plan, not a user study. New browser captures will retain separate actual game-outcome counters."
+}

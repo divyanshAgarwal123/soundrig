@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';
+import {RecordingStage} from './recording-stage.mjs';
+const stage=new RecordingStage();let identity='A',release,calls=0;
+const current=()=>identity;
+let pending=stage.inspect(()=>new Promise(r=>release=r),async()=>{calls++;},identity,current);
+identity='B';stage.clear();release({wav64:'old'});assert.equal(await pending,null);assert.equal(calls,0);
+pending=stage.inspect(async()=>({wav64:'B'}),()=>new Promise(r=>release=r),identity,current);
+await Promise.resolve();identity='C';stage.clear();release({report:'B'});assert.equal(await pending,null);assert.throws(()=>stage.candidate(identity));
+let first;
+identity='D';const older=stage.inspect(async()=>({wav64:'oldD'}),()=>new Promise(r=>first=r),identity,current);await Promise.resolve();
+const newer=await stage.inspect(async()=>({wav64:'newD'}),async()=>({report:'new'}),identity,current);first({report:'old'});assert.equal(await older,null);assert.equal(stage.candidate('D'),newer);assert.equal(newer.asset.wav64,'newD');
+stage.clear();assert.throws(()=>stage.candidate('D'));
+fs.writeFileSync(new URL('evidence/practical-stage-tests.json',import.meta.url),JSON.stringify({pass:true,cases:4,scope:'Actual RecordingStage with delayed reads/responses, selection/project epochs, overlapping inspections and discarded candidates.'},null,2));console.log('RecordingStage:4 controls passed');

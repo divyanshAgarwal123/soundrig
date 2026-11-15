@@ -1,0 +1,94 @@
+{
+  "scope": "App-owned browser diagnostics, separate from independent verification",
+  "liveAudio": null,
+  "exportParity": null,
+  "wavReplay": null,
+  "project": {
+    "digest": "5074aa275f5b1b89",
+    "name": "Parcel Runner \u2014 custom cues",
+    "report": {
+      "name": "Parcel Runner \u2014 custom cues",
+      "importedSlots": [
+        "pickup_confirm",
+        "hurt_error"
+      ],
+      "encodedPCMBytes": 189676,
+      "decodedBytesPerRealm": 284508,
+      "seconds": 2.3748759999999995,
+      "assets": {
+        "pickup_confirm": {
+          "title": "custom-pickup.wav",
+          "pack": "project",
+          "sourceFile": "custom-pickup.wav",
+          "author": "User supplied",
+          "license": "User-declared: Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+          "licenseNote": "Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+          "sourceSHA256": "3cb8da88e3cb747c437d92b241ebca431b20b7fa9a210a0f95158b4444fe89dc",
+          "pcmSHA256": "5c7e956313baa9b42194959d4cd7f3799ff7e16d165617991ac75b972825e0dd",
+          "sampleRate": 48000,
+          "frames": 23244,
+          "seconds": 0.48425,
+          "peak": 0.41741943359375,
+          "rms": 0.12000007647117808,
+          "dc": 1.9693842362545173e-08,
+          "sourceDC": -1.339713901205395e-05,
+          "sourceChannels": 2,
+          "sourceNearFullScaleSamples": 0,
+          "trimmedLeadingSeconds": 0,
+          "trimmedTrailingSeconds": 0.006166666666666667,
+          "preparationGain": 0.6542419608944406,
+          "preparation": "Stereo mean; DC removal; silence trim; 2ms fades; RMS target0.12, gain\u22644 and peak\u22640.8; source rate retained."
+        },
+        "hurt_error": {
+          "title": "custom-hurt.wav",
+          "pack": "project",
+          "sourceFile": "custom-hurt.wav",
+          "author": "User supplied",
+          "license": "User-declared: Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+          "licenseNote": "Kenney Interface Sounds, CC0-1.0; browser-import test fixture.",
+          "sourceSHA256": "5244068d5bcb276f5f03d139e7a7748382f737780599547a8a71625218120239",
+          "pcmSHA256": "3c621e47b3eb533f105623eb179cadf646912db2ddb7788406304aa04f44c589",
+          "sampleRate": 48000,
+          "frames": 5016,
+          "seconds": 0.1045,
+          "peak": 0.61761474609375,
+          "rms": 0.11999978374933241,
+          "dc": 7.30085601076555e-08,
+          "sourceDC": 0.00028380252527848384,
+          "sourceChannels": 2,
+          "sourceNearFullScaleSamples": 0,
+          "trimmedLeadingSeconds": 0,
+          "trimmedTrailingSeconds": 0,
+          "preparationGain": 0.8506857151990781,
+          "preparation": "Stereo mean; DC removal; silence trim; 2ms fades; RMS target0.12, gain\u22644 and peak\u22640.8; source rate retained."
+        }
+      },
+      "sourceNotes": "User declarations are retained, not ownership verified.",
+      "signal": {
+        "commandsApplied": 9,
+        "eventCommands": 3,
+        "addedVoices": 3,
+        "peak": 0.27527666091918945,
+        "preLimitPeak": 0.3587310784949027,
+        "saturatedSamples": 0
+      },
+      "exportBytes": 453591
+    },
+    "importsThisPage": 1,
+    "cleanupWarning": null
+  },
+  "capturedTrace": {
+    "durationMs": 6000,
+    "commands": 167,
+    "events": [
+      "pickup",
+      "land"
+    ],
+    "initial": {
+      "speed": 0,
+      "air": 0,
+      "grounded": 1,
+      "alive": 1
+    }
+  }
+}

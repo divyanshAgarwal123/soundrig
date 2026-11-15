@@ -1,0 +1,817 @@
+{
+  "session": {
+    "id": "20261104T162208Z-soundrig-named-revision-checkpoints-and-safe-restore",
+    "mode": "standard",
+    "session_type": "implementation",
+    "status": "reviewed",
+    "final_state": "local implementation verified; fresh-archive release gate tracked externally",
+    "token_budget": "compact",
+    "frontend_review": true,
+    "skill_review": false
+  },
+  "counts": {
+    "roles": 6,
+    "reviewers": 3,
+    "evidence_runners": 1,
+    "artifact_files": 39,
+    "member_files": 6,
+    "review_files": 3,
+    "evidence_files": 1
+  },
+  "pre_execution_estimate": {
+    "label": "pre_execution_estimate",
+    "total_tokens": 10511,
+    "input_tokens": 8841,
+    "output_tokens": 1670,
+    "range": {
+      "low": 7883,
+      "high": 14189
+    },
+    "components": {
+      "static_protocol_input_tokens": 1045,
+      "member_input_tokens": 2857,
+      "member_output_tokens": 720,
+      "reviewer_input_tokens": 3432,
+      "reviewer_output_tokens": 300,
+      "synthesis_input_tokens": 1507,
+      "synthesis_output_tokens": 250,
+      "scoring_stats_overhead_tokens": 220,
+      "context_duplication_tokens": 0,
+      "frontend_browser_evidence_tokens": 180,
+      "alter_tuning_prompt_tokens": 0,
+      "forge_rebrief_overhead_tokens": 0
+    },
+    "assumptions": {
+      "chars_per_token": 4,
+      "mode_factor": 1.0,
+      "budget_factor": 1.0,
+      "reasoning_factor": 1.1,
+      "history_multiplier": 1.0,
+      "context_tokens_hint": 0,
+      "counts": {
+        "members": 6,
+        "reviewers": 3,
+        "evidence_runners": 1,
+        "active_alters": 0
+      },
+      "note": "Forecast includes duplicated context across agents, expected prompts/outputs, synthesis, scoring/stats overhead, and optional browser evidence. It is not real Codex billing usage."
+    }
+  },
+  "post_execution_estimate": {
+    "label": "post_execution_estimate",
+    "source": "saved prompts, saved outputs, scoring artifacts, and estimated tool overhead",
+    "coverage": "partial",
+    "total_tokens": 4720,
+    "input_tokens": 0,
+    "output_tokens": 3486,
+    "components": {
+      "member_input_tokens": 0,
+      "member_output_tokens": 735,
+      "reviewer_input_tokens": 0,
+      "reviewer_output_tokens": 264,
+      "synthesis_input_tokens": 0,
+      "synthesis_output_tokens": 1840,
+      "browser_evidence_tokens": 647,
+      "scorer_stats_artifact_tokens": 1114,
+      "estimated_tool_overhead_tokens": 120
+    },
+    "files": {
+      "member_inputs": [],
+      "member_outputs": [
+        {
+          "path": "members/01-ada-principal-architect.md",
+          "characters": 458,
+          "words": 61,
+          "estimated_tokens": 115
+        },
+        {
+          "path": "members/02-grace-reliability-engineer.md",
+          "characters": 477,
+          "words": 64,
+          "estimated_tokens": 120
+        },
+        {
+          "path": "members/03-hypatia-security-governance.md",
+          "characters": 493,
+          "words": 59,
+          "estimated_tokens": 124
+        },
+        {
+          "path": "members/04-florence-product-operator.md",
+          "characters": 504,
+          "words": 68,
+          "estimated_tokens": 126
+        },
+        {
+          "path": "members/05-turing-contrarian-red-team.md",
+          "characters": 486,
+          "words": 65,
+          "estimated_tokens": 122
+        },
+        {
+          "path": "members/06-seymour-performance-engineer.md",
+          "characters": 511,
+          "words": 63,
+          "estimated_tokens": 128
+        }
+      ],
+      "reviewer_inputs": [],
+      "reviewer_outputs": [
+        {
+          "path": "reviews/coverage-integrator.md",
+          "characters": 298,
+          "words": 38,
+          "estimated_tokens": 75
+        },
+        {
+          "path": "reviews/leonardo-ux-ui-critic.md",
+          "characters": 471,
+          "words": 58,
+          "estimated_tokens": 118
+        },
+        {
+          "path": "reviews/performance-impact-reviewer.md",
+          "characters": 281,
+          "words": 34,
+          "estimated_tokens": 71
+        }
+      ],
+      "synthesis_inputs": [],
+      "synthesis_outputs": [
+        {
+          "path": "final.md",
+          "characters": 7360,
+          "words": 921,
+          "estimated_tokens": 1840
+        }
+      ],
+      "browser_outputs": [
+        {
+          "path": "evidence-runners/bob-browser-customer-tester.md",
+          "characters": 2587,
+          "words": 349,
+          "estimated_tokens": 647
+        }
+      ],
+      "scoring_stats": [
+        {
+          "path": "reviews/reviews.example.json",
+          "characters": 745,
+          "words": 77,
+          "estimated_tokens": 187
+        },
+        {
+          "path": "preflight-estimate.json",
+          "characters": 3057,
+          "words": 255,
+          "estimated_tokens": 765
+        },
+        {
+          "path": "preflight-estimate.md",
+          "characters": 648,
+          "words": 90,
+          "estimated_tokens": 162
+        }
+      ]
+    },
+    "missing_data": [
+      "missing member prompts",
+      "missing reviewer prompts",
+      "missing chairman synthesis prompt"
+    ],
+    "unmeasured_overhead_note": "No access to actual Codex billing/API usage, cached input, hidden system prompts, or exact tool-call token accounting. Tool overhead is estimated.",
+    "is_actual_codex_usage": false
+  },
+  "artifact_only_tokens": {
+    "label": "artifact_only_tokens",
+    "source": "saved local session artifact text only",
+    "method": "ceil(total_characters / 4)",
+    "characters": 49943,
+    "words": 5274,
+    "total_tokens": 12486,
+    "estimated_tokens": 12486,
+    "is_actual_codex_usage": false,
+    "limitation": "Artifact-only tokens are not comparable to full session cost because they exclude unsaved prompt/output/tool overhead.",
+    "top_artifacts": [
+      {
+        "path": "session.json",
+        "characters": 7693,
+        "words": 618,
+        "estimated_tokens": 1924
+      },
+      {
+        "path": "reviews/reviews.json",
+        "characters": 7595,
+        "words": 807,
+        "estimated_tokens": 1899
+      },
+      {
+        "path": "final.md",
+        "characters": 7360,
+        "words": 921,
+        "estimated_tokens": 1840
+      },
+      {
+        "path": "preflight-estimate.json",
+        "characters": 3057,
+        "words": 255,
+        "estimated_tokens": 765
+      },
+      {
+        "path": "evidence-runners/bob-browser-customer-tester.md",
+        "characters": 2587,
+        "words": 349,
+        "estimated_tokens": 647
+      }
+    ],
+    "file_breakdown": [
+      {
+        "path": "brief.md",
+        "characters": 191,
+        "words": 26,
+        "estimated_tokens": 48
+      },
+      {
+        "path": "candidates.json",
+        "characters": 2206,
+        "words": 267,
+        "estimated_tokens": 552
+      },
+      {
+        "path": "compiled-context.json",
+        "characters": 180,
+        "words": 19,
+        "estimated_tokens": 45
+      },
+      {
+        "path": "context-capsule.json",
+        "characters": 931,
+        "words": 81,
+        "estimated_tokens": 233
+      },
+      {
+        "path": "decision-ledger.json",
+        "characters": 265,
+        "words": 20,
+        "estimated_tokens": 67
+      },
+      {
+        "path": "evidence-runners/bob-browser-customer-tester.md",
+        "characters": 2587,
+        "words": 349,
+        "estimated_tokens": 647
+      },
+      {
+        "path": "final.md",
+        "characters": 7360,
+        "words": 921,
+        "estimated_tokens": 1840
+      },
+      {
+        "path": "members/01-ada-principal-architect.md",
+        "characters": 458,
+        "words": 61,
+        "estimated_tokens": 115
+      },
+      {
+        "path": "members/02-grace-reliability-engineer.md",
+        "characters": 477,
+        "words": 64,
+        "estimated_tokens": 120
+      },
+      {
+        "path": "members/03-hypatia-security-governance.md",
+        "characters": 493,
+        "words": 59,
+        "estimated_tokens": 124
+      },
+      {
+        "path": "members/04-florence-product-operator.md",
+        "characters": 504,
+        "words": 68,
+        "estimated_tokens": 126
+      },
+      {
+        "path": "members/05-turing-contrarian-red-team.md",
+        "characters": 486,
+        "words": 65,
+        "estimated_tokens": 122
+      },
+      {
+        "path": "members/06-seymour-performance-engineer.md",
+        "characters": 511,
+        "words": 63,
+        "estimated_tokens": 128
+      },
+      {
+        "path": "preflight-estimate.json",
+        "characters": 3057,
+        "words": 255,
+        "estimated_tokens": 765
+      },
+      {
+        "path": "preflight-estimate.md",
+        "characters": 648,
+        "words": 90,
+        "estimated_tokens": 162
+      },
+      {
+        "path": "raw/coverage.json",
+        "characters": 341,
+        "words": 34,
+        "estimated_tokens": 86
+      },
+      {
+        "path": "raw/prompt-record.md",
+        "characters": 710,
+        "words": 92,
+        "estimated_tokens": 178
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/chairman-synthesis.md",
+        "characters": 544,
+        "words": 71,
+        "estimated_tokens": 136
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/01-ada.md",
+        "characters": 467,
+        "words": 61,
+        "estimated_tokens": 117
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/02-grace.md",
+        "characters": 468,
+        "words": 61,
+        "estimated_tokens": 117
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/03-hypatia.md",
+        "characters": 475,
+        "words": 62,
+        "estimated_tokens": 119
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/04-florence.md",
+        "characters": 485,
+        "words": 63,
+        "estimated_tokens": 122
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/05-turing.md",
+        "characters": 466,
+        "words": 62,
+        "estimated_tokens": 117
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/06-seymour.md",
+        "characters": 468,
+        "words": 61,
+        "estimated_tokens": 117
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/reviewers/coverage-integrator.md",
+        "characters": 312,
+        "words": 39,
+        "estimated_tokens": 78
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/reviewers/leonardo-da-vinci-brutally-honest-ux-ui-critic.md",
+        "characters": 341,
+        "words": 46,
+        "estimated_tokens": 86
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/reviewers/performance-impact-reviewer.md",
+        "characters": 320,
+        "words": 39,
+        "estimated_tokens": 80
+      },
+      {
+        "path": "raw/scaffold-prompts-not-verbatim-dispatch/synthesis-inputs.json",
+        "characters": 981,
+        "words": 62,
+        "estimated_tokens": 246
+      },
+      {
+        "path": "raw/source-followups.md",
+        "characters": 1198,
+        "words": 156,
+        "estimated_tokens": 300
+      },
+      {
+        "path": "reviews/coverage-integrator.md",
+        "characters": 298,
+        "words": 38,
+        "estimated_tokens": 75
+      },
+      {
+        "path": "reviews/leonardo-ux-ui-critic.md",
+        "characters": 471,
+        "words": 58,
+        "estimated_tokens": 118
+      },
+      {
+        "path": "reviews/performance-impact-reviewer.md",
+        "characters": 281,
+        "words": 34,
+        "estimated_tokens": 71
+      },
+      {
+        "path": "reviews/reviews.example.json",
+        "characters": 745,
+        "words": 77,
+        "estimated_tokens": 187
+      },
+      {
+        "path": "reviews/reviews.json",
+        "characters": 7595,
+        "words": 807,
+        "estimated_tokens": 1899
+      },
+      {
+        "path": "router-decision.json",
+        "characters": 565,
+        "words": 57,
+        "estimated_tokens": 142
+      },
+      {
+        "path": "run-manifest.json",
+        "characters": 1181,
+        "words": 95,
+        "estimated_tokens": 296
+      },
+      {
+        "path": "scores.json",
+        "characters": 1655,
+        "words": 58,
+        "estimated_tokens": 414
+      },
+      {
+        "path": "session.json",
+        "characters": 7693,
+        "words": 618,
+        "estimated_tokens": 1924
+      },
+      {
+        "path": "telemetry.json",
+        "characters": 1529,
+        "words": 115,
+        "estimated_tokens": 383
+      }
+    ]
+  },
+  "delta": {
+    "post_minus_pre_tokens": -5791,
+    "ratio_post_to_pre": 0.4491
+  },
+  "calibration_recommendation": {
+    "action": "do_not_calibrate",
+    "ratio": 0.4491,
+    "message": "Post estimate is partial; persist complete prompts and outputs before updating future multipliers."
+  },
+  "missing_unmeasured_data": {
+    "coverage": "partial",
+    "missing_data": [
+      "missing member prompts",
+      "missing reviewer prompts",
+      "missing chairman synthesis prompt"
+    ],
+    "unmeasured_overhead_note": "No access to actual Codex billing/API usage, cached input, hidden system prompts, or exact tool-call token accounting. Tool overhead is estimated."
+  },
+  "estimated_artifact_usage": {
+    "label": "estimated artifact tokens",
+    "source": "saved local session artifact text only",
+    "method": "ceil(total_characters / 4)",
+    "characters": 49943,
+    "words": 5274,
+    "estimated_tokens": 12486,
+    "is_actual_codex_usage": false,
+    "limitation": "Artifact-only tokens are not comparable to full session cost because they exclude unsaved prompt/output/tool overhead."
+  },
+  "top_artifacts": [
+    {
+      "path": "session.json",
+      "characters": 7693,
+      "words": 618,
+      "estimated_tokens": 1924
+    },
+    {
+      "path": "reviews/reviews.json",
+      "characters": 7595,
+      "words": 807,
+      "estimated_tokens": 1899
+    },
+    {
+      "path": "final.md",
+      "characters": 7360,
+      "words": 921,
+      "estimated_tokens": 1840
+    },
+    {
+      "path": "preflight-estimate.json",
+      "characters": 3057,
+      "words": 255,
+      "estimated_tokens": 765
+    },
+    {
+      "path": "evidence-runners/bob-browser-customer-tester.md",
+      "characters": 2587,
+      "words": 349,
+      "estimated_tokens": 647
+    }
+  ],
+  "file_breakdown": [
+    {
+      "path": "brief.md",
+      "characters": 191,
+      "words": 26,
+      "estimated_tokens": 48
+    },
+    {
+      "path": "candidates.json",
+      "characters": 2206,
+      "words": 267,
+      "estimated_tokens": 552
+    },
+    {
+      "path": "compiled-context.json",
+      "characters": 180,
+      "words": 19,
+      "estimated_tokens": 45
+    },
+    {
+      "path": "context-capsule.json",
+      "characters": 931,
+      "words": 81,
+      "estimated_tokens": 233
+    },
+    {
+      "path": "decision-ledger.json",
+      "characters": 265,
+      "words": 20,
+      "estimated_tokens": 67
+    },
+    {
+      "path": "evidence-runners/bob-browser-customer-tester.md",
+      "characters": 2587,
+      "words": 349,
+      "estimated_tokens": 647
+    },
+    {
+      "path": "final.md",
+      "characters": 7360,
+      "words": 921,
+      "estimated_tokens": 1840
+    },
+    {
+      "path": "members/01-ada-principal-architect.md",
+      "characters": 458,
+      "words": 61,
+      "estimated_tokens": 115
+    },
+    {
+      "path": "members/02-grace-reliability-engineer.md",
+      "characters": 477,
+      "words": 64,
+      "estimated_tokens": 120
+    },
+    {
+      "path": "members/03-hypatia-security-governance.md",
+      "characters": 493,
+      "words": 59,
+      "estimated_tokens": 124
+    },
+    {
+      "path": "members/04-florence-product-operator.md",
+      "characters": 504,
+      "words": 68,
+      "estimated_tokens": 126
+    },
+    {
+      "path": "members/05-turing-contrarian-red-team.md",
+      "characters": 486,
+      "words": 65,
+      "estimated_tokens": 122
+    },
+    {
+      "path": "members/06-seymour-performance-engineer.md",
+      "characters": 511,
+      "words": 63,
+      "estimated_tokens": 128
+    },
+    {
+      "path": "preflight-estimate.json",
+      "characters": 3057,
+      "words": 255,
+      "estimated_tokens": 765
+    },
+    {
+      "path": "preflight-estimate.md",
+      "characters": 648,
+      "words": 90,
+      "estimated_tokens": 162
+    },
+    {
+      "path": "raw/coverage.json",
+      "characters": 341,
+      "words": 34,
+      "estimated_tokens": 86
+    },
+    {
+      "path": "raw/prompt-record.md",
+      "characters": 710,
+      "words": 92,
+      "estimated_tokens": 178
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/chairman-synthesis.md",
+      "characters": 544,
+      "words": 71,
+      "estimated_tokens": 136
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/01-ada.md",
+      "characters": 467,
+      "words": 61,
+      "estimated_tokens": 117
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/02-grace.md",
+      "characters": 468,
+      "words": 61,
+      "estimated_tokens": 117
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/03-hypatia.md",
+      "characters": 475,
+      "words": 62,
+      "estimated_tokens": 119
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/04-florence.md",
+      "characters": 485,
+      "words": 63,
+      "estimated_tokens": 122
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/05-turing.md",
+      "characters": 466,
+      "words": 62,
+      "estimated_tokens": 117
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/members/06-seymour.md",
+      "characters": 468,
+      "words": 61,
+      "estimated_tokens": 117
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/reviewers/coverage-integrator.md",
+      "characters": 312,
+      "words": 39,
+      "estimated_tokens": 78
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/reviewers/leonardo-da-vinci-brutally-honest-ux-ui-critic.md",
+      "characters": 341,
+      "words": 46,
+      "estimated_tokens": 86
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/reviewers/performance-impact-reviewer.md",
+      "characters": 320,
+      "words": 39,
+      "estimated_tokens": 80
+    },
+    {
+      "path": "raw/scaffold-prompts-not-verbatim-dispatch/synthesis-inputs.json",
+      "characters": 981,
+      "words": 62,
+      "estimated_tokens": 246
+    },
+    {
+      "path": "raw/source-followups.md",
+      "characters": 1198,
+      "words": 156,
+      "estimated_tokens": 300
+    },
+    {
+      "path": "reviews/coverage-integrator.md",
+      "characters": 298,
+      "words": 38,
+      "estimated_tokens": 75
+    },
+    {
+      "path": "reviews/leonardo-ux-ui-critic.md",
+      "characters": 471,
+      "words": 58,
+      "estimated_tokens": 118
+    },
+    {
+      "path": "reviews/performance-impact-reviewer.md",
+      "characters": 281,
+      "words": 34,
+      "estimated_tokens": 71
+    },
+    {
+      "path": "reviews/reviews.example.json",
+      "characters": 745,
+      "words": 77,
+      "estimated_tokens": 187
+    },
+    {
+      "path": "reviews/reviews.json",
+      "characters": 7595,
+      "words": 807,
+      "estimated_tokens": 1899
+    },
+    {
+      "path": "router-decision.json",
+      "characters": 565,
+      "words": 57,
+      "estimated_tokens": 142
+    },
+    {
+      "path": "run-manifest.json",
+      "characters": 1181,
+      "words": 95,
+      "estimated_tokens": 296
+    },
+    {
+      "path": "scores.json",
+      "characters": 1655,
+      "words": 58,
+      "estimated_tokens": 414
+    },
+    {
+      "path": "session.json",
+      "characters": 7693,
+      "words": 618,
+      "estimated_tokens": 1924
+    },
+    {
+      "path": "telemetry.json",
+      "characters": 1529,
+      "words": 115,
+      "estimated_tokens": 383
+    }
+  ],
+  "validation": {
+    "ok": false,
+    "problems": [
+      "missing prompts/chairman-synthesis.md",
+      "missing prompts/synthesis-inputs.json",
+      "01-ada-principal-architect.md missing ## Recommendation",
+      "01-ada-principal-architect.md missing ## Rationale",
+      "01-ada-principal-architect.md missing ## Blocking Issues",
+      "01-ada-principal-architect.md missing ## Non-Blocking Improvements",
+      "01-ada-principal-architect.md missing ## Verification Required",
+      "01-ada-principal-architect.md missing ## Confidence",
+      "02-grace-reliability-engineer.md missing ## Recommendation",
+      "02-grace-reliability-engineer.md missing ## Rationale",
+      "02-grace-reliability-engineer.md missing ## Blocking Issues",
+      "02-grace-reliability-engineer.md missing ## Non-Blocking Improvements",
+      "02-grace-reliability-engineer.md missing ## Verification Required",
+      "02-grace-reliability-engineer.md missing ## Confidence",
+      "03-hypatia-security-governance.md missing ## Recommendation",
+      "03-hypatia-security-governance.md missing ## Rationale",
+      "03-hypatia-security-governance.md missing ## Blocking Issues",
+      "03-hypatia-security-governance.md missing ## Non-Blocking Improvements",
+      "03-hypatia-security-governance.md missing ## Verification Required",
+      "03-hypatia-security-governance.md missing ## Confidence",
+      "04-florence-product-operator.md missing ## Recommendation",
+      "04-florence-product-operator.md missing ## Rationale",
+      "04-florence-product-operator.md missing ## Blocking Issues",
+      "04-florence-product-operator.md missing ## Non-Blocking Improvements",
+      "04-florence-product-operator.md missing ## Verification Required",
+      "04-florence-product-operator.md missing ## Confidence",
+      "05-turing-contrarian-red-team.md missing ## Recommendation",
+      "05-turing-contrarian-red-team.md missing ## Rationale",
+      "05-turing-contrarian-red-team.md missing ## Blocking Issues",
+      "05-turing-contrarian-red-team.md missing ## Non-Blocking Improvements",
+      "05-turing-contrarian-red-team.md missing ## Verification Required",
+      "05-turing-contrarian-red-team.md missing ## Confidence",
+      "06-seymour-performance-engineer.md missing ## Recommendation",
+      "06-seymour-performance-engineer.md missing ## Rationale",
+      "06-seymour-performance-engineer.md missing ## Blocking Issues",
+      "06-seymour-performance-engineer.md missing ## Non-Blocking Improvements",
+      "06-seymour-performance-engineer.md missing ## Verification Required",
+      "06-seymour-performance-engineer.md missing ## Confidence",
+      "06-seymour-performance-engineer.md missing ## Performance Impact",
+      "06-seymour-performance-engineer.md missing ## Measurement Required",
+      "leonardo-ux-ui-critic.md missing ## UX Verdict",
+      "leonardo-ux-ui-critic.md missing ## Counterintuitive Risk",
+      "leonardo-ux-ui-critic.md missing ## User Harm",
+      "leonardo-ux-ui-critic.md missing ## Required Refinement",
+      "leonardo-ux-ui-critic.md missing ## Verification Required",
+      "leonardo-ux-ui-critic.md missing ## Bob Test Scenarios",
+      "bob-browser-customer-tester.md missing ## Mission",
+      "bob-browser-customer-tester.md missing ## Scenarios From Council",
+      "bob-browser-customer-tester.md missing ## Browser Checks",
+      "bob-browser-customer-tester.md missing ## Browser Evidence",
+      "bob-browser-customer-tester.md missing ## Reproducibility",
+      "bob-browser-customer-tester.md missing ## Verdict"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 2,
+  "scope": "Actual activation and lock functions with delayed preparation: discard disabled during commit; failed saved checks preserve current runtime/player and do not replace the bank. Network/DOM fixture; browser path checked separately."
+}

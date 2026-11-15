@@ -1,0 +1,436 @@
+{
+  "completed": 6,
+  "total": 6,
+  "passed": 4,
+  "results": [
+    {
+      "id": "concrete-kit",
+      "pass": false,
+      "httpStatus": 422,
+      "seconds": 119.406,
+      "record": "compile-0ac45f580f81.json",
+      "attempts": 0,
+      "errors": [],
+      "response": {
+        "error": "Verification failed after 2 attempt(s): Invalid sound source",
+        "record": "compile-0ac45f580f81.json",
+        "seconds": 119.381
+      }
+    },
+    {
+      "id": "wood-kit",
+      "pass": false,
+      "httpStatus": 422,
+      "seconds": 135.765,
+      "record": "compile-5c66fa2bc3ea.json",
+      "attempts": 0,
+      "errors": [],
+      "response": {
+        "error": "Verification failed after 2 attempt(s): Invalid normalized control",
+        "record": "compile-5c66fa2bc3ea.json",
+        "seconds": 135.762
+      }
+    },
+    {
+      "id": "wind-only",
+      "pass": true,
+      "httpStatus": 200,
+      "seconds": 41.248,
+      "record": "patch-a7908de15ef1.json",
+      "attempts": 1,
+      "errors": [],
+      "response": {
+        "patch": {
+          "layerId": "wind",
+          "changes": {
+            "filter": {
+              "type": "lowpass",
+              "cutoff": 650
+            }
+          }
+        },
+        "model": "muse-glimmer:30b-mlx",
+        "eval_count": 178,
+        "done_reason": "stop",
+        "modelSeconds": 40.963,
+        "attempts": [
+          {
+            "output": {
+              "layerId": "wind",
+              "changes": {
+                "filter": {
+                  "type": "lowpass",
+                  "cutoff": 650
+                }
+              }
+            },
+            "verification": {
+              "ok": true,
+              "checks": [
+                {
+                  "id": "master-level",
+                  "pass": true,
+                  "detail": "Kit output is enabled"
+                },
+                {
+                  "id": "walking-source",
+                  "pass": true,
+                  "detail": "Footsteps use a continuous walking cadence"
+                },
+                {
+                  "id": "wind-source",
+                  "pass": true,
+                  "detail": "Wind uses filtered continuous noise"
+                },
+                {
+                  "id": "footsteps-run",
+                  "pass": true,
+                  "detail": "Footsteps respond to movement"
+                },
+                {
+                  "id": "footsteps-rest",
+                  "pass": true,
+                  "detail": "No footsteps while still"
+                },
+                {
+                  "id": "footsteps-air",
+                  "pass": true,
+                  "detail": "No footsteps in the air"
+                },
+                {
+                  "id": "footsteps-death",
+                  "pass": true,
+                  "detail": "No footsteps after death"
+                },
+                {
+                  "id": "wind-air",
+                  "pass": true,
+                  "detail": "Wind responds to air movement"
+                },
+                {
+                  "id": "wind-ground",
+                  "pass": true,
+                  "detail": "Wind stops on the ground"
+                },
+                {
+                  "id": "wind-death",
+                  "pass": true,
+                  "detail": "Wind stops after death"
+                },
+                {
+                  "id": "event-land",
+                  "pass": true,
+                  "detail": "Audible finite land sound is mapped"
+                },
+                {
+                  "id": "event-pickup",
+                  "pass": true,
+                  "detail": "Audible finite pickup sound is mapped"
+                },
+                {
+                  "id": "event-hurt",
+                  "pass": true,
+                  "detail": "Audible finite hurt sound is mapped"
+                }
+              ],
+              "signal": {
+                "commandsApplied": 9,
+                "eventCommands": 3,
+                "addedVoices": 3,
+                "peak": 0.2805877923965454,
+                "preLimitPeak": 0.36628129050379826,
+                "saturatedSamples": 0
+              },
+              "seconds": 0.1497
+            }
+          }
+        ],
+        "verified": true,
+        "checks": [
+          {
+            "id": "master-level",
+            "pass": true,
+            "detail": "Kit output is enabled"
+          },
+          {
+            "id": "walking-source",
+            "pass": true,
+            "detail": "Footsteps use a continuous walking cadence"
+          },
+          {
+            "id": "wind-source",
+            "pass": true,
+            "detail": "Wind uses filtered continuous noise"
+          },
+          {
+            "id": "footsteps-run",
+            "pass": true,
+            "detail": "Footsteps respond to movement"
+          },
+          {
+            "id": "footsteps-rest",
+            "pass": true,
+            "detail": "No footsteps while still"
+          },
+          {
+            "id": "footsteps-air",
+            "pass": true,
+            "detail": "No footsteps in the air"
+          },
+          {
+            "id": "footsteps-death",
+            "pass": true,
+            "detail": "No footsteps after death"
+          },
+          {
+            "id": "wind-air",
+            "pass": true,
+            "detail": "Wind responds to air movement"
+          },
+          {
+            "id": "wind-ground",
+            "pass": true,
+            "detail": "Wind stops on the ground"
+          },
+          {
+            "id": "wind-death",
+            "pass": true,
+            "detail": "Wind stops after death"
+          },
+          {
+            "id": "event-land",
+            "pass": true,
+            "detail": "Audible finite land sound is mapped"
+          },
+          {
+            "id": "event-pickup",
+            "pass": true,
+            "detail": "Audible finite pickup sound is mapped"
+          },
+          {
+            "id": "event-hurt",
+            "pass": true,
+            "detail": "Audible finite hurt sound is mapped"
+          }
+        ],
+        "seconds": 41.117,
+        "record": "patch-a7908de15ef1.json"
+      }
+    },
+    {
+      "id": "wood-only",
+      "pass": true,
+      "httpStatus": 200,
+      "seconds": 51.266,
+      "record": "patch-0d0653403727.json",
+      "attempts": 1,
+      "errors": [],
+      "response": {
+        "patch": {
+          "layerId": "footsteps",
+          "changes": {
+            "samples": [
+              "step_wood_a",
+              "step_wood_b"
+            ]
+          }
+        },
+        "model": "muse-glimmer:30b-mlx",
+        "eval_count": 123,
+        "done_reason": "stop",
+        "modelSeconds": 50.958,
+        "attempts": [
+          {
+            "output": {
+              "layerId": "footsteps",
+              "changes": {
+                "samples": [
+                  "step_wood_a",
+                  "step_wood_b"
+                ]
+              }
+            },
+            "verification": {
+              "ok": true,
+              "checks": [
+                {
+                  "id": "master-level",
+                  "pass": true,
+                  "detail": "Kit output is enabled"
+                },
+                {
+                  "id": "walking-source",
+                  "pass": true,
+                  "detail": "Footsteps use a continuous walking cadence"
+                },
+                {
+                  "id": "wind-source",
+                  "pass": true,
+                  "detail": "Wind uses filtered continuous noise"
+                },
+                {
+                  "id": "footsteps-run",
+                  "pass": true,
+                  "detail": "Footsteps respond to movement"
+                },
+                {
+                  "id": "footsteps-rest",
+                  "pass": true,
+                  "detail": "No footsteps while still"
+                },
+                {
+                  "id": "footsteps-air",
+                  "pass": true,
+                  "detail": "No footsteps in the air"
+                },
+                {
+                  "id": "footsteps-death",
+                  "pass": true,
+                  "detail": "No footsteps after death"
+                },
+                {
+                  "id": "wind-air",
+                  "pass": true,
+                  "detail": "Wind responds to air movement"
+                },
+                {
+                  "id": "wind-ground",
+                  "pass": true,
+                  "detail": "Wind stops on the ground"
+                },
+                {
+                  "id": "wind-death",
+                  "pass": true,
+                  "detail": "Wind stops after death"
+                },
+                {
+                  "id": "event-land",
+                  "pass": true,
+                  "detail": "Audible finite land sound is mapped"
+                },
+                {
+                  "id": "event-pickup",
+                  "pass": true,
+                  "detail": "Audible finite pickup sound is mapped"
+                },
+                {
+                  "id": "event-hurt",
+                  "pass": true,
+                  "detail": "Audible finite hurt sound is mapped"
+                }
+              ],
+              "signal": {
+                "commandsApplied": 9,
+                "eventCommands": 3,
+                "addedVoices": 3,
+                "peak": 0.3499332666397095,
+                "preLimitPeak": 0.4690316418107717,
+                "saturatedSamples": 0
+              },
+              "seconds": 0.1473
+            }
+          }
+        ],
+        "verified": true,
+        "checks": [
+          {
+            "id": "master-level",
+            "pass": true,
+            "detail": "Kit output is enabled"
+          },
+          {
+            "id": "walking-source",
+            "pass": true,
+            "detail": "Footsteps use a continuous walking cadence"
+          },
+          {
+            "id": "wind-source",
+            "pass": true,
+            "detail": "Wind uses filtered continuous noise"
+          },
+          {
+            "id": "footsteps-run",
+            "pass": true,
+            "detail": "Footsteps respond to movement"
+          },
+          {
+            "id": "footsteps-rest",
+            "pass": true,
+            "detail": "No footsteps while still"
+          },
+          {
+            "id": "footsteps-air",
+            "pass": true,
+            "detail": "No footsteps in the air"
+          },
+          {
+            "id": "footsteps-death",
+            "pass": true,
+            "detail": "No footsteps after death"
+          },
+          {
+            "id": "wind-air",
+            "pass": true,
+            "detail": "Wind responds to air movement"
+          },
+          {
+            "id": "wind-ground",
+            "pass": true,
+            "detail": "Wind stops on the ground"
+          },
+          {
+            "id": "wind-death",
+            "pass": true,
+            "detail": "Wind stops after death"
+          },
+          {
+            "id": "event-land",
+            "pass": true,
+            "detail": "Audible finite land sound is mapped"
+          },
+          {
+            "id": "event-pickup",
+            "pass": true,
+            "detail": "Audible finite pickup sound is mapped"
+          },
+          {
+            "id": "event-hurt",
+            "pass": true,
+            "detail": "Audible finite hurt sound is mapped"
+          }
+        ],
+        "seconds": 51.107,
+        "record": "patch-0d0653403727.json"
+      }
+    },
+    {
+      "id": "unsupported-speech",
+      "pass": true,
+      "httpStatus": 422,
+      "seconds": 69.917,
+      "record": "compile-e1c09e98d61d.json",
+      "attempts": 0,
+      "errors": [],
+      "response": {
+        "error": "Unsupported request: clear reason",
+        "record": "compile-e1c09e98d61d.json",
+        "seconds": 69.912
+      }
+    },
+    {
+      "id": "unsupported-score",
+      "pass": true,
+      "httpStatus": 422,
+      "seconds": 52.779,
+      "record": "compile-df595c264f54.json",
+      "attempts": 0,
+      "errors": [],
+      "response": {
+        "error": "Unsupported request: Music generation and orchestral score creation is not supported; only game audio behavior mapping using the provided catalog and controls is allowed.",
+        "record": "compile-df595c264f54.json",
+        "seconds": 52.772
+      }
+    }
+  ],
+  "scope": "Six frozen local cases; not a population success rate or human preference study."
+}

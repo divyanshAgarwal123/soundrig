@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "assets": 8,
+  "frames": 53669,
+  "decodedFloatBytes": 214676,
+  "importDecodeMs": 9.163458000000006,
+  "canonicalPCMMatchesWav": true,
+  "exactZeroEndpoints": true,
+  "source": "Actual official CC0 archives; not Meta-generated sounds",
+  "scope": "Node import plus decoding on this machine; excludes browser thread startup."
+}

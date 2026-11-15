@@ -1,0 +1,47 @@
+{
+  "pass": true,
+  "cases": 10,
+  "results": [
+    {
+      "name": "replay suppresses live input, keeps invalid input atomic and ignores stale completion",
+      "pass": true
+    },
+    {
+      "name": "stop rejects replay and low sample-rate rig replacement retains old state",
+      "pass": true
+    },
+    {
+      "name": "accepted IDs use own control values during rig replacement",
+      "pass": true
+    },
+    {
+      "name": "duplicate starts share one context, module load and connected node",
+      "pass": true
+    },
+    {
+      "name": "stop while the worklet is loading cannot attach late audio",
+      "pass": true
+    },
+    {
+      "name": "immediate restart during a cancelled load starts one new node without duplicate module registration",
+      "pass": true
+    },
+    {
+      "name": "dispose during module load cancels and a later start uses a new context",
+      "pass": true
+    },
+    {
+      "name": "failed module loading leaves no node and can be retried",
+      "pass": true
+    },
+    {
+      "name": "stop rejects pending acknowledgements and stale ports cannot update the player",
+      "pass": true
+    },
+    {
+      "name": "export processor object URL is revoked after success and failure",
+      "pass": true
+    }
+  ],
+  "scope": "Player lifecycle with explicit delayed browser API stubs; not live audio or device validation."
+}

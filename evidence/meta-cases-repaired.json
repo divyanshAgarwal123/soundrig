@@ -1,0 +1,1044 @@
+{
+  "completed": 2,
+  "total": 2,
+  "passed": 2,
+  "results": [
+    {
+      "id": "concrete-kit",
+      "pass": true,
+      "httpStatus": 200,
+      "seconds": 90.868,
+      "record": "compile-6273534a78ff.json",
+      "attempts": 1,
+      "errors": [],
+      "response": {
+        "rig": {
+          "version": 3,
+          "controls": [
+            {
+              "id": "speed",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "id": "air",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "id": "grounded",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "id": "alive",
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "events": [
+            "land",
+            "pickup",
+            "hurt"
+          ],
+          "master": 0.65,
+          "layers": [
+            {
+              "id": "footsteps",
+              "type": "sample",
+              "gain": {
+                "control": "speed",
+                "lo": 0,
+                "hi": 1
+              },
+              "pulseHz": {
+                "control": "speed",
+                "lo": 3,
+                "hi": 10
+              },
+              "when": [
+                {
+                  "control": "speed",
+                  "op": "above",
+                  "threshold": 0.01
+                },
+                {
+                  "control": "grounded",
+                  "op": "above",
+                  "threshold": 0.5
+                },
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": null,
+              "filter": null,
+              "samples": [
+                "step_concrete_a",
+                "step_concrete_b"
+              ],
+              "rate": 1,
+              "variation": 0.03
+            },
+            {
+              "id": "wind",
+              "type": "noise",
+              "wave": "sine",
+              "frequency": 200,
+              "gain": {
+                "control": "air",
+                "lo": 0,
+                "hi": 1
+              },
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "air",
+                  "op": "above",
+                  "threshold": 0.01
+                },
+                {
+                  "control": "grounded",
+                  "op": "below",
+                  "threshold": 0.5
+                },
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": null,
+              "filter": {
+                "type": "lowpass",
+                "cutoff": 800
+              },
+              "envelope": {
+                "attack": 0.003,
+                "decay": 0.1,
+                "release": 0.05
+              },
+              "pitchEnd": 1
+            },
+            {
+              "id": "land_thud",
+              "type": "sample",
+              "gain": 0.6,
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": "land",
+              "filter": null,
+              "samples": [
+                "land_soft_a",
+                "land_soft_b"
+              ],
+              "rate": 1,
+              "variation": 0.02
+            },
+            {
+              "id": "pickup_chime",
+              "type": "sample",
+              "gain": 0.7,
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": "pickup",
+              "filter": null,
+              "samples": [
+                "pickup_confirm"
+              ],
+              "rate": 1,
+              "variation": 0.01
+            },
+            {
+              "id": "hurt_buzz",
+              "type": "sample",
+              "gain": 0.8,
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0
+                }
+              ],
+              "event": "hurt",
+              "filter": null,
+              "samples": [
+                "hurt_error"
+              ],
+              "rate": 1,
+              "variation": 0.01
+            }
+          ]
+        },
+        "model": "muse-glimmer:30b-mlx",
+        "eval_count": 1359,
+        "done_reason": "stop",
+        "modelSeconds": 90.633,
+        "attempts": [
+          {
+            "output": {
+              "version": 3,
+              "controls": [
+                {
+                  "id": "speed",
+                  "min": 0,
+                  "max": 1
+                },
+                {
+                  "id": "air",
+                  "min": 0,
+                  "max": 1
+                },
+                {
+                  "id": "grounded",
+                  "min": 0,
+                  "max": 1
+                },
+                {
+                  "id": "alive",
+                  "min": 0,
+                  "max": 1
+                }
+              ],
+              "events": [
+                "land",
+                "pickup",
+                "hurt"
+              ],
+              "master": 0.65,
+              "layers": [
+                {
+                  "id": "footsteps",
+                  "type": "sample",
+                  "gain": {
+                    "control": "speed",
+                    "lo": 0,
+                    "hi": 1
+                  },
+                  "pulseHz": {
+                    "control": "speed",
+                    "lo": 3,
+                    "hi": 10
+                  },
+                  "when": [
+                    {
+                      "control": "speed",
+                      "op": "above",
+                      "threshold": 0.01
+                    },
+                    {
+                      "control": "grounded",
+                      "op": "above",
+                      "threshold": 0.5
+                    },
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": null,
+                  "filter": null,
+                  "samples": [
+                    "step_concrete_a",
+                    "step_concrete_b"
+                  ],
+                  "rate": 1,
+                  "variation": 0.03
+                },
+                {
+                  "id": "wind",
+                  "type": "noise",
+                  "wave": "sine",
+                  "frequency": 200,
+                  "gain": {
+                    "control": "air",
+                    "lo": 0,
+                    "hi": 1
+                  },
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "air",
+                      "op": "above",
+                      "threshold": 0.01
+                    },
+                    {
+                      "control": "grounded",
+                      "op": "below",
+                      "threshold": 0.5
+                    },
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": null,
+                  "filter": {
+                    "type": "lowpass",
+                    "cutoff": 800
+                  },
+                  "envelope": {
+                    "attack": 0.003,
+                    "decay": 0.1,
+                    "release": 0.05
+                  },
+                  "pitchEnd": 1
+                },
+                {
+                  "id": "land_thud",
+                  "type": "sample",
+                  "gain": 0.6,
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": "land",
+                  "filter": null,
+                  "samples": [
+                    "land_soft_a",
+                    "land_soft_b"
+                  ],
+                  "rate": 1,
+                  "variation": 0.02
+                },
+                {
+                  "id": "pickup_chime",
+                  "type": "sample",
+                  "gain": 0.7,
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": "pickup",
+                  "filter": null,
+                  "samples": [
+                    "pickup_confirm"
+                  ],
+                  "rate": 1,
+                  "variation": 0.01
+                },
+                {
+                  "id": "hurt_buzz",
+                  "type": "sample",
+                  "gain": 0.8,
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0
+                    }
+                  ],
+                  "event": "hurt",
+                  "filter": null,
+                  "samples": [
+                    "hurt_error"
+                  ],
+                  "rate": 1,
+                  "variation": 0.01
+                }
+              ]
+            },
+            "verification": {
+              "ok": true,
+              "checks": [
+                {
+                  "id": "master-level",
+                  "pass": true,
+                  "detail": "Kit output is enabled"
+                },
+                {
+                  "id": "walking-source",
+                  "pass": true,
+                  "detail": "Footsteps use a continuous walking cadence"
+                },
+                {
+                  "id": "wind-source",
+                  "pass": true,
+                  "detail": "Wind uses filtered continuous noise"
+                },
+                {
+                  "id": "footsteps-run",
+                  "pass": true,
+                  "detail": "Footsteps respond to movement"
+                },
+                {
+                  "id": "footsteps-rest",
+                  "pass": true,
+                  "detail": "No footsteps while still"
+                },
+                {
+                  "id": "footsteps-air",
+                  "pass": true,
+                  "detail": "No footsteps in the air"
+                },
+                {
+                  "id": "footsteps-death",
+                  "pass": true,
+                  "detail": "No footsteps after death"
+                },
+                {
+                  "id": "wind-air",
+                  "pass": true,
+                  "detail": "Wind responds to air movement"
+                },
+                {
+                  "id": "wind-ground",
+                  "pass": true,
+                  "detail": "Wind stops on the ground"
+                },
+                {
+                  "id": "wind-death",
+                  "pass": true,
+                  "detail": "Wind stops after death"
+                },
+                {
+                  "id": "event-land",
+                  "pass": true,
+                  "detail": "Audible finite land sound is mapped"
+                },
+                {
+                  "id": "event-pickup",
+                  "pass": true,
+                  "detail": "Audible finite pickup sound is mapped"
+                },
+                {
+                  "id": "event-hurt",
+                  "pass": true,
+                  "detail": "Audible finite hurt sound is mapped"
+                }
+              ],
+              "signal": {
+                "commandsApplied": 9,
+                "eventCommands": 3,
+                "addedVoices": 3,
+                "peak": 0.3160656690597534,
+                "preLimitPeak": 0.4178078682811953,
+                "saturatedSamples": 0
+              },
+              "seconds": 0.1154
+            }
+          }
+        ],
+        "verified": true,
+        "checks": [
+          {
+            "id": "master-level",
+            "pass": true,
+            "detail": "Kit output is enabled"
+          },
+          {
+            "id": "walking-source",
+            "pass": true,
+            "detail": "Footsteps use a continuous walking cadence"
+          },
+          {
+            "id": "wind-source",
+            "pass": true,
+            "detail": "Wind uses filtered continuous noise"
+          },
+          {
+            "id": "footsteps-run",
+            "pass": true,
+            "detail": "Footsteps respond to movement"
+          },
+          {
+            "id": "footsteps-rest",
+            "pass": true,
+            "detail": "No footsteps while still"
+          },
+          {
+            "id": "footsteps-air",
+            "pass": true,
+            "detail": "No footsteps in the air"
+          },
+          {
+            "id": "footsteps-death",
+            "pass": true,
+            "detail": "No footsteps after death"
+          },
+          {
+            "id": "wind-air",
+            "pass": true,
+            "detail": "Wind responds to air movement"
+          },
+          {
+            "id": "wind-ground",
+            "pass": true,
+            "detail": "Wind stops on the ground"
+          },
+          {
+            "id": "wind-death",
+            "pass": true,
+            "detail": "Wind stops after death"
+          },
+          {
+            "id": "event-land",
+            "pass": true,
+            "detail": "Audible finite land sound is mapped"
+          },
+          {
+            "id": "event-pickup",
+            "pass": true,
+            "detail": "Audible finite pickup sound is mapped"
+          },
+          {
+            "id": "event-hurt",
+            "pass": true,
+            "detail": "Audible finite hurt sound is mapped"
+          }
+        ],
+        "seconds": 90.751,
+        "record": "compile-6273534a78ff.json"
+      }
+    },
+    {
+      "id": "wood-kit",
+      "pass": true,
+      "httpStatus": 200,
+      "seconds": 79.27,
+      "record": "compile-2dc185cfab21.json",
+      "attempts": 1,
+      "errors": [],
+      "response": {
+        "rig": {
+          "version": 3,
+          "controls": [
+            {
+              "id": "speed",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "id": "air",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "id": "grounded",
+              "min": 0,
+              "max": 1
+            },
+            {
+              "id": "alive",
+              "min": 0,
+              "max": 1
+            }
+          ],
+          "events": [
+            "land",
+            "pickup",
+            "hurt"
+          ],
+          "master": 0.65,
+          "layers": [
+            {
+              "id": "footsteps",
+              "type": "sample",
+              "gain": {
+                "control": "speed",
+                "lo": 0,
+                "hi": 0.6
+              },
+              "pulseHz": {
+                "control": "speed",
+                "lo": 2,
+                "hi": 9
+              },
+              "when": [
+                {
+                  "control": "speed",
+                  "op": "above",
+                  "threshold": 0.01
+                },
+                {
+                  "control": "grounded",
+                  "op": "above",
+                  "threshold": 0.5
+                },
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": null,
+              "filter": null,
+              "samples": [
+                "step_wood_a",
+                "step_wood_b"
+              ],
+              "rate": {
+                "control": "speed",
+                "lo": 0.9,
+                "hi": 1.1
+              },
+              "variation": 0.04
+            },
+            {
+              "id": "wind",
+              "type": "noise",
+              "wave": "sine",
+              "frequency": 200,
+              "gain": {
+                "control": "air",
+                "lo": 0,
+                "hi": 0.25
+              },
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "air",
+                  "op": "above",
+                  "threshold": 0.01
+                },
+                {
+                  "control": "grounded",
+                  "op": "below",
+                  "threshold": 0.5
+                },
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": null,
+              "filter": {
+                "type": "lowpass",
+                "cutoff": 800
+              },
+              "envelope": {
+                "attack": 0.003,
+                "decay": 0.1,
+                "release": 0.05
+              },
+              "pitchEnd": 1
+            },
+            {
+              "id": "land_thud",
+              "type": "sample",
+              "gain": 0.55,
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": "land",
+              "filter": null,
+              "samples": [
+                "land_soft_a",
+                "land_soft_b"
+              ],
+              "rate": 1,
+              "variation": 0.03
+            },
+            {
+              "id": "pickup_chime",
+              "type": "sample",
+              "gain": 0.6,
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.5
+                }
+              ],
+              "event": "pickup",
+              "filter": null,
+              "samples": [
+                "pickup_confirm"
+              ],
+              "rate": 1,
+              "variation": 0.02
+            },
+            {
+              "id": "hurt_buzz",
+              "type": "sample",
+              "gain": 0.7,
+              "pulseHz": 0,
+              "when": [
+                {
+                  "control": "alive",
+                  "op": "above",
+                  "threshold": 0.1
+                }
+              ],
+              "event": "hurt",
+              "filter": null,
+              "samples": [
+                "hurt_error"
+              ],
+              "rate": 0.95,
+              "variation": 0.01
+            }
+          ]
+        },
+        "model": "muse-glimmer:30b-mlx",
+        "eval_count": 973,
+        "done_reason": "stop",
+        "modelSeconds": 79.033,
+        "attempts": [
+          {
+            "output": {
+              "version": 3,
+              "controls": [
+                {
+                  "id": "speed",
+                  "min": 0,
+                  "max": 1
+                },
+                {
+                  "id": "air",
+                  "min": 0,
+                  "max": 1
+                },
+                {
+                  "id": "grounded",
+                  "min": 0,
+                  "max": 1
+                },
+                {
+                  "id": "alive",
+                  "min": 0,
+                  "max": 1
+                }
+              ],
+              "events": [
+                "land",
+                "pickup",
+                "hurt"
+              ],
+              "master": 0.65,
+              "layers": [
+                {
+                  "id": "footsteps",
+                  "type": "sample",
+                  "gain": {
+                    "control": "speed",
+                    "lo": 0,
+                    "hi": 0.6
+                  },
+                  "pulseHz": {
+                    "control": "speed",
+                    "lo": 2,
+                    "hi": 9
+                  },
+                  "when": [
+                    {
+                      "control": "speed",
+                      "op": "above",
+                      "threshold": 0.01
+                    },
+                    {
+                      "control": "grounded",
+                      "op": "above",
+                      "threshold": 0.5
+                    },
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": null,
+                  "filter": null,
+                  "samples": [
+                    "step_wood_a",
+                    "step_wood_b"
+                  ],
+                  "rate": {
+                    "control": "speed",
+                    "lo": 0.9,
+                    "hi": 1.1
+                  },
+                  "variation": 0.04
+                },
+                {
+                  "id": "wind",
+                  "type": "noise",
+                  "wave": "sine",
+                  "frequency": 200,
+                  "gain": {
+                    "control": "air",
+                    "lo": 0,
+                    "hi": 0.25
+                  },
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "air",
+                      "op": "above",
+                      "threshold": 0.01
+                    },
+                    {
+                      "control": "grounded",
+                      "op": "below",
+                      "threshold": 0.5
+                    },
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": null,
+                  "filter": {
+                    "type": "lowpass",
+                    "cutoff": 800
+                  },
+                  "envelope": {
+                    "attack": 0.003,
+                    "decay": 0.1,
+                    "release": 0.05
+                  },
+                  "pitchEnd": 1
+                },
+                {
+                  "id": "land_thud",
+                  "type": "sample",
+                  "gain": 0.55,
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": "land",
+                  "filter": null,
+                  "samples": [
+                    "land_soft_a",
+                    "land_soft_b"
+                  ],
+                  "rate": 1,
+                  "variation": 0.03
+                },
+                {
+                  "id": "pickup_chime",
+                  "type": "sample",
+                  "gain": 0.6,
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.5
+                    }
+                  ],
+                  "event": "pickup",
+                  "filter": null,
+                  "samples": [
+                    "pickup_confirm"
+                  ],
+                  "rate": 1,
+                  "variation": 0.02
+                },
+                {
+                  "id": "hurt_buzz",
+                  "type": "sample",
+                  "gain": 0.7,
+                  "pulseHz": 0,
+                  "when": [
+                    {
+                      "control": "alive",
+                      "op": "above",
+                      "threshold": 0.1
+                    }
+                  ],
+                  "event": "hurt",
+                  "filter": null,
+                  "samples": [
+                    "hurt_error"
+                  ],
+                  "rate": 0.95,
+                  "variation": 0.01
+                }
+              ]
+            },
+            "verification": {
+              "ok": true,
+              "checks": [
+                {
+                  "id": "master-level",
+                  "pass": true,
+                  "detail": "Kit output is enabled"
+                },
+                {
+                  "id": "walking-source",
+                  "pass": true,
+                  "detail": "Footsteps use a continuous walking cadence"
+                },
+                {
+                  "id": "wind-source",
+                  "pass": true,
+                  "detail": "Wind uses filtered continuous noise"
+                },
+                {
+                  "id": "footsteps-run",
+                  "pass": true,
+                  "detail": "Footsteps respond to movement"
+                },
+                {
+                  "id": "footsteps-rest",
+                  "pass": true,
+                  "detail": "No footsteps while still"
+                },
+                {
+                  "id": "footsteps-air",
+                  "pass": true,
+                  "detail": "No footsteps in the air"
+                },
+                {
+                  "id": "footsteps-death",
+                  "pass": true,
+                  "detail": "No footsteps after death"
+                },
+                {
+                  "id": "wind-air",
+                  "pass": true,
+                  "detail": "Wind responds to air movement"
+                },
+                {
+                  "id": "wind-ground",
+                  "pass": true,
+                  "detail": "Wind stops on the ground"
+                },
+                {
+                  "id": "wind-death",
+                  "pass": true,
+                  "detail": "Wind stops after death"
+                },
+                {
+                  "id": "event-land",
+                  "pass": true,
+                  "detail": "Audible finite land sound is mapped"
+                },
+                {
+                  "id": "event-pickup",
+                  "pass": true,
+                  "detail": "Audible finite pickup sound is mapped"
+                },
+                {
+                  "id": "event-hurt",
+                  "pass": true,
+                  "detail": "Audible finite hurt sound is mapped"
+                }
+              ],
+              "signal": {
+                "commandsApplied": 9,
+                "eventCommands": 3,
+                "addedVoices": 3,
+                "peak": 0.31898391246795654,
+                "preLimitPeak": 0.4221378044744369,
+                "saturatedSamples": 0
+              },
+              "seconds": 0.1172
+            }
+          }
+        ],
+        "verified": true,
+        "checks": [
+          {
+            "id": "master-level",
+            "pass": true,
+            "detail": "Kit output is enabled"
+          },
+          {
+            "id": "walking-source",
+            "pass": true,
+            "detail": "Footsteps use a continuous walking cadence"
+          },
+          {
+            "id": "wind-source",
+            "pass": true,
+            "detail": "Wind uses filtered continuous noise"
+          },
+          {
+            "id": "footsteps-run",
+            "pass": true,
+            "detail": "Footsteps respond to movement"
+          },
+          {
+            "id": "footsteps-rest",
+            "pass": true,
+            "detail": "No footsteps while still"
+          },
+          {
+            "id": "footsteps-air",
+            "pass": true,
+            "detail": "No footsteps in the air"
+          },
+          {
+            "id": "footsteps-death",
+            "pass": true,
+            "detail": "No footsteps after death"
+          },
+          {
+            "id": "wind-air",
+            "pass": true,
+            "detail": "Wind responds to air movement"
+          },
+          {
+            "id": "wind-ground",
+            "pass": true,
+            "detail": "Wind stops on the ground"
+          },
+          {
+            "id": "wind-death",
+            "pass": true,
+            "detail": "Wind stops after death"
+          },
+          {
+            "id": "event-land",
+            "pass": true,
+            "detail": "Audible finite land sound is mapped"
+          },
+          {
+            "id": "event-pickup",
+            "pass": true,
+            "detail": "Audible finite pickup sound is mapped"
+          },
+          {
+            "id": "event-hurt",
+            "pass": true,
+            "detail": "Audible finite hurt sound is mapped"
+          }
+        ],
+        "seconds": 79.154,
+        "record": "compile-2dc185cfab21.json"
+      }
+    }
+  ],
+  "scope": "Frozen local cases; not a population success rate or human preference study."
+}

@@ -1,0 +1,11 @@
+{
+  "sourcePage": "https://kenney.nl/assets/interface-sounds",
+  "license": "CC0-1.0",
+  "purpose": "Held-out sound files not used in the original8-slot bank; 48kHz stereo WAV browser-import fixtures",
+  "files": {
+    "custom-hurt.wav": "5244068d5bcb276f5f03d139e7a7748382f737780599547a8a71625218120239",
+    "custom-hurt.ogg": "0b574cea597d96507e782ae9764f88482ce49f46e931e57054bf7150047f2d69",
+    "custom-pickup.ogg": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+    "custom-pickup.wav": "3cb8da88e3cb747c437d92b241ebca431b20b7fa9a210a0f95158b4444fe89dc"
+  }
+}

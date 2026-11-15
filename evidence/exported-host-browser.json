@@ -1,0 +1,38 @@
+{
+  "pass": true,
+  "scope": "Root agent observation through CUA browser UI, not an independent user study",
+  "bundleDigest": "cc5380f5ebee",
+  "authoringEnabledDuringTest": false,
+  "authoringFailureObserved": "Local Meta authoring is unavailable. Your current rig and exports still work. Your current rig is unchanged.",
+  "beforeCalls": {
+    "compile": 2,
+    "patch": 1,
+    "upstream": 3
+  },
+  "afterCalls": {
+    "compile": 2,
+    "patch": 1,
+    "upstream": 3
+  },
+  "host": "exported.html?v=cc5380f5ebee",
+  "bundleLoaded": true,
+  "sampleRate": 48000,
+  "score": 10,
+  "landings": 2,
+  "pickups": 1,
+  "renderedEvents": 2,
+  "audioStoppedAfterTest": true,
+  "authoringRestoredAfterTest": true,
+  "limitation": "Authoring was disabled in this app. This is not a machine-wide network disconnection or a hardware speaker-latency measurement.",
+  "postKeyboardRepairRetest": {
+    "pass": true,
+    "authoringEnabled": false,
+    "score": 10,
+    "landings": 2,
+    "pickups": 1,
+    "renderedEvents": 3,
+    "keyboardMovedGame": true,
+    "audioStopped": true,
+    "authoringRestored": true
+  }
+}

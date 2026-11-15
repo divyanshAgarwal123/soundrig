@@ -1,0 +1,9 @@
+{
+  "python": "3.10.13",
+  "node": "v25.9.0",
+  "platform": "macOS-27.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "ollama": "ollama version is 0.40.11",
+  "browser": "ChatGPT in-app browser; actual user M3 Max machine; sampleRate48000",
+  "scope": "Observed local environment, not tested portability matrix"
+}

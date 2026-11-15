@@ -1,0 +1,606 @@
+{
+  "pass": true,
+  "record": "patch-9363f96f2442.json",
+  "result": {
+    "patch": {
+      "layerId": "pickup_chime",
+      "changes": {
+        "gain": 0.3
+      }
+    },
+    "model": "muse-glimmer:30b-mlx",
+    "eval_count": 132,
+    "done_reason": "stop",
+    "modelSeconds": 44.636,
+    "attempts": [
+      {
+        "output": {
+          "layerId": "pickup_chime",
+          "changes": {
+            "gain": 0.3
+          }
+        },
+        "verification": {
+          "ok": true,
+          "checks": [
+            {
+              "id": "master-level",
+              "pass": true,
+              "detail": "Kit output is enabled"
+            },
+            {
+              "id": "walking-source",
+              "pass": true,
+              "detail": "Footsteps use a continuous walking cadence"
+            },
+            {
+              "id": "wind-source",
+              "pass": true,
+              "detail": "Wind uses filtered continuous noise"
+            },
+            {
+              "id": "footsteps-run",
+              "pass": true,
+              "detail": "Footsteps respond to movement"
+            },
+            {
+              "id": "footsteps-rest",
+              "pass": true,
+              "detail": "No footsteps while still"
+            },
+            {
+              "id": "footsteps-air",
+              "pass": true,
+              "detail": "No footsteps in the air"
+            },
+            {
+              "id": "footsteps-death",
+              "pass": true,
+              "detail": "No footsteps after death"
+            },
+            {
+              "id": "wind-air",
+              "pass": true,
+              "detail": "Wind responds to air movement"
+            },
+            {
+              "id": "wind-ground",
+              "pass": true,
+              "detail": "Wind stops on the ground"
+            },
+            {
+              "id": "wind-death",
+              "pass": true,
+              "detail": "Wind stops after death"
+            },
+            {
+              "id": "event-land",
+              "pass": true,
+              "detail": "Audible finite land sound is mapped"
+            },
+            {
+              "id": "event-pickup",
+              "pass": true,
+              "detail": "Audible finite pickup sound is mapped"
+            },
+            {
+              "id": "event-hurt",
+              "pass": true,
+              "detail": "Audible finite hurt sound is mapped"
+            }
+          ],
+          "signal": {
+            "commandsApplied": 9,
+            "eventCommands": 3,
+            "addedVoices": 3,
+            "peak": 0.35895928740501404,
+            "preLimitPeak": 0.3589592896203994,
+            "saturatedSamples": 0
+          },
+          "contract": {
+            "version": 1,
+            "pass": true,
+            "contractSHA256": "595f7d7c9b5d261176305c461bd08a4eb0081f67e1437cfba27f3ec405b0ea01",
+            "rigSHA256": "c34e2948f575b298a96f2f51125a4e4d1e33603262f91d71d3503438c682557c",
+            "settings": {
+              "sampleRate": 48000,
+              "blockSize": 128,
+              "seed": 17,
+              "epsilon": 1e-09,
+              "cueWindowMs": 250
+            },
+            "cases": [
+              {
+                "id": "Connected runner",
+                "pass": true,
+                "failures": [],
+                "provenance": {
+                  "kind": "captured",
+                  "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}",
+                  "source": "Actual independent runner; separate outcomes1land,2parcels,1hit"
+                },
+                "traceSHA256": "73261386fa110635453c083dd7a8889e3dc6c8e1f750de46ae8d180e31c70815",
+                "pcmSHA256": "db30e70fc8afa980af343cadd66f08aceaada3ce5dead89b3cfcd6668b782f0a",
+                "commands": 109,
+                "events": {
+                  "hurt": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.027654355195806057,
+                    "threshold": 0.001
+                  },
+                  "land": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.06287703177369564,
+                    "threshold": 0.001
+                  },
+                  "pickup": {
+                    "count": 2,
+                    "expected": 2,
+                    "minimumCueRMS": 0.031384976380758045,
+                    "threshold": 0.001
+                  }
+                },
+                "rms": 0.023353134588517913,
+                "summary": {
+                  "commandsApplied": 109,
+                  "eventCommands": 4,
+                  "addedVoices": 4,
+                  "peak": 0.34075161814689636,
+                  "preLimitPeak": 0.34075163114705487,
+                  "saturatedSamples": 0
+                },
+                "silence": []
+              },
+              {
+                "id": "Dead idle",
+                "pass": true,
+                "failures": [],
+                "provenance": {
+                  "kind": "synthetic",
+                  "source": "Synthetic dead-idle control"
+                },
+                "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+                "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+                "commands": 0,
+                "events": {},
+                "rms": 0,
+                "summary": {
+                  "commandsApplied": 0,
+                  "eventCommands": 0,
+                  "addedVoices": 0,
+                  "peak": 0,
+                  "preLimitPeak": 0,
+                  "saturatedSamples": 0
+                },
+                "silence": [
+                  {
+                    "fromMs": 0,
+                    "maxRMS": 0,
+                    "toMs": 1000,
+                    "rms": 0
+                  }
+                ]
+              },
+              {
+                "id": "Adapter platformer",
+                "pass": true,
+                "failures": [],
+                "provenance": {
+                  "kind": "captured",
+                  "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}",
+                  "source": "Actual Phaser adapter run; separate game counters1landing,2pickups,0damage"
+                },
+                "traceSHA256": "010c173d08b0b0142e96026f0e2f6df697767cb52236e4fc791425d2598728f3",
+                "pcmSHA256": "64548441e4a7c31d21eef3a9a24d36d448eff16bd5b24bf91560ea22f739a3e2",
+                "commands": 240,
+                "events": {
+                  "hurt": {
+                    "count": 0,
+                    "expected": 0,
+                    "minimumCueRMS": null,
+                    "threshold": 0
+                  },
+                  "land": {
+                    "count": 1,
+                    "expected": 1,
+                    "minimumCueRMS": 0.043385151945125135,
+                    "threshold": 0.001
+                  },
+                  "pickup": {
+                    "count": 2,
+                    "expected": 2,
+                    "minimumCueRMS": 0.031384976380758045,
+                    "threshold": 0.001
+                  }
+                },
+                "rms": 0.015660788115525223,
+                "summary": {
+                  "commandsApplied": 240,
+                  "eventCommands": 3,
+                  "addedVoices": 3,
+                  "peak": 0.16789470613002777,
+                  "preLimitPeak": 0.16789470767640302,
+                  "saturatedSamples": 0
+                },
+                "silence": []
+              }
+            ],
+            "coverage": {
+              "hurt": 1,
+              "land": 2,
+              "pickup": 4
+            },
+            "missingEvents": [],
+            "seconds": 0.136260791,
+            "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+            "componentSHA256": "6d62054811671d33212a4f679647458227d2fab8c3933d6872b4bdd317a83848",
+            "projectSnapshotSHA256": "c4fd96187589244901a50e98f3a26859b5d11a9ae2fba27d9141ed6e35194741"
+          },
+          "seconds": 0.4521
+        }
+      }
+    ],
+    "verified": true,
+    "checks": [
+      {
+        "id": "master-level",
+        "pass": true,
+        "detail": "Kit output is enabled"
+      },
+      {
+        "id": "walking-source",
+        "pass": true,
+        "detail": "Footsteps use a continuous walking cadence"
+      },
+      {
+        "id": "wind-source",
+        "pass": true,
+        "detail": "Wind uses filtered continuous noise"
+      },
+      {
+        "id": "footsteps-run",
+        "pass": true,
+        "detail": "Footsteps respond to movement"
+      },
+      {
+        "id": "footsteps-rest",
+        "pass": true,
+        "detail": "No footsteps while still"
+      },
+      {
+        "id": "footsteps-air",
+        "pass": true,
+        "detail": "No footsteps in the air"
+      },
+      {
+        "id": "footsteps-death",
+        "pass": true,
+        "detail": "No footsteps after death"
+      },
+      {
+        "id": "wind-air",
+        "pass": true,
+        "detail": "Wind responds to air movement"
+      },
+      {
+        "id": "wind-ground",
+        "pass": true,
+        "detail": "Wind stops on the ground"
+      },
+      {
+        "id": "wind-death",
+        "pass": true,
+        "detail": "Wind stops after death"
+      },
+      {
+        "id": "event-land",
+        "pass": true,
+        "detail": "Audible finite land sound is mapped"
+      },
+      {
+        "id": "event-pickup",
+        "pass": true,
+        "detail": "Audible finite pickup sound is mapped"
+      },
+      {
+        "id": "event-hurt",
+        "pass": true,
+        "detail": "Audible finite hurt sound is mapped"
+      }
+    ],
+    "contract": {
+      "version": 1,
+      "pass": true,
+      "contractSHA256": "595f7d7c9b5d261176305c461bd08a4eb0081f67e1437cfba27f3ec405b0ea01",
+      "rigSHA256": "c34e2948f575b298a96f2f51125a4e4d1e33603262f91d71d3503438c682557c",
+      "settings": {
+        "sampleRate": 48000,
+        "blockSize": 128,
+        "seed": 17,
+        "epsilon": 1e-09,
+        "cueWindowMs": 250
+      },
+      "cases": [
+        {
+          "id": "Connected runner",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "captured",
+            "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}",
+            "source": "Actual independent runner; separate outcomes1land,2parcels,1hit"
+          },
+          "traceSHA256": "73261386fa110635453c083dd7a8889e3dc6c8e1f750de46ae8d180e31c70815",
+          "pcmSHA256": "db30e70fc8afa980af343cadd66f08aceaada3ce5dead89b3cfcd6668b782f0a",
+          "commands": 109,
+          "events": {
+            "hurt": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.027654355195806057,
+              "threshold": 0.001
+            },
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.06287703177369564,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 2,
+              "expected": 2,
+              "minimumCueRMS": 0.031384976380758045,
+              "threshold": 0.001
+            }
+          },
+          "rms": 0.023353134588517913,
+          "summary": {
+            "commandsApplied": 109,
+            "eventCommands": 4,
+            "addedVoices": 4,
+            "peak": 0.34075161814689636,
+            "preLimitPeak": 0.34075163114705487,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        },
+        {
+          "id": "Dead idle",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "synthetic",
+            "source": "Synthetic dead-idle control"
+          },
+          "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+          "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+          "commands": 0,
+          "events": {},
+          "rms": 0,
+          "summary": {
+            "commandsApplied": 0,
+            "eventCommands": 0,
+            "addedVoices": 0,
+            "peak": 0,
+            "preLimitPeak": 0,
+            "saturatedSamples": 0
+          },
+          "silence": [
+            {
+              "fromMs": 0,
+              "maxRMS": 0,
+              "toMs": 1000,
+              "rms": 0
+            }
+          ]
+        },
+        {
+          "id": "Adapter platformer",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "captured",
+            "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}",
+            "source": "Actual Phaser adapter run; separate game counters1landing,2pickups,0damage"
+          },
+          "traceSHA256": "010c173d08b0b0142e96026f0e2f6df697767cb52236e4fc791425d2598728f3",
+          "pcmSHA256": "64548441e4a7c31d21eef3a9a24d36d448eff16bd5b24bf91560ea22f739a3e2",
+          "commands": 240,
+          "events": {
+            "hurt": {
+              "count": 0,
+              "expected": 0,
+              "minimumCueRMS": null,
+              "threshold": 0
+            },
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.043385151945125135,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 2,
+              "expected": 2,
+              "minimumCueRMS": 0.031384976380758045,
+              "threshold": 0.001
+            }
+          },
+          "rms": 0.015660788115525223,
+          "summary": {
+            "commandsApplied": 240,
+            "eventCommands": 3,
+            "addedVoices": 3,
+            "peak": 0.16789470613002777,
+            "preLimitPeak": 0.16789470767640302,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        }
+      ],
+      "coverage": {
+        "hurt": 1,
+        "land": 2,
+        "pickup": 4
+      },
+      "missingEvents": [],
+      "seconds": 0.136260791,
+      "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+      "componentSHA256": "6d62054811671d33212a4f679647458227d2fab8c3933d6872b4bdd317a83848",
+      "projectSnapshotSHA256": "c4fd96187589244901a50e98f3a26859b5d11a9ae2fba27d9141ed6e35194741"
+    },
+    "baselineContract": {
+      "version": 1,
+      "pass": true,
+      "contractSHA256": "595f7d7c9b5d261176305c461bd08a4eb0081f67e1437cfba27f3ec405b0ea01",
+      "rigSHA256": "3606f75bcca415df736f76026e3f38381f2ed4c359844750ba6b03909edb1979",
+      "settings": {
+        "sampleRate": 48000,
+        "blockSize": 128,
+        "seed": 17,
+        "epsilon": 1e-09,
+        "cueWindowMs": 250
+      },
+      "cases": [
+        {
+          "id": "Connected runner",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "captured",
+            "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}",
+            "source": "Actual independent runner; separate outcomes1land,2parcels,1hit"
+          },
+          "traceSHA256": "73261386fa110635453c083dd7a8889e3dc6c8e1f750de46ae8d180e31c70815",
+          "pcmSHA256": "7b483fda59fa5422a946c6229d2d28001b4d707530807b906630f6a2dafd55a4",
+          "commands": 109,
+          "events": {
+            "hurt": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.027654355195806057,
+              "threshold": 0.001
+            },
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.06287703177369564,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 2,
+              "expected": 2,
+              "minimumCueRMS": 0.02929264461033999,
+              "threshold": 0.001
+            }
+          },
+          "rms": 0.02311581053968133,
+          "summary": {
+            "commandsApplied": 109,
+            "eventCommands": 4,
+            "addedVoices": 4,
+            "peak": 0.34075161814689636,
+            "preLimitPeak": 0.34075163114705487,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        },
+        {
+          "id": "Dead idle",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "synthetic",
+            "source": "Synthetic dead-idle control"
+          },
+          "traceSHA256": "bf350c278e57c54d327574c2b64262c4a4ad5482659d4c246c8e69451030830d",
+          "pcmSHA256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+          "commands": 0,
+          "events": {},
+          "rms": 0,
+          "summary": {
+            "commandsApplied": 0,
+            "eventCommands": 0,
+            "addedVoices": 0,
+            "peak": 0,
+            "preLimitPeak": 0,
+            "saturatedSamples": 0
+          },
+          "silence": [
+            {
+              "fromMs": 0,
+              "maxRMS": 0,
+              "toMs": 1000,
+              "rms": 0
+            }
+          ]
+        },
+        {
+          "id": "Adapter platformer",
+          "pass": true,
+          "failures": [],
+          "provenance": {
+            "kind": "captured",
+            "mappingID": "{\"version\":1,\"controls\":{\"speed\":{\"field\":\"vx\",\"min\":0,\"max\":160,\"absolute\":true,\"invert\":false},\"air\":{\"field\":\"vy\",\"min\":0,\"max\":330,\"absolute\":true,\"invert\":false},\"grounded\":{\"field\":\"onGround\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":false},\"alive\":{\"field\":\"gameOver\",\"min\":0,\"max\":1,\"absolute\":false,\"invert\":true}},\"events\":{\"collected\":\"pickup\",\"damaged\":\"hurt\",\"landed\":\"land\"}}",
+            "source": "Actual Phaser adapter run; separate game counters1landing,2pickups,0damage"
+          },
+          "traceSHA256": "010c173d08b0b0142e96026f0e2f6df697767cb52236e4fc791425d2598728f3",
+          "pcmSHA256": "7c9eb3ad12f154b1a41d91e4468e9bbcb7a0d6b3ac47386cf43c615c666ba41d",
+          "commands": 240,
+          "events": {
+            "hurt": {
+              "count": 0,
+              "expected": 0,
+              "minimumCueRMS": null,
+              "threshold": 0
+            },
+            "land": {
+              "count": 1,
+              "expected": 1,
+              "minimumCueRMS": 0.043385151945125135,
+              "threshold": 0.001
+            },
+            "pickup": {
+              "count": 2,
+              "expected": 2,
+              "minimumCueRMS": 0.02929264461033999,
+              "threshold": 0.001
+            }
+          },
+          "rms": 0.015305771032265948,
+          "summary": {
+            "commandsApplied": 240,
+            "eventCommands": 3,
+            "addedVoices": 3,
+            "peak": 0.16789470613002777,
+            "preLimitPeak": 0.16789470767640302,
+            "saturatedSamples": 0
+          },
+          "silence": []
+        }
+      ],
+      "coverage": {
+        "hurt": 1,
+        "land": 2,
+        "pickup": 4
+      },
+      "missingEvents": [],
+      "seconds": 0.136457833,
+      "scope": "Declared event counts and arithmetic signal checks on the exact project runtime. Cue RMS isolates named-event layers; same-event tails overlap. No perception or ownership certification.",
+      "projectSHA256": "1cc3943bbcd2490e1ccd32def9dc6c2c50e6f6f04cf622203269a8057612a6fd",
+      "componentSHA256": "54752aa1cd28a69fe0004d4feabf685b2489b2f95e0b2d7da29ba7e87ed2f6a8"
+    },
+    "seconds": 45.365,
+    "record": "patch-9363f96f2442.json"
+  },
+  "fourLockedLayersUnchanged": true,
+  "originalImportedWAVExact": true,
+  "observedCallsBeforeServerRestart": {
+    "compile": 0,
+    "patch": 1,
+    "upstream": 1
+  },
+  "scope": "Actual local Glimmer guarded patch and separate deterministic comparisons. No hosted Meta credit or outside user/listener measurement."
+}

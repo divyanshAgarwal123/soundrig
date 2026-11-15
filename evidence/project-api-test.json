@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "cases": 5,
+  "scope": "Explicit admission/cache fixtures plus actual browser-downloaded ZIP integrity. No inference or network calls."
+}

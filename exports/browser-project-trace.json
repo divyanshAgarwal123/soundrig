@@ -1,0 +1,1674 @@
+{
+  "version": 1,
+  "durationMs": 6000,
+  "initial": {
+    "speed": 0,
+    "air": 0,
+    "grounded": 1,
+    "alive": 1
+  },
+  "commands": [
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 1,
+        "air": 0,
+        "grounded": 1,
+        "alive": 1
+      },
+      "atMs": 535.6000000005588
+    },
+    {
+      "type": "event",
+      "event": "pickup",
+      "intensity": 1,
+      "atMs": 1552.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0,
+        "grounded": 1,
+        "alive": 1
+      },
+      "atMs": 1936.1000000005588
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9848484848484849,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 1968.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 1985.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9545454545454546,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2002.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9393939393939394,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2018.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9242424242424242,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2035.6000000005588
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9090909090909091,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2051.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8939393939393939,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2068.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8787878787878788,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2085.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8636363636363636,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2102.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2118.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8333333333333334,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2134.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8181818181818182,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2151.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.803030303030303,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2168.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7878787878787878,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2185
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2200.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7575757575757576,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2217.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7424242424242424,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2236.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7272727272727273,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2251.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7121212121212122,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2268.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2283.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6818181818181818,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2301.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6666666666666666,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2318
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6515151515151515,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2335.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6363636363636364,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2350.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6212121212121212,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2368.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6060606060606061,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2384.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5909090909090909,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2401.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5757575757575758,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2418.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5606060606060606,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2434.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5454545454545454,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2451.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5303030303030303,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2468.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5151515151515151,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2485.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2502.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.48484848484848486,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2518.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.4696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2534.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.45454545454545453,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2552
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.4393939393939394,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2568.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.42424242424242425,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2584.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.4090909090909091,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2600.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3939393939393939,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2618.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3787878787878788,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2634.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.36363636363636365,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2652.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2667.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3333333333333333,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2684.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3181818181818182,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2702.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.30303030303030304,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2718.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.2878787878787879,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2735.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.2727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2751.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.25757575757575757,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2768.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.24242424242424243,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2785.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.22727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2803.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.21212121212121213,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2818.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.19696969696969696,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2835.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.18181818181818182,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2852.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.16666666666666666,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2868.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.15151515151515152,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2884.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.13636363636363635,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2902.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.12121212121212122,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2918.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.10606060606060606,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2934.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.09090909090909091,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2951.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.07575757575757576,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2968.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.06060606060606061,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 2984.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.045454545454545456,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3002.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.030303030303030304,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3019.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.015151515151515152,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3034.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3051.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.015151515151515152,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3068.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.030303030303030304,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3085.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.045454545454545456,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3102.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.06060606060606061,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3118.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.07575757575757576,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3135
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.09090909090909091,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3152.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.10606060606060606,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3168.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.12121212121212122,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3184.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.13636363636363635,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3200.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.15151515151515152,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3218
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.16666666666666666,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3234.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.18181818181818182,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3252
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.19696969696969696,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3268.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.21212121212121213,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3285.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.22727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3302.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.24242424242424243,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3318.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.25757575757575757,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3334.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.2727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3350.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.2878787878787879,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3368
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.30303030303030304,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3385.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3181818181818182,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3401.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3333333333333333,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3418.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3435.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.36363636363636365,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3451.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3787878787878788,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3468.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.3939393939393939,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3484.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.4090909090909091,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3501.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.42424242424242425,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3518.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.4393939393939394,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3534.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.45454545454545453,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3551.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.4696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3568
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.48484848484848486,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3584.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3601.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5151515151515151,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3618.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5303030303030303,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3636.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5454545454545454,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3651.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5606060606060606,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3668.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5757575757575758,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3684.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.5909090909090909,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3701.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6060606060606061,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3718.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6212121212121212,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3734.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6363636363636364,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3751.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6515151515151515,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3768.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6666666666666666,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3785.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.6818181818181818,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3803.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3818.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7121212121212122,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3833.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7272727272727273,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3851.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7424242424242424,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3868
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7575757575757576,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3885.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3901.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.7878787878787878,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3918.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.803030303030303,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3934.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8181818181818182,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3951.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8333333333333334,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3967.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 3984.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8636363636363636,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4000.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8787878787878788,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4018.7000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.8939393939393939,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4034.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9090909090909091,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4050.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9242424242424242,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4067.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9393939393939394,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4086.2000000001863
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9545454545454546,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4102.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4118
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.9848484848484849,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4134.5
+    },
+    {
+      "type": "event",
+      "event": "land",
+      "intensity": 0.65,
+      "atMs": 4151.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0,
+        "grounded": 1,
+        "alive": 1
+      },
+      "atMs": 4151.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.18484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4168.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.1696969696969697,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4185
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.15454545454545454,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4201.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.1393939393939394,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4218.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.12424242424242424,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4234.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.10909090909090909,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4251.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.09393939393939393,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4268.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.07878787878787878,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4284.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.06363636363636363,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4301.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.048484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4317.700000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.03333333333333333,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4334.600000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.01818181818181818,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4351.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.0030303030303030303,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4367.9000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.012121212121212121,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4384.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.02727272727272727,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4403.100000000559
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.04242424242424243,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4417.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.05757575757575758,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4434.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.07272727272727272,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4451.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.08787878787878788,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4468.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.10303030303030303,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4484.5
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.11818181818181818,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4501.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.13333333333333333,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4517.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.1484848484848485,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4536
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.16363636363636364,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4552
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.1787878787878788,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4568.4000000003725
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0,
+        "grounded": 1,
+        "alive": 1
+      },
+      "atMs": 4585
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.02363636363636364,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4601.700000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.008484848484848487,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4616.300000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.0066666666666666645,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4634.800000000745
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0.021818181818181816,
+        "grounded": 0,
+        "alive": 1
+      },
+      "atMs": 4651.200000000186
+    },
+    {
+      "type": "controls",
+      "controls": {
+        "speed": 0,
+        "air": 0,
+        "grounded": 1,
+        "alive": 1
+      },
+      "atMs": 4668.600000000559
+    }
+  ]
+}

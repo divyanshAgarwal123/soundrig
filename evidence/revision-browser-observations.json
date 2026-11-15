@@ -1,0 +1,62 @@
+{
+  "pass": true,
+  "scope": "Root-operated actual browser UI on loopback; desktop and viewport-emulated phone. No outside developer, physical touch or listening preference study.",
+  "workflow": [
+    "Landing to working example; two CC0 imported recordings and three check definitions",
+    "Named baseline and applied-mix saves",
+    "Actual custom WAV preview original/prepared, explicit Use, protected cue gain/rate edit",
+    "Intentionally impossible current check rejected restore; active gain/history count retained",
+    "Successful restore made automatic recovery; result visibly UNCHECKED; recovery checkpoint restored prior gain",
+    "Current protection OFF restored stored definitions/protection; ON retained current definitions even when historical snapshot had none",
+    "Project JSON save/reopen; eighth runtime load succeeded; ninth refused while retaining active work",
+    "Actual fresh Muse Glimmer constrained pickup gain patch; four other layers and original WAV exact",
+    "Native keyboard gameplay capture: nineteen commands, three pickups, one damage, zero landings",
+    "Four checks pass; saved captured session; portable download and import added history without active replacement",
+    "Malformed, oversized and invalid deeply nested portable files refused without active replacement",
+    "Remove confirmation Cancel retained selected revision",
+    "Browser-downloaded integration workflow and Phaser/Godot kits verified separately",
+    "Actual source-server restart retained all ten checkpoint IDs existing at that test",
+    "Restart game then Enable audio once gave Audio on",
+    "Final restored captured session: four checks PASS and browser/export PCM matched",
+    "Inspect exact gain 0.30 to 0.28, selected run19 to9 commands and checks4 to3; active version unchanged"
+  ],
+  "gameCapture": {
+    "durationSeconds": 6,
+    "commands": 19,
+    "independentCounts": {
+      "land": 0,
+      "pickup": 3,
+      "hurt": 1
+    }
+  },
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 800,
+      "documentScrollWidth": 1280,
+      "tabs": 5,
+      "tabHeight": 46,
+      "inspectionFocus": "revision-selected",
+      "restoreReachable": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "tabsFit": true,
+      "tabHeight": 46,
+      "inspectionFocus": "revision-selected",
+      "restoreTop": 416.5078125,
+      "restoreHeight": 44
+    }
+  ],
+  "consoleErrorsObserved": [],
+  "slowHostObservation": "One preview attempt hit the existing local subprocess verification timeout; active version and PASS report remained intact. Retry succeeded. Server error now specifically identifies local revision verification timeout and has an injected regression test. No causal memory-pressure claim.",
+  "notVerified": [
+    "Physical phone touch/audio",
+    "Screen-reader equivalent canvas gameplay",
+    "Outside developer task completion/time savings/return use",
+    "Human sound preference",
+    "Public submission or prize eligibility decision"
+  ]
+}
