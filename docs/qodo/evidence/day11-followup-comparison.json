@@ -1,0 +1,26 @@
+{
+  "before": {
+    "run_id": 1987247,
+    "commit_sha": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+    "started_at": "2026-11-16T13:27:21.194463Z",
+    "status": "completed",
+    "review_effort": "skip",
+    "review_complete": false
+  },
+  "after": {
+    "run_id": 1989959,
+    "commit_sha": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+    "started_at": "2026-11-16T15:26:27.620445Z",
+    "status": "completed",
+    "review_effort": "standard",
+    "review_complete": true
+  },
+  "sameHeadBaseAndCodeDiff": true,
+  "diffSHA256": "886f186319e042e70004e8ed2a68977f1d9e26d75e1c69946f4609ec95812df6",
+  "findings": 0,
+  "configuration": "per-request smart_router_extra_instructions explicitly asks for executed standard/balanced analysis rather than skip",
+  "effectiveInstructionsEchoed": false,
+  "bodyMatchesSavedAuthorPayload": true,
+  "observedBenefit": "The prior request skipped analysis; the follow-up actually ran standard review and completed coverage at the unchanged head. No code findings were reported.",
+  "causalLimits": "One routing result, not isolated causality; elapsed time, cache and provider differences were not measured. Rendered UI was not retested."
+}
