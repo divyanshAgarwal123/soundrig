@@ -38,8 +38,8 @@ httpd.serve_forever()
 
 
 EXCLUDED = shutil.ignore_patterns(
-    '.git', '.soundrig-revisions', '.qodo', '.agents', '.qa-output',
-    '__pycache__', '.godot', '.env', '.env.*', '*.sqlite3*')
+    '.git', '.soundrig-revisions', '.qodo', '.qodo-review', '.agents', '.qa-output',
+    '__pycache__', '.godot', '.env', '.env.*', '*.sqlite3*', 'skills-lock.json')
 
 
 def private_or_links(folder, names):
@@ -94,14 +94,19 @@ def main():
                 pending = output/('receipt-'+uuid.uuid4().hex+'.tmp')
                 pending.write_text(text)
                 pending.replace(latest)
-    receipt(initial=True)
     previous_term = signal.getsignal(signal.SIGTERM)
     def terminated(signum, frame):
         signal.signal(signal.SIGTERM, signal.SIG_IGN)
         raise InterruptedError('Runner terminated; owned children are being stopped')
-    signal.signal(signal.SIGTERM, terminated)
     began = time.monotonic()
     try:
+        signal.signal(signal.SIGTERM, terminated)
+        # Publish the first nonpassing receipt before delivering a pending termination.
+        previous_mask = signal.pthread_sigmask(signal.SIG_BLOCK, {signal.SIGTERM})
+        try:
+            receipt(initial=True)
+        finally:
+            signal.pthread_sigmask(signal.SIG_SETMASK, previous_mask)
         with tempfile.TemporaryDirectory(prefix='soundrig-ci-') as temp:
             workspace = Path(temp)/'studio'
             shutil.copytree(ROOT, workspace, ignore=private_or_links)
@@ -160,6 +165,8 @@ def main():
         report.update(error=f'{type(error).__name__}: {error}')
         report['pass'] = False
     finally:
+        # Child cleanup is complete; do not interrupt final receipt publication.
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
         report['seconds'] = round(time.monotonic()-began, 3)
         report['python'] = sys.version.split()[0]
         report['status'] = 'passed' if report['pass'] else 'failed'
