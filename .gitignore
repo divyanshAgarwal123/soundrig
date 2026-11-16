@@ -14,3 +14,5 @@ __pycache__/
 # Historical fixtures below are explicitly tracked in the baseline.
 evidence/*
 exports/*
+.agents/
+skills-lock.json

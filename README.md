@@ -20,7 +20,16 @@ Fresh authoring separately requires Ollama with `muse-glimmer:30b-mlx` available
 Static cues do not reproduce dynamic wind, cadence, changing controls or cue-focus ducking. Takes may match when no variation is authored. Original WAV data and declarations travel in exports; declarations are not ownership verification.
 
 ## Verify
-With this studio server running:
+For a fresh checkout on macOS or Linux, this starts and stops its own offline server in a temporary source copy. Port 8772 must be free. Private history and Qodo credentials are excluded; the original source tree is left untouched. No fresh inference is performed.
+
+```sh
+python3 ci/test_check.py
+python3 ci/check.py
+```
+
+The latest `.qa-output/latest/receipt.json` points to a unique run directory containing its receipts and logs. Earlier runs are preserved separately, so a failed rerun cannot reuse an older PASS. A failure or timeout returns nonzero. GitHub Actions runs the same suite on Ubuntu with Python 3.10 and Node 22, plus a separate official Godot 4.7.2 native job; the engine archive and Actions are pinned. Passing native Dummy audio checks does not establish listening quality.
+
+Alternatively, with this studio server already running:
 
 ```sh
 python3 run_checks.py
