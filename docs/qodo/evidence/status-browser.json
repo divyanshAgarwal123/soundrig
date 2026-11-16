@@ -1,0 +1,14 @@
+{
+  "verifiedAtUTC": "2026-11-16T08:58:03.272Z",
+  "restoreThenPass": {
+    "revision": "Restored “Qodo status regression”. Your previous work is saved as a recovery checkpoint. See Saved checks below for current verification results. Re-export to deliver this version.",
+    "checks": "PASS · 3 checks · browser/export PCM matched.",
+    "usage": "2 / 24 saved · 0.3 / 48 MiB of snapshots. No automatic deletion."
+  },
+  "invalidDefinitions": {
+    "checks": "Expected property name or '}' in JSON at position 1 (line 1 column 2)",
+    "rows": "Unchecked · Connected runner · captured\n\nExpected · Landings 1 · Pickups 2 · Damage 1\n\nReplay these inputs\nUnchecked · Dead idle · synthetic\n\nExpected · Landings not set · Pickups not set · Damage not set\n\nReplay these inputs\nUnchecked · Adapter platformer · captured\n\nExpected · Landings 1 · Pickups 2 · Damage 0\n\nReplay these inputs"
+  },
+  "recovered": "PASS · 3 checks · browser/export PCM matched.",
+  "scope": "Actual browser UI against the new isolated SoundRig checkout; no new model call, physical listening or outside user claim."
+}
