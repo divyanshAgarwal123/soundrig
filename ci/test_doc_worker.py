@@ -13,7 +13,7 @@ from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('worker',Path(__file__).with_name('doc_worker.py'))
 w = importlib.util.module_from_spec(spec); spec.loader.exec_module(w)
-PLAN = {'rationale':'Use these safety tests to prepare a SoundRig change for handoff.','commands':sorted(w.COMMANDS)}
+PLAN = {'rationale':'Use these safety tests to prepare a SoundRig change for handoff.','commands':list(w.COMMAND_ORDER)}
 SECTION = w.HEADER+'\n\n'+w.INTRO+'\n\n```sh\n'+'\n'.join(PLAN['commands'])+'\n```\n\n'+w.CAVEAT
 
 
@@ -85,6 +85,25 @@ class WorkerTests(unittest.TestCase):
         value={'rationale':'é'*w.MAX_RATIONALE_CHARS,'commands':list(w.COMMAND_ORDER)}
         self.assertIn(w.CAVEAT,w.insert_section(original,value))
         with self.assertRaises(ValueError):w.insert_section(original,{**value,'rationale':value['rationale']+'é'})
+
+    def test_nonzero_gate_stays_last_so_shell_runs_both_safety_tests(self):
+        import itertools
+        folder=self.path/'shell';(folder/'ci').mkdir(parents=True)
+        marker=folder/'ran'
+        for name,label in [('test_native_receipt.py','native'),('test_review_gate.py','gate-tests')]:
+            (folder/'ci'/name).write_text('from pathlib import Path\nwith Path("ran").open("a") as f:f.write('+repr(label+'\n')+')\n')
+        (folder/'ci/review_gate.py').write_text('raise SystemExit(1)\n')
+        for commands in itertools.permutations(w.COMMAND_ORDER):
+            value={**PLAN,'commands':list(commands)}
+            if commands[-1] != w.COMMAND_ORDER[-1]:
+                with self.assertRaises(ValueError):w.insert_section(w.ANCHOR,value)
+            else:
+                section=w.insert_section(w.ANCHOR,value)
+                script=section.split('```sh\n',1)[1].split('```',1)[0]
+                result=subprocess.run(['/bin/bash','-e','-c',script],cwd=folder,capture_output=True,text=True)
+                self.assertEqual(result.returncode,1)
+                self.assertEqual(set(marker.read_text().splitlines()),{'native','gate-tests'})
+                marker.unlink()
 
     def test_handoff_keeps_alternative_server_instructions_together(self):
         original='## Verify\nOwned server commands\n\nAlternatively, with this studio server already running:\nExisting alternative commands\n\n## Main files\nFiles'
