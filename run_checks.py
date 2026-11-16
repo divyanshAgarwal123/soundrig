@@ -21,7 +21,15 @@ checks = [
 results = []
 for command in checks:
     began = time.monotonic()
-    result = subprocess.run(command, cwd=root, text=True, capture_output=True, timeout=90)
+    try:
+        result = subprocess.run(command, cwd=root, text=True, capture_output=True, timeout=90)
+    except subprocess.TimeoutExpired as error:
+        results.append({'command': command, 'pass': False, 'timedOut': True,
+                        'seconds': round(time.monotonic()-began, 3)})
+        print('FAIL ' + command[-1] + ': exceeded 90 second limit', flush=True)
+        print((error.stdout or b'').decode() if isinstance(error.stdout, bytes) else (error.stdout or ''))
+        print((error.stderr or b'').decode() if isinstance(error.stderr, bytes) else (error.stderr or ''))
+        break
     results.append({'command': command, 'pass': result.returncode == 0,
                     'seconds': round(time.monotonic()-began, 3)})
     print(('PASS ' if result.returncode == 0 else 'FAIL ') + command[-1], flush=True)

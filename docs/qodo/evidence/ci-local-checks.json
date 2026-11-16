@@ -1,0 +1,20 @@
+{
+  "runner": {
+    "pass": true,
+    "newModelCalls": 0,
+    "status": "passed",
+    "artifacts": "runs/0f4403c2f1a048ddacf8b7a0f883f3cc",
+    "scope": "Fresh isolated source copy, owned offline loopback server and full regression suite. Historical model/browser fixtures are replayed, not regenerated.",
+    "sourceSHA256": "c3a2aae2da127a3089072ef276c35385d7919252a3cf3634d92860bc9af9272a",
+    "node": "v25.9.0",
+    "sourceCommit": "a842751dc130633e437e78a7dc6e34af98f3b9b3",
+    "returncode": 0,
+    "seconds": 34.502,
+    "python": "3.10.13"
+  },
+  "suites": 30,
+  "allSuitesPass": true,
+  "harnessCases": 7,
+  "harnessPass": true,
+  "scope": "Current local macOS source snapshot; live GitHub Linux checks are separate."
+}

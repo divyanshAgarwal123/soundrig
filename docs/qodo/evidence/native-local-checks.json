@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "kitCases": 7,
+  "game": {
+    "actualCoinSignals": 3,
+    "pass": true,
+    "scope": "Native game integration under Dummy audio driver; no human play or listening judgment",
+    "soundrigStarts": 3,
+    "source": "Godot official 2D platformer, controlled player teleports causing physics overlaps",
+    "voicePool": 12
+  },
+  "newModelCalls": 0,
+  "scope": "Official native Godot with Dummy audio. No physical listening or outside user test."
+}
