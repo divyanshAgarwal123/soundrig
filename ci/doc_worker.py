@@ -154,6 +154,10 @@ def remote_ready(session,head,checks):
             and all(str(c.get('status')).upper() == 'COMPLETED' and str(c.get('conclusion')).upper() == 'SUCCESS' for c in selected))
 
 
+def branch_exists(refs, branch):
+    return any(item.get('ref') == 'refs/heads/'+branch for item in refs)
+
+
 def local_review_passes(data):
     if data.get('meta', {}).get('coverage', {}).get('complete') is not True:
         return False
@@ -163,7 +167,7 @@ def local_review_passes(data):
         return False
     if any(w.get('code') == 'incomplete_coverage' for w in data.get('warnings',[])):
         return False
-    closed = {'implemented', 'full_implementation', 'outdated', 'detected_after_merge'}
+    closed = {'implemented', 'full_implementation'}
     return all(f.get('attribution_status') in closed for f in data['findings'])
 
 
@@ -397,15 +401,17 @@ class Job:
                 self.stop(server)
                 self.report['ownedModelServerStopped'] = server.poll() is not None
 
-    def unchanged_scope(self, clone):
-        changes = self.git(['diff','--name-status','--no-renames'],clone).decode().strip()
+    def unchanged_scope(self, clone, base):
+        if self.git(['rev-parse','HEAD'],clone).decode().strip() != base or self.git(['diff','--cached','--name-only'],clone).strip():
+            raise ValueError('Clone HEAD or staged index changed outside the controller')
+        changes = self.git(['diff','--name-status','--no-renames',base,'--'],clone).decode().strip()
         if changes != 'M\tREADME.md' or self.git(['ls-files','--others','--exclude-standard'],clone).strip():
             raise ValueError('Only the enrolled README insertion may change')
         path = clone/'README.md'
         if (path.is_symlink() or not stat.S_ISREG(path.lstat().st_mode)
                 or stat.S_IMODE(path.stat().st_mode) != self.report['readmeMode']):
             raise ValueError('README type or mode changed')
-        return digest(self.git(['diff','--binary','--','README.md'],clone))
+        return digest(self.git(['diff','--binary',base,'--','README.md'],clone))
 
     def publish(self, clone, enrolled, trigger, head, branch):
         self.revalidate(enrolled,trigger)
@@ -439,7 +445,7 @@ class Job:
         if self.api('pulls?state=all&head='+OWNER+'%3A'+branch+'&per_page=100'):
             raise ValueError('This job branch already has a PR')
         refs = json.loads(self.run(['gh','api',f'repos/{REPO}/git/matching-refs/heads/{branch}']))
-        if refs:
+        if branch_exists(refs,branch):
             raise ValueError('This job branch already exists')
         with tempfile.TemporaryDirectory(prefix='soundrig-doc-worker-') as temp:
             clone = Path(temp)/'repo'
@@ -467,7 +473,7 @@ class Job:
             with self.phase('bounded_model_authoring'):
                 updated = self.author(readme,(clone/'AGENTS.md').read_text(),TASK_BODY)
                 (clone/'README.md').write_text(updated)
-                self.report['diffSHA256'] = self.unchanged_scope(clone)
+                self.report['diffSHA256'] = self.unchanged_scope(clone,enrolled['baseSHA'])
             with self.phase('offline_regression'):
                 raw = self.run(['python3','ci/check.py','--timeout','600'],clone,timeout=660)
                 (self.state/'offline-command.json').write_bytes(raw)
@@ -484,9 +490,11 @@ class Job:
                 local = json.loads(raw)
                 if not local_review_passes(local):
                     raise ValueError('Local Qodo review is incomplete or has open findings; repair limit zero for this pilot')
-                if self.unchanged_scope(clone) != self.report['diffSHA256'] or digest((clone/'.git/config').read_bytes()) != config:
+                if self.unchanged_scope(clone,enrolled['baseSHA']) != self.report['diffSHA256'] or digest((clone/'.git/config').read_bytes()) != config:
                     raise ValueError('Reviewed diff or Git configuration changed')
                 self.git(['add','--','README.md'],clone)
+                if self.git(['rev-parse','HEAD'],clone).decode().strip() != enrolled['baseSHA'] or self.git(['diff','--cached','--name-status','--no-renames',enrolled['baseSHA'],'--'],clone).decode().strip() != 'M\tREADME.md':
+                    raise ValueError('Staged scope or commit parent changed after review')
                 tree = self.git(['write-tree'],clone).decode().strip()
                 if tree != local['meta']['run']['snapshot']['tree_sha']:
                     raise ValueError('Local review tree does not match staged bytes')
@@ -496,7 +504,8 @@ class Job:
                 self.git(['-c','user.name=SoundRig bounded worker','-c','user.email=divyanshAgarwal123@users.noreply.github.com',
                           'commit','-m',f'Document Qodo review handoff for issue{enrolled["issue"]}'],clone)
                 head = self.git(['rev-parse','HEAD'],clone).decode().strip()
-                if self.git(['rev-parse','HEAD^{tree}'],clone).decode().strip() != tree:
+                if (self.git(['rev-parse','HEAD^'],clone).decode().strip() != enrolled['baseSHA']
+                        or self.git(['rev-parse','HEAD^{tree}'],clone).decode().strip() != tree):
                     raise ValueError('Committed tree changed after local review')
                 self.publish(clone,enrolled,trigger,head,branch)
             with self.phase('current_head_qodo_and_ci'):

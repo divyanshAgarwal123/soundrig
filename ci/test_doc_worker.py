@@ -155,16 +155,48 @@ class WorkerTests(unittest.TestCase):
     def test_scope_rejects_extra_files_symlinks_and_mode_changes(self):
         readme=self.path/'README.md';readme.write_text('test');readme.chmod(0o600)
         self.job.report['readmeMode']=0o600
-        with patch.object(self.job,'git',side_effect=[b'M\tREADME.md',b'',b'patch']):
-            self.assertEqual(self.job.unchanged_scope(self.path),w.digest(b'patch'))
-        with patch.object(self.job,'git',return_value=b'M\tREADME.md\nM\tserver.py'):
-            with self.assertRaises(ValueError):self.job.unchanged_scope(self.path)
+        with patch.object(self.job,'git',side_effect=[b'base',b'',b'M\tREADME.md',b'',b'patch']):
+            self.assertEqual(self.job.unchanged_scope(self.path,'base'),w.digest(b'patch'))
+        with patch.object(self.job,'git',side_effect=[b'base',b'',b'M\tREADME.md\nM\tserver.py']):
+            with self.assertRaises(ValueError):self.job.unchanged_scope(self.path,'base')
         readme.chmod(0o700)
-        with patch.object(self.job,'git',side_effect=[b'M\tREADME.md',b'']):
-            with self.assertRaises(ValueError):self.job.unchanged_scope(self.path)
+        with patch.object(self.job,'git',side_effect=[b'base',b'',b'M\tREADME.md',b'']):
+            with self.assertRaises(ValueError):self.job.unchanged_scope(self.path,'base')
         readme.unlink();readme.symlink_to(self.path/'state/receipt.json')
-        with patch.object(self.job,'git',side_effect=[b'M\tREADME.md',b'']):
-            with self.assertRaises(ValueError):self.job.unchanged_scope(self.path)
+        with patch.object(self.job,'git',side_effect=[b'base',b'',b'M\tREADME.md',b'']):
+            with self.assertRaises(ValueError):self.job.unchanged_scope(self.path,'base')
+
+    def test_only_exact_branch_collisions_block(self):
+        branch='codex/doc-agent-9-11'
+        self.assertFalse(w.branch_exists([{'ref':'refs/heads/'+branch+'-other'}],branch))
+        self.assertTrue(w.branch_exists([{'ref':'refs/heads/'+branch}],branch))
+
+    def test_outdated_or_after_merge_does_not_prove_local_fix(self):
+        for status in ('outdated','detected_after_merge','dismissed'):
+            for severity in ('action_required','remediation_recommended','informational'):
+                data={'meta':{'coverage':{'complete':True}},'finding_state':{'complete':True,'still_open':[]},'findings':[{'attribution_status':status,'action_level':severity}]}
+                self.assertFalse(w.local_review_passes(data))
+        data['findings'][0]['attribution_status']='implemented'
+        self.assertTrue(w.local_review_passes(data))
+
+    def test_real_git_index_and_head_cannot_expand_publication_scope(self):
+        repo=self.path/'repo';repo.mkdir()
+        self.job.git(['init','--quiet'],repo)
+        self.job.git(['config','user.name','Fixture'],repo)
+        self.job.git(['config','user.email','fixture@example.invalid'],repo)
+        (repo/'README.md').write_text('original');(repo/'other.txt').write_text('original')
+        self.job.git(['add','--','README.md','other.txt'],repo)
+        self.job.git(['commit','--quiet','-m','base'],repo)
+        base=self.job.git(['rev-parse','HEAD'],repo).decode().strip()
+        self.job.report['readmeMode']=(repo/'README.md').stat().st_mode & 0o777
+        (repo/'README.md').write_text('changed')
+        (repo/'other.txt').write_text('staged hidden change')
+        self.job.git(['add','--','other.txt'],repo)
+        with self.assertRaisesRegex(ValueError,'staged index'):
+            self.job.unchanged_scope(repo,base)
+        self.job.git(['commit','--quiet','-m','unexpected parent move'],repo)
+        with self.assertRaisesRegex(ValueError,'Clone HEAD'):
+            self.job.unchanged_scope(repo,base)
 
     def test_git_invocation_disables_inherited_config_before_checkout(self):
         with patch.dict(os.environ,{'GIT_CONFIG_COUNT':'1','GIT_SSH_COMMAND':'bad','GIT_CONFIG_KEY_0':'core.hooksPath'}),patch.object(self.job,'run',return_value=b'') as run:
