@@ -1,0 +1,31 @@
+{
+  "purpose": "Dated history, not current readiness approval",
+  "authority": "Fetch the completed current-head PR review and fresh CI; never infer readiness from historical filenames or finding_state.complete",
+  "records": [
+    {
+      "file": "history/local-docs-incomplete.json",
+      "coverageComplete": false,
+      "disposition": "historical incomplete attempt; never approval"
+    },
+    {
+      "file": "history/local-568298a-complete.json",
+      "reviewedSourceCommit": "568298a0e3c88a20edaf9160ecacf29600d47375",
+      "coverageComplete": true,
+      "openFindings": 0,
+      "resultSHA256": "05359996d46d665e04ff7309410b9358d459ddc8e07b4eab18b90d47eec93fb9",
+      "binding": {
+        "committedHead": "568298a0e3c88a20edaf9160ecacf29600d47375",
+        "reviewedBase": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+        "reviewedSourceMatchesCommit": true,
+        "reviewResultSHA256": "05359996d46d665e04ff7309410b9358d459ddc8e07b4eab18b90d47eec93fb9",
+        "coverage": {
+          "complete": true
+        },
+        "openFindings": 0,
+        "scope": "All intended text/code; binary screenshots independently inspected"
+      },
+      "disposition": "Completed Local Reviewer of the text/code before commit568298a; does not certify later fixes or itself"
+    }
+  ],
+  "latestCandidateState": "Requires its own current-head PR review; CI-control changes additionally require human review"
+}

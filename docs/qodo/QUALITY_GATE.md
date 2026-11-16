@@ -27,3 +27,11 @@ CI source binding reads the current head, base and potential merge commit; it ch
 Check runs and artifact lists use all GitHub API pages. Missing pages or counts that change during collection block readiness. Requests retain the CLI timeout.
 
 The final GitHub read retrieves PR identity and check status together. Changed required job identities/statuses invalidate the captured receipts. This read-only verdict describes the last observed snapshot; it is not a transaction lock or a replacement for human merge review and GitHub branch protection. Recheck after new pushes, base changes or CI reruns.
+
+## Trust and bootstrap
+
+Run the verifier only from a checkout you already trust, never by executing code from an incoming untrusted PR. A program cannot attest to its own integrity. Automated readiness is limited to the repository owner's same-repository PRs targeting main. Other authors, forks and unmerged bases stop for human review.
+
+Edits to workflows, CI/verifier code, test launchers, tests or test fixtures require human review and cannot receive an automatic PASS, even with green candidate jobs. The changed-file collection includes renamed paths and all pages. This deliberately blocks automatic promotion of the CI/bootstrap PRs themselves; a human reviews their source and evidence before merging. GitHub branch protection and human review remain the trust boundary.
+
+Command failures retain bounded raw diagnostics in private 0600 files under ignored .qa-output/review-gate-errors; the public result names the error category and local path without printing credentials. Do not publish those private diagnostic logs.

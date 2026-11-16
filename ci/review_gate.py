@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 
 REPO = 'divyanshAgarwal123/soundrig'
+TRUSTED_BASE = 'main'
+ERROR_LOG_DIR = Path(__file__).resolve().parents[1]/'.qa-output/review-gate-errors'
 REQUIRED = {'Offline regression (Linux)', 'Native Godot integration (Linux)'}
 CLOSED = {'implemented', 'full_implementation', 'dismissed', 'detected_after_merge', 'outdated'}
 OPEN = {'pending', 'partial_implementation', 'not_implemented', 'focus_areas_edited'}
@@ -23,6 +25,16 @@ def assess(pr, review, initial_identity):
     head = pr['headRefOid']
     session = review.get('review_session') or {}
     reasons, low = [], []
+    owner = REPO.split('/')[0].casefold()
+    if (pr.get('author') or {}).get('login','').casefold() != owner or pr.get('isCrossRepository') is not False:
+        reasons.append('Only owner-authored same-repository PRs are eligible; other contributions require human review')
+    if pr.get('baseRefName') != TRUSTED_BASE:
+        reasons.append('An unmerged or non-default base requires human trust review')
+    controls = pr.get('controlChanges')
+    if controls is None:
+        reasons.append('CI control changes were not checked')
+    elif controls:
+        reasons.append('CI or verification controls changed; human review is required')
     if identity(pr) != initial_identity:
         reasons.append('PR head, base or merge candidate changed during collection')
     if not all(identity(pr)) or pr.get('testedMergeCommit') != identity(pr)[2]:
@@ -67,14 +79,28 @@ def assess(pr, review, initial_identity):
     return {'pass': not reasons, 'head': head, 'base':pr.get('baseRefOid'),
             'testedMergeCommit':pr.get('testedMergeCommit'), 'ciRun':pr.get('ciRun'), 'reviewSession': session,
             'blockers': reasons, 'lowFindingsForHuman': low,
-            'humanMergeRequired': True}
+            'humanMergeRequired': True, 'controlsNeedingHumanReview':controls or []}
+
+
+def run_checked(command, binary=False):
+    result = subprocess.run(command, capture_output=True, text=not binary, timeout=90)
+    if result.returncode:
+        detail = result.stderr or result.stdout
+        if isinstance(detail,bytes):
+            detail = detail.decode('utf-8','replace')
+        lowered = detail.casefold()
+        kind = ('rate limit' if 'rate limit' in lowered else 'authentication/authorization'
+                if any(x in lowered for x in ('credential','authenticate','login','log in','401','403')) else 'command error')
+        ERROR_LOG_DIR.mkdir(parents=True,exist_ok=True)
+        with tempfile.NamedTemporaryFile(mode='w',dir=ERROR_LOG_DIR,prefix='read-',suffix='.txt',delete=False) as log:
+            log.write(detail[:16384])
+            location = log.name
+        raise RuntimeError(f'{Path(command[0]).name} exited {result.returncode} ({kind}); private diagnostics: {location}')
+    return result.stdout
 
 
 def read(command):
-    result = subprocess.run(command, capture_output=True, text=True, timeout=90)
-    if result.returncode:
-        raise RuntimeError(command[0]+' read failed; no readiness granted')
-    return json.loads(result.stdout)
+    return json.loads(run_checked(command))
 
 
 def read_pages(endpoint, key):
@@ -83,6 +109,21 @@ def read_pages(endpoint, key):
     if not pages or any(page['total_count'] != len(items) for page in pages):
         raise ValueError('Paginated CI results changed or are incomplete')
     return items
+
+
+def is_control(path):
+    return (path.startswith(('.github/workflows/','ci/','fixtures/','evidence/','integration-proof/'))
+            or path in {'run_checks.py','verify-godot.py'}
+            or Path(path).name.startswith(('test-','test_')))
+
+
+def collect_changes(pr, number):
+    pages = read(['gh','api','--paginate','--slurp',f'repos/{REPO}/pulls/{number}/files?per_page=100'])
+    files = [item for page in pages for item in page]
+    if len(files) != pr['changedFiles']:
+        raise ValueError('PR changed-file list is incomplete or changed during collection')
+    paths = {p for item in files for p in (item['filename'],item.get('previous_filename')) if p}
+    pr['controlChanges'] = sorted(p for p in paths if is_control(p))
 
 
 def collect_ci(pr):
@@ -109,10 +150,10 @@ def collect_ci(pr):
     if not 0 < native.get('size_in_bytes',1_000_001) <= 1_000_000:
         raise ValueError('Native CI archive is oversized')
     artifact_id = native['id']
-    data = subprocess.run(['gh','api',f'repos/{REPO}/actions/artifacts/{artifact_id}/zip'],capture_output=True,timeout=90)
-    if data.returncode or len(data.stdout) > 1_000_000:
+    data = run_checked(['gh','api',f'repos/{REPO}/actions/artifacts/{artifact_id}/zip'], binary=True)
+    if len(data) > 1_000_000:
         raise ValueError('Native CI receipt archive is unavailable or oversized')
-    with zipfile.ZipFile(io.BytesIO(data.stdout)) as archive:
+    with zipfile.ZipFile(io.BytesIO(data)) as archive:
         info = archive.getinfo('receipt.json')
         if info.file_size > 65536:
             raise ValueError('Native CI receipt is oversized')
@@ -139,7 +180,7 @@ def main():
     report = {'pass': False, 'blockers': ['Collection has not completed'], 'humanMergeRequired': True}
     try:
         command = ['gh', 'pr', 'view', str(args.pr), '--repo', REPO,
-                   '--json', 'headRefOid,baseRefOid,potentialMergeCommit,statusCheckRollup,url']
+                   '--json', 'headRefOid,baseRefOid,baseRefName,potentialMergeCommit,statusCheckRollup,author,isCrossRepository,changedFiles,url']
         pr = read(command)
         if pr['url'] != f'https://github.com/{REPO}/pull/{args.pr}':
             raise ValueError('Unexpected repository or PR URL')
@@ -149,6 +190,7 @@ def main():
             review = read([str(Path.home()/'.qodo/bin/qodo'), 'read', 'pr-review-session', 'findings',
                            '--args-file', str(params), '--json'])
         latest = read(command)
+        collect_changes(latest,args.pr)
         collect_ci(latest)
         final = read(command)
         verified = latest['statusCheckRollup']
@@ -157,6 +199,7 @@ def main():
         final['statusCheckRollup'] = [dict(c, head_sha=heads.get((c.get('name'),c.get('details_url') or c.get('detailsUrl') or ''))) for c in observed]
         final['testedMergeCommit'] = latest.get('testedMergeCommit')
         final['ciRun'] = latest.get('ciRun')
+        final['controlChanges'] = latest.get('controlChanges')
         report = assess(final, review, identity(pr))
         if check_fingerprint(verified) != check_fingerprint(observed):
             report['blockers'].append('Required CI changed while collecting receipts')

@@ -14,9 +14,9 @@ No Discussion entry has been submitted. Repository publication is not contest su
 | 6 | Two real Wisdom reads before standards/gate changes, exact-revision source verification and before/after plan | Publish plan/evidence and daily entry; these reads did not precede issue #1 |
 | 7 | Actual Resolver findings, five fixes, tests, automatic implementation attribution and fresh review requests | Completed current-head coverage; skipped/stale reviews stay blocked |
 | 8 | Local Reviewer actually reviewed staged and unstaged changes, found two documentation/evidence issues; fixes prepared | Final completed review coverage before commit; earlier transport failure/incomplete coverage disclosed |
-| 9 | Saved instructions plus executable read-only review/CI gate; fifteen failure-path tests; actual blocked result on skipped review | PR #5 passing execution saved in evidence/gate-pr5-pass.json; no tamper-proof merge-policy claim |
+| 9 | Saved instructions plus executable read-only review/CI gate; eighteen failure-path tests; actual blocked result on skipped review | Earlier PR #5 evidence check is archived under history; current CI-control edits require human review, never automatic PASS |
 | 10 | Diagram separates issues1–3, historical authentication block/recovery, actual failure/repair edges and human stop | Coding worker remains unexecuted; daily entry pending |
-| 11 | Same-head/base/diff review comparison on PR #4; per-request product context; before/after receipts saved | No demonstrated improvement: review_complete stayed false. A truthful comparison can be shared; entry unsubmitted |
+| 11 | Same-head/base/diff customization requests on PR #4; before/after records saved | Both analyses were skipped; comparison is blocked. A truthful blocked-attempt report can be shared; entry unsubmitted |
 
 Connection repair: removed stale installation 182524278 and installed182557666 through the standard multi-tenant flow, SoundRig only. Qodo showed connected, Recall was applied, setup completed, and CLI repository/source access succeeded. Five rules are verified active in `evidence/qodo-rules-verified.json`. No GitHub approval is pending. The support email is unsent. Previous connection failures remain in the receipt as history.
 
@@ -27,3 +27,5 @@ Fresh repaired CI: [PR #5](https://github.com/divyanshAgarwal123/soundrig/action
 Submissions use GitHub Discussion threads linked in daily emails. Drafts are in DISCUSSION_DRAFTS.md; no merge, deployment or contest entry is performed here.
 
 Current review snapshots: PR #5 is completed at 29969e84 with all seven findings implemented; PR #4 at ca8a0e54 still reports review_complete=false after the same-code comparison. See DAY11_REVIEW_COMPARISON.md and SUBMISSION_LINKS.md. The gate rejects the CLI-documented qar_operation_result_truncated flag even when finding counts appear consistent.
+
+The source Local Reviewer history is indexed by evidence/LOCAL_REVIEW_INDEX.json. The first incomplete record remains raw history. A later completed review covered source committed as 568298a; later fixes require their own review. CI-control edits and unmerged bases require human review, not an automatic PASS.

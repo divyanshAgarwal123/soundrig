@@ -9,7 +9,9 @@
     "commit_sha": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
     "started_at": "2026-11-16T13:16:21.931167Z",
     "git_provider": "github",
-    "review_complete": false
+    "review_complete": false,
+    "review_effort": "skip",
+    "analysisRan": false
   },
   "after": {
     "run_id": 1987247,
@@ -17,11 +19,15 @@
     "commit_sha": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
     "started_at": "2026-11-16T13:27:21.194463Z",
     "git_provider": "github",
-    "review_complete": false
+    "review_complete": false,
+    "review_effort": "skip",
+    "analysisRan": false
   },
   "beforeFindings": 0,
   "afterFindings": 0,
   "improvementDemonstrated": false,
   "effectiveInstructionsEchoedByService": false,
-  "scope": "Per-request issues_user_guidelines, same PR and code; preset/rules held constant. Review_complete remained false. No causal quality improvement is claimed."
+  "scope": "Same-code customization was requested, but both runs used review_effort=skip. No analysis comparison or causal effect was measured. Rendered display was not tested.",
+  "comparisonStatus": "blocked: both tasks finished but review analysis was skipped",
+  "descriptionContextUnchangedVerified": false
 }

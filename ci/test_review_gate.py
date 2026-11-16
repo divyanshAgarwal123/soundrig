@@ -17,7 +17,7 @@ spec.loader.exec_module(gate)
 
 class GateTests(unittest.TestCase):
     def setUp(self):
-        self.pr={'headRefOid':'new','baseRefOid':'base','potentialMergeCommit':{'oid':'merge'},'testedMergeCommit':'merge', 'statusCheckRollup':[
+        self.pr={'author':{'login':'divyanshAgarwal123'},'isCrossRepository':False,'baseRefName':'main','changedFiles':0,'controlChanges':[],'headRefOid':'new','baseRefOid':'base','potentialMergeCommit':{'oid':'merge'},'testedMergeCommit':'merge', 'statusCheckRollup':[
             {'name':name,'status':'COMPLETED','conclusion':'SUCCESS','head_sha':'new'} for name in gate.REQUIRED]}
         self.review={'review_session':{'status':'completed','review_complete':True,'commit_sha':'new'},
                      'findings':[],'finding_count':0}
@@ -81,7 +81,7 @@ class GateTests(unittest.TestCase):
         latest={**self.pr,'statusCheckRollup':[dict(c) for c in self.pr['statusCheckRollup']]}
         latest['statusCheckRollup'][0]['conclusion']='FAILURE'
         output=io.StringIO()
-        with patch.object(gate,'read',side_effect=[self.pr,self.review,latest,latest]), patch.object(gate,'collect_ci'), patch.object(sys,'argv',['review_gate.py','--pr','5']), contextlib.redirect_stdout(output):
+        with patch.object(gate,'read',side_effect=[self.pr,self.review,latest,latest]), patch.object(gate,'collect_ci'), patch.object(gate,'collect_changes'), patch.object(sys,'argv',['review_gate.py','--pr','5']), contextlib.redirect_stdout(output):
             self.assertEqual(gate.main(),1)
         self.assertFalse(json.loads(output.getvalue())['pass'])
 
@@ -108,7 +108,7 @@ class GateTests(unittest.TestCase):
         self.pr['url']='https://github.com/'+gate.REPO+'/pull/5'
         final={**self.pr,'baseRefOid':'changed'}
         output=io.StringIO()
-        with patch.object(gate,'read',side_effect=[self.pr,self.review,self.pr,final]), patch.object(gate,'collect_ci'), patch.object(sys,'argv',['review_gate.py','--pr','5']), contextlib.redirect_stdout(output):
+        with patch.object(gate,'read',side_effect=[self.pr,self.review,self.pr,final]), patch.object(gate,'collect_ci'), patch.object(gate,'collect_changes'), patch.object(sys,'argv',['review_gate.py','--pr','5']), contextlib.redirect_stdout(output):
             self.assertEqual(gate.main(),1)
         self.assertFalse(json.loads(output.getvalue())['pass'])
 
@@ -147,9 +147,35 @@ class GateTests(unittest.TestCase):
             final={**latest,'statusCheckRollup':[dict(c) for c in latest['statusCheckRollup']]}
             final['statusCheckRollup'][0].update(status=status,conclusion=conclusion)
             output=io.StringIO()
-            with patch.object(gate,'read',side_effect=[self.pr,self.review,latest,final]), patch.object(gate,'collect_ci'), patch.object(sys,'argv',['review_gate.py','--pr','5']), contextlib.redirect_stdout(output):
+            with patch.object(gate,'read',side_effect=[self.pr,self.review,latest,final]), patch.object(gate,'collect_ci'), patch.object(gate,'collect_changes'), patch.object(sys,'argv',['review_gate.py','--pr','5']), contextlib.redirect_stdout(output):
                 self.assertEqual(gate.main(),1)
             self.assertIn('Required CI changed while collecting receipts',json.loads(output.getvalue())['blockers'])
+
+
+    def test_untrusted_authors_bases_and_control_changes_require_human(self):
+        for extra in ({'author':{'login':'contributor'}},{'isCrossRepository':True},{'baseRefName':'unmerged-feature'},{'controlChanges':['ci/check.py']},{'controlChanges':None}):
+            self.assertFalse(gate.assess({**self.pr,**extra},self.review,('new','base','merge'))['pass'])
+
+    def test_control_edits_and_renames_cannot_hide_in_paginated_files(self):
+        for path in ('integration-proof/godot-platformer/game.gd','integration-proof/godot-platformer/game_singleplayer.tscn'):
+            self.assertTrue(gate.is_control(path))
+        self.pr['changedFiles']=2
+        pages=[[{'filename':'README.md'}],[{'filename':'renamed.py','previous_filename':'ci/check.py'}]]
+        with patch.object(gate,'read',return_value=pages):gate.collect_changes(self.pr,5)
+        self.assertEqual(self.pr['controlChanges'],['ci/check.py'])
+        with patch.object(gate,'read',return_value=pages[:1]):
+            with self.assertRaises(ValueError):gate.collect_changes(self.pr,5)
+
+    def test_command_errors_preserve_private_actionable_diagnostics(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as folder:
+            with patch.object(gate,'ERROR_LOG_DIR',Path(folder)), patch.object(gate.subprocess,'run',return_value=SimpleNamespace(returncode=1,stderr='403 credentials expired; synthetic-private-value',stdout='')):
+                with self.assertRaises(RuntimeError) as error:gate.read(['gh','fixture'])
+            self.assertIn('authentication/authorization',str(error.exception))
+            self.assertNotIn('synthetic-private-value',str(error.exception))
+            log=next(Path(folder).glob('*.txt'))
+            self.assertIn('synthetic-private-value',log.read_text())
+            self.assertEqual(log.stat().st_mode & 0o777,0o600)
 
 
 if __name__=='__main__':unittest.main()
