@@ -74,7 +74,7 @@ def assess(pr, review, initial_identity):
     checks = pr.get('statusCheckRollup', [])
     for name in sorted(REQUIRED):
         matching = [c for c in checks if c.get('name') == name]
-        if not matching or any(str(c.get('status')).upper() != 'COMPLETED' or str(c.get('conclusion')).upper() != 'SUCCESS' or c.get('head_sha') != head for c in matching):
+        if not matching or any(str(c.get('status')).upper() != 'COMPLETED' or str(c.get('conclusion')).upper() != 'SUCCESS' or c.get('head_sha') not in {head, identity(pr)[2]} for c in matching):
             reasons.append('Required CI is not successful: '+name)
     # The structured Qodo API attests a head, but exposes no reviewed base/merge.
     # Comparing the base only during collection misses an earlier base update.
@@ -133,7 +133,20 @@ def collect_changes(pr, number):
 
 
 def collect_ci(pr):
-    checks = read_pages(f'repos/{REPO}/commits/{pr["headRefOid"]}/check-runs?filter=latest&per_page=100', 'check_runs')
+    merge = identity(pr)[2]
+    if not merge:
+        raise ValueError('The current merge candidate is unavailable')
+    # GitHub check identity and the checked-out merge are separate provenance.
+    # Read both references instead of assuming one attachment convention.
+    unique = {}
+    for ref in dict.fromkeys((pr['headRefOid'], merge)):
+        for check in read_pages(f'repos/{REPO}/commits/{ref}/check-runs?filter=latest&per_page=100', 'check_runs'):
+            key = check.get('id') or (check['name'], check.get('details_url'))
+            previous = unique.get(key)
+            if previous and any(previous.get(k) != check.get(k) for k in ('head_sha','status','conclusion','details_url')):
+                raise ValueError('CI check changed while collecting references')
+            unique[key] = check
+    checks = list(unique.values())
     pr['statusCheckRollup'] = checks
     selected = [c for c in checks if c['name'] in REQUIRED]
     if {c['name'] for c in selected} != REQUIRED:
@@ -148,7 +161,6 @@ def collect_ci(pr):
         raise ValueError('Required jobs do not belong to one workflow run')
     run_id = runs.pop()
     artifacts = read_pages(f'repos/{REPO}/actions/runs/{run_id}/artifacts?per_page=100', 'artifacts')
-    merge = identity(pr)[2]
     available = {a['name']:a for a in artifacts if not a['expired']}
     if not merge or not all(prefix+merge in available for prefix in ('offline-','native-')):
         raise ValueError('CI artifacts belong to another merge candidate or are unavailable')

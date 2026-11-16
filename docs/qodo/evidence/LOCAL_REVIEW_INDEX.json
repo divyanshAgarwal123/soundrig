@@ -3,11 +3,6 @@
   "authority": "Current-head PR review and fresh CI are necessary; the reviewed base is not attested by this API and requires human review. Historical filenames and finding_state.complete never establish readiness.",
   "records": [
     {
-      "file": "history/local-docs-incomplete.json",
-      "coverageComplete": false,
-      "disposition": "historical incomplete attempt; never approval"
-    },
-    {
       "file": "history/local-568298a-complete.json",
       "coverageComplete": true,
       "openFindings": 0,
@@ -68,5 +63,10 @@
       "reviewMode": "Uncommitted working-tree diff. raw commit_sha is pre-publication HEAD; tree_sha identifies the reviewed working tree. Binary paths, where listed, were separately inspected."
     }
   ],
-  "latestCandidateState": "This new repair batch requires its own local and current-head PR review; overall PASS remains blocked on human base/control review."
+  "latestCandidateState": "This new repair batch requires its own local and current-head PR review; overall PASS remains blocked on human base/control review.",
+  "historicalFailedAttempts": {
+    "artifact": "execution/history/local-docs-incomplete.json in the submission evidence packet",
+    "SHA256": "3341ea953234067d4920292f1e48b298fe1126b8396b4d1c2496d2fe74a7b7df",
+    "disposition": "Incomplete failed attempt, never approval; retained outside the repository completed-review receipt set."
+  }
 }

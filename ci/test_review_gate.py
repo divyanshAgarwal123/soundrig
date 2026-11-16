@@ -126,18 +126,41 @@ class GateTests(unittest.TestCase):
 
 
     def test_actual_receipt_is_read_and_bound_to_merge_candidate(self):
-        def run(receipt, artifacts=None):
-            checks={'total_count':2,'check_runs':[dict(c,app={'slug':'github-actions'},details_url='https://github.com/'+gate.REPO+'/actions/runs/123/job/456') for c in self.pr['statusCheckRollup']]}
+        def run(receipt, artifacts=None, attachment='new', duplicate=False):
+            checks={'total_count':2,'check_runs':[dict(c,id=i+10,head_sha=attachment,app={'slug':'github-actions'},details_url='https://github.com/'+gate.REPO+f'/actions/runs/123/job/{i}') for i,c in enumerate(self.pr['statusCheckRollup'])]}
+            empty={'total_count':0,'check_runs':[]}
+            head=checks if attachment=='new' else empty
+            merge=checks if attachment=='merge' or duplicate else empty
             artifacts=artifacts or {'total_count':2,'artifacts':[{'name':prefix+'merge','expired':False,'id':i,'size_in_bytes':1024} for i,prefix in enumerate(('offline-','native-'))]}
             data=io.BytesIO()
             with zipfile.ZipFile(data,'w') as archive:archive.writestr('receipt.json',json.dumps(receipt))
-            with patch.object(gate,'read',side_effect=[[checks],[artifacts]]), patch.object(gate.subprocess,'run',return_value=SimpleNamespace(returncode=0,stdout=data.getvalue())):
+            with patch.object(gate,'read',side_effect=[[head],[merge],[artifacts]]) as reader, patch.object(gate.subprocess,'run',return_value=SimpleNamespace(returncode=0,stdout=data.getvalue())):
                 gate.collect_ci(self.pr)
-        run({'pass':True,'sourceCommit':'merge'})
-        self.assertEqual(self.pr['testedMergeCommit'],'merge')
+            endpoints=[call.args[0][-1] for call in reader.call_args_list[:2]]
+            self.assertTrue(any('/commits/new/' in e for e in endpoints))
+            self.assertTrue(any('/commits/merge/' in e for e in endpoints))
+        for attachment,duplicate in [('new',False),('merge',False),('new',True)]:
+            with self.subTest(attachment=attachment,duplicate=duplicate):
+                run({'pass':True,'sourceCommit':'merge'},attachment=attachment,duplicate=duplicate)
+                self.assertEqual(self.pr['testedMergeCommit'],'merge')
+                self.assertEqual(len(self.pr['statusCheckRollup']),2)
+                self.assertTrue(self.assess()['headAndCIEvidencePass'])
         with self.assertRaises(ValueError):run({'pass':True,'sourceCommit':'old'})
         with self.assertRaises(ValueError):run({'pass':False,'sourceCommit':'merge'})
         with self.assertRaises(ValueError):run({'pass':True,'sourceCommit':'merge'},{'total_count':0,'artifacts':[]})
+
+    def test_changed_duplicate_ci_check_is_rejected(self):
+        first={'total_count':1,'check_runs':[{'id':10,'name':'Offline regression (Linux)','head_sha':'new','status':'completed','conclusion':'success','details_url':'same-job'}]}
+        second={'total_count':1,'check_runs':[dict(first['check_runs'][0],conclusion='failure')]}
+        with patch.object(gate,'read',side_effect=[[first],[second]]):
+            with self.assertRaisesRegex(ValueError,'CI check changed'):
+                gate.collect_ci(self.pr)
+
+    def test_required_jobs_from_different_runs_are_rejected(self):
+        checks={'total_count':2,'check_runs':[dict(c,id=i+10,app={'slug':'github-actions'},details_url='https://github.com/'+gate.REPO+f'/actions/runs/{i+123}/job/{i}') for i,c in enumerate(self.pr['statusCheckRollup'])]}
+        with patch.object(gate,'read',side_effect=[[checks],[{'total_count':0,'check_runs':[]}]]):
+            with self.assertRaisesRegex(ValueError,'one workflow run'):
+                gate.collect_ci(self.pr)
 
 
     def test_complete_pages_are_collected_and_partial_pages_stay_blocked(self):
