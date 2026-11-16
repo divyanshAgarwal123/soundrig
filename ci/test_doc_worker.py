@@ -23,7 +23,7 @@ class WorkerTests(unittest.TestCase):
         self.folder = tempfile.TemporaryDirectory()
         self.addCleanup(self.folder.cleanup)
         self.path = Path(self.folder.name).resolve()
-        self.job = w.Job(self.path/'state',seconds=30)
+        self.job = w.Job(self.path/'state',seconds=90)
         self.addCleanup(self.job.close)
         self.enrolled = {'issue':9,'bodySHA256':w.digest(w.TASK_BODY),'baseSHA':'base','controllerSHA256':'controller'}
         self.issue = {'number':9,'title':w.TASK_TITLE,'body':w.TASK_BODY,'state':'open','user':{'login':w.OWNER},'labels':[]}
@@ -110,6 +110,7 @@ class WorkerTests(unittest.TestCase):
     def test_incomplete_or_open_local_reviews_never_pass(self):
         clean={'meta':{'coverage':{'complete':True}},'finding_state':{'complete':True,'still_open':[]},'findings':[]}
         self.assertTrue(w.local_review_passes(clean))
+        self.assertTrue(w.local_review_passes({**clean,'warnings':None}))
         for change in ({'meta':{'coverage':{'complete':False}}},{'finding_state':{'complete':False}},{'findings':None},{'finding_state':{'complete':True,'still_open':['missing']}},{'warnings':[{'code':'incomplete_coverage'}]},{'findings':[{'attribution_status':'pending','action_level':'action_required'}]}):
             self.assertFalse(w.local_review_passes({**clean,**change}))
 
@@ -143,6 +144,27 @@ class WorkerTests(unittest.TestCase):
         with self.assertRaises(TimeoutError):self.job.run([sys.executable,'-c','import time;time.sleep(30)'],timeout=.15)
         self.assertFalse(self.job.children)
 
+    def test_ambiguous_review_request_preserves_intent_without_retry(self):
+        pr={'html_url':'https://github.com/'+w.REPO+'/pull/11','number':11}
+        with patch.object(self.job,'revalidate'),patch.object(self.job,'git'),patch.object(self.job,'run',side_effect=[json.dumps(pr).encode(),TimeoutError('response lost')]) as run:
+            with self.assertRaises(TimeoutError):self.job.publish(self.path,self.enrolled,self.event,'head','branch')
+            self.assertEqual(run.call_count,2)
+        receipt=json.loads((self.job.state/'receipt.json').read_text())
+        self.assertEqual(receipt['publication'],'draft_pr_created')
+        self.assertEqual(receipt['reviewRequest']['state'],'outcome_unknown')
+        self.assertEqual(receipt['reviewRequest']['bodySHA256'],w.digest((self.job.state/'review-request.json').read_bytes()))
+        self.assertFalse(receipt['jobCompleted'])
+
+    def test_acknowledged_review_request_records_comment_identity(self):
+        pr={'html_url':'https://github.com/'+w.REPO+'/pull/11','number':11}
+        comment={'id':123,'html_url':pr['html_url']+'#issuecomment-123'}
+        with patch.object(self.job,'revalidate'),patch.object(self.job,'git'),patch.object(self.job,'run',side_effect=[json.dumps(pr).encode(),json.dumps(comment).encode()]):
+            self.job.publish(self.path,self.enrolled,self.event,'head','branch')
+        receipt=json.loads((self.job.state/'receipt.json').read_text())
+        self.assertEqual(receipt['reviewRequest']['state'],'posted')
+        self.assertEqual(receipt['reviewRequest']['id'],123)
+        self.assertEqual(receipt['reviewRequest']['url'],comment['html_url'])
+
     def test_resistant_descendant_is_cleaned_and_receipt_never_says_success(self):
         pidfile=self.path/'pid'
         script='import signal,time,os;signal.signal(signal.SIGTERM,signal.SIG_IGN);open('+repr(str(pidfile))+',"w").write(str(os.getpid()));time.sleep(30)'
@@ -161,7 +183,7 @@ class WorkerTests(unittest.TestCase):
         marker=self.path/'cleaned'
         script = ('import os,signal,subprocess,sys,time;'
                   'p=subprocess.Popen([sys.executable,"-c","import time;time.sleep(30)"],start_new_session=True);'
-                  'exec("def stop(s,f):\\n time.sleep(1.2)\\n os.killpg(p.pid,signal.SIGTERM)\\n p.wait()\\n open('+repr(str(marker))+',\\"w\\").write(\\"done\\")\\n raise SystemExit(0)");'
+                  'exec("def stop(s,f):\\n time.sleep(13.2)\\n os.killpg(p.pid,signal.SIGTERM)\\n p.wait()\\n open('+repr(str(marker))+',\\"w\\").write(\\"done\\")\\n raise SystemExit(0)");'
                   'signal.signal(signal.SIGTERM,stop);time.sleep(30)')
         with self.assertRaises(TimeoutError):self.job.run([sys.executable,'-c',script],timeout=.4)
         self.assertEqual(marker.read_text(),'done')

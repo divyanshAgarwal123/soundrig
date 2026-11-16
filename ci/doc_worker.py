@@ -31,6 +31,8 @@ LABEL = 'ready-for-agent'
 MODEL = 'qwen3:8b'
 MODEL_PORT = 11435
 MAX_RATIONALE_CHARS = 600
+CLEANUP_GRACE = 22  # ci/check.py can spend 20 seconds stopping its two groups.
+CLEANUP_RESERVE = 50  # At most the owned model server and one command are active.
 ANCHOR = 'Alternatively, with this studio server already running:\n'
 HEADER = '### Qodo review handoff'
 COMMAND_ORDER = ('python3 ci/test_native_receipt.py','python3 ci/test_review_gate.py','python3 ci/review_gate.py --pr 6')
@@ -163,7 +165,7 @@ def local_review_passes(data):
         return False
     if not isinstance(data.get('findings'),list) or data['finding_state'].get('still_open') != []:
         return False
-    if any(w.get('code') == 'incomplete_coverage' for w in data.get('warnings',[])):
+    if any(w.get('code') == 'incomplete_coverage' for w in (data.get('warnings') or [])):
         return False
     closed = {'implemented', 'full_implementation'}
     return all(f.get('attribution_status') in closed for f in data['findings'])
@@ -182,7 +184,7 @@ class Job:
         self.save()
 
     def left(self, cap=None):
-        left = self.deadline-time.monotonic()-15  # Let nested CI cleanup finish before KILL.
+        left = self.deadline-time.monotonic()-CLEANUP_RESERVE
         if left <= 0:
             raise TimeoutError('Total worker deadline exhausted')
         return min(left, cap) if cap else left
@@ -210,7 +212,7 @@ class Job:
         except ProcessLookupError:
             pass
         try:
-            child.wait(timeout=12)
+            child.wait(timeout=CLEANUP_GRACE)
         except subprocess.TimeoutExpired:
             pass
         try:
@@ -432,7 +434,11 @@ class Job:
         self.save()
         args = self.state/'review-request.json'
         write_json(args,{'body':'/agentic_review --review_agent.smart_router_extra_instructions="Execute actual standard review of this Day4 documentation job: verify the fixed handoff commands exist and the current-head/base/CI limitations are truthful. Do not skip analysis or invent findings."'})
-        self.run(['gh','api','--method','POST',f'repos/{REPO}/issues/{pr["number"]}/comments','--input',str(args)])
+        self.report['reviewRequest'] = {'state':'outcome_unknown','bodySHA256':digest(args.read_bytes())}
+        self.save()
+        comment = json.loads(self.run(['gh','api','--method','POST',f'repos/{REPO}/issues/{pr["number"]}/comments','--input',str(args)]))
+        self.report['reviewRequest'].update(state='posted',id=comment['id'],url=comment['html_url'])
+        self.save()
         return pr
 
     def execute(self, enrolled, trigger):
@@ -599,7 +605,7 @@ def main():
     def expired(_signum,_frame):
         raise TimeoutError('Total worker deadline exhausted')
     previous_alarm = signal.signal(signal.SIGALRM,expired)
-    signal.setitimer(signal.ITIMER_REAL,max(.001,job.deadline-time.monotonic()-15))
+    signal.setitimer(signal.ITIMER_REAL,max(.001,job.deadline-time.monotonic()-CLEANUP_RESERVE))
     code = 0
     try:
         if args.command == 'enroll':
