@@ -388,7 +388,7 @@ async function exportProject(){
  catch(error){$('project-status').textContent=error.message;}finally{busy=false;lockEditing(false);}
 }
 
-function invalidateContract(){contractReport=null;if($('workflow-status'))$('workflow-status').textContent=gameplayContract.cases.length?'Sound settings changed. Run saved checks again.':'No saved checks yet.';}
+function invalidateContract(){contractReport=null;paintContract();if($('workflow-status'))$('workflow-status').textContent=gameplayContract.cases.length?'Sound settings changed. Run saved checks again.':'No saved checks yet.';}
 function readContract(){return validateContract({validateTrace},rig,JSON.parse($('workflow-json').value));}
 function guardContract(){if(!$('workflow-guard').checked||!gameplayContract.cases.length)return {};return {contract:readContract()};}
 function assertContractParity(local,remote){if(local.contractSHA256!==remote.contractSHA256||local.rigSHA256!==remote.rigSHA256||local.pass!==remote.pass||local.cases.length!==remote.cases.length||local.cases.some((c,i)=>c.id!==remote.cases[i].id||c.traceSHA256!==remote.cases[i].traceSHA256||c.pcmSHA256!==remote.cases[i].pcmSHA256))throw Error('Gameplay check identity or PCM mismatch. Current rig retained.');}
@@ -405,6 +405,7 @@ function paintContract(){
 function setContract(input){gameplayContract=validateContract({validateTrace},rig,input);$('workflow-json').value=JSON.stringify(gameplayContract,null,2);contractReport=null;paintContract();$('workflow-status').textContent=`${gameplayContract.cases.length} saved checks. Expectations are declared separately from recorded events. Run them against this kit.`;}
 async function runContract(){
  if(busy)return;busy=true;lockEditing(true);
+ invalidateContract();$('workflow-status').textContent='Checking current sound settings and saved expectations…';
  try{gameplayContract=readContract();const current=projectData(),runtime={renderTrace:projectRuntime.renderTrace,validateTrace},local=await checkContract(runtime,current.rig,gameplayContract);const remote=await api('/api/workflow-check',{project:current,contract:gameplayContract,bindings:DEFAULT_BINDINGS});assertContractParity(local,remote);if(remote.projectSHA256!==await digest(current))throw Error('Project identity changed during checking.');contractReport=remote;paintContract();$('workflow-status').textContent=(contractReport.pass?'PASS':'FAIL')+` · ${contractReport.cases.length} checks · browser/export PCM matched.`+(contractReport.missingEvents.length?' Missing event coverage: '+contractReport.missingEvents.join(', '):'');evidence.gameplayContract=contractReport;saveEvidence();}
  catch(error){$('workflow-status').textContent=error.message;}
  finally{busy=false;lockEditing(false);}
@@ -556,7 +557,7 @@ async function restoreRevision(){
   if(capacity.revisions.length>=capacity.maxCount||capacity.usedBytes+recoveryBytes>capacity.maxBytes)throw Error('Revision history is full. Download and remove a saved revision before restoring.');
   const activation=await activateProject(restoring.snapshot.project,protection,restoring);committed=true;restoring.cleanupWarning=activation.cleanupWarning;
   await refreshRevisions();$('revision-preview').hidden=true;selectedRevision=null;
-  $('revision-status').textContent=`Restored “${record.label}”. Your previous work is saved as a recovery checkpoint. UNCHECKED: run saved checks again. Re-export to deliver this version.`+(restoring.cleanupWarning?' Audio cleanup warning: '+restoring.cleanupWarning+'. Save and reload before further playback.':'');
+  $('revision-status').textContent=`Restored “${record.label}”. Your previous work is saved as a recovery checkpoint. See Saved checks below for current verification results. Re-export to deliver this version.`+(restoring.cleanupWarning?' Audio cleanup warning: '+restoring.cleanupWarning+'. Save and reload before further playback.':'');
  }catch(error){$('revision-status').textContent=committed?'Revision restored, but the history list could not refresh. Use Refresh revisions. '+error.message:error.message+' Current project retained.'+(restoring.recoveryID?' The recovery checkpoint was also retained.':'');}
  finally{busy=false;lockEditing(false);}
 }

@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: a completed check must not contradict the restore notice
+    at file://<repo>/test-revision-status.mjs:41:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'Restored “Named kit”. Your previous work is saved as a recovery checkpoint. UNCHECKED: run saved checks again. Re-export to deliver this version.',
+  expected: /UNCHECKED/i,
+  operator: 'doesNotMatch',
+  diff: 'simple'
+}
+
+Node.js v25.9.0

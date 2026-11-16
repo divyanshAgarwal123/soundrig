@@ -16,7 +16,7 @@ checks = [
     ['node','test-workflow.mjs'],[sys.executable,'test-workflow-server.py'],['node','test-export.mjs'],['node','test-workflow-artifact.mjs'],
     [sys.executable,'test-studio-budget.py'],['node','test-studio-quality.mjs'],[sys.executable,'test-studio-delivery.py'],['node','--experimental-vm-modules','test-landing.mjs'],[sys.executable,'test-studio-artifact.py'],
     [sys.executable,'test-recording-review.py'],['node','test-recording-stage.mjs'],['node','test-cue-edit.mjs'],[sys.executable,'test-godot-package.py'],
-    ['node','test-recording-apply.mjs'],['node','test-studio-ux.mjs'],[sys.executable,'test-revision-store.py'],['node','test-revision-activation.mjs'],[sys.executable,'test-revision-api.py'],[sys.executable,'test-revision-e2e.py'],
+    ['node','test-recording-apply.mjs'],['node','test-studio-ux.mjs'],[sys.executable,'test-revision-store.py'],['node','test-revision-activation.mjs'],[sys.executable,'test-revision-api.py'],[sys.executable,'test-revision-e2e.py'],['node','test-revision-status.mjs'],
 ]
 results = []
 for command in checks:
