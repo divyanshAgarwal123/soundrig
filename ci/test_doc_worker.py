@@ -86,6 +86,15 @@ class WorkerTests(unittest.TestCase):
         self.assertIn(w.CAVEAT,w.insert_section(original,value))
         with self.assertRaises(ValueError):w.insert_section(original,{**value,'rationale':value['rationale']+'é'})
 
+    def test_handoff_keeps_alternative_server_instructions_together(self):
+        original='## Verify\nOwned server commands\n\nAlternatively, with this studio server already running:\nExisting alternative commands\n\n## Main files\nFiles'
+        result=w.insert_section(original,PLAN)
+        self.assertLess(result.index('Existing alternative commands'),result.index(w.HEADER))
+        self.assertLess(result.index(w.HEADER),result.index('## Main files'))
+        self.assertIn('replace 6 with your own PR number',result)
+        self.assertIn('authenticated gh and Qodo at ~/.qodo/bin/qodo',result)
+        self.assertIn('deliberately exits with status 1',result)
+
     def test_all_terminal_review_and_ci_failures_stop_promptly(self):
         checks=[{'name':n,'status':'COMPLETED','conclusion':'SUCCESS'} for n in ('Offline regression (Linux)','Native Godot integration (Linux)')]
         clean={'commit_sha':'head','status':'completed','review_complete':True}
@@ -143,6 +152,42 @@ class WorkerTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.job.run([sys.executable,'-c','print("x"*100000)'],limit=1000)
         with self.assertRaises(TimeoutError):self.job.run([sys.executable,'-c','import time;time.sleep(30)'],timeout=.15)
         self.assertFalse(self.job.children)
+
+    def test_non_subprocess_failure_keeps_bounded_private_traceback(self):
+        try:
+            raise ValueError('controlled failure')
+        except ValueError as error:
+            self.job.fail(error)
+        self.job.save()
+        logs=list(self.job.state.glob('private-traceback-*.txt'))
+        self.assertEqual(len(logs),1)
+        self.assertIn('test_non_subprocess_failure_keeps_bounded_private_traceback',logs[0].read_text())
+        self.assertEqual(logs[0].stat().st_mode & 0o777,0o600)
+        self.assertLessEqual(logs[0].stat().st_size,16384)
+        receipt=json.loads((self.job.state/'receipt.json').read_text())
+        self.assertTrue(receipt['privateFailureTracebackRetained'])
+        self.assertEqual(receipt['status'],'blocked');self.assertFalse(receipt['jobCompleted'])
+        self.assertNotIn('Traceback (most recent call last)',json.dumps(receipt))
+        self.job.fail(ValueError('é'*20000))
+        self.assertTrue(all(p.stat().st_size <= 16384 for p in self.job.state.glob('private-traceback-*.txt')))
+        self.job.fail(ValueError('\ud800'+'€'*20000))
+        self.assertTrue(all(p.read_text(encoding='utf-8') for p in self.job.state.glob('private-traceback-*.txt')))
+
+    def test_diagnostic_write_failure_cannot_mask_blocked_state(self):
+        with patch.object(w.tempfile,'NamedTemporaryFile',side_effect=OSError('disk unavailable')):
+            self.job.fail(ValueError('original failure'))
+        self.assertEqual(self.job.report['status'],'blocked')
+        self.assertFalse(self.job.report['jobCompleted'])
+        self.assertFalse(self.job.report['readyForHumanReview'])
+        self.assertTrue(self.job.report['privateFailureTracebackWriteFailed'])
+
+    def test_failed_command_retains_private_structured_output(self):
+        with self.assertRaises(RuntimeError):
+            self.job.run([sys.executable,'-c','import sys;print(\'{"error":"review unavailable"}\');sys.exit(1)'])
+        logs=list(self.job.state.glob('private-output-*.txt'))
+        self.assertEqual(len(logs),1)
+        self.assertEqual(json.loads(logs[0].read_text()),{'error':'review unavailable'})
+        self.assertNotIn('review unavailable',json.dumps(self.job.report))
 
     def test_ambiguous_review_request_preserves_intent_without_retry(self):
         pr={'html_url':'https://github.com/'+w.REPO+'/pull/11','number':11}

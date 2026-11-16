@@ -21,6 +21,7 @@ import stat
 import subprocess
 import tempfile
 import time
+import traceback
 import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,19 +34,24 @@ MODEL_PORT = 11435
 MAX_RATIONALE_CHARS = 600
 CLEANUP_GRACE = 22  # ci/check.py can spend 20 seconds stopping its two groups.
 CLEANUP_RESERVE = 50  # At most the owned model server and one command are active.
-ANCHOR = 'Alternatively, with this studio server already running:\n'
+ANCHOR = '## Main files\n'
 HEADER = '### Qodo review handoff'
 COMMAND_ORDER = ('python3 ci/test_native_receipt.py','python3 ci/test_review_gate.py','python3 ci/review_gate.py --pr 6')
 COMMANDS = set(COMMAND_ORDER)
-INTRO = 'Use these safety tests to prepare a SoundRig change for handoff.'
+INTRO = ('Use these safety tests to prepare a SoundRig change for handoff. '
+         'The gate example targets divyanshAgarwal123/soundrig and needs authenticated gh and Qodo at ~/.qodo/bin/qodo. '
+         'It inspects standards PR #6; replace 6 with your own PR number for another change.')
 CAVEAT = ("Only a completed current-head Qodo review and fresh CI evidence can support handoff. "
           "The reviewed base is not attested by Qodo's structured API, so a human must inspect the base and control changes. "
-          "The read-only gate does not emit overall PASS. A human decides whether to merge.")
+          "The read-only gate does not emit overall PASS and deliberately exits with status 1. "
+          "Read its JSON reviewSession, testedMergeCommit and blockers; headAndCIEvidencePass is a separate signal, "
+          "and stacked-base or control-change blockers still require human assessment. "
+          "Do not chain the example with && expecting success. A human decides whether to merge.")
 TASK_TITLE = 'Document SoundRig review handoff and CI safety checks'
-TASK_BODY = '''Add one Qodo review handoff subsection to README Verify, immediately before the alternative already-running-server instructions.
+TASK_BODY = '''Add one Qodo review handoff subsection at the end of README Verify, immediately before Main files and after all existing verification instructions.
 
 Acceptance criteria:
-- Document the existing native-receipt and review-gate test commands, plus the read-only PR6 review-gate command.
+- Document the existing native-receipt and review-gate test commands, plus the read-only PR6 review-gate example; explicitly tell readers to replace 6 for another PR.
 - Explain completed current-head Qodo review and fresh CI evidence; reviewed-base provenance is unavailable, so human base/control review remains mandatory and the gate does not emit overall PASS.
 - Preserve all existing README text and every other source file.
 - Run existing offline checks and complete local/current-head Qodo and GitHub CI review.
@@ -193,6 +199,20 @@ class Job:
         self.report['seconds'] = round(time.monotonic()-self.started, 3)
         write_json(self.state/'receipt.json', self.report)
 
+    def fail(self, error):
+        # Stack traces can contain source/data; retain them only in private state.
+        self.report.update(status='blocked',error=type(error).__name__,jobCompleted=False,
+                           readyForHumanReview=False,privateFailureTracebackRetained=False)
+        try:
+            self.report['error'] = f'{type(error).__name__}: {error}'[:1024].encode('utf-8','backslashreplace').decode('utf-8')
+            text = ''.join(traceback.format_exception(type(error),error,error.__traceback__,limit=50))
+            text = text.encode('utf-8','backslashreplace')[-16384:].decode('utf-8','ignore')
+            with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',dir=self.state,prefix='private-traceback-',suffix='.txt',delete=False) as log:
+                log.write(text)
+            self.report['privateFailureTracebackRetained'] = True
+        except Exception:
+            self.report['privateFailureTracebackWriteFailed'] = True
+
     @contextlib.contextmanager
     def phase(self, name):
         self.left()
@@ -268,6 +288,7 @@ class Job:
             if child.returncode not in allowed:
                 # Raw diagnostics stay private; never include them in public receipts.
                 (self.state/f'private-error-{sum(self.report["toolCalls"].values())}.txt').write_bytes(bytes(output[child.stderr])[:16384])
+                (self.state/f'private-output-{sum(self.report["toolCalls"].values())}.txt').write_bytes(bytes(output[child.stdout])[:16384])
                 raise RuntimeError(f'{key} exited {child.returncode}; private diagnostics retained')
             return bytes(output[child.stdout])
         finally:
@@ -456,7 +477,8 @@ class Job:
             with self.phase('independent_clone'):
                 self.git(['clone','--no-hardlinks','--no-checkout',str(ROOT),str(clone)])
                 self.git(['checkout','--detach',enrolled['baseSHA']],clone)
-                self.git(['switch','-c',branch],clone)
+                # Review from the tracked base; create the publication branch only afterward.
+                self.git(['switch',BASE_REF],clone)
                 self.git(['remote','set-url','origin',f'https://github.com/{REPO}.git'],clone)
                 for name in ('README.md','AGENTS.md'):
                     if (clone/name).is_symlink() or digest((clone/name).read_bytes()) != enrolled[name]:
@@ -488,7 +510,7 @@ class Job:
             with self.phase('local_qodo_review'):
                 args = clone/'.qa-output/worker-context.json'
                 write_json(args,{'notes':TASK_BODY,'decisions':['README insertion only; human merge'],'recent_work':[],'context_refs':[]})
-                raw = self.run([str(Path.home()/'.qodo/bin/qodo'),'review','--base',enrolled['baseSHA'],
+                raw = self.run([str(Path.home()/'.qodo/bin/qodo'),'review','--full','--deep','--base',enrolled['baseSHA'],
                                 '--context-file',str(args),'--json','README.md'],clone,timeout=600)
                 (self.state/'qodo-local.json').write_bytes(raw)
                 local = json.loads(raw)
@@ -505,6 +527,7 @@ class Job:
                 self.report['reviewedTree'] = tree
             with self.phase('commit_and_publish'):
                 self.revalidate(enrolled,trigger)
+                self.git(['switch','-c',branch],clone)
                 self.git(['-c','user.name=SoundRig bounded worker','-c','user.email=divyanshAgarwal123@users.noreply.github.com',
                           'commit','-m',f'Document Qodo review handoff for issue{enrolled["issue"]}'],clone)
                 head = self.git(['rev-parse','HEAD'],clone).decode().strip()
@@ -613,7 +636,8 @@ def main():
         else:
             observe(job,args.enrollment,args.wait)
     except Exception as error:
-        job.report.update(status='blocked',error=f'{type(error).__name__}: {error}',jobCompleted=False)
+        signal.setitimer(signal.ITIMER_REAL,0)
+        job.fail(error)
         code = 1
     finally:
         signal.signal(signal.SIGTERM,signal.SIG_IGN)
