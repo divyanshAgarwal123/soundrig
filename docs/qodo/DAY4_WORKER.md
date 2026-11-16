@@ -4,7 +4,7 @@ This implements one enrolled GitHub-label job in `ci/doc_worker.py`. It is a loc
 
 ## Model and controller boundary
 
-The local qwen3:8b model receives only the fixed ticket, pinned README and project instructions. It has no shell, filesystem, credential, HTTP or other tool interface. It returns a typed introductory sentence and an ordered list of the three fixed commands. The controller rejects other fields, markup, links, control characters and generated approval/review claims. It formats the README insertion and appends the complete authoritative caveat paragraph verbatim, independently of the model. Generated content is never executed.
+The local qwen3:8b model receives only the fixed ticket, pinned README and project instructions. It has no shell, filesystem, credential, HTTP or other tool interface. It returns a private planning rationale and an ordered list of three fixed commands. The rationale is never copied into the README. All published prose and review caveats come from trusted controller constants; only validated fixed command strings are selected by the plan. Other fields, commands and control characters are refused. Generated content is never executed.
 
 GitHub, Git, Qodo and test commands belong to the trusted controller. It uses fixed argument lists and JSON body files, an independent clone with no hardlinks, disabled Git hooks, and cleared inherited Git execution configuration before checkout. No credentials are copied into the clone or sent to the model. This is capability restriction of the model, not an operating-system sandbox for the trusted controller.
 

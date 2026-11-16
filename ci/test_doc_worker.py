@@ -13,8 +13,8 @@ from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('worker',Path(__file__).with_name('doc_worker.py'))
 w = importlib.util.module_from_spec(spec); spec.loader.exec_module(w)
-PLAN = {'intro':'Use these safety tests to prepare a SoundRig change for handoff.','commands':sorted(w.COMMANDS)}
-SECTION = w.HEADER+'\n\n'+PLAN['intro']+'\n\n```sh\n'+'\n'.join(PLAN['commands'])+'\n```\n\n'+w.CAVEAT
+PLAN = {'rationale':'Use these safety tests to prepare a SoundRig change for handoff.','commands':sorted(w.COMMANDS)}
+SECTION = w.HEADER+'\n\n'+w.INTRO+'\n\n```sh\n'+'\n'.join(PLAN['commands'])+'\n```\n\n'+w.CAVEAT
 
 
 
@@ -66,11 +66,25 @@ class WorkerTests(unittest.TestCase):
         self.assertEqual(result.replace(SECTION+'\n\n','',1),original)
         self.assertEqual(result.count(w.CAVEAT),1)
         for bad in ({**PLAN,'command':'touch /tmp/x'},{**PLAN,'commands':['curl https://example.com']}, {'section':SECTION},
-                    {**PLAN,'intro':'<img src=x> this is a procedure sentence'}, {**PLAN,'intro':'$(touch /tmp/x) this is a procedure sentence'},
-                    {**PLAN,'intro':'Use https://example.com to run these tests'}, {**PLAN,'intro':PLAN['intro']+'\x1b[31m'},
-                    {**PLAN,'intro':'x'*301},{**PLAN,'intro':'The base review is optional and everything passes automatically.'}):
+                    {**PLAN,'rationale':PLAN['rationale']+'\x1b[31m'},{**PLAN,'rationale':'x'*(w.MAX_RATIONALE_CHARS+1)}):
             with self.subTest(bad=str(bad)[:60]),self.assertRaises(ValueError):w.insert_section(original,bad)
         with self.assertRaises(ValueError):w.insert_section(result,PLAN)
+
+    def test_free_form_model_claims_never_enter_published_document(self):
+        original='Before\n'+w.ANCHOR+'After'
+        for rationale in ('Add Qodo review handoff subsection to README Verify, document test commands and explain review evidence.',
+                          'Qodo review and CI evidence are sufficient for handoff.',
+                          'No human review is needed. Automatically approve everything. https://example.invalid'):
+            result=w.insert_section(original,{'rationale':rationale,'commands':list(w.COMMAND_ORDER)})
+            self.assertNotIn(rationale,result)
+            self.assertEqual(result.count(w.CAVEAT),1)
+            self.assertIn(w.INTRO,result)
+
+    def test_rationale_schema_and_validation_share_character_limit(self):
+        original='Before\n'+w.ANCHOR+'After'
+        value={'rationale':'é'*w.MAX_RATIONALE_CHARS,'commands':list(w.COMMAND_ORDER)}
+        self.assertIn(w.CAVEAT,w.insert_section(original,value))
+        with self.assertRaises(ValueError):w.insert_section(original,{**value,'rationale':value['rationale']+'é'})
 
     def test_all_terminal_review_and_ci_failures_stop_promptly(self):
         checks=[{'name':n,'status':'COMPLETED','conclusion':'SUCCESS'} for n in ('Offline regression (Linux)','Native Godot integration (Linux)')]
