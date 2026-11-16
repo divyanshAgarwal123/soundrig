@@ -14,7 +14,7 @@ No Discussion entry has been submitted. Repository publication is not contest su
 | 6 | Two real Wisdom reads before standards/gate changes, exact-revision source verification and before/after plan | Daily entry; these reads did not precede issue #1 |
 | 7 | Seven CI repairs, automatic implementation attribution and completed current-head PR #5 review at29969e84; PR #6 repairs have their own loop | Latest PR #6 current-head coverage, human review and daily entry |
 | 8 | Local Reviewer reviewed staged and unstaged changes before commit568298a; another completed repair review bound to491445b has no open findings | Later edits require their own review; binary screenshots are separately inspected; daily entry |
-| 9 | Read-only gate, eighteen failure-path tests, rejection of skipped review and real human-review stop for CI-control edits | Bootstrap control changes and unmerged bases deliberately require human review; daily entry |
+| 9 | Read-only gate, nineteen failure-path tests, rejection of skipped review and real human-review stop for CI-control edits | Missing reviewed-base attestation, bootstrap control changes and unmerged bases require human review; daily entry |
 | 10 | Diagram separates actual tickets, historical connection recovery, failure/repair edges and human stop | Coding worker remains unexecuted; daily entry |
 | 11 | Earlier attempts skipped analysis; documented router follow-up at the same PR4 head/base/code diff actually ran standard review with complete coverage and no findings | One routing observation, not causal proof of better review quality; display untested; daily entry |
 

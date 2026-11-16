@@ -76,7 +76,13 @@ def assess(pr, review, initial_identity):
         matching = [c for c in checks if c.get('name') == name]
         if not matching or any(str(c.get('status')).upper() != 'COMPLETED' or str(c.get('conclusion')).upper() != 'SUCCESS' or c.get('head_sha') != head for c in matching):
             reasons.append('Required CI is not successful: '+name)
-    return {'pass': not reasons, 'head': head, 'base':pr.get('baseRefOid'),
+    # The structured Qodo API attests a head, but exposes no reviewed base/merge.
+    # Comparing the base only during collection misses an earlier base update.
+    # Keep useful head/CI evidence separate and fail closed for human base review.
+    head_and_ci_pass = not reasons
+    reasons.append('Qodo does not attest the reviewed base or merge; human base review is required')
+    return {'pass': False, 'headAndCIEvidencePass': head_and_ci_pass,
+            'reviewedBaseAttested': False, 'head': head, 'base':pr.get('baseRefOid'),
             'testedMergeCommit':pr.get('testedMergeCommit'), 'ciRun':pr.get('ciRun'), 'reviewSession': session,
             'blockers': reasons, 'lowFindingsForHuman': low,
             'humanMergeRequired': True, 'controlsNeedingHumanReview':controls or []}
@@ -177,7 +183,7 @@ def main():
     args = parser.parse_args()
     if args.pr < 1:
         parser.error('--pr must be positive')
-    report = {'pass': False, 'blockers': ['Collection has not completed'], 'humanMergeRequired': True}
+    report = {'pass': False, 'headAndCIEvidencePass': False, 'reviewedBaseAttested': False, 'blockers': ['Collection has not completed'], 'humanMergeRequired': True}
     try:
         command = ['gh', 'pr', 'view', str(args.pr), '--repo', REPO,
                    '--json', 'headRefOid,baseRefOid,baseRefName,potentialMergeCommit,statusCheckRollup,author,isCrossRepository,changedFiles,url']
@@ -204,9 +210,11 @@ def main():
         if check_fingerprint(verified) != check_fingerprint(observed):
             report['blockers'].append('Required CI changed while collecting receipts')
             report['pass'] = False
+            report['headAndCIEvidencePass'] = False
         if identity(latest) != identity(final):
             report['blockers'].append('PR identity changed while collecting CI')
             report['pass'] = False
+            report['headAndCIEvidencePass'] = False
         report['pr'] = pr['url']
     except Exception as error:
         report['blockers'] = [f'{type(error).__name__}: {error}']

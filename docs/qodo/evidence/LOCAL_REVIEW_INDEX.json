@@ -1,6 +1,6 @@
 {
   "purpose": "Dated history, not current readiness approval",
-  "authority": "Fetch the completed current-head PR review and fresh CI; never infer readiness from historical filenames or finding_state.complete",
+  "authority": "Current-head PR review and fresh CI are necessary; the reviewed base is not attested by this API and requires human review. Historical filenames and finding_state.complete never establish readiness.",
   "records": [
     {
       "file": "history/local-docs-incomplete.json",
@@ -9,7 +9,6 @@
     },
     {
       "file": "history/local-568298a-complete.json",
-      "reviewedSourceCommit": "568298a0e3c88a20edaf9160ecacf29600d47375",
       "coverageComplete": true,
       "openFindings": 0,
       "resultSHA256": "05359996d46d665e04ff7309410b9358d459ddc8e07b4eab18b90d47eec93fb9",
@@ -24,8 +23,50 @@
         "openFindings": 0,
         "scope": "All intended text/code; binary screenshots independently inspected"
       },
-      "disposition": "Completed Local Reviewer of the text/code before commit568298a; does not certify later fixes or itself"
+      "disposition": "Completed Local Reviewer of the text/code before commit568298a; does not certify later fixes or itself",
+      "committedPatchCommit": "568298a0e3c88a20edaf9160ecacf29600d47375",
+      "rawPreCommitHEAD": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+      "reviewedWorkingTreeSHA": "633c33625f4e06e5d477226ba559b5cb8efe03c4",
+      "committedTreeSHA": "f0a6215105b32faf40111e4e386f1460279acf01",
+      "treeMatchesCommittedScope": true,
+      "excludedBinaryPaths": [
+        "docs/qodo/evidence/github-soundrig-only.jpg",
+        "docs/qodo/evidence/qodo-github-connected.jpg"
+      ],
+      "reviewMode": "Uncommitted working-tree diff. raw commit_sha is pre-publication HEAD; tree_sha identifies the reviewed working tree. Binary paths, where listed, were separately inspected."
+    },
+    {
+      "file": "history/local-491445b-repairs.json",
+      "binding": "history/local-491445b-repairs-binding.json",
+      "scope": "Repair diff relative to568298a; incremental checkpoint coverage, not an unrelated full repository audit",
+      "coverageComplete": true,
+      "openFindings": 0,
+      "resultSHA256": "8dd899b41da29dcb3496c5ad1fad1822ef3c9e2f56048e90c36fa7e93f957d7d",
+      "disposition": "Completed review of the stated historical scope; does not certify later code, this newly added index, or itself",
+      "committedPatchCommit": "491445beffcbd9de7ab132d4f360f5077efd6642",
+      "rawPreCommitHEAD": "568298a0e3c88a20edaf9160ecacf29600d47375",
+      "reviewedWorkingTreeSHA": "73db8d577153c77426de09a2e8325be4b7a96226",
+      "committedTreeSHA": "73db8d577153c77426de09a2e8325be4b7a96226",
+      "treeMatchesCommittedScope": true,
+      "excludedBinaryPaths": [],
+      "reviewMode": "Uncommitted working-tree diff. raw commit_sha is pre-publication HEAD; tree_sha identifies the reviewed working tree. Binary paths, where listed, were separately inspected."
+    },
+    {
+      "file": "history/local-e145d08-docs.json",
+      "binding": "history/local-e145d08-docs-binding.json",
+      "scope": "Only four changed challenge-documentation paths relative to491445b",
+      "coverageComplete": true,
+      "openFindings": 0,
+      "resultSHA256": "65c946ee6351e58839274466e383c323ed73199ac62dcdf21ddb51cc32e42d4a",
+      "disposition": "Completed review of the stated historical scope; does not certify later code, this newly added index, or itself",
+      "committedPatchCommit": "e145d082c3881f20ac47f7da3d15a76bfdd1aaa2",
+      "rawPreCommitHEAD": "491445beffcbd9de7ab132d4f360f5077efd6642",
+      "reviewedWorkingTreeSHA": "0b16591b290662b95140d004bb60357e05e7bec7",
+      "committedTreeSHA": "0b16591b290662b95140d004bb60357e05e7bec7",
+      "treeMatchesCommittedScope": true,
+      "excludedBinaryPaths": [],
+      "reviewMode": "Uncommitted working-tree diff. raw commit_sha is pre-publication HEAD; tree_sha identifies the reviewed working tree. Binary paths, where listed, were separately inspected."
     }
   ],
-  "latestCandidateState": "Requires its own current-head PR review; CI-control changes additionally require human review"
+  "latestCandidateState": "This new repair batch requires its own local and current-head PR review; overall PASS remains blocked on human base/control review."
 }

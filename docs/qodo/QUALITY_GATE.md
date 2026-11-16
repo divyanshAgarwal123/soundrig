@@ -30,8 +30,12 @@ The final GitHub read retrieves PR identity and check status together. Changed r
 
 ## Trust and bootstrap
 
-Run the verifier only from a checkout you already trust, never by executing code from an incoming untrusted PR. A program cannot attest to its own integrity. Automated readiness is limited to the repository owner's same-repository PRs targeting main. Other authors, forks and unmerged bases stop for human review.
+Run the verifier only from a checkout you already trust, never by executing code from an incoming untrusted PR. A program cannot attest to its own integrity. Head/CI evidence collection is limited to the repository owner's same-repository PRs targeting main. Other authors, forks and unmerged bases stop for human review.
 
 Edits to workflows, CI/verifier code, test launchers, tests or test fixtures require human review and cannot receive an automatic PASS, even with green candidate jobs. The changed-file collection includes renamed paths and all pages. This deliberately blocks automatic promotion of the CI/bootstrap PRs themselves; a human reviews their source and evidence before merging. GitHub branch protection and human review remain the trust boundary.
 
 Command failures retain bounded raw diagnostics in private 0600 files under ignored .qa-output/review-gate-errors; the public result names the error category and local path without printing credentials. Do not publish those private diagnostic logs.
+
+## Reviewed-base limitation
+
+The structured Qodo finding API records commit_sha but does not expose the base or merge revision used by review. A base change before this invocation could otherwise reuse an old head review alongside fresh merge CI. The gate therefore never emits overall PASS with this API: pass is false and reviewedBaseAttested is false, with a mandatory human base-review blocker. headAndCIEvidencePass separately reports the supported checks; it is not approval. No timestamp guess, current-base lookup or fabricated provider field is treated as reviewed-base proof. Before merging, a human inspects the updated base/diff and requests the appropriate new review. Automatic readiness remains unavailable until trustworthy base provenance exists.
