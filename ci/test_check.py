@@ -20,8 +20,20 @@ runner = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runner)
 SERVER = '''from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 import json
+def model_request(*args):
+ raise AssertionError('Original model transport must never run')
 class Handler(BaseHTTPRequestHandler):
+ def reply(self,status,value):
+  self.send_response(status);self.end_headers();self.wfile.write(json.dumps(value).encode())
+ def do_POST(self):
+  global MODEL_ENABLED
+  MODEL_ENABLED=True
+  self.reply(200,{'enabled':True})
  def do_GET(self):
+  if self.path == '/probe-model':
+   try:model_request('test','test')
+   except ConnectionError:self.reply(200,{'blocked':True});return
+
   self.send_response(200);self.end_headers();self.wfile.write(json.dumps({'enabled':MODEL_ENABLED,'calls':{'upstream':0}}).encode())
 '''
 
@@ -114,6 +126,68 @@ Path('evidence/final-checks.json').write_text('{"pass":true,"fresh":true}')
         self.assertFalse((self.artifacts/'evidence/final-checks.json').exists())
         self.assertFalse((self.artifacts/'checks.log').exists())
         self.assertTrue((self.output/first['artifacts']/'evidence/final-checks.json').exists())
+
+    def start_fixture(self, code):
+        (self.root/'run_checks.py').write_text(code)
+        script = ("import importlib.util,sys;from pathlib import Path;"
+            +"s=importlib.util.spec_from_file_location('runner',"+repr(str(Path(runner.__file__)))+");"
+            +"r=importlib.util.module_from_spec(s);s.loader.exec_module(r);r.ROOT=Path("+repr(str(self.root))+");"
+            +"sys.argv=['check.py','--output',"+repr(str(self.output))+",'--timeout','20'];sys.exit(r.main())")
+        process = subprocess.Popen([sys.executable,'-c',script], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, start_new_session=True)
+        self.addCleanup(lambda: runner.stop(process) if process.poll() is None else None)
+        return process
+
+    def wait_file(self, path):
+        deadline = time.monotonic()+5
+        while not path.exists() and time.monotonic() < deadline:
+            time.sleep(.02)
+        self.assertTrue(path.exists(), str(path))
+
+    def test_symlinks_never_copy_private_source_or_generated_artifacts(self):
+        (self.root/'evidence/source-link').symlink_to(self.root/'.env')
+        outside = Path(self.temp.name)/'outside-secret'
+        outside.write_text('synthetic outside canary')
+        result, report = self.run_fixture("from pathlib import Path\nassert not Path('evidence/source-link').exists()\nPath('evidence/generated-link').symlink_to("+repr(str(outside))+")")
+        self.assertEqual(result, 0)
+        self.assertFalse((self.artifacts/'evidence/source-link').exists())
+        self.assertFalse((self.artifacts/'evidence/generated-link').exists())
+        self.assertEqual(outside.read_text(), 'synthetic outside canary')
+
+    def test_sigterm_stops_children_and_publishes_failure(self):
+        started = Path(self.temp.name)/'started'
+        process = self.start_fixture("from pathlib import Path\nimport time\nPath("+repr(str(started))+").write_text('yes')\ntime.sleep(60)")
+        self.wait_file(started)
+        process.terminate()
+        self.assertEqual(process.wait(timeout=10), 1)
+        report = json.loads((self.output/'receipt.json').read_text())
+        self.assertFalse(report['pass'])
+        self.assertEqual(report['status'], 'failed')
+        self.assertIn('InterruptedError', report['error'])
+        self.assert_port_released()
+
+    def test_older_completion_cannot_overwrite_a_newer_failure(self):
+        started = Path(self.temp.name)/'started'
+        process = self.start_fixture("from pathlib import Path\nimport time\nPath("+repr(str(started))+").write_text('yes')\ntime.sleep(2)")
+        self.wait_file(started)
+        older = json.loads((self.output/'receipt.json').read_text())
+        result, newer = self.run_fixture("raise AssertionError('must not run: port owned')")
+        self.assertEqual(result, 1)
+        self.assertEqual(process.wait(timeout=10), 0)
+        latest = json.loads((self.output/'receipt.json').read_text())
+        self.assertEqual(latest['artifacts'], newer['artifacts'])
+        self.assertFalse(latest['pass'])
+        self.assertTrue(json.loads((self.output/older['artifacts']/'receipt.json').read_text())['pass'])
+
+    def test_inference_cannot_be_enabled_or_reach_the_transport(self):
+        result, report = self.run_fixture("""import json,urllib.request,urllib.error
+req=urllib.request.Request('http://127.0.0.1:8772/api/model-mode',data=b'{"enabled":true}',headers={'Content-Type':'application/json'})
+try:urllib.request.urlopen(req);raise AssertionError('mode changed')
+except urllib.error.HTTPError as e:assert e.code==403
+assert json.load(urllib.request.urlopen('http://127.0.0.1:8772/probe-model'))['blocked']
+assert not json.load(urllib.request.urlopen('http://127.0.0.1:8772/api/status'))['enabled']
+""")
+        self.assertEqual(result, 0)
+        self.assertEqual(report['newModelCalls'], 0)
 
     def test_cleanup_kills_a_resistant_grandchild_after_leader_exits(self):
         pid_file = Path(self.temp.name)/'grandchild'
