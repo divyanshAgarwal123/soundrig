@@ -51,6 +51,7 @@ class RunnerTests(unittest.TestCase):
         (self.root/'.soundrig-revisions').mkdir()
         (self.root/'.soundrig-revisions/private').write_text('synthetic private-store sentinel')
         (self.root/'.env').write_text('synthetic environment sentinel')
+        (self.root/'skills-lock.json').write_text('{"privateAgentMetadata":true}')
 
     def run_fixture(self, code, timeout=5):
         (self.root/'run_checks.py').write_text(code)
@@ -70,6 +71,7 @@ class RunnerTests(unittest.TestCase):
         result, report = self.run_fixture('''from pathlib import Path
 assert not Path('.soundrig-revisions').exists()
 assert not Path('.env').exists()
+assert not Path('skills-lock.json').exists()
 assert not Path('evidence/final-checks.json').exists()
 Path('evidence/final-checks.json').write_text('{"pass":true,"fresh":true}')
 ''')
@@ -188,6 +190,39 @@ assert not json.load(urllib.request.urlopen('http://127.0.0.1:8772/api/status'))
 """)
         self.assertEqual(result, 0)
         self.assertEqual(report['newModelCalls'], 0)
+
+    def test_termination_during_initial_publication_records_failure(self):
+        original = Path.replace
+        sent = False
+        def interrupt(path, target):
+            nonlocal sent
+            if Path(target).resolve() == (self.output/'receipt.json').resolve() and not sent:
+                sent = True
+                os.kill(os.getpid(), signal.SIGTERM)
+            return original(path, target)
+        with patch.object(Path, 'replace', interrupt):
+            result, report = self.run_fixture("raise AssertionError('must not reach suite')")
+        self.assertTrue(sent)
+        self.assertEqual(result, 1)
+        self.assertEqual(report['status'], 'failed')
+        self.assertIn('InterruptedError', report['error'])
+
+    def test_final_publication_is_not_interrupted_by_sigterm(self):
+        original = Path.replace
+        writes = 0
+        def interrupt(path, target):
+            nonlocal writes
+            if Path(target).resolve() == (self.output/'receipt.json').resolve():
+                writes += 1
+                if writes == 2:
+                    os.kill(os.getpid(), signal.SIGTERM)
+            return original(path, target)
+        with patch.object(Path, 'replace', interrupt):
+            result, report = self.run_fixture("print('completed suite')")
+        self.assertEqual(writes, 2)
+        self.assertEqual(result, 0)
+        self.assertEqual(report['status'], 'passed')
+        self.assert_port_released()
 
     def test_cleanup_kills_a_resistant_grandchild_after_leader_exits(self):
         pid_file = Path(self.temp.name)/'grandchild'
