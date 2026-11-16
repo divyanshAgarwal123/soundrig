@@ -1,0 +1,35 @@
+{
+  "commit": "491445beffcbd9de7ab132d4f360f5077efd6642",
+  "base": "568298a0e3c88a20edaf9160ecacf29600d47375",
+  "localReviewSHA256": "8dd899b41da29dcb3496c5ad1fad1822ef3c9e2f56048e90c36fa7e93f957d7d",
+  "allReviewedFilesMatchCommit": true,
+  "files": {
+    "ci/review_gate.py": "46d57ab6ab549a12d456528c70ceec7d086193762fd7e12ece751134e50ad35b",
+    "ci/test_review_gate.py": "e1153037a3dcdd0b90221269cf0033377979df196edcb4325725c454d9ed0409",
+    "docs/qodo/CHALLENGES.md": "7d420ce20e773c3010c8a4b82a61abad95abb12a0c6fb687e82ca30faee43491",
+    "docs/qodo/DAY11_REVIEW_COMPARISON.md": "0fee7dfca05bee0a054f74df94df050c6ff6078accb544de53a41eee827d0074",
+    "docs/qodo/DISCUSSION_DRAFTS.md": "72f12b3b9393e22deec5280fccb9b909cfa8047c7beb6a4b5451a55e454c241f",
+    "docs/qodo/QUALITY_GATE.md": "2b9e6219c827969c25b0e656fea52f742560327f7c16a8d906ceaa3344c39bbd",
+    "docs/qodo/evidence/LOCAL_REVIEW_INDEX.json": "00e3000b29deeca4c856e3c5ade4ef8e2c495bf5a9de52ab3ce8ca8f5f500ad1",
+    "docs/qodo/evidence/day11-comparison.json": "e1590e0b2d6efe4ec7dcef294abd45e78c073d9fc6bac03ad612f27ce962bd53",
+    "docs/qodo/evidence/gate-pr5-pass.json": null,
+    "docs/qodo/evidence/history/README.md": "3e4b360a428f442e5cf4339fd0a9854f102f12d7a0d518e5ce3e4c4d0df3c7a1",
+    "docs/qodo/evidence/history/gate-pr5-before-trust-hardening.json": "5ab4dabd0693f62fd48133d222ad4bde6c19f8737cc77f5ab78d6b75d5419c73",
+    "docs/qodo/evidence/history/local-568298a-complete.json": "05359996d46d665e04ff7309410b9358d459ddc8e07b4eab18b90d47eec93fb9",
+    "docs/qodo/evidence/history/local-docs-incomplete.json": "3341ea953234067d4920292f1e48b298fe1126b8396b4d1c2496d2fe74a7b7df",
+    "docs/qodo/evidence/qodo-local-standards-findings.json": null
+  },
+  "localReviewCoverageComplete": true,
+  "localReviewOpenFindings": 0,
+  "notes": "Incremental local review plus checkpoint coverage; no manual dismissals or attribution writes.",
+  "reviewMode": "uncommitted working-tree diff",
+  "rawPreCommitHEAD": "568298a0e3c88a20edaf9160ecacf29600d47375",
+  "reviewedWorkingTreeSHA": "73db8d577153c77426de09a2e8325be4b7a96226",
+  "committedTreeSHA": "73db8d577153c77426de09a2e8325be4b7a96226",
+  "treeMatchesCommittedPatch": true,
+  "deletedPaths": [
+    "docs/qodo/evidence/gate-pr5-pass.json",
+    "docs/qodo/evidence/qodo-local-standards-findings.json"
+  ],
+  "fileHashSemantics": "Null SHA256 means verified deletion/absence, not an unknown hash. Non-null hashes match committed bytes."
+}

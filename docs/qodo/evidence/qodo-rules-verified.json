@@ -1,0 +1,176 @@
+{
+  "page": 1,
+  "totalCount": 5,
+  "rules": [
+    {
+      "createdAt": "2026-11-16T13:00:39.024258Z",
+      "updatedAt": "2026-11-16T13:00:39.024252Z",
+      "scopeElements": [
+        {
+          "kind": "repo",
+          "org": null,
+          "repo": {
+            "repoId": null,
+            "fullName": "divyanshAgarwal123/soundrig"
+          },
+          "path": null
+        }
+      ],
+      "scopes": [
+        "/divyanshagarwal123/soundrig/"
+      ],
+      "name": "SoundRig recoverable activation",
+      "category": "Reliability",
+      "severity": "error",
+      "suggestionType": null,
+      "content": "Validate candidates before replacing the active project and save recovery before committing a restore. Preserve the working project on quota, guard, preparation or commit failures; never silently evict saved revisions.",
+      "goodExamples": "await prepareCandidate(candidate); await saveRecovery(active); await commitCandidate(candidate);",
+      "badExamples": "active = candidate; await validateCandidate(candidate);",
+      "sourceType": "User",
+      "state": "active",
+      "ruleId": 4873522,
+      "similaritiesCount": null,
+      "url": null,
+      "insights": null,
+      "historyBandPrediction": null,
+      "enforcementOverride": "auto",
+      "lastMutedAt": null
+    },
+    {
+      "createdAt": "2026-11-16T13:00:42.607132Z",
+      "updatedAt": "2026-11-16T13:00:42.607126Z",
+      "scopeElements": [
+        {
+          "kind": "repo",
+          "org": null,
+          "repo": {
+            "repoId": null,
+            "fullName": "divyanshAgarwal123/soundrig"
+          },
+          "path": null
+        }
+      ],
+      "scopes": [
+        "/divyanshagarwal123/soundrig/"
+      ],
+      "name": "SoundRig recording and export provenance",
+      "category": "Correctness",
+      "severity": "warning",
+      "suggestionType": null,
+      "content": "Retain original recordings, declared source notes and third-party licenses in delivery workflows. Verify exported PCM and component identities, and distinguish static cues from dynamic runtime behavior without treating declared ownership as certification.",
+      "goodExamples": "verifyPCMIdentity(exportedPCM, checkedPCM); preserveSourceNotes(project);",
+      "badExamples": "delete project.originals; claimCertifiedOwnership(upload.licenseNote);",
+      "sourceType": "User",
+      "state": "active",
+      "ruleId": 4873524,
+      "similaritiesCount": null,
+      "url": null,
+      "insights": null,
+      "historyBandPrediction": null,
+      "enforcementOverride": "auto",
+      "lastMutedAt": null
+    },
+    {
+      "createdAt": "2026-11-16T13:00:37.114403Z",
+      "updatedAt": "2026-11-16T13:00:37.114396Z",
+      "scopeElements": [
+        {
+          "kind": "repo",
+          "org": null,
+          "repo": {
+            "repoId": null,
+            "fullName": "divyanshAgarwal123/soundrig"
+          },
+          "path": null
+        }
+      ],
+      "scopes": [
+        "/divyanshagarwal123/soundrig/"
+      ],
+      "name": "SoundRig current verification evidence",
+      "category": "Correctness",
+      "severity": "error",
+      "suggestionType": null,
+      "content": "Invalidate and repaint Saved checks after relevant sound or definition changes and before reruns. Show PASS only after completed checks with matching project, contract, trace and PCM identities.",
+      "goodExamples": "invalidateContract(); const result = await checkContract(runtime, rig, contract); assertContractParity(local, result);",
+      "badExamples": "rig = nextRig; showPreviousPass();",
+      "sourceType": "User",
+      "state": "active",
+      "ruleId": 4873520,
+      "similaritiesCount": null,
+      "url": null,
+      "insights": null,
+      "historyBandPrediction": null,
+      "enforcementOverride": "auto",
+      "lastMutedAt": null
+    },
+    {
+      "createdAt": "2026-11-16T13:00:46.537874Z",
+      "updatedAt": "2026-11-16T13:00:46.537870Z",
+      "scopeElements": [
+        {
+          "kind": "repo",
+          "org": null,
+          "repo": {
+            "repoId": null,
+            "fullName": "divyanshAgarwal123/soundrig"
+          },
+          "path": null
+        }
+      ],
+      "scopes": [
+        "/divyanshagarwal123/soundrig/"
+      ],
+      "name": "SoundRig current-source review and CI receipts",
+      "category": "Testability",
+      "severity": "error",
+      "suggestionType": null,
+      "content": "Require completed checks and Qodo reviews tied to the current source; treat stale, failed, partial, unavailable or pending results as blocked. Fix valid High and Medium findings, flag Low findings for human review, and exclude private stores, secrets and symlinks from public artifacts.",
+      "goodExamples": "if (review.status !== \"completed\" || review.commit_sha !== head) return \"blocked\";",
+      "badExamples": "if (oldReceipt.pass) approveCurrentHead();",
+      "sourceType": "User",
+      "state": "active",
+      "ruleId": 4873530,
+      "similaritiesCount": null,
+      "url": null,
+      "insights": null,
+      "historyBandPrediction": null,
+      "enforcementOverride": "auto",
+      "lastMutedAt": null
+    },
+    {
+      "createdAt": "2026-11-16T13:00:44.525176Z",
+      "updatedAt": "2026-11-16T13:00:44.525171Z",
+      "scopeElements": [
+        {
+          "kind": "repo",
+          "org": null,
+          "repo": {
+            "repoId": null,
+            "fullName": "divyanshAgarwal123/soundrig"
+          },
+          "path": null
+        }
+      ],
+      "scopes": [
+        "/divyanshagarwal123/soundrig/"
+      ],
+      "name": "SoundRig bounded authoring inputs",
+      "category": "Security",
+      "severity": "error",
+      "suggestionType": null,
+      "content": "Enforce existing request, duration, schema, timeout, retry and activation limits. Treat model output as bounded data and keep exported runtime playback independent of credentials and authoring endpoints.",
+      "goodExamples": "const rig = validateRig(JSON.parse(modelOutput));",
+      "badExamples": "eval(modelOutput);",
+      "sourceType": "User",
+      "state": "active",
+      "ruleId": 4873529,
+      "similaritiesCount": null,
+      "url": null,
+      "insights": null,
+      "historyBandPrediction": null,
+      "enforcementOverride": "auto",
+      "lastMutedAt": null
+    }
+  ]
+}

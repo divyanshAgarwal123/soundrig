@@ -32,6 +32,7 @@ jobs:
         run: |
           python3 ci/test_check.py
           python3 ci/test_native_receipt.py
+          python3 ci/test_review_gate.py
       - name: Run all SoundRig suites with an owned offline server
         run: python3 ci/check.py --timeout 900
       - name: Preserve receipts and diagnostics

@@ -1,0 +1,307 @@
+{
+  "pr_url": "https://github.com/divyanshAgarwal123/soundrig/pull/5",
+  "git_provider": null,
+  "finding_count": 7,
+  "review_session": {
+    "run_id": 1986997,
+    "status": "completed",
+    "commit_sha": "29969e84ceefb7ba2a5052255c7d9ed3adad5b53",
+    "started_at": "2026-11-16T13:14:37.443551Z",
+    "git_provider": "github",
+    "review_complete": true
+  },
+  "findings": [
+    {
+      "attribution_status": "implemented",
+      "title": "Private files can enter test artifacts",
+      "action_level": "action_required",
+      "id": "00f234cc-72a7-4c9e-9f01-c615d668b3d4",
+      "git_sha": "b6a93e1016edfd1936f12d8fd6e478200708eb01",
+      "description": "`ci/check.py` uses a name-based ignore list with `copytree`'s default symlink-following behavior, so an ignored private file can be copied under a non-ignored link name. If a checkout contains `evidence/leak` linking to its ignored `.env`, the workspace receives the file contents and the evidence-copy path retains them in the run artifacts.",
+      "category": "Security",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[76-78]",
+            "citation": "            shutil.copytree(ROOT, workspace, ignore=shutil.ignore_patterns(\n                '.git', '.soundrig-revisions', '.qodo', '.agents', '.qa-output',\n                '__pycache__', '.godot', '.env', '.env.*', '*.sqlite3*'))"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[121-129]",
+            "citation": "                    # Always preserve the suite's own receipt and diagnostics, even on failure.\n                    shutil.copytree(workspace/'evidence', artifacts/'evidence', dirs_exist_ok=True)\n                    report['returncode'] = code\n                    report['newModelCalls'] = after['calls']['upstream']\n                    report['pass'] = code == 0 and after['calls']['upstream'] == 0\n                finally:\n                    stop(child)\n                    # A timeout can occur before the normal receipt copy.\n                    shutil.copytree(workspace/'evidence', artifacts/'evidence', dirs_exist_ok=True)"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": ".gitignore[1-5]",
+            "citation": ".soundrig-revisions/\n__pycache__/\n*.pyc\n.DS_Store\n.env"
+          }
+        ],
+        "explanation": "The ignore patterns exclude `.env` by name, not by a symlink target's resolved path. Both evidence copies persist files from the workspace; `.gitignore` confirms `.env` is intended to remain private."
+      },
+      "location": {
+        "file_path": "ci/check.py",
+        "start_line": 76,
+        "end_line": 78,
+        "side": "right",
+        "code_snippet": "+            shutil.copytree(ROOT, workspace, ignore=shutil.ignore_patterns(\n+                '.git', '.soundrig-revisions', '.qodo', '.agents', '.qa-output',\n+                '__pycache__', '.godot', '.env', '.env.*', '*.sqlite3*'))"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    },
+    {
+      "attribution_status": "implemented",
+      "title": "Stopping the runner leaves its server alive",
+      "action_level": "action_required",
+      "id": "c08c88b1-98a0-448e-80b0-de8df0779af9",
+      "git_sha": "b6a93e1016edfd1936f12d8fd6e478200708eb01",
+      "description": "`ci/check.py` starts the server and suite in separate sessions but installs no handler for SIGTERM, so termination bypasses the `finally` blocks that call `stop()`. A local termination can leave port 8772 occupied by the orphaned server and leave the latest receipt at `running` rather than recording a failed run.",
+      "category": "Reliability",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[95-96]",
+            "citation": "                child = subprocess.Popen([sys.executable, '-u', '-c', SERVER, str(ready)],\n                                         cwd=workspace, stdout=log, stderr=log, start_new_session=True)"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[112-137]",
+            "citation": "                        suite = subprocess.Popen([sys.executable, 'run_checks.py'], cwd=workspace,\n                                                 stdout=checks_log, stderr=subprocess.STDOUT,\n                                                 start_new_session=True)\n                        try:\n                            code = suite.wait(timeout=args.timeout)\n                        finally:\n                            stop(suite)\n                    with urllib.request.urlopen('http://127.0.0.1:8772/api/status', timeout=5) as response:\n                        after = json.load(response)\n                    # Always preserve the suite's own receipt and diagnostics, even on failure.\n                    shutil.copytree(workspace/'evidence', artifacts/'evidence', dirs_exist_ok=True)\n                    report['returncode'] = code\n                    report['newModelCalls'] = after['calls']['upstream']\n                    report['pass'] = code == 0 and after['calls']['upstream'] == 0\n                finally:\n                    stop(child)\n                    # A timeout can occur before the normal receipt copy.\n                    shutil.copytree(workspace/'evidence', artifacts/'evidence', dirs_exist_ok=True)\n    except Exception as error:\n        report.update(error=f'{type(error).__name__}: {error}')\n        report['pass'] = False\n    finally:\n        report['seconds'] = round(time.monotonic()-began, 3)\n        report['python'] = sys.version.split()[0]\n        report['status'] = 'passed' if report['pass'] else 'failed'\n        receipt()"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/test_check.py[118-142]",
+            "citation": "    def test_cleanup_kills_a_resistant_grandchild_after_leader_exits(self):\n        pid_file = Path(self.temp.name)/'grandchild'\n        grandchild = \"import signal,time,os;from pathlib import Path;signal.signal(signal.SIGTERM,signal.SIG_IGN);Path(\"+repr(str(pid_file))+\").write_text(str(os.getpid()));time.sleep(60)\"\n        parent = subprocess.Popen([sys.executable, '-c',\n            \"import subprocess,sys,time;subprocess.Popen([sys.executable,'-c',\"+repr(grandchild)+\"]);time.sleep(60)\"], start_new_session=True)\n        try:\n            deadline = time.monotonic()+5\n            while not pid_file.exists() and time.monotonic() < deadline:\n                time.sleep(.02)\n            self.assertTrue(pid_file.exists())\n            pid = int(pid_file.read_text())\n            runner.stop(parent)\n            # A killed orphan can briefly remain a zombie before init reaps it.\n            for _ in range(50):\n                state = subprocess.run(['ps', '-p', str(pid), '-o', 'stat='], text=True, capture_output=True).stdout.strip()\n                if not state or state.startswith('Z'):\n                    break\n                time.sleep(.02)\n            self.assertTrue(not state or state.startswith('Z'), state)\n        finally:\n            try:\n                os.killpg(parent.pid, signal.SIGKILL)\n            except ProcessLookupError:\n                pass\n            parent.wait(timeout=5)"
+          }
+        ],
+        "explanation": "The children are started in new sessions, while their cleanup and the final receipt write occur only in `finally` blocks; the runner has no signal handler to reach those blocks on SIGTERM."
+      },
+      "location": {
+        "file_path": "ci/check.py",
+        "start_line": 95,
+        "end_line": 96,
+        "side": "right",
+        "code_snippet": "+                child = subprocess.Popen([sys.executable, '-u', '-c', SERVER, str(ready)],\n+                                         cwd=workspace, stdout=log, stderr=log, start_new_session=True)"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    },
+    {
+      "attribution_status": "implemented",
+      "title": "Terminated runs can leave a running receipt",
+      "action_level": "remediation_recommended",
+      "id": "71380a90-d4cc-43be-91c0-2b2029f5666b",
+      "git_sha": "ca047319ab0748ff242b152a371a9fd3d6e76a2f",
+      "description": "`main()` publishes its initial receipt before installing the SIGTERM handler, and the handler can also raise while the final receipt is being published. If termination arrives during either publication window, the failure path cannot reliably replace `latest/receipt.json`, leaving the run marked `running` or leaving the previous result visible.",
+      "category": "Reliability",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[87-102]",
+            "citation": "    def receipt(initial=False):\n        text = json.dumps(report, indent=2)+'\\n'\n        (artifacts/'receipt.json').write_text(text)\n        with (output/'.receipt.lock').open('a') as lock:\n            fcntl.flock(lock, fcntl.LOCK_EX)\n            latest = output/'receipt.json'\n            if initial or json.loads(latest.read_text())['artifacts'] == run_name:\n                pending = output/('receipt-'+uuid.uuid4().hex+'.tmp')\n                pending.write_text(text)\n                pending.replace(latest)\n    receipt(initial=True)\n    previous_term = signal.getsignal(signal.SIGTERM)\n    def terminated(signum, frame):\n        signal.signal(signal.SIGTERM, signal.SIG_IGN)\n        raise InterruptedError('Runner terminated; owned children are being stopped')\n    signal.signal(signal.SIGTERM, terminated)"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[159-168]",
+            "citation": "    except Exception as error:\n        report.update(error=f'{type(error).__name__}: {error}')\n        report['pass'] = False\n    finally:\n        report['seconds'] = round(time.monotonic()-began, 3)\n        report['python'] = sys.version.split()[0]\n        report['status'] = 'passed' if report['pass'] else 'failed'\n        receipt()\n        signal.signal(signal.SIGTERM, previous_term)\n        print(json.dumps(report), flush=True)"
+          }
+        ],
+        "explanation": "The initial receipt call precedes handler installation; `receipt()` can block acquiring the lock. The handler raises `InterruptedError`, while the final `receipt()` call is itself inside `finally`, with no enclosing recovery path if that call is interrupted."
+      },
+      "location": {
+        "file_path": "ci/check.py",
+        "start_line": 97,
+        "end_line": 102,
+        "side": "right",
+        "code_snippet": "+    receipt(initial=True)\n+    previous_term = signal.getsignal(signal.SIGTERM)\n+    def terminated(signum, frame):\n+        signal.signal(signal.SIGTERM, signal.SIG_IGN)\n+        raise InterruptedError('Runner terminated; owned children are being stopped')\n+    signal.signal(signal.SIGTERM, terminated)"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    },
+    {
+      "attribution_status": "implemented",
+      "title": "A later failed run can show an older pass",
+      "action_level": "remediation_recommended",
+      "id": "22caec22-5d86-4453-92df-22064d64e3fe",
+      "git_sha": "b6a93e1016edfd1936f12d8fd6e478200708eb01",
+      "description": "`receipt()` unconditionally replaces the shared `latest/receipt.json` for every invocation, without checking which run started most recently. If an earlier slow run passes after a later-started run has failed, its final write replaces that failure with the earlier PASS.",
+      "category": "Correctness",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[48-70]",
+            "citation": "def main():\n    parser = argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--output', type=Path, default=ROOT/'.qa-output/latest')\n    parser.add_argument('--timeout', type=int, default=1200)\n    args = parser.parse_args()\n    output = args.output.resolve()\n    if args.timeout < 1:\n        parser.error('--timeout must be positive')\n    if output.is_relative_to(ROOT) and not output.is_relative_to(ROOT/'.qa-output'):\n        parser.error('in-repository output must be under .qa-output/')\n    output.mkdir(parents=True, exist_ok=True)\n    run_name = 'runs/'+uuid.uuid4().hex\n    artifacts = output/run_name\n    artifacts.mkdir(parents=True)\n    report = {'pass': False, 'newModelCalls': None,\n              'status': 'running', 'artifacts': run_name,\n              'scope': 'Fresh isolated source copy, owned offline loopback server and full regression suite. Historical model/browser fixtures are replayed, not regenerated.'}\n    def receipt():\n        text = json.dumps(report, indent=2)+'\\n'\n        (artifacts/'receipt.json').write_text(text)\n        pending = output/('receipt-'+uuid.uuid4().hex+'.tmp')\n        pending.write_text(text)\n        pending.replace(output/'receipt.json')"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[130-139]",
+            "citation": "    except Exception as error:\n        report.update(error=f'{type(error).__name__}: {error}')\n        report['pass'] = False\n    finally:\n        report['seconds'] = round(time.monotonic()-began, 3)\n        report['python'] = sys.version.split()[0]\n        report['status'] = 'passed' if report['pass'] else 'failed'\n        receipt()\n        print(json.dumps(report), flush=True)\n    return 0 if report['pass'] else 1"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/test_check.py[103-116]",
+            "citation": "    def test_failed_rerun_cannot_reuse_a_previous_pass(self):\n        result, first = self.run_fixture(\"from pathlib import Path\\nPath('evidence/final-checks.json').write_text('{\\\"pass\\\":true,\\\"fresh\\\":true}')\")\n        self.assertEqual(result, 0)\n        with socket.socket() as owner:\n            owner.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n            owner.bind(('127.0.0.1', 8772))\n            owner.listen()\n            result, second = self.run_fixture(\"raise AssertionError('must not run')\")\n        self.assertEqual(result, 1)\n        self.assertFalse(second['pass'])\n        self.assertNotEqual(first['artifacts'], second['artifacts'])\n        self.assertFalse((self.artifacts/'evidence/final-checks.json').exists())\n        self.assertFalse((self.artifacts/'checks.log').exists())\n        self.assertTrue((self.output/first['artifacts']/'evidence/final-checks.json').exists())"
+          }
+        ],
+        "explanation": "Default runs share one output directory, while artifact names are unique. Every run replaces the same receipt on completion, so atomic replacement prevents partial writes but does not establish run ordering."
+      },
+      "location": {
+        "file_path": "ci/check.py",
+        "start_line": 68,
+        "end_line": 70,
+        "side": "right",
+        "code_snippet": "+        pending = output/('receipt-'+uuid.uuid4().hex+'.tmp')\n+        pending.write_text(text)\n+        pending.replace(output/'receipt.json')"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    },
+    {
+      "attribution_status": "implemented",
+      "title": "Offline checks can still start inference",
+      "action_level": "remediation_recommended",
+      "id": "37c3c477-1615-40b7-834e-a55af1f4ff03",
+      "git_sha": "b6a93e1016edfd1936f12d8fd6e478200708eb01",
+      "description": "The owned server sets `MODEL_ENABLED=False` only at startup, while its existing `/api/model-mode` endpoint can set the flag back to true. A suite or another local process can enable it and reach an upstream model request before `ci/check.py` checks the call count afterward; that check marks the run failed but cannot prevent the call.",
+      "category": "Correctness",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[18-24]",
+            "citation": "SERVER = \"\"\"\nimport os,sys\nfrom pathlib import Path\nimport server\nserver.MODEL_ENABLED=False\nhttpd=server.ThreadingHTTPServer(('127.0.0.1',8772),server.Handler)\nPath(sys.argv[1]).write_text(str(os.getpid()))"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[107-125]",
+            "citation": "                    with urllib.request.urlopen('http://127.0.0.1:8772/api/status', timeout=5) as response:\n                        before = json.load(response)\n                    if before['enabled'] or before['calls']['upstream']:\n                        raise RuntimeError('Isolated server must start with inference disabled and zero calls')\n                    with (artifacts/'checks.log').open('w') as checks_log:\n                        suite = subprocess.Popen([sys.executable, 'run_checks.py'], cwd=workspace,\n                                                 stdout=checks_log, stderr=subprocess.STDOUT,\n                                                 start_new_session=True)\n                        try:\n                            code = suite.wait(timeout=args.timeout)\n                        finally:\n                            stop(suite)\n                    with urllib.request.urlopen('http://127.0.0.1:8772/api/status', timeout=5) as response:\n                        after = json.load(response)\n                    # Always preserve the suite's own receipt and diagnostics, even on failure.\n                    shutil.copytree(workspace/'evidence', artifacts/'evidence', dirs_exist_ok=True)\n                    report['returncode'] = code\n                    report['newModelCalls'] = after['calls']['upstream']\n                    report['pass'] = code == 0 and after['calls']['upstream'] == 0"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "server.py[43-56]",
+            "citation": "\n\ndef model_request(system, prompt, timeout=150):\n    if not MODEL_ENABLED:\n        raise ConnectionError('Authoring is disabled for the offline playback test.')\n    if not SLOT.acquire(blocking=False):\n        raise Busy('A compilation is already running. Your current rig is unchanged.')\n    try:\n        COUNTS['upstream'] += 1\n        began = time.monotonic()\n        body = {'model': MODEL, 'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': prompt}],\n                'stream': False, 'options': {'temperature': 0, 'num_predict': 5000, 'num_ctx': 8192}, 'keep_alive': 0}\n        request = urllib.request.Request('http://127.0.0.1:11434/api/chat', data=json.dumps(body).encode(), headers={'Content-Type': 'application/json'})\n        with urllib.request.urlopen(request, timeout=timeout) as response:"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "server.py[207-240]",
+            "citation": "        global MODEL_ENABLED\n        if self.path not in ['/api/compile', '/api/patch', '/api/model-mode', '/api/browser-evidence', '/api/export', '/api/project', '/api/project-export','/api/workflow-export','/api/workflow-check','/api/delivery','/api/godot-export','/api/review-sound','/api/revisions']:\n            self.reply(404, {'error': 'Unknown endpoint'}); return\n        if self.headers.get('Origin') not in (None, 'http://127.0.0.1:8772') or self.headers.get('X-SoundRig') != 'local-proof':\n            self.reply(403, {'error': 'This endpoint is local to the SoundRig workbench.'}); return\n        started = time.monotonic()\n        try:\n            length = int(self.headers.get('Content-Length', '0'))\n            limit = MAX_SNAPSHOT+1024 if self.path=='/api/revisions' else MAX_BODY if self.path in ('/api/project','/api/project-export','/api/workflow-export','/api/workflow-check','/api/delivery','/api/godot-export') else 600000 if self.path=='/api/review-sound' else 196608 if self.path=='/api/export' else 65536\n            if not 0 < length <= limit:\n                raise ValueError(f'Request size must be between1 and{limit} bytes.')\n            self.connection.settimeout(5)\n            try:raw=self.rfile.read(length)\n            except socket.timeout:\n                self.close_connection=True;self.reply(408,{'error':'Request body timed out. Retry with the complete project.'});return\n            if len(raw)!=length:raise ValueError('Request body is truncated.')\n            data = json.loads(raw)\n            if not isinstance(data, dict):\n                raise ValueError('Object request required.')\n            if self.path=='/api/revisions':\n                self.reply(200,revision_endpoint(data));return\n            if self.path in ('/api/delivery','/api/godot-export'):\n                self.reply(200,delivery_endpoint(data,target='godot' if self.path=='/api/godot-export' else 'phaser'));return\n            if self.path=='/api/review-sound':\n                self.reply(200,review_endpoint(data));return\n            if self.path in ('/api/project','/api/project-export'):\n                self.reply(200, project_endpoint(self.path,data)); return\n            if self.path in ('/api/workflow-export','/api/workflow-check'):\n                self.reply(200, workflow_endpoint(data,check_only=self.path=='/api/workflow-check'));return\n            if self.path == '/api/model-mode':\n                if type(data.get('enabled')) is not bool:\n                    raise ValueError('A boolean enabled value is required.')\n                MODEL_ENABLED = data['enabled']\n                self.reply(200, {'enabled': MODEL_ENABLED, 'calls': COUNTS.copy()}); return"
+          }
+        ],
+        "explanation": "The runner changes mutable startup state and checks calls only before and after the suite. The server endpoint can restore that state, after which `model_request` performs the upstream HTTP request."
+      },
+      "location": {
+        "file_path": "ci/check.py",
+        "start_line": 22,
+        "end_line": 24,
+        "side": "right",
+        "code_snippet": "+server.MODEL_ENABLED=False\n+httpd=server.ThreadingHTTPServer(('127.0.0.1',8772),server.Handler)\n+Path(sys.argv[1]).write_text(str(os.getpid()))"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    },
+    {
+      "attribution_status": "implemented",
+      "title": "Failed native checks have no receipt",
+      "action_level": "remediation_recommended",
+      "id": "75e4f2c3-b538-48bd-ae39-5c5d42fe7f70",
+      "git_sha": "b6a93e1016edfd1936f12d8fd6e478200708eb01",
+      "description": "The native workflow invokes `ci/native_receipt.py` only after the kit verifier, import, and game commands all succeed, and that script writes its receipt only after validating their outputs. A failure in any preceding command stops the step before a machine-readable failure receipt exists, although the artifact step can upload logs that were already written.",
+      "category": "Observability",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": ".github/workflows/ci.yml[69-81]",
+            "citation": "          mkdir -p .qa-output/native\n          python3 verify-godot.py --godot \"$GODOT\" --archive fixtures/revision-browser-godot.zip > .qa-output/native/kit.log 2>&1\n          cp evidence/practical-godot-engine.json .qa-output/native/kit.json\n          \"$GODOT\" --headless --audio-driver Dummy --path integration-proof/godot-platformer --editor --import > .qa-output/native/import.log 2>&1\n          \"$GODOT\" --headless --audio-driver Dummy --path integration-proof/godot-platformer --script test_soundrig_integration.gd > .qa-output/native/game.log 2>&1\n          python3 ci/native_receipt.py\n      - name: Preserve native receipts and diagnostics\n        if: always()\n        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4\n        with:\n          name: native-${{ github.sha }}\n          path: .qa-output/native/\n          if-no-files-found: error"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/native_receipt.py[5-16]",
+            "citation": "root = Path(__file__).resolve().parents[1]\nfolder = root/'.qa-output/native'\nkit = json.loads((folder/'kit.json').read_text())\ngame = json.loads(next(line for line in (folder/'game.log').read_text().splitlines() if line.startswith('{')))\nassert kit['pass'] and len(kit['cases']) == 7, kit\nassert game['pass'], game\nfor name in ('kit.log', 'import.log', 'game.log'):\n    assert 'ERROR:' not in (folder/name).read_text(), name\n(folder/'receipt.json').write_text(json.dumps({\n    'pass': True, 'kitCases': len(kit['cases']), 'game': game, 'newModelCalls': 0,\n    'scope': 'Official native Godot with Dummy audio. No physical listening or outside user test.'\n}, indent=2)+'\\n')"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "verify-godot.py[37-44]",
+            "citation": "        wav.write_bytes(original[:24]);reports.append({'case':'truncated-wav',**run(root,reject=True)})\n        wav.write_bytes(original)\n        with wav.open('r+b') as f:f.truncate(201645)\n        reports.append({'case':'oversized-wav-before-read',**run(root,reject=True)})\n        wav.write_bytes(original);manifest=root/'manifest.json';manifest.write_text('{')\n        reports.append({'case':'malformed-manifest',**run(root,reject=True)})\n    result={'pass':True,'engine':version,'archiveSHA256':hashlib.sha256(archive.read_bytes()).hexdigest(),'archive':str(archive),'cases':reports,'newModelCalls':0,'scope':'Actual official Godot engine with Dummy audio driver: PCM loading, playback states, native scene, relocation, bounded voices, cleanup and corruption controls. No physical speakers, listening preference, outside developers or human task-time comparison.'}\n    (ROOT/'evidence/practical-godot-engine.json').write_text(json.dumps(result,indent=2)+'\\n');print(json.dumps(result,indent=2))"
+          }
+        ],
+        "explanation": "The verification commands precede receipt generation in a single shell step. The receipt script reads successful outputs and writes `receipt.json` only at its end, so it cannot produce a failure record when an earlier command exits nonzero."
+      },
+      "location": {
+        "file_path": ".github/workflows/ci.yml",
+        "start_line": 72,
+        "end_line": 74,
+        "side": "right",
+        "code_snippet": "+          \"$GODOT\" --headless --audio-driver Dummy --path integration-proof/godot-platformer --editor --import > .qa-output/native/import.log 2>&1\n+          \"$GODOT\" --headless --audio-driver Dummy --path integration-proof/godot-platformer --script test_soundrig_integration.gd > .qa-output/native/game.log 2>&1\n+          python3 ci/native_receipt.py"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    },
+    {
+      "attribution_status": "implemented",
+      "title": "A local agent lockfile enters test work",
+      "action_level": "informational",
+      "id": "bfbab205-30b7-40d6-ac6f-bad3e18d972e",
+      "git_sha": "ca047319ab0748ff242b152a371a9fd3d6e76a2f",
+      "description": "`private_or_links()` excludes `.agents` but not the newly ignored `skills-lock.json`. When that file exists in a developer checkout, the workspace copy includes it despite the isolation filter for installed agent files.",
+      "category": "Reliability",
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": ".gitignore[17-18]",
+            "citation": ".agents/\nskills-lock.json"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[40-48]",
+            "citation": "EXCLUDED = shutil.ignore_patterns(\n    '.git', '.soundrig-revisions', '.qodo', '.agents', '.qa-output',\n    '__pycache__', '.godot', '.env', '.env.*', '*.sqlite3*')\n\n\ndef private_or_links(folder, names):\n    # Never dereference a link into private or outside files during either copy.\n    return set(EXCLUDED(folder, names)) | {\n        name for name in names if (Path(folder)/name).is_symlink()}"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "ci/check.py[105-107]",
+            "citation": "        with tempfile.TemporaryDirectory(prefix='soundrig-ci-') as temp:\n            workspace = Path(temp)/'studio'\n            shutil.copytree(ROOT, workspace, ignore=private_or_links)"
+          }
+        ],
+        "explanation": "The PR ignores both agent-related paths in `.gitignore`, but the copy filter includes only `.agents`; the workspace copy uses that filter on the checkout."
+      },
+      "location": {
+        "file_path": "ci/check.py",
+        "start_line": 40,
+        "end_line": 42,
+        "side": "right",
+        "code_snippet": "+EXCLUDED = shutil.ignore_patterns(\n+    '.git', '.soundrig-revisions', '.qodo', '.agents', '.qa-output',\n+    '__pycache__', '.godot', '.env', '.env.*', '*.sqlite3*')"
+      },
+      "dismiss_reason": null,
+      "dismiss_explanation": null
+    }
+  ],
+  "review_runs": [
+    {
+      "run_id": 1986997,
+      "commit_sha": "29969e84ceefb7ba2a5052255c7d9ed3adad5b53",
+      "started_at": "2026-11-16T13:14:37.443551Z",
+      "status": "completed",
+      "review_effort": "standard",
+      "review_complete": true
+    },
+    {
+      "run_id": 1986778,
+      "commit_sha": "ca047319ab0748ff242b152a371a9fd3d6e76a2f",
+      "started_at": "2026-11-16T13:04:17.774755Z",
+      "status": "completed",
+      "review_effort": "standard",
+      "review_complete": true
+    },
+    {
+      "run_id": 1986565,
+      "commit_sha": "b6a93e1016edfd1936f12d8fd6e478200708eb01",
+      "started_at": "2026-11-16T12:53:25.939709Z",
+      "status": "completed",
+      "review_effort": "standard",
+      "review_complete": true
+    }
+  ]
+}

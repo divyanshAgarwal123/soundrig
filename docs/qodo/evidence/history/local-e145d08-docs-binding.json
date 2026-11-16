@@ -1,0 +1,23 @@
+{
+  "commit": "e145d082c3881f20ac47f7da3d15a76bfdd1aaa2",
+  "base": "491445beffcbd9de7ab132d4f360f5077efd6642",
+  "files": {
+    "docs/qodo/CHALLENGES.md": "8275d8c1523c3d8dba22369f9f111ec266814c18b3fb5daec094f1b4ec435b72",
+    "docs/qodo/DAY11_REVIEW_COMPARISON.md": "e55cd69707a157918bf94efcd56b65e4e1626a0bae454ecb37d443639b35d387",
+    "docs/qodo/DISCUSSION_DRAFTS.md": "9d433b6f60c8f9dd64d454fa019c8f4c6d4563b1d767d158c202af380aeca369",
+    "docs/qodo/evidence/day11-followup-comparison.json": "cf7e5d8037835d247bfd52ea01a6132e6187c816a636fbb2f549360074487a9f"
+  },
+  "allReviewedFilesMatchCommit": true,
+  "coverageComplete": true,
+  "openFindings": 0,
+  "reviewMode": "uncommitted working-tree diff",
+  "reviewEffort": "lite",
+  "resultSHA256": "65c946ee6351e58839274466e383c323ed73199ac62dcdf21ddb51cc32e42d4a",
+  "scope": "Only challenge documentation and source-bound Day11 follow-up observation; no product or gate change",
+  "rawPreCommitHEAD": "491445beffcbd9de7ab132d4f360f5077efd6642",
+  "reviewedWorkingTreeSHA": "0b16591b290662b95140d004bb60357e05e7bec7",
+  "committedTreeSHA": "0b16591b290662b95140d004bb60357e05e7bec7",
+  "treeMatchesCommittedPatch": true,
+  "deletedPaths": [],
+  "fileHashSemantics": "Null SHA256 means verified deletion/absence, not an unknown hash. Non-null hashes match committed bytes."
+}

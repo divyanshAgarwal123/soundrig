@@ -1,0 +1,15 @@
+{
+  "submission": {
+    "operation_id": "f8ffa3ec-3e38-4a5b-8765-224cdd7779a1",
+    "status": "working",
+    "poll_interval": 2,
+    "ttl": 3600
+  },
+  "retrieval": {
+    "error": {
+      "message": "no such review \u2014 the id may never have existed, may belong to another user, or may have expired (results are kept about 60 minutes after a review finishes, by default). The runtime does not distinguish these. Re-run the review."
+    }
+  },
+  "status": "incomplete",
+  "scope": "Real submission and failed retrieval. This is not a completed Qodo review."
+}

@@ -1,0 +1,23 @@
+name: Focused factory ticket
+description: One small change with observable acceptance criteria
+title: "[SoundRig] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and user benefit
+      description: Describe the concrete trigger and expected result.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Include success, edge/failure behavior and an observable check.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Scope and boundaries
+      description: Relevant files and data to preserve; avoid unrelated features.

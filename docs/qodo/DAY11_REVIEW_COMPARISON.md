@@ -1,0 +1,9 @@
+# Day11: same-code review-routing experiment
+
+Official challenge: https://github.com/orgs/qodo-hackathon/discussions/13 . The PR4 head, base and byte-for-byte code diff were held unchanged at ca8a0e54cd6715321dc88c406250478f6a4db9ee. Recall and the five active rules were not changed during these requests.
+
+Product context: Saved checks is the current measurement; edits and restore must not reuse old PASS rows. The initial baseline requested full-diff routing; the next request supplied per-request issues guidelines for invalidation, malformed JSON, failed requests, recovery and project/contract/PCM parity. Tasks1987032 and1987247 finished but reported review_effort=skip and review_complete=false: neither ran analysis. Zero findings in those records is not a clean review. Their blocked comparison is retained in evidence/day11-comparison.json.
+
+A final follow-up used the documented per-request smart_router_extra_instructions to explicitly request standard/balanced execution rather than skip. Run1989959 actually ran standard review at the same head, completed coverage and reported zero findings. The code identity and before/after observations are in evidence/day11-followup-comparison.json; the raw structured results are retained in the review packet. This completes technical review of that PR4 head; the bootstrap trust policy still requires human review.
+
+The observed benefit is executed analysis instead of skipped analysis. This single result does not isolate causality or demonstrate better defect detection: effective instructions were not echoed, elapsed time/cache/provider differences were not measured, and exact baseline PR-description context was not archived for the first requests. The final PR description matches its saved author payload. Browser display was not retested. Do not describe the two skipped attempts as two successful analyses, or the final zero findings as proof that customization improves review quality.
