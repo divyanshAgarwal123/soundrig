@@ -42,6 +42,18 @@ Recording import now starts with Preview, then an explicit Use/Discard decision.
 
 `STUDIO_VERIFICATION.md` distinguishes automated checks, actual browser/model actions and unproven customer/listener benefits. Earlier VERIFICATION/WORKFLOW files and frozen export fixtures are historical baseline evidence. This directory is the new Studio build; project/8771 remains separate.
 
+### Qodo review handoff
+
+Use these safety tests to prepare a SoundRig change for handoff. The gate example targets divyanshAgarwal123/soundrig and needs authenticated gh and Qodo at ~/.qodo/bin/qodo. It inspects standards PR #6; replace 6 with your own PR number for another change.
+
+```sh
+python3 ci/test_native_receipt.py
+python3 ci/test_review_gate.py
+python3 ci/review_gate.py --pr 6
+```
+
+Only a completed current-head Qodo review and fresh CI evidence can support handoff. The reviewed base is not attested by Qodo's structured API, so a human must inspect the base and control changes. The read-only gate does not emit overall PASS and deliberately exits with status 1. Read its JSON reviewSession, testedMergeCommit and blockers; headAndCIEvidencePass is a separate signal, and stacked-base or control-change blockers still require human assessment. Do not chain the example with && expecting success. A human decides whether to merge.
+
 ## Main files
 `studio-dsp.mjs` is the optional renderer transform; classic core/player/samples/worklet files remain unchanged. `project-runtime.mjs` builds a project-specific runtime shared by checker, worklet and export. `delivery.py`/`delivery-cli.mjs` create fixed-path sound packs. `project_api.py` packages live exports. `index.html`, `site.css`, `studio.html`, `studio.css`, `landing.mjs` and `guide.html` implement the new website. `prepare_display_font.py` optionally reproduces the OFL derivative using FontTools; the prepared font is included and the app does not require FontTools.
 
