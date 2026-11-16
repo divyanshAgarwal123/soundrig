@@ -34,7 +34,7 @@ Alternatively, with this studio server already running:
 ```sh
 python3 run_checks.py
 ```
-Thirty suites cover revision persistence, safe restore, portable-import boundaries, actual browser-session roundtrips, legacy compatibility, authoring failure/recovery, project inputs/staging, gameplay contracts, exports, local HTTP boundaries, Studio DSP, maximum validator workload, landing playback lifecycle, recording-preview races, checked cue edits/undo and sealed actual browser-downloaded artifacts. No new model call is made by this command. `evidence/final-checks.json` is the aggregate receipt.
+The suites listed in `run_checks.py` cover revision persistence, safe restore, portable-import boundaries, actual browser-session roundtrips, legacy compatibility, authoring failure/recovery, project inputs/staging, gameplay contracts, exports, local HTTP boundaries, Studio DSP, maximum validator workload, landing playback lifecycle, recording-preview races, checked cue edits/undo and sealed actual browser-downloaded artifacts. No new model call is made by this command. `evidence/final-checks.json` is the aggregate receipt.
 
 For actual native-engine checks, supply an official Godot binary: `python3 verify-godot.py --godot /absolute/path/to/Godot`. Add `--archive fixtures/practical-godot-revision2.zip` to check the sealed browser download. The engine is not bundled. A separate existing-game integration proof is included in the practical source package, with its own upstream credits and test instructions.
 

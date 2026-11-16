@@ -1,0 +1,24 @@
+{
+  "verifiedAtUTC": "2026-11-16T08:53:53.890812+00:00",
+  "baselineCommit": "a842751dc130633e437e78a7dc6e34af98f3b9b3",
+  "diffSHA256": "683affc9ee41c6ef4ea4644e76761c6c10b33e94273930854d0c30ea8d338302",
+  "statusRegression": {
+    "pass": true,
+    "cases": 8,
+    "scope": "Production restore/check/invalidation handlers, real deterministic PCM checks, explicit DOM/network/activation fixtures. Browser and recovery atomicity are verified separately."
+  },
+  "fullSuite": {
+    "pass": true,
+    "suites": 31,
+    "newModelCalls": 0
+  },
+  "isolatedRun": {
+    "pass": true,
+    "newModelCalls": 0,
+    "scope": "Fresh isolated source copy, owned offline loopback server and full regression suite. Historical model/browser fixtures are replayed, not regenerated.",
+    "returncode": 0,
+    "seconds": 44.775,
+    "python": "3.10.13"
+  },
+  "scope": "Local macOS run. No current Linux CI, Qodo result or physical listening is asserted by this receipt."
+}
