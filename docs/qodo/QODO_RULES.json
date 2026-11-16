@@ -1,0 +1,57 @@
+[
+  {
+    "name": "SoundRig current verification evidence",
+    "category": "Correctness",
+    "severity": "error",
+    "content": "Invalidate and repaint Saved checks after relevant sound or definition changes and before reruns. Show PASS only after completed checks with matching project, contract, trace and PCM identities.",
+    "good_examples": "invalidateContract(); const result = await checkContract(runtime, rig, contract); assertContractParity(local, result);",
+    "bad_examples": "rig = nextRig; showPreviousPass();",
+    "scopes": [
+      "/divyanshAgarwal123/soundrig/"
+    ]
+  },
+  {
+    "name": "SoundRig recoverable activation",
+    "category": "Reliability",
+    "severity": "error",
+    "content": "Validate candidates before replacing the active project and save recovery before committing a restore. Preserve the working project on quota, guard, preparation or commit failures; never silently evict saved revisions.",
+    "good_examples": "await prepareCandidate(candidate); await saveRecovery(active); await commitCandidate(candidate);",
+    "bad_examples": "active = candidate; await validateCandidate(candidate);",
+    "scopes": [
+      "/divyanshAgarwal123/soundrig/"
+    ]
+  },
+  {
+    "name": "SoundRig recording and export provenance",
+    "category": "Correctness",
+    "severity": "warning",
+    "content": "Retain original recordings, declared source notes and third-party licenses in delivery workflows. Verify exported PCM and component identities, and distinguish static cues from dynamic runtime behavior without treating declared ownership as certification.",
+    "good_examples": "verifyPCMIdentity(exportedPCM, checkedPCM); preserveSourceNotes(project);",
+    "bad_examples": "delete project.originals; claimCertifiedOwnership(upload.licenseNote);",
+    "scopes": [
+      "/divyanshAgarwal123/soundrig/"
+    ]
+  },
+  {
+    "name": "SoundRig bounded authoring inputs",
+    "category": "Security",
+    "severity": "error",
+    "content": "Enforce existing request, duration, schema, timeout, retry and activation limits. Treat model output as bounded data and keep exported runtime playback independent of credentials and authoring endpoints.",
+    "good_examples": "const rig = validateRig(JSON.parse(modelOutput));",
+    "bad_examples": "eval(modelOutput);",
+    "scopes": [
+      "/divyanshAgarwal123/soundrig/"
+    ]
+  },
+  {
+    "name": "SoundRig current-source review and CI receipts",
+    "category": "Testability",
+    "severity": "error",
+    "content": "Require completed checks and Qodo reviews tied to the current source; treat stale, failed, partial, unavailable or pending results as blocked. Fix valid High and Medium findings, flag Low findings for human review, and exclude private stores, secrets and symlinks from public artifacts.",
+    "good_examples": "if (review.status !== \"completed\" || review.commit_sha !== head) return \"blocked\";",
+    "bad_examples": "if (oldReceipt.pass) approveCurrentHead();",
+    "scopes": [
+      "/divyanshAgarwal123/soundrig/"
+    ]
+  }
+]

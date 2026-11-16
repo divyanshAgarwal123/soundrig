@@ -1,0 +1,16 @@
+# Unsent daily Discussion drafts
+
+These are preparation only. Replace remaining conditions with source-bound final evidence before posting to the official daily thread. User submission authorization is still required. Existing product work is disclosed in PRIOR_WORK.md.
+
+1. **Small delivery.** SoundRig’s saved verification labels could survive invalid edits or disagree with restore state. Issue #1/PR #4 fixes invalidation and repainting; browser recovery and regression evidence exist. Attach the latest completed Qodo review and current CI, not the earlier clean head alone.
+2. **Standards.** Five concrete source-backed rules cover current verification, recoverable activation, provenance, bounded inputs and source-bound evidence. They were manually promoted through Qodo’s rules API after approval and read back active for SoundRig only. Publish the reviewed AGENTS PR; do not imply automatic import.
+3. **Backlog.** gh CLI issues1–3 preserve acceptance criteria. Separate status and CI PRs are open; Qodo found five CI problems, which were fixed and tested. Include the final review loop and standards PR.
+4. **Coding job.** Incomplete. CI is real, but the proposed coding worker has Council blockers and no trigger/job executed. Do not submit a success claim.
+5. **Improved rules.** Qodo found symlink leakage, termination cleanup, stale overlapping receipts, mutable offline mode and missing native failure evidence. Those findings sharpened the current-source/private-artifact standard. Include rule IDs, source/finding links and verified scope/state.
+6. **Wisdom.** Before the standards/gate revision, exact-commit source retrieval verified existing invalidation/parity and CI receipt mechanisms. WISDOM_PLAN.md shows the plan changed and what remains unknown. Do not claim this preceded the original status fix.
+7. **Resolver.** Structured findings produced five real CI repairs and automatic implemented attribution. Compare completed review SHA with the PR head; a skipped or stale run remains blocked.
+8. **Local Reviewer.** A real staged/unstaged review found misleading diagram chronology and missing evidence linkage. Both were corrected; attach a completed final text-change review, diff identity and separate binary-image verification before commit.
+9. **Quality gate.** The executable read-only gate checks current-head review, findings and both CI jobs. Its fifteen tests pass, and it rejected a real skipped review despite passing CI. Add the latest complete passing execution; it never merges or closes findings.
+10. **Factory.** FACTORY.md separates three real tickets, review-driven repairs, test failures and human merge. The coding-worker edge remains explicitly unexecuted; include remaining gaps rather than calling the factory complete.
+
+11. **Reviewer customization.** On unchanged PR #4 code, baseline run 1987032 and per-request product-context run 1987247 both completed with zero findings and review_complete=false. Head, base and diff hash matched. No useful feedback disappeared and no benefit was demonstrated; effective instructions were not echoed by the API, so causal claims are unsupported. Keep product context as guidance and retain the coverage block. Use DAY11_REVIEW_COMPARISON.md and the official Day11 thread in SUBMISSION_LINKS.md.

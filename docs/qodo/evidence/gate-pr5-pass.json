@@ -1,0 +1,19 @@
+{
+  "pass": true,
+  "head": "29969e84ceefb7ba2a5052255c7d9ed3adad5b53",
+  "base": "a842751dc130633e437e78a7dc6e34af98f3b9b3",
+  "testedMergeCommit": "1be9401acea87a3488ac276587824e0acbb0cf55",
+  "ciRun": "https://github.com/divyanshAgarwal123/soundrig/actions/runs/43873791824",
+  "reviewSession": {
+    "run_id": 1986997,
+    "status": "completed",
+    "commit_sha": "29969e84ceefb7ba2a5052255c7d9ed3adad5b53",
+    "started_at": "2026-11-16T13:14:37.443551Z",
+    "git_provider": "github",
+    "review_complete": true
+  },
+  "blockers": [],
+  "lowFindingsForHuman": [],
+  "humanMergeRequired": true,
+  "pr": "https://github.com/divyanshAgarwal123/soundrig/pull/5"
+}

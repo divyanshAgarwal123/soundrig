@@ -1,0 +1,14 @@
+{
+  "submission": {
+    "operation_id": "7ca25c9a-c9d9-4a70-ae7b-a50941f14dc7",
+    "status": "working",
+    "poll_interval": 2,
+    "ttl": 3600
+  },
+  "latestResult": {
+    "error": {
+      "message": "review failed: Qodo could not obtain repository credentials for the current workspace. Check the active workspace and repository connection; if those are correct, contact support before starting another review. Do not automatically start another attempt."
+    }
+  },
+  "scope": "Fast uncommitted standards/docs checkpoint; newer evidence edits require reconciliation and final auto-depth coverage. Not a completed final review."
+}

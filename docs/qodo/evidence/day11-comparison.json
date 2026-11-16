@@ -1,0 +1,27 @@
+{
+  "sameHead": true,
+  "head": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+  "sameBase": true,
+  "sameDiffSHA256": "886f186319e042e70004e8ed2a68977f1d9e26d75e1c69946f4609ec95812df6",
+  "before": {
+    "run_id": 1987032,
+    "status": "completed",
+    "commit_sha": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+    "started_at": "2026-11-16T13:16:21.931167Z",
+    "git_provider": "github",
+    "review_complete": false
+  },
+  "after": {
+    "run_id": 1987247,
+    "status": "completed",
+    "commit_sha": "ca8a0e54cd6715321dc88c406250478f6a4db9ee",
+    "started_at": "2026-11-16T13:27:21.194463Z",
+    "git_provider": "github",
+    "review_complete": false
+  },
+  "beforeFindings": 0,
+  "afterFindings": 0,
+  "improvementDemonstrated": false,
+  "effectiveInstructionsEchoedByService": false,
+  "scope": "Per-request issues_user_guidelines, same PR and code; preset/rules held constant. Review_complete remained false. No causal quality improvement is claimed."
+}

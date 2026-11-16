@@ -1,0 +1,215 @@
+{
+  "findings": [
+    {
+      "id": "ae590edc-732d-4460-9a8e-7a3880de4516",
+      "title": "Diagram overstates issue 1 Wisdom step",
+      "description": "The mermaid edge `A --> B` draws the Wisdom step as executed on the issue 1 path, while `WISDOM_PLAN.md` says that inquiry was made for the issue 3 standards revision. Node `C` is also defined twice with different labels, so Mermaid renders the planned `Current source plan` step with the executed `Local source investigation` label. A reader of the factory diagram would conclude that issue 1 followed the Wisdom-first path, which the docs say it did not.",
+      "category": "Correctness",
+      "action_level": "remediation_recommended",
+      "attribution_status": "pending",
+      "git_sha": "426e4ceb343c919ba9a670b8147dc907bfe07202",
+      "location": {
+        "file_path": "docs/qodo/FACTORY.md",
+        "start_line": 7,
+        "end_line": 9,
+        "side": "right"
+      },
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/FACTORY.md[7-9]"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/WISDOM_PLAN.md[5-9]"
+          },
+          {
+            "source_type": "ticket",
+            "source": "https://github.com/divyanshAgarwal123/soundrig/issues/3"
+          }
+        ]
+      }
+    },
+    {
+      "id": "82c3e0b7-5fc4-4b21-92f7-ca3eabbbc96d",
+      "title": "Ledger overstates PR #4 Qodo progress",
+      "description": "`CHALLENGES.md` and `FACTORY.md` state that PR #4 has an actual started Qodo review at its current head, and the factory diagram draws a 'started' edge to it. The only recorded PR #4 review state for head 426e4ceb\u2026 (`qodo-pr4-review-state.json`) has `review_session: null`, no findings and gate 'blocked: no completed review session', and the cited connection file records only a review request comment ID, so a reader could take an unconfirmed request as an active review in progress.",
+      "category": "Testability",
+      "action_level": "informational",
+      "attribution_status": "pending",
+      "git_sha": "426e4ceb343c919ba9a670b8147dc907bfe07202",
+      "location": {
+        "file_path": "docs/qodo/CHALLENGES.md",
+        "start_line": 32,
+        "end_line": 32,
+        "side": "right"
+      },
+      "evidence": {
+        "citations": [
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/CHALLENGES.md[32]"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/evidence/connection-verification-after-install.json[27-36]"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/evidence/qodo-pr4-review-state.json[2-11]"
+          },
+          {
+            "source_type": "rules",
+            "source": "https://app.qodo.ai/rules/4873530?state=active"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/evidence/qodo-pr4-review-state.json[1-12]"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/FACTORY.md[15-15]"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/FACTORY.md[32-32]"
+          },
+          {
+            "source_type": "pr_branch_file",
+            "source": "docs/qodo/CHALLENGES.md[15-15]"
+          }
+        ]
+      }
+    }
+  ],
+  "finding_state": {
+    "complete": true,
+    "introduced": [
+      "82c3e0b7-5fc4-4b21-92f7-ca3eabbbc96d",
+      "ae590edc-732d-4460-9a8e-7a3880de4516"
+    ],
+    "resolved": [],
+    "still_open": [],
+    "dismissed": []
+  },
+  "review_agent_comment": "The standards content is accurate against the repository, and the blocked-state language in QUALITY_GATE.md and AGENTS.md is appropriately strict. The one gap I found is the PR #4 review status. Every evidence file for that head records a null review session and a blocked gate, so the narrative should match that state. Before this is used as submission evidence, the docs should be aligned with the JSON receipts.",
+  "meta": {
+    "analysis": {
+      "mode": "full",
+      "reason": "incomplete_input"
+    },
+    "context": {
+      "author_notes": {
+        "input_chars": 936,
+        "max_tokens": 16000,
+        "offloaded": false,
+        "original_tokens": 174,
+        "outcome": "inline",
+        "rendered_chars": 1106
+      },
+      "ticket_bodies": [
+        {
+          "index": 1,
+          "input_chars": 791,
+          "max_tokens": 5000,
+          "offloaded": false,
+          "original_tokens": 197,
+          "outcome": "inline",
+          "rendered_chars": 791
+        }
+      ]
+    },
+    "coverage": {
+      "complete": false
+    },
+    "depth": "auto",
+    "org_config": "applied",
+    "reviewers": {
+      "ran": [
+        "issue",
+        "compliance"
+      ],
+      "skipped": [
+        "skills",
+        "spec",
+        "ui",
+        "persona",
+        "cross_repo"
+      ]
+    },
+    "run": {
+      "effort": {
+        "effective": "lite",
+        "requested": "auto"
+      },
+      "id": "e9f8fea341d84e2a8e5c8d32c1f91fed",
+      "passes": [
+        {
+          "agent_statuses_reported": true,
+          "agents": [
+            {
+              "duration_ms": 43719,
+              "models": [
+                "multi-provider/claude-haiku-5-5"
+              ],
+              "name": "compliance-agent-turbo",
+              "status": "completed"
+            },
+            {
+              "duration_ms": 40539,
+              "models": [
+                "multi-provider/claude-haiku-5-5"
+              ],
+              "name": "issue-review-agent-turbo",
+              "status": "completed"
+            },
+            {
+              "name": "spec-agent",
+              "reason": "no_spec_content",
+              "status": "skipped"
+            }
+          ],
+          "duration_ms": 60641,
+          "effort": "lite",
+          "kind": "primary",
+          "started_at": "2026-11-16T13:02:29.874853+00:00"
+        }
+      ],
+      "snapshot": {
+        "base_sha": "426e4ceb343c919ba9a670b8147dc907bfe07202",
+        "commit_sha": "426e4ceb343c919ba9a670b8147dc907bfe07202",
+        "tree_sha": "ad04560e0e571897e545a60913727d1c9f55c663"
+      },
+      "timing": {
+        "duration_ms": 363965,
+        "finished_at": "2026-11-16T13:03:31.543729+00:00",
+        "started_at": "2026-11-16T12:57:27.578579+00:00"
+      }
+    },
+    "safety_net": {
+      "ran": false,
+      "reinjected": 0
+    },
+    "skipped_files": [
+      {
+        "file": "docs/qodo/evidence/github-soundrig-only.jpg",
+        "why": "binary"
+      },
+      {
+        "file": "docs/qodo/evidence/qodo-github-connected.jpg",
+        "why": "binary"
+      }
+    ],
+    "local_review_ids": {
+      "82c3e0b7-5fc4-4b21-92f7-ca3eabbbc96d": "ee3a50af-1e0b-4e51-832a-77f2bab85209",
+      "ae590edc-732d-4460-9a8e-7a3880de4516": "ee3a50af-1e0b-4e51-832a-77f2bab85209"
+    }
+  },
+  "warnings": [
+    {
+      "code": "incomplete_coverage",
+      "message": "Review coverage is incomplete; this run cannot become an incremental baseline."
+    }
+  ]
+}

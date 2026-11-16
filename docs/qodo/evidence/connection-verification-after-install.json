@@ -1,0 +1,118 @@
+{
+  "checkedAtUTC": "2026-11-16T12:54:48.998825+00:00",
+  "cliVersion": "2.3.1",
+  "signedIn": true,
+  "connectionVerified": true,
+  "githubInstallationID": 182557666,
+  "githubScope": "only divyanshAgarwal123/soundrig",
+  "githubApprovalPending": false,
+  "repositoryDiscovery": {
+    "repos": [
+      {
+        "full_name": "divyanshAgarwal123/soundrig",
+        "provider": "github",
+        "html_url": "https://github.com/divyanshAgarwal123/soundrig",
+        "default_branch": "main"
+      }
+    ],
+    "truncated": false,
+    "next_page_token": null
+  },
+  "portalRecovery": {
+    "method": "Uninstalled stale installation; started standard multi-tenant wizard from authenticated Home; installed on SoundRig only",
+    "outcome": "GitHub is connected; Recall preset applied; Setup complete / You are all set observed",
+    "screenshot": "qodo-github-connected.jpg"
+  },
+  "reviewComplete": false,
+  "githubReviewRequests": [
+    {
+      "pr": 4,
+      "commentID": 6916938603
+    },
+    {
+      "pr": 5,
+      "commentID": 6916959610
+    }
+  ],
+  "supportDraft": "Unsent; user requested self-service reset instead",
+  "previousFailedInstallation": {
+    "checkedAtUTC": "2026-11-16T12:36:39.079536+00:00",
+    "cliVersion": "2.3.1",
+    "signedIn": true,
+    "repositoryDiscovery": {
+      "repos": [],
+      "truncated": false,
+      "next_page_token": null
+    },
+    "pr4Review": {
+      "pr_url": "https://github.com/divyanshAgarwal123/soundrig/pull/4",
+      "git_provider": null,
+      "finding_count": 0,
+      "review_session": null,
+      "findings": [],
+      "review_runs": []
+    },
+    "githubReviewRequest": {
+      "pr": "https://github.com/divyanshAgarwal123/soundrig/pull/4",
+      "commentURL": "https://github.com/divyanshAgarwal123/soundrig/pull/4#issuecomment-6914241881",
+      "command": "/agentic_review"
+    },
+    "userReportedAppInstalled": true,
+    "observedPortalURLState": "STATE_EXPIRED",
+    "connectionVerified": false,
+    "reviewComplete": false,
+    "scope": "Verified saved single-repository GitHub access and bot acknowledgement. Qodo workspace repository access is still denied with 403; review sessions remain incomplete. No credentials or one-time codes are stored.",
+    "githubAppVerified": true,
+    "githubAppVerification": "Qodo Code Review bot acknowledged the on-demand review command with an eyes reaction on PR4; PR5 request sent separately.",
+    "workspaceRepositoryRead": {
+      "error": {
+        "code": "MT-WORKSPACE-NO-REPOS",
+        "message": "The workspace has no authorized repositories",
+        "tool": "litegit-read-file",
+        "metadata": {
+          "upstream_stage": "litegit_internal",
+          "upstream_status": 403,
+          "upstream_code": "WORKSPACE_HAS_NO_AUTHORIZED_REPOS",
+          "reset_at": null
+        }
+      }
+    },
+    "platformRepositoryIdentity": {
+      "error": {
+        "code": "MT-NOT-FOUND",
+        "message": "No active exact repository match",
+        "tool": "review-notes-resolve-repository",
+        "metadata": {
+          "upstream_stage": "platform_internal",
+          "upstream_status": null,
+          "upstream_code": null,
+          "reset_at": null
+        }
+      }
+    },
+    "githubReviewRequests": [
+      {
+        "pr": 4,
+        "commentURL": "https://github.com/divyanshAgarwal123/soundrig/pull/4#issuecomment-6914241881",
+        "command": "/agentic_review"
+      },
+      {
+        "pr": 5,
+        "commentURL": "https://github.com/divyanshAgarwal123/soundrig/pull/5#issuecomment-6914329783",
+        "command": "/agentic_review"
+      }
+    ],
+    "githubInstallationID": 182524278,
+    "githubScope": "only divyanshAgarwal123/soundrig",
+    "githubScopeSaved": true,
+    "githubScopeSaveNotice": "Okay, Qodo Code Review was updated for the @divyanshAgarwal123 account.",
+    "githubApprovalPending": false,
+    "portalRecovery": {
+      "method": "Fresh standard GitHub Cloud multi-tenant wizard through the existing portal session",
+      "outcome": "GitHub recognizes existing installation and redirects to its settings; no completed Qodo workspace link",
+      "technicalErrorTrace": "4fe2aca1-0262-4ffe-b7f7-f586f796ab3c",
+      "officialGuide": "https://docs.qodo.ai/install-qodo/github/qodo-multi-tenant"
+    },
+    "supportDraft": "Prepared in Gmail, unsent; requires explicit sending authorization"
+  }
+}

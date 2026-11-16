@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "content": "        parser.error('--timeout must be positive')\n    if output.is_relative_to(ROOT) and not output.is_relative_to(ROOT/'.qa-output'):\n        parser.error('in-repository output must be under .qa-output/')\n    output.mkdir(parents=True, exist_ok=True)\n    run_name = 'runs/'+uuid.uuid4().hex\n    artifacts = output/run_name\n    artifacts.mkdir(parents=True)\n    report = {'pass': False, 'newModelCalls': None,\n              'status': 'running', 'artifacts': run_name,\n              'scope': 'Fresh isolated source copy, owned offline loopback server and full regression suite. Historical model/browser fixtures are replayed, not regenerated.'}\n    def receipt(initial=False):\n        text = json.dumps(report, indent=2)+'\\n'\n        (artifacts/'receipt.json').write_text(text)\n        with (output/'.receipt.lock').open('a') as lock:\n            fcntl.flock(lock, fcntl.LOCK_EX)\n            latest = output/'receipt.json'\n            if initial or json.loads(latest.read_text())['artifacts'] == run_name:\n                pending = output/('receipt-'+uuid.uuid4().hex+'.tmp')\n                pending.write_text(text)\n                pending.replace(latest)\n    receipt(initial=True)\n    previous_term = signal.getsignal(signal.SIGTERM)\n    def terminated(signum, frame):\n        signal.signal(signal.SIGTERM, signal.SIG_IGN)\n        raise InterruptedError('Runner terminated; owned children are being stopped')\n    signal.signal(signal.SIGTERM, terminated)\n    began = time.monotonic()\n    try:\n        with tempfile.TemporaryDirectory(prefix='soundrig-ci-') as temp:",
+  "truncated": true,
+  "next_start_line": 106,
+  "total_lines": 173,
+  "content_truncated_upstream": false,
+  "sha": "ca047319ab0748ff242b152a371a9fd3d6e76a2f",
+  "resolved_ref": null,
+  "commit_date": "2026-11-16T13:00:21+00:00",
+  "last_fetched_at": "2026-11-16T13:04:28.382184+00:00",
+  "verifiedAgainstLocalSource": true
+}
